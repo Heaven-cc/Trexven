@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"id\":\"f32e94e4-2ce2-48fc-96e1-fc90a0fc5447\",\"slug\":\"account-deletion-recovery\",\"name\":\"account-deletion-recovery\",\"status\":\"ACTIVE\",\"version\":1,\"created_at\":1791870811973,\"updated_at\":1791870811973,\"verify_jwt\":false,\"import_map\":false,\"entrypoint_path\":\"file:///tmp/user_fn_ufehcfrlygqvminfjumf_f32e94e4-2ce2-48fc-96e1-fc90a0fc5447_1/source/supabase/functions/account-deletion-recovery/index.ts\",\"ezbr_sha256\":\"b3be7470298534012be1134d1ef9e574c5579655bba6efe0b7ee3d74f80669a4\"}"
+    }
+  ],
+  "isError": false
+}

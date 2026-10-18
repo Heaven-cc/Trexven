@@ -1,0 +1,654 @@
+{
+  "api_hook": [
+    {
+      "database": "0",
+      "settings": [
+        "session_preload_libraries=supautils, safeupdate",
+        "statement_timeout=8s",
+        "lock_timeout=8s"
+      ]
+    },
+    {
+      "database": "5",
+      "settings": [
+        "pgrst.db_pre_request=public.trexven_guard_account_access"
+      ]
+    }
+  ],
+  "rls_enabled": {
+    "account_deletion_state": true,
+    "account_deletion_api_hook": true
+  },
+  "deletion_rpcs": [
+    {
+      "signature": "begin_trexven_account_deletion(uuid,uuid,text)",
+      "anon_execute": false,
+      "service_execute": true,
+      "security_definer": true,
+      "authenticated_execute": false
+    },
+    {
+      "signature": "claim_trexven_account_deletion(uuid,text,uuid)",
+      "anon_execute": false,
+      "service_execute": true,
+      "security_definer": true,
+      "authenticated_execute": false
+    },
+    {
+      "signature": "finish_trexven_account_deletion(uuid,uuid)",
+      "anon_execute": false,
+      "service_execute": true,
+      "security_definer": true,
+      "authenticated_execute": false
+    },
+    {
+      "signature": "release_trexven_account_deletion(uuid,uuid)",
+      "anon_execute": false,
+      "service_execute": true,
+      "security_definer": true,
+      "authenticated_execute": false
+    }
+  ],
+  "deletion_state_count": 0,
+  "closed_account_policies": [
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "buckets",
+      "schema": "storage",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "objects",
+      "schema": "storage",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "products",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "sales",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "businesses",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "employees",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "business_members",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "inventory",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "cash_transactions",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "alerts",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "financial_transactions",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "employee_activity",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "sale_items",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "business_activity",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "business_settings",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "angel_conversations",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "angel_messages",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "angel_insights",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "expenses",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "employee_permissions",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "permissions",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "audit_logs",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "inventory_movements",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "branches",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "employee_branch_assignments",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "product_groups",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "cameras",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "camera_zones",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "camera_event_links",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "cash_registers",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "cash_shifts",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "camera_ai_jobs",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "camera_health_logs",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "camera_events",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "camera_detections",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "recordings",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "cash_handovers",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "cash_events",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "cash_register_assignments",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "subscription_plans",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "business_subscriptions",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "sale_payments",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "credit_approvals",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "subscription_events",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "billing_customers",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "billing_sessions",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "return_items",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "credit_limits",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "credit_accounts",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "credit_entries",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "sale_returns",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "offline_sale_reconciliations",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "stocktake_sessions",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "stocktake_counts",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "stock_condition_entries",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "inventory_reconciliation_reviews",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "supplier_stock_returns",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "cash_shift_members",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "stock_transfers",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "billing_payments",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "billing_invoices",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "account_lifecycle_requests",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "subscription_change_requests",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "application_error_events",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "operational_backup_status",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    },
+    {
+      "roles": [
+        "authenticated"
+      ],
+      "table": "trexven_notification_reads",
+      "schema": "public",
+      "command": "ALL",
+      "permissive": "RESTRICTIVE"
+    }
+  ],
+  "retained_permission_bodies": {
+    "account_deletion_previous_is_business_member": "CREATE OR REPLACE FUNCTION private.account_deletion_previous_is_business_member(target_business_id uuid)\n RETURNS boolean\n LANGUAGE sql\n STABLE SECURITY DEFINER\n SET search_path TO ''\nAS $function$\n select auth.uid() is not null and (public.user_owns_business(target_business_id)\n or exists(select 1 from public.business_members m join public.employees e\n on e.business_id=m.business_id and e.user_id=m.user_id\n where m.business_id=target_business_id and m.user_id=auth.uid()\n and m.status='active' and e.status='active'\n and e.role in ('manager','sales_employee','inventory_employee','employee')))\n$function$\n",
+    "account_deletion_previous_user_owns_business": "CREATE OR REPLACE FUNCTION private.account_deletion_previous_user_owns_business(target_business_id uuid)\n RETURNS boolean\n LANGUAGE sql\n STABLE SECURITY DEFINER\n SET search_path TO 'public', 'pg_temp'\nAS $function$\r\n    select exists (\r\n        select 1\r\n        from public.businesses\r\n        where id = target_business_id\r\n        and owner_id = auth.uid()\r\n    );\r\n$function$\n",
+    "account_deletion_previous_has_business_permission": "CREATE OR REPLACE FUNCTION private.account_deletion_previous_has_business_permission(business uuid, permission text)\n RETURNS boolean\n LANGUAGE sql\n STABLE SECURITY DEFINER\n SET search_path TO ''\nAS $function$\r\n select auth.uid() is not null and permission is not null and permission <> 'view_profit' and (\r\n public.user_owns_business(business) or exists(\r\n select 1 from public.employees e join public.business_members m\r\n on m.business_id=e.business_id and m.user_id=e.user_id\r\n where e.business_id=business and e.user_id=auth.uid()\r\n and e.status='active' and m.status='active'\r\n and e.role in ('manager','sales_employee','inventory_employee','employee')\r\n -- Owner-only services and role/permission administration are never delegable.\r\n and permission not in ('view_camera_events','manage_permissions','assign_roles','owner_app')\r\n and (permission not in ('override_price','edit_prices','change_prices','manage_prices','set_prices','branch_price_override')\r\n      or e.role='manager')\r\n and (permission<>'apply_discount' or e.role<>'inventory_employee')\r\n and (permission<>'manage_employees' or e.role='manager')\r\n and (permission not in ('view_finance') or e.role='manager')\r\n and not exists(select 1 from public.employee_permissions denied where denied.employee_id=e.id\r\n                and denied.permission_id=permission and not denied.granted)\r\n and (exists(select 1 from public.employee_permissions p join public.permissions d on d.id=p.permission_id\r\n             where p.employee_id=e.id and p.permission_id=permission and p.granted)\r\n or (e.role='manager' and permission in ('pos_access','complete_sales','view_inventory','add_products','edit_products','manage_employees','adjust_stock'))\r\n or (e.role='sales_employee' and permission in ('pos_access','complete_sales','view_inventory'))\r\n or (e.role='inventory_employee' and permission in ('view_inventory','add_products','edit_products')))))\r\n$function$\n"
+  }
+}

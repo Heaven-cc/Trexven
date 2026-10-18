@@ -1,0 +1,141 @@
+{
+  "target": "sixth disposable loopback Auth/REST only",
+  "checks": [
+    {
+      "check": "synthetic local Auth user creation",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "real local Auth password session",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "synthetic local Auth user creation",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "real local Auth password session",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "synthetic local Auth user creation",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "real local Auth password session",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "owner onboarding creates scoped business",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "second independent owner business",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "guarded synthetic employee fixture",
+      "passed": true,
+      "http_status": null
+    },
+    {
+      "check": "owner atomic catalog import",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "inventory creates pending product without price",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "pending remains unpriced and inactive",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "inventory direct REST price denied",
+      "passed": true,
+      "http_status": 403
+    },
+    {
+      "check": "inventory alternative price RPC denied",
+      "passed": true,
+      "http_status": 403
+    },
+    {
+      "check": "direct quantity bypass denied even for owner",
+      "passed": true,
+      "http_status": 403
+    },
+    {
+      "check": "forged business ID denied",
+      "passed": true,
+      "http_status": 403
+    },
+    {
+      "check": "cross-business REST read isolated",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "ungranted inventory adjustment denied",
+      "passed": true,
+      "http_status": 403
+    },
+    {
+      "check": "owner grants existing inventory permission",
+      "passed": true,
+      "http_status": 204
+    },
+    {
+      "check": "explicitly permitted inventory adjustment succeeds",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "REST retry applies stock exactly once",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "owner revokes inventory permission",
+      "passed": true,
+      "http_status": 204
+    },
+    {
+      "check": "revocation rejects existing session immediately",
+      "passed": true,
+      "http_status": 403
+    },
+    {
+      "check": "fractional checkout via real Auth REST",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "receipt and request replay identical",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "checkout deducts fractional stock exactly once",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "missing identity fails closed",
+      "passed": true,
+      "http_status": 401
+    }
+  ],
+  "passed": true
+}

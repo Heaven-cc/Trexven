@@ -1,0 +1,152 @@
+00:00 +0: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart
+00:00 +0: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart: Searchable cart merges, independently edits and removes products; requires confirmation
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following assertion was thrown running a test:
+pumpAndSettle timed out
+
+When the exception was thrown, this was the stack:
+#0      WidgetTester.pumpAndSettle.<anonymous closure> (package:flutter_test/src/widget_tester.dart:717:11)
+<asynchronous suspension>
+#1      TestAsyncUtils.guard.<anonymous closure> (package:flutter_test/src/test_async_utils.dart:130:27)
+<asynchronous suspension>
+#2      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:34:67)
+<asynchronous suspension>
+#3      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#4      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  Searchable cart merges, independently edits and removes products; requires confirmation
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:17 +0 -1: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart: Searchable cart merges, independently edits and removes products; requires confirmation [E]
+  Test failed. See exception logs above.
+  The test description was: Searchable cart merges, independently edits and removes products; requires confirmation
+  
+Warning: At least one test in this suite creates an HttpClient. When running a test suite that uses
+TestWidgetsFlutterBinding, all HTTP requests will return status code 400, and no network request
+will actually be made. Any test expecting a real network connection and status code will fail.
+To test code that needs an HttpClient, provide your own HttpClient implementation to the code under
+test, so that your test can consistently provide a testable response to the code under test.
+00:17 +0 -1: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart: Terminal needs external reference and explicit user confirmation
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following assertion was thrown running a test:
+pumpAndSettle timed out
+
+When the exception was thrown, this was the stack:
+#0      WidgetTester.pumpAndSettle.<anonymous closure> (package:flutter_test/src/widget_tester.dart:717:11)
+<asynchronous suspension>
+#1      TestAsyncUtils.guard.<anonymous closure> (package:flutter_test/src/test_async_utils.dart:130:27)
+<asynchronous suspension>
+#2      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:52:75)
+<asynchronous suspension>
+#3      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#4      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  Terminal needs external reference and explicit user confirmation
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:26 +0 -2: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart: Terminal needs external reference and explicit user confirmation [E]
+  Test failed. See exception logs above.
+  The test description was: Terminal needs external reference and explicit user confirmation
+  
+00:26 +0 -2: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart: Transfer needs external reference and explicit user confirmation
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following assertion was thrown running a test:
+pumpAndSettle timed out
+
+When the exception was thrown, this was the stack:
+#0      WidgetTester.pumpAndSettle.<anonymous closure> (package:flutter_test/src/widget_tester.dart:717:11)
+<asynchronous suspension>
+#1      TestAsyncUtils.guard.<anonymous closure> (package:flutter_test/src/test_async_utils.dart:130:27)
+<asynchronous suspension>
+#2      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:52:75)
+<asynchronous suspension>
+#3      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#4      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  Transfer needs external reference and explicit user confirmation
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:34 +0 -3: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart: Transfer needs external reference and explicit user confirmation [E]
+  Test failed. See exception logs above.
+  The test description was: Transfer needs external reference and explicit user confirmation
+  
+00:34 +0 -3: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart: Full credit collects debtor details and requires an explicit exact-cart approval
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following assertion was thrown running a test:
+pumpAndSettle timed out
+
+When the exception was thrown, this was the stack:
+#0      WidgetTester.pumpAndSettle.<anonymous closure> (package:flutter_test/src/widget_tester.dart:717:11)
+<asynchronous suspension>
+#1      TestAsyncUtils.guard.<anonymous closure> (package:flutter_test/src/test_async_utils.dart:130:27)
+<asynchronous suspension>
+#2      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:73:75)
+<asynchronous suspension>
+#3      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#4      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  Full credit collects debtor details and requires an explicit exact-cart approval
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:42 +0 -4: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart: Full credit collects debtor details and requires an explicit exact-cart approval [E]
+  Test failed. See exception logs above.
+  The test description was: Full credit collects debtor details and requires an explicit exact-cart approval
+  
+00:42 +0 -4: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart: Partial credit collects debtor details and requires an explicit exact-cart approval
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following assertion was thrown running a test:
+pumpAndSettle timed out
+
+When the exception was thrown, this was the stack:
+#0      WidgetTester.pumpAndSettle.<anonymous closure> (package:flutter_test/src/widget_tester.dart:717:11)
+<asynchronous suspension>
+#1      TestAsyncUtils.guard.<anonymous closure> (package:flutter_test/src/test_async_utils.dart:130:27)
+<asynchronous suspension>
+#2      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:73:75)
+<asynchronous suspension>
+#3      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#4      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  Partial credit collects debtor details and requires an explicit exact-cart approval
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:54 +0 -5: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart: Partial credit collects debtor details and requires an explicit exact-cart approval [E]
+  Test failed. See exception logs above.
+  The test description was: Partial credit collects debtor details and requires an explicit exact-cart approval
+  
+00:54 +0 -5: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/angel_repository_test.dart
+00:56 +0 -5: C:/Users/USER/AndroidStudioProjects/Trexven/test/angel_repository_test.dart: New chat has an explicit stable identity; message history uses an authorized cursor
+00:57 +1 -5: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/owner_checkout_test.dart
+00:58 +1 -5: C:/Users/USER/AndroidStudioProjects/Trexven/test/owner_checkout_test.dart: Owner cash cart uses one exact approved atomic transaction
+00:58 +2 -5: C:/Users/USER/AndroidStudioProjects/Trexven/test/owner_checkout_test.dart: Owner card cart uses one exact approved atomic transaction
+00:58 +3 -5: C:/Users/USER/AndroidStudioProjects/Trexven/test/owner_checkout_test.dart: Owner bank_transfer cart uses one exact approved atomic transaction
+00:58 +4 -5: C:/Users/USER/AndroidStudioProjects/Trexven/test/owner_checkout_test.dart: Owner credit cart uses one exact approved atomic transaction
+00:58 +5 -5: C:/Users/USER/AndroidStudioProjects/Trexven/test/owner_checkout_test.dart: Owner partial cart uses one exact approved atomic transaction
+00:59 +6 -5: Some tests failed.
+
+Failing tests:
+  C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart: Full credit collects debtor details and requires an explicit exact-cart approval
+  C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart: Partial credit collects debtor details and requires an explicit exact-cart approval
+  C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart: Searchable cart merges, independently edits and removes products; requires confirmation
+  C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart: Terminal needs external reference and explicit user confirmation
+  C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart: Transfer needs external reference and explicit user confirmation

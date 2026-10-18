@@ -1,0 +1,27 @@
+[
+  {
+    "step": "failure_before",
+    "exit": 0,
+    "expected": 0
+  },
+  {
+    "step": "intentional_migration_failure",
+    "exit": 3,
+    "expected": 1
+  },
+  {
+    "step": "failure_after",
+    "exit": 0,
+    "expected": 0
+  },
+  {
+    "step": "forward_recovery",
+    "exit": 0,
+    "expected": 0
+  },
+  {
+    "step": "forward_recovery_after",
+    "exit": 0,
+    "expected": 0
+  }
+]

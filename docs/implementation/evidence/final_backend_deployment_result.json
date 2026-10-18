@@ -1,0 +1,18 @@
+{
+  "status": "SUCCESS",
+  "project": "ufehcfrlygqvminfjumf",
+  "migrations_applied": 16,
+  "migration_history_entries": 32,
+  "delete_account_version": 4,
+  "camera_ai_version_preserved": 7,
+  "camera_guard_dormant": true,
+  "original_data_preserved": true,
+  "odt_vision_accessed": false,
+  "frozen_manifest_sha256": "9d7ed348a6b31a02200e9fe3ff6e93a11dcb14125d7c2b6fb6f22de31f8ea328",
+  "finished_utc": "2026-10-09T21:36:36.874989+00:00",
+  "evidence": [
+    "final_backend_authorized_execution.json",
+    "final_backend_readonly_postflight.json",
+    "final_backend_edge_verification.json"
+  ]
+}

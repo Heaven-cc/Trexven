@@ -1,0 +1,195 @@
+{
+  "project": "ufehcfrlygqvminfjumf",
+  "manifest_sha256": "9d7ed348a6b31a02200e9fe3ff6e93a11dcb14125d7c2b6fb6f22de31f8ea328",
+  "started_utc": "2026-10-09T21:30:53.489723+00:00",
+  "authorization": "Explicit user authorization: dormant camera DB guard and unchanged 16 migrations; delete-account only after RPC verification.",
+  "migrations": [
+    {
+      "ordinal": 1,
+      "version": "20261009070338",
+      "file": "20261009070338_batch_4_financial_operations.sql",
+      "sha256": "031ed38e119ae10f648e54d16532861931ab916e45bdbec5c8c5977bd9f890ac",
+      "exit": 0,
+      "started_utc": "2026-10-09T21:31:16.622761+00:00",
+      "finished_utc": "2026-10-09T21:31:24.889711+00:00",
+      "committed": true
+    },
+    {
+      "ordinal": 2,
+      "version": "20261009070340",
+      "file": "20261009070340_batch_4_offline_cash_reconciliation.sql",
+      "sha256": "37ef7a130f1b141b778b37a50bbf991a111b90ef2e44832182ab14c5882c0f93",
+      "exit": 0,
+      "started_utc": "2026-10-09T21:31:26.415398+00:00",
+      "finished_utc": "2026-10-09T21:31:29.726691+00:00",
+      "committed": true
+    },
+    {
+      "ordinal": 3,
+      "version": "20261009075117",
+      "file": "20261009075117_batch_4_recovery_and_history.sql",
+      "sha256": "92c7b2cb10def500da7bb83e39c056f4c1c96e4f4df06a56b10d905bc5a04c9b",
+      "exit": 0,
+      "started_utc": "2026-10-09T21:31:32.668749+00:00",
+      "finished_utc": "2026-10-09T21:31:35.304408+00:00",
+      "committed": true
+    },
+    {
+      "ordinal": 4,
+      "version": "20261009075318",
+      "file": "20261009075318_batch_5_inventory_operations.sql",
+      "sha256": "357be8d5910c0f8aa4d2325f3ff8c888e9dcbbc37c2a0c6f2737b53c972006d3",
+      "exit": 0,
+      "started_utc": "2026-10-09T21:31:36.627596+00:00",
+      "finished_utc": "2026-10-09T21:31:41.621347+00:00",
+      "committed": true
+    },
+    {
+      "ordinal": 5,
+      "version": "20261009075612",
+      "file": "20261009075612_batch_5_inventory_review_controls.sql",
+      "sha256": "2abaeab2d165fd81519ed9e7f60f6806da82c0cfea48de7d67ab079894fdf8f9",
+      "exit": 0,
+      "started_utc": "2026-10-09T21:31:43.225773+00:00",
+      "finished_utc": "2026-10-09T21:31:46.144926+00:00",
+      "committed": true
+    },
+    {
+      "ordinal": 6,
+      "version": "20261009075911",
+      "file": "20261009075911_batch_6_shared_cash_drawers.sql",
+      "sha256": "3475612a514992a1c1132b71e47e4a0fc92d88b191e122c20119a4d2fdf869ac",
+      "exit": 0,
+      "started_utc": "2026-10-09T21:31:47.804617+00:00",
+      "finished_utc": "2026-10-09T21:31:52.594407+00:00",
+      "committed": true
+    },
+    {
+      "ordinal": 7,
+      "version": "20261009080227",
+      "file": "20261009080227_batch_6_handover_and_access.sql",
+      "sha256": "fa8c24c606c647a4f1d63b2606d7b8b1f98daff98754f05914b0348f9f578944",
+      "exit": 0,
+      "started_utc": "2026-10-09T21:31:54.014839+00:00",
+      "finished_utc": "2026-10-09T21:31:57.254338+00:00",
+      "committed": true
+    },
+    {
+      "ordinal": 8,
+      "version": "20261009080751",
+      "file": "20261009080751_batch_4_financial_audit_events.sql",
+      "sha256": "6a4a3a01bc7926b08c7f6be747bf0908c84387436985ed20824a9023f52086ed",
+      "exit": 0,
+      "started_utc": "2026-10-09T21:31:58.758676+00:00",
+      "finished_utc": "2026-10-09T21:32:00.613458+00:00",
+      "committed": true
+    },
+    {
+      "ordinal": 9,
+      "version": "20261009080842",
+      "file": "20261009080842_batch_5_dormant_transfer_foundation.sql",
+      "sha256": "debe44c08dbef851e786e3168e1b6ca533be6ea8ee0fc583fb2d010524ea4231",
+      "exit": 0,
+      "started_utc": "2026-10-09T21:32:02.468979+00:00",
+      "finished_utc": "2026-10-09T21:32:06.814597+00:00",
+      "committed": true
+    },
+    {
+      "ordinal": 10,
+      "version": "20261009081002",
+      "file": "20261009081002_batch_7_subscription_billing_foundation.sql",
+      "sha256": "c3a3204fb31f016cbb63c1ac68a523413ad646ca59af61c915568823e0d14805",
+      "exit": 0,
+      "started_utc": "2026-10-09T21:32:08.370420+00:00",
+      "finished_utc": "2026-10-09T21:32:12.454329+00:00",
+      "committed": true
+    },
+    {
+      "ordinal": 11,
+      "version": "20261009081504",
+      "file": "20261009081504_batch_7_enforcement_and_operations.sql",
+      "sha256": "6dbc25b88af5cc87d4b8eaca1df58bfb5686357ecb87eccd586e504812b1e759",
+      "exit": 0,
+      "started_utc": "2026-10-09T21:32:13.831646+00:00",
+      "finished_utc": "2026-10-09T21:32:18.621242+00:00",
+      "committed": true
+    },
+    {
+      "ordinal": 12,
+      "version": "20261009082051",
+      "file": "20261009082051_batch_7_verified_provider_and_entitlement_controls.sql",
+      "sha256": "4ac9604f16c6b2ac809445cf7fdb067ddf030d97f620024effedc0884c019988",
+      "exit": 0,
+      "started_utc": "2026-10-09T21:32:20.164231+00:00",
+      "finished_utc": "2026-10-09T21:32:24.210179+00:00",
+      "committed": true
+    },
+    {
+      "ordinal": 13,
+      "version": "20261009082951",
+      "file": "20261009082951_batch_7_final_access_controls.sql",
+      "sha256": "18d5e2e316d3ce8163285a71de6e102ec1396bb8d45990b37402342f58c66817",
+      "exit": 0,
+      "started_utc": "2026-10-09T21:32:25.606426+00:00",
+      "finished_utc": "2026-10-09T21:32:28.438767+00:00",
+      "committed": true
+    },
+    {
+      "ordinal": 14,
+      "version": "20261009122632",
+      "file": "20261009122632_batch_4_transaction_recovery_boundaries.sql",
+      "sha256": "3fb001440ebed305f1a13d588101ce24d4d349b947386108f9633cdbe2af0582",
+      "exit": 0,
+      "started_utc": "2026-10-09T21:32:29.854976+00:00",
+      "finished_utc": "2026-10-09T21:32:33.493114+00:00",
+      "committed": true
+    },
+    {
+      "ordinal": 15,
+      "version": "20261009135919",
+      "file": "20261009135919_batch_8_owner_payment_and_session_integration.sql",
+      "sha256": "8e457ca6d321f7aa9dbe266055f1259d81134a5eb33b736d83840d2667c72a05",
+      "exit": 0,
+      "started_utc": "2026-10-09T21:32:34.834344+00:00",
+      "finished_utc": "2026-10-09T21:32:37.772861+00:00",
+      "committed": true
+    },
+    {
+      "ordinal": 16,
+      "version": "20261009184148",
+      "file": "20261009184148_batch_9_role_scoped_in_app_alerts.sql",
+      "sha256": "690a52bd668d3358c1d7dab1bd7ee784dd6aaac63c42ed52c92f16e1a4a0f4a9",
+      "exit": 0,
+      "started_utc": "2026-10-09T21:32:39.290033+00:00",
+      "finished_utc": "2026-10-09T21:32:42.619284+00:00",
+      "committed": true
+    }
+  ],
+  "status": "MIGRATIONS_VERIFIED",
+  "tls": "verify-full",
+  "credential_source": "PGPASSFILE",
+  "customer_records_logged": false,
+  "camera_ai_deployment_attempted": false,
+  "odt_vision_accessed": false,
+  "edge_deployment_attempted": false,
+  "original_tables_compared": 83,
+  "original_column_values_preserved": true,
+  "changed_tables": [],
+  "camera_access_metadata_preserved": true,
+  "targeted_checks": {
+    "branches_disabled": true,
+    "providers_disabled": true,
+    "branch_records_empty": true,
+    "lifecycle_rpc_exists": true,
+    "lifecycle_anon_denied": true,
+    "camera_guard_installed": true,
+    "lifecycle_auth_execute": true,
+    "branch_assignments_empty": true,
+    "lifecycle_requests_empty": true,
+    "camera_entitlement_dormant": true,
+    "no_subscription_enrollment": true,
+    "plan_charging_unconfigured": true
+  },
+  "final_history_entries": 32,
+  "finished_utc": "2026-10-09T21:33:01.117805+00:00"
+}

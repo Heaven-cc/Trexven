@@ -1,0 +1,12 @@
+[
+  {
+    "suite": "batch_4_financial_operations_tests",
+    "exit": 0,
+    "assertions": 24
+  },
+  {
+    "suite": "batch_4_offline_cash_tests",
+    "exit": 0,
+    "assertions": 7
+  }
+]

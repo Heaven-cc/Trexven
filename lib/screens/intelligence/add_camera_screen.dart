@@ -1,6 +1,6 @@
+import 'package:trexven_design_system/trexven_design_system.dart';
+import 'package:trexven_operations/trexven_operations.dart';
 import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-import '../../services/camera_service.dart';
 import '../../services/vision_service.dart';
 
 class AddCameraScreen extends StatefulWidget {
@@ -11,11 +11,6 @@ class AddCameraScreen extends StatefulWidget {
 }
 
 class _AddCameraScreenState extends State<AddCameraScreen> {
-  static const _blue = Color(0xFF2563EB);
-  static const _bg = Color(0xFFF8FAFC);
-  static const _dark = Color(0xFF0F172A);
-  static const _muted = Color(0xFF64748B);
-
   final _formKey = GlobalKey<FormState>();
   final _nameCtrl = TextEditingController();
   final _locationCtrl = TextEditingController();
@@ -30,7 +25,6 @@ class _AddCameraScreenState extends State<AddCameraScreen> {
   bool? _testSuccess;
 
   final _visionService = VisionService();
-  final _cameraService = CameraService();
 
   @override
   void dispose() {
@@ -42,15 +36,26 @@ class _AddCameraScreenState extends State<AddCameraScreen> {
     super.dispose();
   }
 
-  String _buildRtspUrl() {
-    final raw = _rtspCtrl.text.trim();
-    if (raw.isEmpty) return '';
-    // If user typed raw IP/host without rtsp:// prefix, keep as-is for now
-    return raw;
-  }
-
+  String _buildRtspUrl() => VisionService.cameraSource(
+    _rtspCtrl.text,
+    username: _usernameCtrl.text.trim(),
+    password: _passwordCtrl.text,
+  );
   Future<void> _testConnection() async {
-    final url = _buildRtspUrl();
+    String url;
+    try {
+      url = _buildRtspUrl();
+    } on FormatException catch (error) {
+      setState(() {
+        _testResult = CustomerPresentation.error(
+          error,
+          fallback:
+              'We could not connect to this camera. Check its address and try again.',
+        );
+        _testSuccess = false;
+      });
+      return;
+    }
     if (url.isEmpty) {
       setState(() {
         _testResult = 'Please enter an RTSP URL first.';
@@ -81,34 +86,32 @@ class _AddCameraScreenState extends State<AddCameraScreen> {
     setState(() => _saving = true);
 
     try {
-      await _cameraService.addCamera(
+      await _visionService.addCamera(
         name: _nameCtrl.text.trim(),
         location: _locationCtrl.text.trim().isEmpty
             ? null
             : _locationCtrl.text.trim(),
-        cameraType: 'ip',
-        streamUrl: _buildRtspUrl(),
-        provider: 'rtsp',
-        aiEnabled: _aiEnabled,
-        settings: {
-          'source': _buildRtspUrl(),
-          'username': _usernameCtrl.text.trim(),
-          'password': _passwordCtrl.text,
-        },
+        source: _buildRtspUrl(),
+        enabled: _aiEnabled,
       );
-
       if (!mounted) return;
       Navigator.pop(context, true);
-    } on PostgrestException catch (e) {
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(e.message), backgroundColor: Colors.red),
-      );
-    } catch (e) {
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(e.toString()), backgroundColor: Colors.red),
-      );
+    } on FormatException catch (error) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(CustomerPresentation.error(error))),
+        );
+      }
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Camera could not be registered. Check Vision Server pairing, then try again.',
+            ),
+          ),
+        );
+      }
     } finally {
       if (mounted) setState(() => _saving = false);
     }
@@ -116,31 +119,36 @@ class _AddCameraScreenState extends State<AddCameraScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final brandBlue = theme.colorScheme.primary;
+
     return Scaffold(
-      backgroundColor: _bg,
       appBar: AppBar(
-        backgroundColor: _bg,
         elevation: 0,
-        title: const Text(
+        title: Text(
           'Add Camera',
           style: TextStyle(
-            fontSize: 20,
+            fontSize: TrexvenFontSize.section,
             fontWeight: FontWeight.w800,
-            color: _dark,
+            color: theme.colorScheme.onSurface,
           ),
         ),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded, color: _dark),
+          icon: Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: theme.colorScheme.onSurface,
+          ),
           onPressed: () => Navigator.pop(context),
         ),
       ),
       body: Form(
         key: _formKey,
         child: ListView(
-          padding: const EdgeInsets.fromLTRB(20, 12, 20, 40),
+          padding: EdgeInsets.fromLTRB(16, 12, 16, 40),
           children: [
-            _section('Camera Info'),
+            _section(theme, 'Camera Info'),
             _field(
+              theme,
               controller: _nameCtrl,
               label: 'Camera Name',
               hint: 'Front Store Camera',
@@ -148,117 +156,109 @@ class _AddCameraScreenState extends State<AddCameraScreen> {
               validator: (v) =>
                   v == null || v.trim().isEmpty ? 'Name required' : null,
             ),
-            const SizedBox(height: 14),
             _field(
+              theme,
               controller: _locationCtrl,
               label: 'Location',
               hint: 'Main entrance, stockroom…',
               icon: Icons.location_on_outlined,
             ),
-            const SizedBox(height: 24),
-            _section('Stream Configuration'),
+            SizedBox(height: TrexvenSpacing.sectionGap),
+            _section(theme, 'Stream Configuration'),
             _field(
+              theme,
               controller: _rtspCtrl,
-              label: 'RTSP URL',
+              label: 'Camera stream URL or webcam index',
               hint: 'rtsp://192.168.1.100:554/stream1',
               icon: Icons.link_rounded,
               keyboardType: TextInputType.url,
-              validator: (v) =>
-                  v == null || v.trim().isEmpty ? 'RTSP URL required' : null,
+              validator: (v) => v == null || v.trim().isEmpty
+                  ? 'Camera source required'
+                  : null,
             ),
-            const SizedBox(height: 14),
             _field(
+              theme,
               controller: _usernameCtrl,
               label: 'Camera Username (optional)',
               hint: 'admin',
               icon: Icons.person_outline_rounded,
             ),
-            const SizedBox(height: 14),
             _field(
+              theme,
               controller: _passwordCtrl,
               label: 'Camera Password (optional)',
               hint: '••••••••',
               icon: Icons.lock_outline_rounded,
               obscureText: true,
             ),
-            const SizedBox(height: 16),
             // Test Connection button
             OutlinedButton.icon(
-              onPressed: _testingConnection ? null : _testConnection,
+              onPressed: _testingConnection || _saving ? null : _testConnection,
               icon: _testingConnection
-                  ? const SizedBox(
+                  ? SizedBox(
                       width: 16,
                       height: 16,
                       child: CircularProgressIndicator(strokeWidth: 2),
                     )
-                  : const Icon(Icons.wifi_tethering_rounded),
-              label: Text(
-                _testingConnection ? 'Testing…' : 'Test Connection',
-              ),
-              style: OutlinedButton.styleFrom(
-                foregroundColor: _blue,
-                side: const BorderSide(color: _blue),
-                minimumSize: const Size(double.infinity, 50),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(14),
-                ),
-              ),
+                  : Icon(Icons.wifi_tethering_rounded),
+              label: Text(_testingConnection ? 'Testing…' : 'Test Connection'),
+              style: OutlinedButton.styleFrom(foregroundColor: brandBlue),
             ),
-            if (_testResult != null) ...[  
-              const SizedBox(height: 10),
-              _testBanner(),
+            if (_testResult != null) ...[
+              SizedBox(height: 10),
+              _testBanner(theme),
             ],
-            const SizedBox(height: 24),
-            _section('AI Settings'),
+            SizedBox(height: TrexvenSpacing.sectionGap),
+            _section(theme, 'AI Settings'),
             Container(
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: const Color(0xFFE2E8F0)),
+                color: theme.trexvenColors.cardBackground,
+                borderRadius: BorderRadius.circular(TrexvenRadii.card),
               ),
-              child: SwitchListTile(
-                title: const Text(
-                  'Enable AI Detection',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    color: _dark,
+              child: Material(
+                type: MaterialType.transparency,
+                child: SwitchListTile(
+                  title: Text(
+                    'Enable AI Detection',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      color: theme.colorScheme.onSurface,
+                    ),
                   ),
+                  subtitle: Text(
+                    'Register on your paired Vision Server and start local processing. Use 0 for the server webcam.',
+                    style: TextStyle(
+                      fontSize: TrexvenFontSize.caption,
+                      color: theme.trexvenColors.muted,
+                    ),
+                  ),
+                  value: _aiEnabled,
+                  activeThumbColor: brandBlue,
+                  onChanged: (v) => setState(() => _aiEnabled = v),
                 ),
-                subtitle: const Text(
-                  'AI will detect people, objects and generate security events',
-                  style: TextStyle(fontSize: 12, color: _muted),
-                ),
-                value: _aiEnabled,
-                activeThumbColor: _blue,
-                onChanged: (v) => setState(() => _aiEnabled = v),
               ),
             ),
-            const SizedBox(height: 32),
+            SizedBox(height: TrexvenSpacing.sectionGap),
             ElevatedButton(
-              onPressed: _saving ? null : _save,
+              onPressed: _saving || _testingConnection ? null : _save,
               style: ElevatedButton.styleFrom(
-                backgroundColor: _blue,
-                foregroundColor: Colors.white,
-                minimumSize: const Size(double.infinity, 54),
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(14),
-                ),
+                backgroundColor: brandBlue,
+                foregroundColor: Theme.of(context).colorScheme.onPrimary,
               ),
               child: _saving
-                  ? const SizedBox(
+                  ? SizedBox(
                       width: 20,
                       height: 20,
                       child: CircularProgressIndicator(
                         strokeWidth: 2,
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.onPrimary,
                       ),
                     )
-                  : const Text(
+                  : Text(
                       'Save Camera',
                       style: TextStyle(
                         fontWeight: FontWeight.w800,
-                        fontSize: 15,
+                        fontSize: TrexvenFontSize.input,
                       ),
                     ),
             ),
@@ -268,22 +268,23 @@ class _AddCameraScreenState extends State<AddCameraScreen> {
     );
   }
 
-  Widget _section(String label) {
+  Widget _section(ThemeData theme, String label) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
+      padding: EdgeInsets.only(bottom: 12),
       child: Text(
         label,
-        style: const TextStyle(
-          fontSize: 13,
+        style: TextStyle(
+          fontSize: TrexvenFontSize.body,
           fontWeight: FontWeight.w700,
-          color: _muted,
+          color: theme.trexvenColors.muted,
           letterSpacing: 0.5,
         ),
       ),
     );
   }
 
-  Widget _field({
+  Widget _field(
+    ThemeData theme, {
     required TextEditingController controller,
     required String label,
     required String hint,
@@ -292,63 +293,48 @@ class _AddCameraScreenState extends State<AddCameraScreen> {
     TextInputType? keyboardType,
     String? Function(String?)? validator,
   }) {
-    return TextFormField(
+    final muted = theme.trexvenColors.muted!;
+
+    return TrexvenTextFormField(
       controller: controller,
       obscureText: obscureText,
       keyboardType: keyboardType,
       validator: validator,
-      decoration: InputDecoration(
+      decoration: TrexvenInputDecoration(
         labelText: label,
         hintText: hint,
-        prefixIcon: Icon(icon, color: _muted, size: 20),
-        filled: true,
-        fillColor: Colors.white,
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(14),
-          borderSide: const BorderSide(color: Color(0xFFE2E8F0)),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(14),
-          borderSide: const BorderSide(color: Color(0xFFE2E8F0)),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(14),
-          borderSide: const BorderSide(color: _blue, width: 2),
-        ),
+        prefixIcon: Icon(icon, color: muted, size: 20),
       ),
     );
   }
 
-  Widget _testBanner() {
+  Widget _testBanner(ThemeData theme) {
     final success = _testSuccess ?? false;
+    final successColor = theme.trexvenColors.success!;
+    final errorColor = theme.trexvenColors.error!;
+
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 14, vertical: 10),
       decoration: BoxDecoration(
         color: success
-            ? const Color(0xFFDCFCE7)
-            : const Color(0xFFFEE2E2),
-        borderRadius: BorderRadius.circular(12),
+            ? successColor.withValues(alpha: 0.1)
+            : errorColor.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(TrexvenRadii.card),
       ),
       child: Row(
         children: [
           Icon(
             success ? Icons.check_circle_outline : Icons.error_outline,
-            color: success
-                ? const Color(0xFF16A34A)
-                : const Color(0xFFDC2626),
+            color: success ? successColor : errorColor,
             size: 18,
           ),
-          const SizedBox(width: 8),
+          SizedBox(width: 8),
           Expanded(
             child: Text(
               _testResult!,
               style: TextStyle(
-                fontSize: 13,
-                color: success
-                    ? const Color(0xFF15803D)
-                    : const Color(0xFFB91C1C),
+                fontSize: TrexvenFontSize.body,
+                color: success ? successColor : errorColor,
                 fontWeight: FontWeight.w600,
               ),
             ),

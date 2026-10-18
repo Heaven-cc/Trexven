@@ -1,0 +1,46 @@
+{
+  "project_id": "ufehcfrlygqvminfjumf",
+  "live_checks": [
+    {
+      "check": "delete_requires_auth",
+      "status": 401,
+      "expected": 401,
+      "passed": true,
+      "response": "{\"success\":false,\"error\":\"Authentication required.\"}",
+      "cache_control": null
+    },
+    {
+      "check": "recovery_rejects_missing_credential",
+      "status": 400,
+      "expected": 400,
+      "passed": true,
+      "response": "{\"success\":false,\"error\":\"Valid original recovery credentials are required.\"}",
+      "cache_control": "no-store"
+    },
+    {
+      "check": "recovery_cors",
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "response": "ok",
+      "cache_control": null
+    },
+    {
+      "check": "anonymous_api_hook_admission",
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "response": "true",
+      "cache_control": null
+    }
+  ],
+  "account_deletion_invoked": false,
+  "local_tests_run": false,
+  "frontend_unchanged_since_implementation_snapshot": {
+    "lib/main.dart": false,
+    "lib/screens/auth/account_gate.dart": true,
+    "lib/screens/me/security_screen.dart": true,
+    "lib/services/account_deletion_service.dart": true,
+    "lib/screens/auth/account_deletion_recovery_screen.dart": true
+  }
+}

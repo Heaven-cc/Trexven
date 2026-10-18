@@ -1,0 +1,9 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"id\":\"19b7c189-314e-4bda-b3ee-6ba6024ae38b\",\"slug\":\"delete-account\",\"name\":\"delete-account\",\"status\":\"ACTIVE\",\"version\":5,\"created_at\":1787796460658,\"updated_at\":1791870830339,\"verify_jwt\":true,\"import_map\":false,\"entrypoint_path\":\"file:///tmp/user_fn_ufehcfrlygqvminfjumf_19b7c189-314e-4bda-b3ee-6ba6024ae38b_5/source/supabase/functions/delete-account/index.ts\",\"ezbr_sha256\":\"43de309737c802fb85404048407239ba1d719e14a23e295acb8c0c8f71cb6bf5\"}"
+    }
+  ],
+  "isError": false
+}

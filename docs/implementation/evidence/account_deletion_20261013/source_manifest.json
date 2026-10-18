@@ -1,0 +1,39 @@
+{
+  "modified": [
+    "lib/main.dart",
+    "lib/screens/auth/account_gate.dart",
+    "lib/screens/me/security_screen.dart",
+    "supabase/config.toml",
+    "supabase/functions/delete-account/index.ts"
+  ],
+  "new": [
+    "lib/services/account_deletion_service.dart",
+    "lib/screens/auth/account_deletion_recovery_screen.dart",
+    "supabase/functions/_shared/account-deletion.ts",
+    "supabase/functions/account-deletion-recovery/index.ts",
+    "supabase/migrations/20261013042954_account_deletion_with_history_preservation.sql"
+  ],
+  "deleted": [],
+  "tests_run": false,
+  "migration_applied": false,
+  "deployed": false,
+  "before_sha256": {
+    "lib/main.dart": "39b8af78f9ddf9b6f5aa6237a7770756f9656fc0ff68197d9005806270c345a0",
+    "supabase/config.toml": "c85358c7c610a19a7de368ef91b7f571cdd48e26f4bc6d4281e3484046088027",
+    "lib/screens/auth/account_gate.dart": "e75acf9145864ff2e7731005d4c2a42f6d71891853801f255cc0300508fd0494",
+    "lib/screens/me/security_screen.dart": "46401627a85734dce2ec7032e95357ab3fc625c69db7347afd9f67eb7c579ea0",
+    "supabase/functions/delete-account/index.ts": "4bada6064a6ac0a2f8c3ff7ad87f7122bb279e3dc40395e3bdcc01437ca414a5"
+  },
+  "after_sha256": {
+    "lib/main.dart": "085251adbb6d145a387fb7b37e61af2b0c059f7570434fed0c798ec390af6a40",
+    "supabase/config.toml": "54cb9d20090d38f4b6d7fa2783354e11667912514d521fc405751dc0b1650ab4",
+    "lib/screens/auth/account_gate.dart": "06dd81c0f77211584a710af4a0a516d8edd5d9e031adc29363cc6820c4627b33",
+    "lib/screens/me/security_screen.dart": "f897f65394e599dbafaa9b118626629cb2a5b88678b81fe0ec00f22a3337cc7e",
+    "supabase/functions/delete-account/index.ts": "3e68c8a8b5fdd25d6ba6e49fde97636bee575a3ec0cff4f6ebae01c7570f17e2",
+    "lib/services/account_deletion_service.dart": "95addc9002c8eb7cb900cc4c854cb41fcc8a4d7365a23e52b5832cbadfba2f16",
+    "lib/screens/auth/account_deletion_recovery_screen.dart": "e510c57f28b6af691b94d4c088ffc75cee14b9e8066f6a193d37d0f7b36746be",
+    "supabase/functions/_shared/account-deletion.ts": "6ced434fe732fabf10b68e6b123e9248904720d3744cb3ed036ff83695196f35",
+    "supabase/functions/account-deletion-recovery/index.ts": "637ad718e9f6c4bd41f442e2b15c7c694f8640642a7b14efd313c0f2c9e91aab",
+    "supabase/migrations/20261013042954_account_deletion_with_history_preservation.sql": "1bc3eb3232ae4426958496e84baed556958f0485e479a4864c4a07056744130b"
+  }
+}

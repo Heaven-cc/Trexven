@@ -1,0 +1,285 @@
+{
+  "production_project": "ufehcfrlygqvminfjumf",
+  "production_writes": true,
+  "production_integrated": true,
+  "status": "DEPLOYED AND VERIFIED: approved seven-migration/four-Edge production scope complete",
+  "catalog_comparison": {
+    "structure": true,
+    "functions": true,
+    "security": true,
+    "acl": true,
+    "dependencies": true,
+    "extras": true
+  },
+  "original_history_versions": [
+    "20260819180000",
+    "20260823100000",
+    "20261002014604",
+    "20261002015419",
+    "20261002123039",
+    "20261002124738",
+    "20261003224001",
+    "20261004025120",
+    "20261005004045"
+  ],
+  "original_history_file_hashes": {
+    "20260819180000_camera_ai_fixes.sql": "360256fe044cf5e0928b895291483224e7f91278cb70243baea41f8690df0e89",
+    "20260823100000_employee_management.sql": "4ef1ea7e08314c1ce62ee4c5b39141195886b89cd1d01bf43d8b63c4f5c246af",
+    "20261002014604_backend_integration_repairs.sql": "ebbb545c6ad4a74e8db39e9b5fa671a245f92370c13b829a80ae077e22cb2fd5",
+    "20261002015419_backend_rpc_grants_hardening.sql": "29faa1becefcc0ee8263e1243e5d711a5953c76d267cf71bb80e7d8be4b3ba1e",
+    "20261002123039_helper_function_anon_execute_hardening.sql": "239ae9718be63d1f93a68e4d8e003d54464a8313f6781b32d080e18c3fa1298a",
+    "20261002124738_account_delete_audit_fk_hardening.sql": "370a97189d62e1ce7d63d3da7885ddcf56b877623b8ffa890f5a71ebe11ac90c",
+    "20261003224001_testing_readiness_access_controls.sql": "7889b902509438d42e419cdfd2368e44e859880ad62e568f686fcc47bff0e7ed",
+    "20261004025120_native_camera_rate_isolation.sql": "23a6b730419a65b37665a27a2d489ebb70a3fbff4d2d2b540ea9a1e1b25afb13",
+    "20261005004045_sale_submission_reliability.sql": "9709e52ad6e3793dd105b78495e1f3451e5e86683d7634dd319fcc4726963b8d"
+  },
+  "pending_migrations": [
+    {
+      "file": "supabase\\migrations\\20261007215736_batch_2_authorization_price_enforcement.sql",
+      "version": "20261007215736",
+      "name": "batch_2_authorization_price_enforcement",
+      "sha256": "55a69cd97eb1fbbd2a034467e9cda93d5551c7fcd415f6ea4d778f53d2a1b8e7"
+    },
+    {
+      "file": "supabase\\migrations\\20261007215743_batch_2_branch_assignment_foundation.sql",
+      "version": "20261007215743",
+      "name": "batch_2_branch_assignment_foundation",
+      "sha256": "2537fb48a9c7fc77088a30f2158f917d45bed39126d670fff3d5dfed4358f34a"
+    },
+    {
+      "file": "supabase\\migrations\\20261007215831_batch_2_branch_checkout_compatibility.sql",
+      "version": "20261007215831",
+      "name": "batch_2_branch_checkout_compatibility",
+      "sha256": "86feacc6be132aedb1a2999500a633e9a433f41c0965dbb7bb51a2f931278283"
+    },
+    {
+      "file": "supabase\\migrations\\20261008002119_batch_2_staging_security_recovery.sql",
+      "version": "20261008002119",
+      "name": "batch_2_staging_security_recovery",
+      "sha256": "4f9a93633d401ad9e66b55870e5720c1081c0151408e2d31f8b082303fdb0ca3"
+    },
+    {
+      "file": "supabase\\migrations\\20261008020234_batch_2_purchase_cost_contract.sql",
+      "version": "20261008020234",
+      "name": "batch_2_purchase_cost_contract",
+      "sha256": "497f6cccce70b51454747d29b5ea61b49e89d00f8f549dc2d3ac9d2bbcbae61b"
+    },
+    {
+      "file": "supabase\\migrations\\20261008021428_batch_2_business_day_contract.sql",
+      "version": "20261008021428",
+      "name": "batch_2_business_day_contract",
+      "sha256": "26003a9e8d16241a47140c48fca7422381aed607f6d948d73c949025a38a37aa"
+    },
+    {
+      "file": "supabase\\migrations\\20261009003200_batch_3_catalog_inventory_foundation.sql",
+      "version": "20261009003200",
+      "name": "batch_3_catalog_inventory_foundation",
+      "sha256": "1045d82c16082f519af78e379a54b53fe9f4955da39d9455bfb123a423424823"
+    }
+  ],
+  "preflight_sha256": "c38a17950697dfb638ef4f715ca0949fabfc57497085577940aa69651e8e9ddd",
+  "cli_replay_evidence": "docs/implementation/evidence/main_alignment_cli_replay.json",
+  "backup": {
+    "available_backups": 0,
+    "pitr_enabled": false,
+    "secure_database_connection_confirmed": true,
+    "production_operational_dump_created": true,
+    "credential_source_confirmed": true,
+    "credential_source": "%APPDATA%/TREXVEN/secrets/pgpass.conf",
+    "passfile_acl_verified": true,
+    "tls_mode": "verify-full",
+    "connection_failure": null,
+    "production_operational_backup_verified": true,
+    "isolated_production_backup_restore_executed": true,
+    "evidence": "docs/implementation/evidence/production_operational_backup.json",
+    "encrypted_archive_sha256": "d780083e12483367a5628a7b813984e9c36f330b9a0e52afcce40b6ba93086d0",
+    "same_windows_profile_recovery_only": true,
+    "freshness_evidence": "docs/implementation/evidence/final_production_backup_freshness.json",
+    "data_changed_since_backup": false,
+    "backup_location_drive": "C",
+    "previous_D_copy_rejected": true,
+    "latest_backup_utc": "2026-10-09T05:51:52.975947+00:00",
+    "freshness_checked_at_utc": "2026-10-09T06:41:30.842513+00:00",
+    "purpose": "Verified pre-deployment recovery archive; freshness checked immediately before authorized write. Post-migration schema differs by design."
+  },
+  "blockers": [],
+  "no_baseline_restore_to_production": true,
+  "no_branch_activation_or_history_backfill": true,
+  "edge_source_files": [
+    {
+      "file": "supabase/functions/angel/deno.json",
+      "sha256": "b596f28e13530745bd1a88090001e5e7da74dfd343bf697328bc6a3be44903ae"
+    },
+    {
+      "file": "supabase/functions/angel/index.ts",
+      "sha256": "a396f2aea235eb31e711d7c185623c69dbaa2da0dee8c69abd5c130e0304ad99"
+    },
+    {
+      "file": "supabase/functions/create-employee/index.ts",
+      "sha256": "d46286898fb98dbcdfe78ac15d28b10ce4f4ba779a16cbdb8e027ceaadd3eb3c"
+    },
+    {
+      "file": "supabase/functions/employee-login/deno.json",
+      "sha256": "b596f28e13530745bd1a88090001e5e7da74dfd343bf697328bc6a3be44903ae"
+    },
+    {
+      "file": "supabase/functions/employee-login/index.ts",
+      "sha256": "4cee6ad9cb63f84759c5d4eae8f2a76cfc2757e744262d2be9ee4c11ca10f105"
+    },
+    {
+      "file": "supabase/functions/manage-employee/index.ts",
+      "sha256": "54aff407e0e82ddad27cd10e44ea83f6fe798ae773cc4747300cc06497ddb089"
+    },
+    {
+      "file": "supabase/functions/_shared/employee-access.ts",
+      "sha256": "66c6867a4f99f0e5a0daa9d59ec8a9ec6c3c07456e80394f5ca1924521e0eeb0"
+    },
+    {
+      "file": "supabase/functions/_shared/login-permissions.ts",
+      "sha256": "01f10f86640943e9417c7297b4398be68347548f9b5c40fd10be4da64899da98"
+    }
+  ],
+  "edge_gateway_flags": {
+    "create-employee": true,
+    "manage-employee": true,
+    "angel": true,
+    "employee-login": false
+  },
+  "edge_jwt_acceptance": {
+    "evidence": "docs/implementation/evidence/final_edge_jwt_gateway_results.json",
+    "checks": 54,
+    "passed": true,
+    "actual_session_algorithm": "ES256",
+    "target": "qysspzlfiysekvxnlzsh"
+  },
+  "development_client_coordination": {
+    "publicly_launched": false,
+    "user_confirmed": true,
+    "update_method": "in-place replacement; no uninstall or data clear while pending data exists",
+    "actual_connected_test_devices": 0,
+    "candidate_apks": [
+      {
+        "app": "owner",
+        "artifact": "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+        "application_id": "com.ODT.odt",
+        "version_code": "2",
+        "version_name": "1.0.0",
+        "sha256": "06cec27d4f5743a6dd8f106d83532a58c18b08791fd4b0eaf9f607e7da68d746",
+        "signer_sha256": "66278e148f4a1ac8ef448ab6af2c3a78507981be76f1d7fb8f5e7472725b6285",
+        "previous_artifact_identity_match": true,
+        "abi": "arm64-v8a",
+        "build_exit": 0,
+        "published": false
+      },
+      {
+        "app": "pos",
+        "artifact": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+        "application_id": "odtweb.com.trexvenpos",
+        "version_code": "2",
+        "version_name": "1.0.0",
+        "sha256": "131295ab02b084f88823c5a74ef83e368e5ca0e8de5c0fde6ff8a9ebf0206fe9",
+        "signer_sha256": "66278e148f4a1ac8ef448ab6af2c3a78507981be76f1d7fb8f5e7472725b6285",
+        "previous_artifact_identity_match": true,
+        "abi": "arm64-v8a",
+        "build_exit": 0,
+        "published": false
+      }
+    ],
+    "device_preservation_verified": false,
+    "device_gate_waived_for_backend_execution": true
+  },
+  "timezone_configuration": {
+    "business_id": "7de5d490-6883-45d5-b3fd-e9b85b3832bc",
+    "expected_country": "Nigeria",
+    "proposed_timezone": "Africa/Lagos",
+    "read_only_mapping_verified": true,
+    "requires_explicit_approval": true,
+    "applied": false,
+    "deployment_decision": "Explicitly excluded by final authorization; left unset/unchanged"
+  },
+  "approved_write_operations": {
+    "migration_files": 7,
+    "edge_deployments": 4,
+    "timezone_updates": 0,
+    "branch_activations": 0
+  },
+  "execution_evidence": [
+    "docs/implementation/evidence/production_approved_migration_execution.json",
+    "docs/implementation/evidence/production_approved_database_postflight.json",
+    "docs/implementation/evidence/production_approved_edge_execution.json"
+  ],
+  "deployed_edge_functions": [
+    {
+      "name": "employee-login",
+      "version": 6,
+      "verify_jwt": false,
+      "status": "ACTIVE",
+      "ezbr_sha256": "3db48262e4d41ba90ccb200e0eef9751472a3cb83e26268058ff41e87930dbd5",
+      "retrieved_source_files": [
+        "employee-login/index.ts",
+        "_shared/login-permissions.ts",
+        "employee-login/deno.json"
+      ],
+      "frozen_source_match": true
+    },
+    {
+      "name": "create-employee",
+      "version": 7,
+      "verify_jwt": true,
+      "status": "ACTIVE",
+      "ezbr_sha256": "a3c7d1075fac093e24d7b4824a1c137ce687ca7373dee6c034e99d9798365ac3",
+      "retrieved_source_files": [
+        "create-employee/index.ts",
+        "_shared/employee-access.ts"
+      ],
+      "frozen_source_match": true
+    },
+    {
+      "name": "manage-employee",
+      "version": 4,
+      "verify_jwt": true,
+      "status": "ACTIVE",
+      "ezbr_sha256": "21d06b9d1d01b73a7d81db175af0c71a55ec6113d3d7ca8599c7a5555fc8b97a",
+      "retrieved_source_files": [
+        "manage-employee/index.ts",
+        "_shared/employee-access.ts"
+      ],
+      "frozen_source_match": true
+    },
+    {
+      "name": "angel",
+      "version": 12,
+      "verify_jwt": true,
+      "status": "ACTIVE",
+      "ezbr_sha256": "e45221a396b4fc1588d038221d1682183caaa3801d9c09a22d6f391cb4fc50f2",
+      "retrieved_source_files": [
+        "angel/index.ts",
+        "angel/deno.json"
+      ],
+      "frozen_source_match": true
+    }
+  ],
+  "deployed_history_versions": [
+    "20260819180000",
+    "20260823100000",
+    "20261002014604",
+    "20261002015419",
+    "20261002123039",
+    "20261002124738",
+    "20261003224001",
+    "20261004025120",
+    "20261005004045",
+    "20261007215736",
+    "20261007215743",
+    "20261007215831",
+    "20261008002119",
+    "20261008020234",
+    "20261008021428",
+    "20261009003200"
+  ],
+  "remaining_issues": [
+    "Business timezone remains unset; local-day RPC fails closed until separately configured",
+    "Private device installations may require compatible in-place updates; never uninstall/clear pending data",
+    "Recovery archive requires original Windows profile/DPAPI keys; Storage object bytes and independent offsite recovery not included"
+  ]
+}

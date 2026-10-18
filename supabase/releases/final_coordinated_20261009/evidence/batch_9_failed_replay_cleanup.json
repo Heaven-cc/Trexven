@@ -1,0 +1,8 @@
+{
+  "target": "owned loopback 54402",
+  "production_writes": 0,
+  "only_empty_auth_business_storage_replays": true,
+  "removed_count": 8,
+  "main_synthetic_stack_preserved": true,
+  "protected_backup_archives_preserved": true
+}

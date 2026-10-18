@@ -1,0 +1,34 @@
+{
+  "project_id": "ufehcfrlygqvminfjumf",
+  "deployment_status": "deployed",
+  "files": {
+    "supabase/functions/delete-account/index.ts": "3e68c8a8b5fdd25d6ba6e49fde97636bee575a3ec0cff4f6ebae01c7570f17e2",
+    "supabase/functions/_shared/account-deletion.ts": "6ced434fe732fabf10b68e6b123e9248904720d3744cb3ed036ff83695196f35",
+    "supabase/functions/account-deletion-recovery/index.ts": "637ad718e9f6c4bd41f442e2b15c7c694f8640642a7b14efd313c0f2c9e91aab",
+    "supabase/migrations/20261013055042_account_deletion_with_history_preservation.sql": "3c30c536af2d79dca49ea028e4cf809234275c18caa8eeee0d74aea9847ababc"
+  },
+  "migration_file": "supabase/migrations/20261013055042_account_deletion_with_history_preservation.sql",
+  "original_local_migration_file": "supabase/migrations/20261013042954_account_deletion_with_history_preservation.sql",
+  "migration_version": "20261013055042",
+  "functions": {
+    "delete-account": {
+      "version": 5,
+      "status": "ACTIVE",
+      "verify_jwt": true
+    },
+    "account-deletion-recovery": {
+      "version": 1,
+      "status": "ACTIVE",
+      "verify_jwt": false,
+      "authentication": "256-bit recovery capability for an accepted operation"
+    }
+  },
+  "helper_bodies_preserved": {
+    "is_business_member": true,
+    "user_owns_business": true,
+    "has_business_permission": true
+  },
+  "unrelated_edge_functions_unchanged": true,
+  "local_tests_run": false,
+  "actual_account_deletion_invoked": false
+}

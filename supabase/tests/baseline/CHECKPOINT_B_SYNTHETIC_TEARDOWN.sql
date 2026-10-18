@@ -1,0 +1,23 @@
+-- Exact synthetic whitelist; execute only after independent target/data verification.
+begin;
+set local request.jwt.claim.sub='';
+drop function public.batch_2_test_hold_ready();
+drop function public.batch_2_test_hold_product(boolean);
+delete from private.sale_requests where business_id in ('92555bf0-4770-4494-a984-d5d0283c7e09','0eb6080d-2e37-4e27-a3f9-39af9ebf5f3c');
+delete from public.sale_items where sale_id in(select id from public.sales where business_id in ('92555bf0-4770-4494-a984-d5d0283c7e09','0eb6080d-2e37-4e27-a3f9-39af9ebf5f3c'));
+delete from public.sales where business_id in ('92555bf0-4770-4494-a984-d5d0283c7e09','0eb6080d-2e37-4e27-a3f9-39af9ebf5f3c');
+delete from public.inventory_movements where business_id in ('92555bf0-4770-4494-a984-d5d0283c7e09','0eb6080d-2e37-4e27-a3f9-39af9ebf5f3c');
+delete from public.inventory where business_id in ('92555bf0-4770-4494-a984-d5d0283c7e09','0eb6080d-2e37-4e27-a3f9-39af9ebf5f3c');
+delete from public.employee_permissions where employee_id in(select id from public.employees where business_id in ('92555bf0-4770-4494-a984-d5d0283c7e09','0eb6080d-2e37-4e27-a3f9-39af9ebf5f3c'));
+delete from public.employee_branch_assignments where business_id in ('92555bf0-4770-4494-a984-d5d0283c7e09','0eb6080d-2e37-4e27-a3f9-39af9ebf5f3c');
+delete from public.audit_logs where business_id in ('92555bf0-4770-4494-a984-d5d0283c7e09','0eb6080d-2e37-4e27-a3f9-39af9ebf5f3c');
+delete from public.products where business_id in ('92555bf0-4770-4494-a984-d5d0283c7e09','0eb6080d-2e37-4e27-a3f9-39af9ebf5f3c');
+delete from public.employees where business_id in ('92555bf0-4770-4494-a984-d5d0283c7e09','0eb6080d-2e37-4e27-a3f9-39af9ebf5f3c');
+delete from public.business_members where business_id in ('92555bf0-4770-4494-a984-d5d0283c7e09','0eb6080d-2e37-4e27-a3f9-39af9ebf5f3c');
+update public.businesses set compatibility_branch_id=null where id in ('92555bf0-4770-4494-a984-d5d0283c7e09','0eb6080d-2e37-4e27-a3f9-39af9ebf5f3c');
+delete from public.branches where business_id in ('92555bf0-4770-4494-a984-d5d0283c7e09','0eb6080d-2e37-4e27-a3f9-39af9ebf5f3c');
+delete from public.business_settings where business_id in ('92555bf0-4770-4494-a984-d5d0283c7e09','0eb6080d-2e37-4e27-a3f9-39af9ebf5f3c');
+delete from public.businesses where id in ('92555bf0-4770-4494-a984-d5d0283c7e09','0eb6080d-2e37-4e27-a3f9-39af9ebf5f3c');
+delete from auth.users where id in ('b937f252-b5d0-4a3e-aba0-3ff922a312f4','b2b14b8b-ad62-4b4a-b581-7dc96f4b697a','f4e2294f-b13e-4101-b039-3602b6677b48','a58d723e-5729-4c9c-be85-dd9d79a95c87','9afa1196-4f8f-41a1-9e69-cf0e6fb86bc7');
+notify pgrst,'reload schema';
+commit;

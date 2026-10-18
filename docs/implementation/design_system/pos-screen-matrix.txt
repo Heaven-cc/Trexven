@@ -1,0 +1,20 @@
+00:00 +0: loading C:/Users/USER/AndroidStudioProjects/trexvenpos/test/design_system_screen_matrix_test.dart
+00:00 +0: POS priority forms 320.0/1.0/false
+00:02 +1: POS priority forms 320.0/1.0/true
+00:02 +2: POS priority forms 320.0/1.3/false
+00:02 +3: POS priority forms 320.0/1.3/true
+00:03 +4: POS priority forms 320.0/2.0/false
+00:03 +5: POS priority forms 320.0/2.0/true
+00:03 +6: POS priority forms 340.0/1.0/false
+00:03 +7: POS priority forms 340.0/1.0/true
+00:04 +8: POS priority forms 340.0/1.3/false
+00:04 +9: POS priority forms 340.0/1.3/true
+00:04 +10: POS priority forms 340.0/2.0/false
+00:04 +11: POS priority forms 340.0/2.0/true
+00:04 +12: POS priority forms 390.0/1.0/false
+00:05 +13: POS priority forms 390.0/1.0/true
+00:05 +14: POS priority forms 390.0/1.3/false
+00:05 +15: POS priority forms 390.0/1.3/true
+00:06 +16: POS priority forms 390.0/2.0/false
+00:06 +17: POS priority forms 390.0/2.0/true
+00:06 +18: All tests passed!

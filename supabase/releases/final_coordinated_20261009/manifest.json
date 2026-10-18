@@ -1,0 +1,2010 @@
+{
+  "candidate": "final_coordinated_20261009",
+  "frozen_utc": "2026-10-09T20:02:56.842591+00:00",
+  "status": "SOURCE_CANDIDATE_VERIFIED_ANDROID_RELEASE_GATES_BLOCKED",
+  "production_project": "ufehcfrlygqvminfjumf",
+  "staging_project": "qysspzlfiysekvxnlzsh",
+  "production_approved": false,
+  "production_applied": false,
+  "charging_enabled": false,
+  "branch_activation_authorized": false,
+  "applications_published": false,
+  "predecessor_migration_hashes": {
+    "20260819180000_camera_ai_fixes.sql": "360256fe044cf5e0928b895291483224e7f91278cb70243baea41f8690df0e89",
+    "20260823100000_employee_management.sql": "4ef1ea7e08314c1ce62ee4c5b39141195886b89cd1d01bf43d8b63c4f5c246af",
+    "20261002014604_backend_integration_repairs.sql": "ebbb545c6ad4a74e8db39e9b5fa671a245f92370c13b829a80ae077e22cb2fd5",
+    "20261002015419_backend_rpc_grants_hardening.sql": "29faa1becefcc0ee8263e1243e5d711a5953c76d267cf71bb80e7d8be4b3ba1e",
+    "20261002123039_helper_function_anon_execute_hardening.sql": "239ae9718be63d1f93a68e4d8e003d54464a8313f6781b32d080e18c3fa1298a",
+    "20261002124738_account_delete_audit_fk_hardening.sql": "370a97189d62e1ce7d63d3da7885ddcf56b877623b8ffa890f5a71ebe11ac90c",
+    "20261003224001_testing_readiness_access_controls.sql": "7889b902509438d42e419cdfd2368e44e859880ad62e568f686fcc47bff0e7ed",
+    "20261004025120_native_camera_rate_isolation.sql": "23a6b730419a65b37665a27a2d489ebb70a3fbff4d2d2b540ea9a1e1b25afb13",
+    "20261005004045_sale_submission_reliability.sql": "9709e52ad6e3793dd105b78495e1f3451e5e86683d7634dd319fcc4726963b8d",
+    "20261007215736_batch_2_authorization_price_enforcement.sql": "55a69cd97eb1fbbd2a034467e9cda93d5551c7fcd415f6ea4d778f53d2a1b8e7",
+    "20261007215743_batch_2_branch_assignment_foundation.sql": "2537fb48a9c7fc77088a30f2158f917d45bed39126d670fff3d5dfed4358f34a",
+    "20261007215831_batch_2_branch_checkout_compatibility.sql": "86feacc6be132aedb1a2999500a633e9a433f41c0965dbb7bb51a2f931278283",
+    "20261008002119_batch_2_staging_security_recovery.sql": "4f9a93633d401ad9e66b55870e5720c1081c0151408e2d31f8b082303fdb0ca3",
+    "20261008020234_batch_2_purchase_cost_contract.sql": "497f6cccce70b51454747d29b5ea61b49e89d00f8f549dc2d3ac9d2bbcbae61b",
+    "20261008021428_batch_2_business_day_contract.sql": "26003a9e8d16241a47140c48fca7422381aed607f6d948d73c949025a38a37aa",
+    "20261009003200_batch_3_catalog_inventory_foundation.sql": "1045d82c16082f519af78e379a54b53fe9f4955da39d9455bfb123a423424823"
+  },
+  "expected_predecessor_history": [
+    "20260819180000",
+    "20260823100000",
+    "20261002014604",
+    "20261002015419",
+    "20261002123039",
+    "20261002124738",
+    "20261003224001",
+    "20261004025120",
+    "20261005004045",
+    "20261007215736",
+    "20261007215743",
+    "20261007215831",
+    "20261008002119",
+    "20261008020234",
+    "20261008021428",
+    "20261009003200"
+  ],
+  "migration_order": [
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009070338_batch_4_financial_operations.sql",
+      "package": "migrations/20261009070338_batch_4_financial_operations.sql",
+      "sha256": "2170fe1d876943882b787ac3fc0cc4437ad0958179b91923a3f4321352e05e18"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009070340_batch_4_offline_cash_reconciliation.sql",
+      "package": "migrations/20261009070340_batch_4_offline_cash_reconciliation.sql",
+      "sha256": "42ad7f52745f70c59f0d2bf5c4e3c92311caf814eba5c0f25928937666e5bff5"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009075117_batch_4_recovery_and_history.sql",
+      "package": "migrations/20261009075117_batch_4_recovery_and_history.sql",
+      "sha256": "e7df2e801d6edfd946d2501f7ff6396f4f75eee498b7356ce7cd181a0f053272"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009075318_batch_5_inventory_operations.sql",
+      "package": "migrations/20261009075318_batch_5_inventory_operations.sql",
+      "sha256": "41c7705b9fc3815e5a7c75d97c9c421331344b0a298758da60725b011748e30a"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009075612_batch_5_inventory_review_controls.sql",
+      "package": "migrations/20261009075612_batch_5_inventory_review_controls.sql",
+      "sha256": "75f688e40dce445c33d51764ce3036f24784000959f642886c34daf56d389575"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009075911_batch_6_shared_cash_drawers.sql",
+      "package": "migrations/20261009075911_batch_6_shared_cash_drawers.sql",
+      "sha256": "62f12f9bf5f1df4d77cc96554498b8248382c0db2ee928259fc654b44eaecdbe"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009080227_batch_6_handover_and_access.sql",
+      "package": "migrations/20261009080227_batch_6_handover_and_access.sql",
+      "sha256": "972fe6415883b179753ac7115d226777246e8509570880bd51477dcfbdf37888"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009080751_batch_4_financial_audit_events.sql",
+      "package": "migrations/20261009080751_batch_4_financial_audit_events.sql",
+      "sha256": "c59c06d7be74e37f85ed1dca25b86ea2d8fb43219d407ef9e0dacd0f436895d7"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009080842_batch_5_dormant_transfer_foundation.sql",
+      "package": "migrations/20261009080842_batch_5_dormant_transfer_foundation.sql",
+      "sha256": "d63e05cfc2b53016a09168b6e23dea2f72af90bcf681558c1cbe26e791603976"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009081002_batch_7_subscription_billing_foundation.sql",
+      "package": "migrations/20261009081002_batch_7_subscription_billing_foundation.sql",
+      "sha256": "7bfb6910af74d630c74f08d999547e872051c646c03ad01bec41ac6767b7c1eb"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009081504_batch_7_enforcement_and_operations.sql",
+      "package": "migrations/20261009081504_batch_7_enforcement_and_operations.sql",
+      "sha256": "16445f769cafa2347177cb4b7cf3479c81f52f2d402ef9f06656032839edac4b"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009082051_batch_7_verified_provider_and_entitlement_controls.sql",
+      "package": "migrations/20261009082051_batch_7_verified_provider_and_entitlement_controls.sql",
+      "sha256": "e7af66c25bb027fc7bfecab02aa62e6ff4cc2c711cd6d9f892a324a161c22d3d"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009082951_batch_7_final_access_controls.sql",
+      "package": "migrations/20261009082951_batch_7_final_access_controls.sql",
+      "sha256": "3948e3fb3e4c70c1b13438bb8a16adbd525841d3325794d37dda57f29e535fe0"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009122632_batch_4_transaction_recovery_boundaries.sql",
+      "package": "migrations/20261009122632_batch_4_transaction_recovery_boundaries.sql",
+      "sha256": "fc29c48fdf9caa7e5835b265f6dccf1b8eed1bd1ace94e924b887b3c09a687d2"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009135919_batch_8_owner_payment_and_session_integration.sql",
+      "package": "migrations/20261009135919_batch_8_owner_payment_and_session_integration.sql",
+      "sha256": "8c4b31da022acfb059c623ee703d69ce524ab7513093ed6f46665a36a7249d78"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009184148_batch_9_role_scoped_in_app_alerts.sql",
+      "package": "migrations/20261009184148_batch_9_role_scoped_in_app_alerts.sql",
+      "sha256": "007917e63870c792cd5bd9bb707116908e1f5e44974f1297330280c35bd27e54"
+    }
+  ],
+  "edges": [
+    {
+      "name": "camera-ai",
+      "verify_jwt": true
+    },
+    {
+      "name": "delete-account",
+      "verify_jwt": true
+    }
+  ],
+  "files": [
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009070338_batch_4_financial_operations.sql",
+      "package": "migrations/20261009070338_batch_4_financial_operations.sql",
+      "sha256": "2170fe1d876943882b787ac3fc0cc4437ad0958179b91923a3f4321352e05e18"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009070340_batch_4_offline_cash_reconciliation.sql",
+      "package": "migrations/20261009070340_batch_4_offline_cash_reconciliation.sql",
+      "sha256": "42ad7f52745f70c59f0d2bf5c4e3c92311caf814eba5c0f25928937666e5bff5"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009075117_batch_4_recovery_and_history.sql",
+      "package": "migrations/20261009075117_batch_4_recovery_and_history.sql",
+      "sha256": "e7df2e801d6edfd946d2501f7ff6396f4f75eee498b7356ce7cd181a0f053272"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009075318_batch_5_inventory_operations.sql",
+      "package": "migrations/20261009075318_batch_5_inventory_operations.sql",
+      "sha256": "41c7705b9fc3815e5a7c75d97c9c421331344b0a298758da60725b011748e30a"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009075612_batch_5_inventory_review_controls.sql",
+      "package": "migrations/20261009075612_batch_5_inventory_review_controls.sql",
+      "sha256": "75f688e40dce445c33d51764ce3036f24784000959f642886c34daf56d389575"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009075911_batch_6_shared_cash_drawers.sql",
+      "package": "migrations/20261009075911_batch_6_shared_cash_drawers.sql",
+      "sha256": "62f12f9bf5f1df4d77cc96554498b8248382c0db2ee928259fc654b44eaecdbe"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009080227_batch_6_handover_and_access.sql",
+      "package": "migrations/20261009080227_batch_6_handover_and_access.sql",
+      "sha256": "972fe6415883b179753ac7115d226777246e8509570880bd51477dcfbdf37888"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009080751_batch_4_financial_audit_events.sql",
+      "package": "migrations/20261009080751_batch_4_financial_audit_events.sql",
+      "sha256": "c59c06d7be74e37f85ed1dca25b86ea2d8fb43219d407ef9e0dacd0f436895d7"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009080842_batch_5_dormant_transfer_foundation.sql",
+      "package": "migrations/20261009080842_batch_5_dormant_transfer_foundation.sql",
+      "sha256": "d63e05cfc2b53016a09168b6e23dea2f72af90bcf681558c1cbe26e791603976"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009081002_batch_7_subscription_billing_foundation.sql",
+      "package": "migrations/20261009081002_batch_7_subscription_billing_foundation.sql",
+      "sha256": "7bfb6910af74d630c74f08d999547e872051c646c03ad01bec41ac6767b7c1eb"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009081504_batch_7_enforcement_and_operations.sql",
+      "package": "migrations/20261009081504_batch_7_enforcement_and_operations.sql",
+      "sha256": "16445f769cafa2347177cb4b7cf3479c81f52f2d402ef9f06656032839edac4b"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009082051_batch_7_verified_provider_and_entitlement_controls.sql",
+      "package": "migrations/20261009082051_batch_7_verified_provider_and_entitlement_controls.sql",
+      "sha256": "e7af66c25bb027fc7bfecab02aa62e6ff4cc2c711cd6d9f892a324a161c22d3d"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009082951_batch_7_final_access_controls.sql",
+      "package": "migrations/20261009082951_batch_7_final_access_controls.sql",
+      "sha256": "3948e3fb3e4c70c1b13438bb8a16adbd525841d3325794d37dda57f29e535fe0"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009122632_batch_4_transaction_recovery_boundaries.sql",
+      "package": "migrations/20261009122632_batch_4_transaction_recovery_boundaries.sql",
+      "sha256": "fc29c48fdf9caa7e5835b265f6dccf1b8eed1bd1ace94e924b887b3c09a687d2"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009135919_batch_8_owner_payment_and_session_integration.sql",
+      "package": "migrations/20261009135919_batch_8_owner_payment_and_session_integration.sql",
+      "sha256": "8c4b31da022acfb059c623ee703d69ce524ab7513093ed6f46665a36a7249d78"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/migrations/20261009184148_batch_9_role_scoped_in_app_alerts.sql",
+      "package": "migrations/20261009184148_batch_9_role_scoped_in_app_alerts.sql",
+      "sha256": "007917e63870c792cd5bd9bb707116908e1f5e44974f1297330280c35bd27e54"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/functions/camera-ai/index.ts",
+      "package": "supabase/functions/camera-ai/index.ts",
+      "sha256": "cdce1ef657836edf077aa7fbda59799cd280cc6e94239a264e10581b1c57246e"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/functions/delete-account/index.ts",
+      "package": "supabase/functions/delete-account/index.ts",
+      "sha256": "4bada6064a6ac0a2f8c3ff7ad87f7122bb279e3dc40395e3bdcc01437ca414a5"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/functions/deno.lock",
+      "package": "supabase/functions/deno.lock",
+      "sha256": "9c6e6e0436e7a4bd991af30af32face843d35fe3a570e4eb10390eefcf13e122"
+    },
+    {
+      "root": "owner",
+      "source": ".metadata",
+      "package": "sources/Trexven/.metadata",
+      "sha256": "289c29429ef8e696cfe63fd674a5349acf22d52117b7dff2dad105a569b7b187"
+    },
+    {
+      "root": "owner",
+      "source": "analysis_options.yaml",
+      "package": "sources/Trexven/analysis_options.yaml",
+      "sha256": "75d2d8ff5435cb5d89f2f36d0ae95dcefe6cbb6906f80616094905a33d957e50"
+    },
+    {
+      "root": "owner",
+      "source": "android/app/build.gradle.kts",
+      "package": "sources/Trexven/android/app/build.gradle.kts",
+      "sha256": "e658835bb82ad72404c0d297013aa45e45a12c337b59cb2c5ec5540f982d430e"
+    },
+    {
+      "root": "owner",
+      "source": "android/app/src/debug/AndroidManifest.xml",
+      "package": "sources/Trexven/android/app/src/debug/AndroidManifest.xml",
+      "sha256": "b01a4541a8144c15bc617bab7eb267c99fa1476368fbbda5a12cdbf4e316a34c"
+    },
+    {
+      "root": "owner",
+      "source": "android/app/src/main/AndroidManifest.xml",
+      "package": "sources/Trexven/android/app/src/main/AndroidManifest.xml",
+      "sha256": "6630bb0241a102086bde5a4759918746ed749d36b840c231f2e7310d66b1c329"
+    },
+    {
+      "root": "owner",
+      "source": "android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java",
+      "package": "sources/Trexven/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java",
+      "sha256": "60a834c40183c15c3be8bcf17d9079c867d8a6f45e18ad8adc6bae7619b83175"
+    },
+    {
+      "root": "owner",
+      "source": "android/app/src/main/kotlin/com/ODT/odt/MainActivity.kt",
+      "package": "sources/Trexven/android/app/src/main/kotlin/com/ODT/odt/MainActivity.kt",
+      "sha256": "85afbdf4a5af3f3fb15e59413949f281b9886d276bc4225e6de664745df7dcd2"
+    },
+    {
+      "root": "owner",
+      "source": "android/app/src/main/res/drawable/launch_background.xml",
+      "package": "sources/Trexven/android/app/src/main/res/drawable/launch_background.xml",
+      "sha256": "2df60e2cfbee873ce2858088cf003e6b93498f2f568476da437610467ea1a9d7"
+    },
+    {
+      "root": "owner",
+      "source": "android/app/src/main/res/drawable-v21/launch_background.xml",
+      "package": "sources/Trexven/android/app/src/main/res/drawable-v21/launch_background.xml",
+      "sha256": "dca312ec77de83e43ef70a825c299b51451247286c29167d62f19165750b8793"
+    },
+    {
+      "root": "owner",
+      "source": "android/app/src/main/res/mipmap-hdpi/ic_launcher.png",
+      "package": "sources/Trexven/android/app/src/main/res/mipmap-hdpi/ic_launcher.png",
+      "sha256": "faf6962911f8bce7d821851393e028432862ca91a9732f9c8228ab6ad4157fb0"
+    },
+    {
+      "root": "owner",
+      "source": "android/app/src/main/res/mipmap-mdpi/ic_launcher.png",
+      "package": "sources/Trexven/android/app/src/main/res/mipmap-mdpi/ic_launcher.png",
+      "sha256": "c7695015dd12cea0c31bec2d00b8e494c5b33d0a08a963b89060964371dc46a6"
+    },
+    {
+      "root": "owner",
+      "source": "android/app/src/main/res/mipmap-xhdpi/ic_launcher.png",
+      "package": "sources/Trexven/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png",
+      "sha256": "a23accee835d6552fe73eecaa2131d9aaa383417e4e62566ea6f2d4d6b0fdb68"
+    },
+    {
+      "root": "owner",
+      "source": "android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+      "package": "sources/Trexven/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+      "sha256": "2c1c1d3ab90fcc90ffb4ccbbdf519c9fa344e7a0e89284d465ef9a3fc6aa0606"
+    },
+    {
+      "root": "owner",
+      "source": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+      "package": "sources/Trexven/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+      "sha256": "a9cbf6187313cafb96bcddd259bbbdc94f62508e6d417f9d4ea3c3bf0cf3feff"
+    },
+    {
+      "root": "owner",
+      "source": "android/app/src/main/res/values/styles.xml",
+      "package": "sources/Trexven/android/app/src/main/res/values/styles.xml",
+      "sha256": "cca15a99b59380a548bf6a890f7ca5380ee509b1f9bbb2f5f9ec3589fa25c2f7"
+    },
+    {
+      "root": "owner",
+      "source": "android/app/src/main/res/values-night/styles.xml",
+      "package": "sources/Trexven/android/app/src/main/res/values-night/styles.xml",
+      "sha256": "ea763597dc1a84c8034251caee98d7753e0fbf57340ffc94677427de4b537516"
+    },
+    {
+      "root": "owner",
+      "source": "android/app/src/profile/AndroidManifest.xml",
+      "package": "sources/Trexven/android/app/src/profile/AndroidManifest.xml",
+      "sha256": "b01a4541a8144c15bc617bab7eb267c99fa1476368fbbda5a12cdbf4e316a34c"
+    },
+    {
+      "root": "owner",
+      "source": "android/build.gradle.kts",
+      "package": "sources/Trexven/android/build.gradle.kts",
+      "sha256": "9e83c1dfa66303d98c1a7f48d13e78621269f0b99e64125a3bca3e9d635b1b46"
+    },
+    {
+      "root": "owner",
+      "source": "android/gradle/wrapper/gradle-wrapper.jar",
+      "package": "sources/Trexven/android/gradle/wrapper/gradle-wrapper.jar",
+      "sha256": "16caeaf66d57a0d1d2087fef6a97efa62de8da69afa5b908f40db35afc4342da"
+    },
+    {
+      "root": "owner",
+      "source": "android/gradle/wrapper/gradle-wrapper.properties",
+      "package": "sources/Trexven/android/gradle/wrapper/gradle-wrapper.properties",
+      "sha256": "723e4700203b19b56ba2533591901482b766986c3a08dbcacc0637b9b9812376"
+    },
+    {
+      "root": "owner",
+      "source": "android/gradle.properties",
+      "package": "sources/Trexven/android/gradle.properties",
+      "sha256": "0c9351cf93ddb73a18755287292ebd5fb074cf78a3b2510b378b4eff99c579fb"
+    },
+    {
+      "root": "owner",
+      "source": "android/gradlew",
+      "package": "sources/Trexven/android/gradlew",
+      "sha256": "ec56c02543666d92d9ac5ae7fcc48f88ce4de0deb8b7f9b39928ca46f68c1b2b"
+    },
+    {
+      "root": "owner",
+      "source": "android/gradlew.bat",
+      "package": "sources/Trexven/android/gradlew.bat",
+      "sha256": "c13c6e91b9a517783976de213d46398c661ea9e17651376d7301e839eaedcc62"
+    },
+    {
+      "root": "owner",
+      "source": "android/settings.gradle.kts",
+      "package": "sources/Trexven/android/settings.gradle.kts",
+      "sha256": "4f58404a57368c4c8eee0816eb2d6b635a45ebbb7701a53928e0110acc0ab169"
+    },
+    {
+      "root": "owner",
+      "source": "assets/images/trexven_logo.png",
+      "package": "sources/Trexven/assets/images/trexven_logo.png",
+      "sha256": "d8f9b05c65f667f241fb44b946743ce238ae91d8f6227b901ad036e9fef1a843"
+    },
+    {
+      "root": "owner",
+      "source": "lib/core/app_sizing.dart",
+      "package": "sources/Trexven/lib/core/app_sizing.dart",
+      "sha256": "0b28c6fa312541169a6bad219e4e05f98085b61a44e823cc3bcb612597848437"
+    },
+    {
+      "root": "owner",
+      "source": "lib/core/app_theme.dart",
+      "package": "sources/Trexven/lib/core/app_theme.dart",
+      "sha256": "351918f8ad659a5aacb3b1b107155c00b709ed412a8cb0ded0065110033087b1"
+    },
+    {
+      "root": "owner",
+      "source": "lib/core/theme_provider.dart",
+      "package": "sources/Trexven/lib/core/theme_provider.dart",
+      "sha256": "2729b9eae4a6c380ee8696bf943563cd2a532225e91cb90b4040aa6bb8d553d5"
+    },
+    {
+      "root": "owner",
+      "source": "lib/core/user_provider.dart",
+      "package": "sources/Trexven/lib/core/user_provider.dart",
+      "sha256": "8b8737beb71ebd3368ee01c7c707730fdc71a2e7a2592bd69bedb49e1615e49b"
+    },
+    {
+      "root": "owner",
+      "source": "lib/main.dart",
+      "package": "sources/Trexven/lib/main.dart",
+      "sha256": "fbf429a0df3abfa45442a297af08b48a5498af7ae3258933d70fc239c6328001"
+    },
+    {
+      "root": "owner",
+      "source": "lib/models/business.dart",
+      "package": "sources/Trexven/lib/models/business.dart",
+      "sha256": "424c8e5ac7116ecd4b0d646d14c98e8358cec7dcb9a7cbed9fecda43a7041981"
+    },
+    {
+      "root": "owner",
+      "source": "lib/models/camera.dart",
+      "package": "sources/Trexven/lib/models/camera.dart",
+      "sha256": "6709d0fcbeb1b895c523b42d34d64be5b3486272dc769369ef3737957de36116"
+    },
+    {
+      "root": "owner",
+      "source": "lib/models/camera_event.dart",
+      "package": "sources/Trexven/lib/models/camera_event.dart",
+      "sha256": "be5d0d55886c74bbb13035074030c5a90ed6083757d8a6db9669bef18df5cea1"
+    },
+    {
+      "root": "owner",
+      "source": "lib/models/employee.dart",
+      "package": "sources/Trexven/lib/models/employee.dart",
+      "sha256": "97e14f2381d569a37ad04676efc59cec66b27812c7e9cd922dc454a2cdcb44f3"
+    },
+    {
+      "root": "owner",
+      "source": "lib/models/product.dart",
+      "package": "sources/Trexven/lib/models/product.dart",
+      "sha256": "b7e041c080c7fa5681e5e5885cae4a82ec72d51605b2be1e852e1a578e35417c"
+    },
+    {
+      "root": "owner",
+      "source": "lib/models/sale.dart",
+      "package": "sources/Trexven/lib/models/sale.dart",
+      "sha256": "075079261f76854e6c6e01c6d1840492bb62c8ac62c7549e1026864b0c353106"
+    },
+    {
+      "root": "owner",
+      "source": "lib/models/subscription_plan.dart",
+      "package": "sources/Trexven/lib/models/subscription_plan.dart",
+      "sha256": "2632e640e151bdecdafef2d84ae700124e18323e130d127d28c8a64baa680fb9"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/auth/account_gate.dart",
+      "package": "sources/Trexven/lib/screens/auth/account_gate.dart",
+      "sha256": "cb571187a79bc3ccb28788fa3db91262c432b755e8750fb9e6a68445d43d3b96"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/auth/forgot_password_screen.dart",
+      "package": "sources/Trexven/lib/screens/auth/forgot_password_screen.dart",
+      "sha256": "49f84b17cb8876b97263ce438a7fd15a95eb260a26a2351985997f1a40166cad"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/auth/login_screen.dart",
+      "package": "sources/Trexven/lib/screens/auth/login_screen.dart",
+      "sha256": "e7560f1a26e2afb167fdc35d40c7106d03d31ae22ac2d66182f75c9f01188648"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/auth/register_screen.dart",
+      "package": "sources/Trexven/lib/screens/auth/register_screen.dart",
+      "sha256": "6802572c5d438d99d3c723cc0d491e9f770406f5714fb91f075555956ff67a37"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/auth/reset_password_screen.dart",
+      "package": "sources/Trexven/lib/screens/auth/reset_password_screen.dart",
+      "sha256": "4db49b3e920ea63b5a907b4c753fae72c69e6c0dc0c3e877eb5387ad3ffda407"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/dashboard/angel_screen.dart",
+      "package": "sources/Trexven/lib/screens/dashboard/angel_screen.dart",
+      "sha256": "504fd246aa9e8785d8f6bd0d40313207cbce868b8241b9a41c77eae75df4027c"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/dashboard/dashboard_screen.dart",
+      "package": "sources/Trexven/lib/screens/dashboard/dashboard_screen.dart",
+      "sha256": "6e262e67444aabf6ba3e1e6761cf9940858240f1e4dde29ce792e7713a8f5ce0"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/finance/finance_tab.dart",
+      "package": "sources/Trexven/lib/screens/finance/finance_tab.dart",
+      "sha256": "0f6a813be43c9b43e745f2025238b3f26a9f1928a779973e8b5dbd9c72ab7f17"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/finance/operational_finance_screen.dart",
+      "package": "sources/Trexven/lib/screens/finance/operational_finance_screen.dart",
+      "sha256": "687f96502888e78fb25a21bb43413a7771a6faa3306dc7aefde0250dc848b3df"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/finance/record_sale_screen.dart",
+      "package": "sources/Trexven/lib/screens/finance/record_sale_screen.dart",
+      "sha256": "eab1333aaf121d9b68dcac28b0cc826b84f7cc2b03c7691c4e9b2d910d4df1c1"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/intelligence/add_camera_screen.dart",
+      "package": "sources/Trexven/lib/screens/intelligence/add_camera_screen.dart",
+      "sha256": "3100e9a837544204fc50dafdcd213792e6e6b5677589185b1909008120bf52da"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/intelligence/alerts_screen.dart",
+      "package": "sources/Trexven/lib/screens/intelligence/alerts_screen.dart",
+      "sha256": "d4b33cb334f6daee9aa3d0bd7987f9afdffa3c3ab2bf1bf8264885b959c5cac7"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/intelligence/camera_alert_screen.dart",
+      "package": "sources/Trexven/lib/screens/intelligence/camera_alert_screen.dart",
+      "sha256": "0a63e8d3df48444057eb803454ab41ccd404ab7d34f55d68c658f4952e365026"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/intelligence/camera_detail_screen.dart",
+      "package": "sources/Trexven/lib/screens/intelligence/camera_detail_screen.dart",
+      "sha256": "bdea10c64807afb429a05dd015b3237eb69832ac80f2f92222c001f364bbcb54"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/intelligence/camera_event_screen.dart",
+      "package": "sources/Trexven/lib/screens/intelligence/camera_event_screen.dart",
+      "sha256": "076d285abb905ce0b34fc315727f2e481d386b45d9b34b3be1dc9acdcde0ecb1"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/intelligence/camera_intelligence_screen.dart",
+      "package": "sources/Trexven/lib/screens/intelligence/camera_intelligence_screen.dart",
+      "sha256": "aea6fd6363c07ff6f2d0189e5feef477b45639d75fa64757a858506d84313d9a"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/intelligence/camera_screen.dart",
+      "package": "sources/Trexven/lib/screens/intelligence/camera_screen.dart",
+      "sha256": "de8b91be3238ef3be3ffb4f8288b6b447e089203ee1c946ea74a2485e1437d9b"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/intelligence/event_detail_screen.dart",
+      "package": "sources/Trexven/lib/screens/intelligence/event_detail_screen.dart",
+      "sha256": "24ab5d6e52edb156806214f665bedbc643b3f6b83f6cbbe6703375472b5db798"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/intelligence/events_screen.dart",
+      "package": "sources/Trexven/lib/screens/intelligence/events_screen.dart",
+      "sha256": "2400984dedf6d112848a85f53824b24170c468d33243fd71e18023c7c69509fb"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/intelligence/intelligence_tab.dart",
+      "package": "sources/Trexven/lib/screens/intelligence/intelligence_tab.dart",
+      "sha256": "708decbea8b31b6d816a9af5e344498b2b38be25c381ecd91f6f82638d37f600"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/intelligence/live_feed_screen.dart",
+      "package": "sources/Trexven/lib/screens/intelligence/live_feed_screen.dart",
+      "sha256": "88ecabf75ce314d8fefa0ea59278b57fa319f041ed1623840673ce7a33109af9"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/intelligence/recording_playback_screen.dart",
+      "package": "sources/Trexven/lib/screens/intelligence/recording_playback_screen.dart",
+      "sha256": "0e6da64f895cc4cf01ef3351d35954483cc46668c09c3cf2a50ca7784f732186"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/intelligence/recordings_screen.dart",
+      "package": "sources/Trexven/lib/screens/intelligence/recordings_screen.dart",
+      "sha256": "01b5171c5d3ffe23f82daa16d34c99e685b8a6f42e7abc3ca62119da3a8c1ba2"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/intelligence/vision_server_screen.dart",
+      "package": "sources/Trexven/lib/screens/intelligence/vision_server_screen.dart",
+      "sha256": "5b12552f85f81f075811608ff4d0abc7e0873f62808550c2bf1619e164f33ca9"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/inventory/add_product_screen.dart",
+      "package": "sources/Trexven/lib/screens/inventory/add_product_screen.dart",
+      "sha256": "3dd0406d5853b3510f90289652946a986d4fe83dd461196c5c8b273614c9771b"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/inventory/catalog_editor_screen.dart",
+      "package": "sources/Trexven/lib/screens/inventory/catalog_editor_screen.dart",
+      "sha256": "e42a1bd7983f45f934ea5014a14efc9f76ab3bc70dcb0ac2f37fe224c186d310"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/inventory/catalog_import_screen.dart",
+      "package": "sources/Trexven/lib/screens/inventory/catalog_import_screen.dart",
+      "sha256": "f292d551cab3a38106264a671c51b795ef0806e08f138876ebcf5d32eeba0f81"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/inventory/inventory_tab.dart",
+      "package": "sources/Trexven/lib/screens/inventory/inventory_tab.dart",
+      "sha256": "055d74261a8b5d2e1bbdb58c1c6fb149846373e87dbfc626a0a33413937d6919"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/main_screen.dart",
+      "package": "sources/Trexven/lib/screens/main_screen.dart",
+      "sha256": "24d47a2488e41cca5856be559d8de122efa74a58714c1bdaadc325c54534302c"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/me/about_screen.dart",
+      "package": "sources/Trexven/lib/screens/me/about_screen.dart",
+      "sha256": "9fcd91d854dcb7bcd117458e33e74ccc6cf7f56b4547632160c152f801141699"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/me/add_employee_screen.dart",
+      "package": "sources/Trexven/lib/screens/me/add_employee_screen.dart",
+      "sha256": "ecdf31f3a7d8ec5694f86db653fed5deec2db0dd73e53df584cda6093e10d1cf"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/me/appearance_screen.dart",
+      "package": "sources/Trexven/lib/screens/me/appearance_screen.dart",
+      "sha256": "af7ab759eca41326786abf4b9455181d73b50885082972a6df394f192b670c15"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/me/billing_screen.dart",
+      "package": "sources/Trexven/lib/screens/me/billing_screen.dart",
+      "sha256": "b776d6f038a7b56d268a04b40d9205e96c38d774939b122440fa9376cec8ec60"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/me/business_profile_screen.dart",
+      "package": "sources/Trexven/lib/screens/me/business_profile_screen.dart",
+      "sha256": "fca6ae932aa37bf3e9e0ee168c29047f591d5bfc07fc537f86cd77d4a0f886cb"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/me/data_backup_screen.dart",
+      "package": "sources/Trexven/lib/screens/me/data_backup_screen.dart",
+      "sha256": "21326cd1e0b67bfffa3e4e558b30dc33a9510bea34f9197042d9ed24d69ffd62"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/me/edit_employee_screen.dart",
+      "package": "sources/Trexven/lib/screens/me/edit_employee_screen.dart",
+      "sha256": "eee14e539abf6f111384515d7688e706182d97be117d4e3a578b6ec306c53ae9"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/me/employee_confirmation_screen.dart",
+      "package": "sources/Trexven/lib/screens/me/employee_confirmation_screen.dart",
+      "sha256": "1fdd666838888c681276ed632b994494b09869ca69bd7794daf41654d1884035"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/me/employee_details_screen.dart",
+      "package": "sources/Trexven/lib/screens/me/employee_details_screen.dart",
+      "sha256": "0e6cd44b8ba05bcc3cb0b3cb929db7215e772409ac8996938e1dfb33211997b8"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/me/employment_screen.dart",
+      "package": "sources/Trexven/lib/screens/me/employment_screen.dart",
+      "sha256": "88597aac3ceb33acf2c2aace2e9e3b659e1324d94534afdeeb7c0a85bfddcf58"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/me/help_support_screen.dart",
+      "package": "sources/Trexven/lib/screens/me/help_support_screen.dart",
+      "sha256": "643958b32e52a85ae4d6ee4282b25012ce447926557ba8931df31dc94c989936"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/me/me_tab.dart",
+      "package": "sources/Trexven/lib/screens/me/me_tab.dart",
+      "sha256": "74d5bd22fd1fc54a804ef38babad44d6b056e00c86d09e955d470f7b60e176d2"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/me/notifications_settings_screen.dart",
+      "package": "sources/Trexven/lib/screens/me/notifications_settings_screen.dart",
+      "sha256": "26630bdb16423cc2cb87007d11cd8af235e2a3ea04d290fc3bc6fee1dc59b70f"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/me/permissions_screen.dart",
+      "package": "sources/Trexven/lib/screens/me/permissions_screen.dart",
+      "sha256": "4193c18e7b243c589ebf4c53415faf5ac076384c445491cd3ba15138d9b12e8d"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/me/privacy_policy_screen.dart",
+      "package": "sources/Trexven/lib/screens/me/privacy_policy_screen.dart",
+      "sha256": "af854b11a87eb5db3de4358c2ada74da5d80bacc17ddeddc2f896c797f874db5"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/me/profile_screen.dart",
+      "package": "sources/Trexven/lib/screens/me/profile_screen.dart",
+      "sha256": "248120c4c4733a3b46cd052fc3356489e432993ee8a0251da55cf8a4f1e194c3"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/me/security_screen.dart",
+      "package": "sources/Trexven/lib/screens/me/security_screen.dart",
+      "sha256": "db2fdaa22e094472d3bf817b0c89be8ff0ca420a01b5a0621f6f73c67d3e9ed9"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/me/terms_of_service_screen.dart",
+      "package": "sources/Trexven/lib/screens/me/terms_of_service_screen.dart",
+      "sha256": "be54f1a14d8f8687fc90c56e3cab51de3c7dd0dd208cce2f64378481d1b8b1a6"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/setup/business_setup_screen.dart",
+      "package": "sources/Trexven/lib/screens/setup/business_setup_screen.dart",
+      "sha256": "31b3b43ea94fb927a580c6d8cf93832afa5ac009cbd1ea61a5cb98b15cf86ddb"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/setup/setup_complete_screen.dart",
+      "package": "sources/Trexven/lib/screens/setup/setup_complete_screen.dart",
+      "sha256": "433a475a61543d70da99f015d5d1ee63b2677f0bdbf03e4850fd62de1972f685"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/splash_screen.dart",
+      "package": "sources/Trexven/lib/screens/splash_screen.dart",
+      "sha256": "8d4c38f94838ab66ec3ba243531bebe0afdbd74d06c2e0413b5bdb4987ca8b79"
+    },
+    {
+      "root": "owner",
+      "source": "lib/screens/welcome_screen.dart",
+      "package": "sources/Trexven/lib/screens/welcome_screen.dart",
+      "sha256": "b7506334c868efdddc232fd3ce8571ab462c6e1c2eb74d196aa7f84e0eb89493"
+    },
+    {
+      "root": "owner",
+      "source": "lib/services/alert_navigation.dart",
+      "package": "sources/Trexven/lib/services/alert_navigation.dart",
+      "sha256": "195a4ae8e680d203f32890b9585de7956c3d34a605b241616926820a50350d12"
+    },
+    {
+      "root": "owner",
+      "source": "lib/services/alert_service.dart",
+      "package": "sources/Trexven/lib/services/alert_service.dart",
+      "sha256": "b838e8b4a5687cb3ec67dfab9117cf2f703c0ad4ff4e60c8efe86c9deea133bf"
+    },
+    {
+      "root": "owner",
+      "source": "lib/services/auth_service.dart",
+      "package": "sources/Trexven/lib/services/auth_service.dart",
+      "sha256": "a1c1d34384d105b081274ee04709eeec07a9634bfb5eae1fd02ec6d12e8598aa"
+    },
+    {
+      "root": "owner",
+      "source": "lib/services/camera_ai_service.dart",
+      "package": "sources/Trexven/lib/services/camera_ai_service.dart",
+      "sha256": "995208e7aff5d8865d3211cfa13fee874151170026987d99357b43d220660f3b"
+    },
+    {
+      "root": "owner",
+      "source": "lib/services/camera_intelligence_service.dart",
+      "package": "sources/Trexven/lib/services/camera_intelligence_service.dart",
+      "sha256": "1ec201d2ba01b822458b200e7ef476148dc83ecdea7f09fd334d1c785af7b4fb"
+    },
+    {
+      "root": "owner",
+      "source": "lib/services/camera_service.dart",
+      "package": "sources/Trexven/lib/services/camera_service.dart",
+      "sha256": "42e24880f77e3587a4de0020bd637d72156c51c5296ed5448a355257bce2ce6c"
+    },
+    {
+      "root": "owner",
+      "source": "lib/services/catalog_import.dart",
+      "package": "sources/Trexven/lib/services/catalog_import.dart",
+      "sha256": "3ea575a24f60cf6d677a288723ad9e9492a534744efcd93ecc62549bc55742c3"
+    },
+    {
+      "root": "owner",
+      "source": "lib/services/database_service.dart",
+      "package": "sources/Trexven/lib/services/database_service.dart",
+      "sha256": "73efd231d4fe810f97abb95284e6a4b07b03d7cd757eaf43af7aaacd63c64afb"
+    },
+    {
+      "root": "owner",
+      "source": "lib/services/employee_service.dart",
+      "package": "sources/Trexven/lib/services/employee_service.dart",
+      "sha256": "b5e617053c1c7744d10a14b5a45c2cd027ee1177985b3ae2f2c9d55fde1d6ed4"
+    },
+    {
+      "root": "owner",
+      "source": "lib/services/initial_load_timeout.dart",
+      "package": "sources/Trexven/lib/services/initial_load_timeout.dart",
+      "sha256": "d8e38923e29def8cb4e503228a55a48d49dd3e54d09f94446ed31de8fb6976e3"
+    },
+    {
+      "root": "owner",
+      "source": "lib/services/intelligence_events_service.dart",
+      "package": "sources/Trexven/lib/services/intelligence_events_service.dart",
+      "sha256": "97a6f4c1e749a8f950afafe47dd3f9dccd7c037d110dae50de765aa901f8cc15"
+    },
+    {
+      "root": "owner",
+      "source": "lib/services/recording_service.dart",
+      "package": "sources/Trexven/lib/services/recording_service.dart",
+      "sha256": "8114152688b13513e5a56dbf5e5df379e2da095a477eb8468010ce4a345ff914"
+    },
+    {
+      "root": "owner",
+      "source": "lib/services/sale_errors.dart",
+      "package": "sources/Trexven/lib/services/sale_errors.dart",
+      "sha256": "a68b6ad136a05f3a30a986eef35a6da930a468c510d73b1876f6ce0559db1e6b"
+    },
+    {
+      "root": "owner",
+      "source": "lib/services/vision_service.dart",
+      "package": "sources/Trexven/lib/services/vision_service.dart",
+      "sha256": "ad72b0ed38d89c62a039caf11714c090dbcfbde8cbb01012cc89c9f04f6514c2"
+    },
+    {
+      "root": "owner",
+      "source": "lib/widgets/build_error_fallback.dart",
+      "package": "sources/Trexven/lib/widgets/build_error_fallback.dart",
+      "sha256": "b5a2d2ca71433e4b2d16e71a1cac83c553230360253dfc2e42a5aedd562bfad6"
+    },
+    {
+      "root": "owner",
+      "source": "lib/widgets/google_sign_in_button.dart",
+      "package": "sources/Trexven/lib/widgets/google_sign_in_button.dart",
+      "sha256": "9e8e02cd9c674da17e570739b275ef7b5fd05f63e21c5c435d0681f5610959a2"
+    },
+    {
+      "root": "owner",
+      "source": "lib/widgets/quick_action.dart",
+      "package": "sources/Trexven/lib/widgets/quick_action.dart",
+      "sha256": "ea7e6eff5a07602b3f18af90550c68b5fabf932112716dee7693238f9aabb7f3"
+    },
+    {
+      "root": "owner",
+      "source": "lib/widgets/stat_card.dart",
+      "package": "sources/Trexven/lib/widgets/stat_card.dart",
+      "sha256": "63efcc2802c31f305848c2774c6fe02897a341f406415a9ccc320f787d926fee"
+    },
+    {
+      "root": "owner",
+      "source": "lib/widgets/trexven_logo.dart",
+      "package": "sources/Trexven/lib/widgets/trexven_logo.dart",
+      "sha256": "1fd68afa0031ba394d2cb3a5b41f3b4d1f2ae3c6026fa2cdbfb6a3f9e07ea86d"
+    },
+    {
+      "root": "owner",
+      "source": "lib/widgets/trexven_widgets.dart",
+      "package": "sources/Trexven/lib/widgets/trexven_widgets.dart",
+      "sha256": "e1cd30183ee2ec1a57743a03d9713528136346f82aa8ffc03427af15dd20e082"
+    },
+    {
+      "root": "owner",
+      "source": "packages/trexven_operations/lib/src/account_operations_screen.dart",
+      "package": "sources/Trexven/packages/trexven_operations/lib/src/account_operations_screen.dart",
+      "sha256": "f6803e152c2afacb5c6c9524d4885f7868246f4226788ae40624b2dfd1fd42eb"
+    },
+    {
+      "root": "owner",
+      "source": "packages/trexven_operations/lib/src/cash_shift_screen.dart",
+      "package": "sources/Trexven/packages/trexven_operations/lib/src/cash_shift_screen.dart",
+      "sha256": "42c73f47e7cde70d0465185cd5cfe144359ffbd467cf904bbb41661a5053c3ea"
+    },
+    {
+      "root": "owner",
+      "source": "packages/trexven_operations/lib/src/durable_state.dart",
+      "package": "sources/Trexven/packages/trexven_operations/lib/src/durable_state.dart",
+      "sha256": "36bdfe79a2febdbc6f56aaffc5bade4a2a2086c05010963ad332a5fa8df8f7eb"
+    },
+    {
+      "root": "owner",
+      "source": "packages/trexven_operations/lib/src/employee_access_screen.dart",
+      "package": "sources/Trexven/packages/trexven_operations/lib/src/employee_access_screen.dart",
+      "sha256": "99c3091fabecf1671424292b3a47c990aab660cf0fc352c7b8f2ff569df9beaa"
+    },
+    {
+      "root": "owner",
+      "source": "packages/trexven_operations/lib/src/encrypted_state.dart",
+      "package": "sources/Trexven/packages/trexven_operations/lib/src/encrypted_state.dart",
+      "sha256": "0feda2fc62dc7cacf2f39148dcc9c6b644415f7ce63ac24e3505466b868eb037"
+    },
+    {
+      "root": "owner",
+      "source": "packages/trexven_operations/lib/src/encrypted_state_native.dart",
+      "package": "sources/Trexven/packages/trexven_operations/lib/src/encrypted_state_native.dart",
+      "sha256": "83ab0a56350e9fb0459e5971e7b548baa2976c20119846d2d87f6efbaf1d1e12"
+    },
+    {
+      "root": "owner",
+      "source": "packages/trexven_operations/lib/src/encrypted_state_unsupported.dart",
+      "package": "sources/Trexven/packages/trexven_operations/lib/src/encrypted_state_unsupported.dart",
+      "sha256": "a9fe8de21d5f55ea902ec1c73421c1817c996e5d315dfc7ae0991ce1a72a3874"
+    },
+    {
+      "root": "owner",
+      "source": "packages/trexven_operations/lib/src/entitlements.dart",
+      "package": "sources/Trexven/packages/trexven_operations/lib/src/entitlements.dart",
+      "sha256": "02190ce814f097c3325b4c6cca1ef1cb2b3b8a840f023e294194721d840d8783"
+    },
+    {
+      "root": "owner",
+      "source": "packages/trexven_operations/lib/src/financial_operations_screen.dart",
+      "package": "sources/Trexven/packages/trexven_operations/lib/src/financial_operations_screen.dart",
+      "sha256": "02981e61f062dbff9c6eba8c38153d8c20c824d245ebccf64f0f4fcfbcfcf6b5"
+    },
+    {
+      "root": "owner",
+      "source": "packages/trexven_operations/lib/src/inventory_operations_screen.dart",
+      "package": "sources/Trexven/packages/trexven_operations/lib/src/inventory_operations_screen.dart",
+      "sha256": "988b57ffbd11d80b30acf8cc302c60ee340c69b5dd43e0e5b95b808c341e5395"
+    },
+    {
+      "root": "owner",
+      "source": "packages/trexven_operations/lib/src/metric_content.dart",
+      "package": "sources/Trexven/packages/trexven_operations/lib/src/metric_content.dart",
+      "sha256": "64c57b16d73d19352e8bd4646bfb347eedde9052fe062cb5a20702dd390f68c6"
+    },
+    {
+      "root": "owner",
+      "source": "packages/trexven_operations/lib/src/notification_center_screen.dart",
+      "package": "sources/Trexven/packages/trexven_operations/lib/src/notification_center_screen.dart",
+      "sha256": "2d96319a72f294f2e7ecc7d0c4cde582997c9e2705366754f094e8b34f5187a7"
+    },
+    {
+      "root": "owner",
+      "source": "packages/trexven_operations/lib/src/operation_journal.dart",
+      "package": "sources/Trexven/packages/trexven_operations/lib/src/operation_journal.dart",
+      "sha256": "8869ac3fcc837b7f69d31d4054c00c441817f8bccc842a786e98003a23d43377"
+    },
+    {
+      "root": "owner",
+      "source": "packages/trexven_operations/lib/src/operational_permissions_screen.dart",
+      "package": "sources/Trexven/packages/trexven_operations/lib/src/operational_permissions_screen.dart",
+      "sha256": "163157ec30c3093540217dab454b196ec280a4426da696f920966730d36d2419"
+    },
+    {
+      "root": "owner",
+      "source": "packages/trexven_operations/lib/src/operations_client.dart",
+      "package": "sources/Trexven/packages/trexven_operations/lib/src/operations_client.dart",
+      "sha256": "2b2a8b8139a1b0db6b410263e9e88904ae586f8be3041c56d00275cc4c058ec2"
+    },
+    {
+      "root": "owner",
+      "source": "packages/trexven_operations/lib/src/payment_confirmation_dialog.dart",
+      "package": "sources/Trexven/packages/trexven_operations/lib/src/payment_confirmation_dialog.dart",
+      "sha256": "122cfe68322323c95df7cd9f9403b0cc37831f8e4fbd9c462ac46389a84ffa9c"
+    },
+    {
+      "root": "owner",
+      "source": "packages/trexven_operations/lib/trexven_operations.dart",
+      "package": "sources/Trexven/packages/trexven_operations/lib/trexven_operations.dart",
+      "sha256": "0b7a72e2ecf2cbc50b63dca74adfbf8d6fe0f89d3da0d12518eb2ca7a62696df"
+    },
+    {
+      "root": "owner",
+      "source": "packages/trexven_operations/pubspec.yaml",
+      "package": "sources/Trexven/packages/trexven_operations/pubspec.yaml",
+      "sha256": "0e710f0cc8bf2de29841b7d82d88519e3fa07a46359d72ca19edb487e2ba7bc9"
+    },
+    {
+      "root": "owner",
+      "source": "pubspec.lock",
+      "package": "sources/Trexven/pubspec.lock",
+      "sha256": "0e8a78a280c9769d36d7614b575403c8b742cb215a64797766bb29a2b57b7446"
+    },
+    {
+      "root": "owner",
+      "source": "pubspec.yaml",
+      "package": "sources/Trexven/pubspec.yaml",
+      "sha256": "43ce655dc90e90ff21b627742654483181b27554ebc3ffb9949507a1533b3b3e"
+    },
+    {
+      "root": "owner",
+      "source": "test/backend_service_test.dart",
+      "package": "sources/Trexven/test/backend_service_test.dart",
+      "sha256": "1eb0ca35ce8935eee0540feff5eee48b9080d136bcfaee4bc55256fafb961756"
+    },
+    {
+      "root": "owner",
+      "source": "test/build_error_fallback_test.dart",
+      "package": "sources/Trexven/test/build_error_fallback_test.dart",
+      "sha256": "fcf9c541111c5469a1ac0f7df12665b8139efee134213be0ee0a335a2bccf55a"
+    },
+    {
+      "root": "owner",
+      "source": "test/catalog_import_test.dart",
+      "package": "sources/Trexven/test/catalog_import_test.dart",
+      "sha256": "de87b7a70e065d5ec0c81efdc5077de5814e70e6804646b98a11db6be2ee5c86"
+    },
+    {
+      "root": "owner",
+      "source": "test/catalog_repository_test.dart",
+      "package": "sources/Trexven/test/catalog_repository_test.dart",
+      "sha256": "9aa72c06551199b360bd6e53775055759930b1e4e35837e52c17075e29c1167f"
+    },
+    {
+      "root": "owner",
+      "source": "test/confirmed_operation_recovery_test.dart",
+      "package": "sources/Trexven/test/confirmed_operation_recovery_test.dart",
+      "sha256": "5f1945a1b3a7dd25c58b0b0874b282715f933637635365b033fdb340d2d301dc"
+    },
+    {
+      "root": "owner",
+      "source": "test/dashboard_density_test.dart",
+      "package": "sources/Trexven/test/dashboard_density_test.dart",
+      "sha256": "4293edbd16fd28f07639e162e80d22fef19e3e221aad81b4738b0a3e62aadd12"
+    },
+    {
+      "root": "owner",
+      "source": "test/employment_loading_test.dart",
+      "package": "sources/Trexven/test/employment_loading_test.dart",
+      "sha256": "20240f96c5d57dad0b69236632554e6662e5be59806bc22788b86f0be512580f"
+    },
+    {
+      "root": "owner",
+      "source": "test/finance_loading_test.dart",
+      "package": "sources/Trexven/test/finance_loading_test.dart",
+      "sha256": "43e8ea85875e7f19a5a691f17bef57ef2c507f08f1e9c1dd5d07c517c0ab8ab2"
+    },
+    {
+      "root": "owner",
+      "source": "test/initial_load_timeout_test.dart",
+      "package": "sources/Trexven/test/initial_load_timeout_test.dart",
+      "sha256": "91a0893b3e51074fdc09293bba5cb228f0c923253e7806c22644eda00d42d188"
+    },
+    {
+      "root": "owner",
+      "source": "test/intelligence_experience_test.dart",
+      "package": "sources/Trexven/test/intelligence_experience_test.dart",
+      "sha256": "475fc1dce2466cfca3bfdf65544c28fd58af06dc0e3d2bc3435c5a1a552bbf41"
+    },
+    {
+      "root": "owner",
+      "source": "test/inventory_loading_test.dart",
+      "package": "sources/Trexven/test/inventory_loading_test.dart",
+      "sha256": "0bd5d5f1c7b81db5c33e72409ed321dc2b6249f326bc8d7550df0cdc65d399a9"
+    },
+    {
+      "root": "owner",
+      "source": "test/notification_account_isolation_test.dart",
+      "package": "sources/Trexven/test/notification_account_isolation_test.dart",
+      "sha256": "29737df56aa97df3fec3e964b73e22630390df6c1b7325e26b70f77b6a675d83"
+    },
+    {
+      "root": "owner",
+      "source": "test/operation_journal_test.dart",
+      "package": "sources/Trexven/test/operation_journal_test.dart",
+      "sha256": "e6b3edd84167a799fa80b0e61b348f7fb48a726ad5396210236af79315c79a17"
+    },
+    {
+      "root": "owner",
+      "source": "test/product_contract_test.dart",
+      "package": "sources/Trexven/test/product_contract_test.dart",
+      "sha256": "e718d77d19455b2c7659a14282dfb99b2ee919e94c2d326d15b8a59ed94b52ac"
+    },
+    {
+      "root": "owner",
+      "source": "test/record_sale_flow_test.dart",
+      "package": "sources/Trexven/test/record_sale_flow_test.dart",
+      "sha256": "aaae7bd6168c9845ed088b4624359c23553948672001d52383e7169ceca9b13d"
+    },
+    {
+      "root": "owner",
+      "source": "test/restock_flow_test.dart",
+      "package": "sources/Trexven/test/restock_flow_test.dart",
+      "sha256": "a44e8d36f1e15e33e6eb7b3b51e90c71fc8686141db86eb543c5327b945bd3e8"
+    },
+    {
+      "root": "owner",
+      "source": "test/sale_quantity_test.dart",
+      "package": "sources/Trexven/test/sale_quantity_test.dart",
+      "sha256": "75647334946a3d8d00decd7e38ffcd10611fa940fa93f52f3ff9fd388e950f16"
+    },
+    {
+      "root": "owner",
+      "source": "test/shared_vision_experience_test.dart",
+      "package": "sources/Trexven/test/shared_vision_experience_test.dart",
+      "sha256": "5b64ed2d28906799fdd644e1fc6bafa263a3bb83ba5022f083ded1aca8caf92d"
+    },
+    {
+      "root": "owner",
+      "source": "test/ui_density_test.dart",
+      "package": "sources/Trexven/test/ui_density_test.dart",
+      "sha256": "dee9013c2db47f9f0adc6b22097a15a13bf032aa0f6bd74992eebba25822c9b0"
+    },
+    {
+      "root": "owner",
+      "source": "test/vision_service_test.dart",
+      "package": "sources/Trexven/test/vision_service_test.dart",
+      "sha256": "e3949901681579cd304a5e21770cac4f5afae5716e6714a3e63b9ec85ffe938d"
+    },
+    {
+      "root": "owner",
+      "source": "test/widget_test.dart",
+      "package": "sources/Trexven/test/widget_test.dart",
+      "sha256": "4a74f05b8af7f6f5b54f5567e6d8bec6212d8ca519a06d2c758ce88e0d6b1cb8"
+    },
+    {
+      "root": "pos",
+      "source": ".metadata",
+      "package": "sources/trexvenpos/.metadata",
+      "sha256": "0bb2493b2f54f6707c0be8d9101b1cf99e0c3663d7096860278460df594af60c"
+    },
+    {
+      "root": "pos",
+      "source": "analysis_options.yaml",
+      "package": "sources/trexvenpos/analysis_options.yaml",
+      "sha256": "b63207cf529949ec4727b68c23dbb38ce255b6f6f4ae1effcb5c1dcf2852d238"
+    },
+    {
+      "root": "pos",
+      "source": "android/app/build.gradle.kts",
+      "package": "sources/trexvenpos/android/app/build.gradle.kts",
+      "sha256": "ac60dc5c58e1184e63e65eac61455de16ab38b8c72e264c713ee349c4d7eb9bf"
+    },
+    {
+      "root": "pos",
+      "source": "android/app/src/debug/AndroidManifest.xml",
+      "package": "sources/trexvenpos/android/app/src/debug/AndroidManifest.xml",
+      "sha256": "b01a4541a8144c15bc617bab7eb267c99fa1476368fbbda5a12cdbf4e316a34c"
+    },
+    {
+      "root": "pos",
+      "source": "android/app/src/main/AndroidManifest.xml",
+      "package": "sources/trexvenpos/android/app/src/main/AndroidManifest.xml",
+      "sha256": "b28a70c33490c96ac89a20e579063dad5a7ab32bed057385ec009fba3045af76"
+    },
+    {
+      "root": "pos",
+      "source": "android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java",
+      "package": "sources/trexvenpos/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java",
+      "sha256": "6a40bfe52d01427ccd1b7b9ed9309b6a4f513cca86e6d52962d40d431f70bd73"
+    },
+    {
+      "root": "pos",
+      "source": "android/app/src/main/kotlin/odtweb/com/trexvenpos/MainActivity.kt",
+      "package": "sources/trexvenpos/android/app/src/main/kotlin/odtweb/com/trexvenpos/MainActivity.kt",
+      "sha256": "8a90137abf0693cb6186a0ab8c4f9adefea5523649bb69349c351f80921721d7"
+    },
+    {
+      "root": "pos",
+      "source": "android/app/src/main/res/drawable/launch_background.xml",
+      "package": "sources/trexvenpos/android/app/src/main/res/drawable/launch_background.xml",
+      "sha256": "2df60e2cfbee873ce2858088cf003e6b93498f2f568476da437610467ea1a9d7"
+    },
+    {
+      "root": "pos",
+      "source": "android/app/src/main/res/drawable-v21/launch_background.xml",
+      "package": "sources/trexvenpos/android/app/src/main/res/drawable-v21/launch_background.xml",
+      "sha256": "dca312ec77de83e43ef70a825c299b51451247286c29167d62f19165750b8793"
+    },
+    {
+      "root": "pos",
+      "source": "android/app/src/main/res/mipmap-hdpi/ic_launcher.png",
+      "package": "sources/trexvenpos/android/app/src/main/res/mipmap-hdpi/ic_launcher.png",
+      "sha256": "6a7c8f0d703e3682108f9662f813302236240d3f8f638bb391e32bfb96055fef"
+    },
+    {
+      "root": "pos",
+      "source": "android/app/src/main/res/mipmap-hdpi/launcher_icon.png",
+      "package": "sources/trexvenpos/android/app/src/main/res/mipmap-hdpi/launcher_icon.png",
+      "sha256": "d158a65648d8306af15768a98f3a85040f2a8beb398d406d56ff63abe8774e97"
+    },
+    {
+      "root": "pos",
+      "source": "android/app/src/main/res/mipmap-mdpi/ic_launcher.png",
+      "package": "sources/trexvenpos/android/app/src/main/res/mipmap-mdpi/ic_launcher.png",
+      "sha256": "c7c0c0189145e4e32a401c61c9bdc615754b0264e7afae24e834bb81049eaf81"
+    },
+    {
+      "root": "pos",
+      "source": "android/app/src/main/res/mipmap-mdpi/launcher_icon.png",
+      "package": "sources/trexvenpos/android/app/src/main/res/mipmap-mdpi/launcher_icon.png",
+      "sha256": "25a5c055b8ea6394f62f445c5d25c3e67b4d5cd85daed4c32ffed8c3e6d0f5f7"
+    },
+    {
+      "root": "pos",
+      "source": "android/app/src/main/res/mipmap-xhdpi/ic_launcher.png",
+      "package": "sources/trexvenpos/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png",
+      "sha256": "e14aa40904929bf313fded22cf7e7ffcbf1d1aac4263b5ef1be8bfce650397aa"
+    },
+    {
+      "root": "pos",
+      "source": "android/app/src/main/res/mipmap-xhdpi/launcher_icon.png",
+      "package": "sources/trexvenpos/android/app/src/main/res/mipmap-xhdpi/launcher_icon.png",
+      "sha256": "4ad8f1798884b7c8079a76cd65698fc8308dea480fc29dac23c6512a5d9fe687"
+    },
+    {
+      "root": "pos",
+      "source": "android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+      "package": "sources/trexvenpos/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+      "sha256": "4d470bf22d5c17d84edc5f82516d1ba8a1c09559cd761cefb792f86d9f52b540"
+    },
+    {
+      "root": "pos",
+      "source": "android/app/src/main/res/mipmap-xxhdpi/launcher_icon.png",
+      "package": "sources/trexvenpos/android/app/src/main/res/mipmap-xxhdpi/launcher_icon.png",
+      "sha256": "e6029f616831eebec00093435096d2003e2ed0b881cf73b70e34b0e08e6769a9"
+    },
+    {
+      "root": "pos",
+      "source": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+      "package": "sources/trexvenpos/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+      "sha256": "3c34e1f298d0c9ea3455d46db6b7759c8211a49e9ec6e44b635fc5c87dfb4180"
+    },
+    {
+      "root": "pos",
+      "source": "android/app/src/main/res/mipmap-xxxhdpi/launcher_icon.png",
+      "package": "sources/trexvenpos/android/app/src/main/res/mipmap-xxxhdpi/launcher_icon.png",
+      "sha256": "cb694faa3141edf0d4c91ee98cd9e3bc99c58ff88c02d7444e3b09b5f1aec14a"
+    },
+    {
+      "root": "pos",
+      "source": "android/app/src/main/res/values/styles.xml",
+      "package": "sources/trexvenpos/android/app/src/main/res/values/styles.xml",
+      "sha256": "cca15a99b59380a548bf6a890f7ca5380ee509b1f9bbb2f5f9ec3589fa25c2f7"
+    },
+    {
+      "root": "pos",
+      "source": "android/app/src/main/res/values-night/styles.xml",
+      "package": "sources/trexvenpos/android/app/src/main/res/values-night/styles.xml",
+      "sha256": "ea763597dc1a84c8034251caee98d7753e0fbf57340ffc94677427de4b537516"
+    },
+    {
+      "root": "pos",
+      "source": "android/app/src/profile/AndroidManifest.xml",
+      "package": "sources/trexvenpos/android/app/src/profile/AndroidManifest.xml",
+      "sha256": "b01a4541a8144c15bc617bab7eb267c99fa1476368fbbda5a12cdbf4e316a34c"
+    },
+    {
+      "root": "pos",
+      "source": "android/build.gradle.kts",
+      "package": "sources/trexvenpos/android/build.gradle.kts",
+      "sha256": "218f400e3fff31c9c986a2535dfb974560e1b4d33cc27b7c1fee96a2b7e44454"
+    },
+    {
+      "root": "pos",
+      "source": "android/gradle/wrapper/gradle-wrapper.jar",
+      "package": "sources/trexvenpos/android/gradle/wrapper/gradle-wrapper.jar",
+      "sha256": "16caeaf66d57a0d1d2087fef6a97efa62de8da69afa5b908f40db35afc4342da"
+    },
+    {
+      "root": "pos",
+      "source": "android/gradle/wrapper/gradle-wrapper.properties",
+      "package": "sources/trexvenpos/android/gradle/wrapper/gradle-wrapper.properties",
+      "sha256": "1220fdd333a881e47441de07b23f9dd1ebd35459730543ae429cf249847d91bf"
+    },
+    {
+      "root": "pos",
+      "source": "android/gradle.properties",
+      "package": "sources/trexvenpos/android/gradle.properties",
+      "sha256": "0c9351cf93ddb73a18755287292ebd5fb074cf78a3b2510b378b4eff99c579fb"
+    },
+    {
+      "root": "pos",
+      "source": "android/gradlew",
+      "package": "sources/trexvenpos/android/gradlew",
+      "sha256": "ec56c02543666d92d9ac5ae7fcc48f88ce4de0deb8b7f9b39928ca46f68c1b2b"
+    },
+    {
+      "root": "pos",
+      "source": "android/gradlew.bat",
+      "package": "sources/trexvenpos/android/gradlew.bat",
+      "sha256": "c13c6e91b9a517783976de213d46398c661ea9e17651376d7301e839eaedcc62"
+    },
+    {
+      "root": "pos",
+      "source": "android/settings.gradle.kts",
+      "package": "sources/trexvenpos/android/settings.gradle.kts",
+      "sha256": "4d438e37bd80ccc48ded4892c9026994cabe8cfb9c20d2947a609248495c869b"
+    },
+    {
+      "root": "pos",
+      "source": "assets/trexvenpos_logo.png",
+      "package": "sources/trexvenpos/assets/trexvenpos_logo.png",
+      "sha256": "73dd7841412a29412a9fcabfc7a0a2bd4b3fe086cffb9207a83f94a1b67b21cb"
+    },
+    {
+      "root": "pos",
+      "source": "lib/main.dart",
+      "package": "sources/trexvenpos/lib/main.dart",
+      "sha256": "bb2ad4a8879427c533828020b8e4485dc3d0b6eb536c1ce7bd1ec4bee3607e88"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/core/constants.dart",
+      "package": "sources/trexvenpos/lib/src/core/constants.dart",
+      "sha256": "cac37ac640e2fe833f775e1165b9406bebe2e0e1d187f466d6108defb413b830"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/features/auth/auth_provider.dart",
+      "package": "sources/trexvenpos/lib/src/features/auth/auth_provider.dart",
+      "sha256": "d3dd2f28482dd049c7f3da03e9322665628852b24175189c1b955378aec58ebf"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/features/auth/branch_context.dart",
+      "package": "sources/trexvenpos/lib/src/features/auth/branch_context.dart",
+      "sha256": "5c51dd55bdf7b0cec9956f450b95d935c32e31fdb6bfea39408204f9c9eeef3d"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/features/auth/business_selection_screen.dart",
+      "package": "sources/trexvenpos/lib/src/features/auth/business_selection_screen.dart",
+      "sha256": "940388eba1b62b16c1764981812b4267caea87203728ab93719d29608b42ae80"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/features/auth/login_screen.dart",
+      "package": "sources/trexvenpos/lib/src/features/auth/login_screen.dart",
+      "sha256": "e09600a7fffb3c6c2ee8c3c67bcd36a03379650eafbb414a701ddc94f04c51ab"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/features/auth/permission_service.dart",
+      "package": "sources/trexvenpos/lib/src/features/auth/permission_service.dart",
+      "sha256": "de31f961ad651059d097f477bf501815a44f4fca3ca4c94df7619df2d128a51c"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/features/inventory/catalog_edit_screen.dart",
+      "package": "sources/trexvenpos/lib/src/features/inventory/catalog_edit_screen.dart",
+      "sha256": "19c19a4db6f5af0d0c6732277b37ad1b52876b543a46591f510dae89ead2ac84"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/features/inventory/product_detail_screen.dart",
+      "package": "sources/trexvenpos/lib/src/features/inventory/product_detail_screen.dart",
+      "sha256": "9caf5dd04dfff96bbe44f12773a9af48fc56c36937d10bc3f06fbe5b84d9e553"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/features/inventory/product_provider.dart",
+      "package": "sources/trexvenpos/lib/src/features/inventory/product_provider.dart",
+      "sha256": "4ecd32ded57d9a4596659260a0e3739e5b35f289311722359f63811a1260fe8f"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/features/inventory/product_repository.dart",
+      "package": "sources/trexvenpos/lib/src/features/inventory/product_repository.dart",
+      "sha256": "0952568a35b8d2c058ae8a22339a2b39a0f1b0af3f379ecd1180be50663fb6a7"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/features/inventory/product_search_screen.dart",
+      "package": "sources/trexvenpos/lib/src/features/inventory/product_search_screen.dart",
+      "sha256": "bbd9cbc6770b828586509393e2dcec0922aead6ca35b9e28555fcd42e5aac397"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/features/inventory/quick_add_screen.dart",
+      "package": "sources/trexvenpos/lib/src/features/inventory/quick_add_screen.dart",
+      "sha256": "85fc94a232caf98ba11ad33e836ca66a4dfc3336d0bc7a3b4ded171c1c8b1109"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/features/inventory/scanner_screen.dart",
+      "package": "sources/trexvenpos/lib/src/features/inventory/scanner_screen.dart",
+      "sha256": "6ff5e3df70b1c52706bc16b2f31546d8b2e87db8b22a8cea0f8e5d454a42ab52"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/features/pos/cart_provider.dart",
+      "package": "sources/trexvenpos/lib/src/features/pos/cart_provider.dart",
+      "sha256": "9afbe86e9fbf916ee4ada15163a1de3548c940f77851443798251702b3fc93f4"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/features/pos/checkout_screen.dart",
+      "package": "sources/trexvenpos/lib/src/features/pos/checkout_screen.dart",
+      "sha256": "8d5a7768693cf307878a6599fc08571f512e0b1eaf483eaa570d0b9ac89ed4c5"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/features/pos/dashboard_screen.dart",
+      "package": "sources/trexvenpos/lib/src/features/pos/dashboard_screen.dart",
+      "sha256": "45ff647cbbae01482823bc164ed1b5ddbc3819d20ffd5679686f8fbe75052100"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/features/pos/employee_settings_screen.dart",
+      "package": "sources/trexvenpos/lib/src/features/pos/employee_settings_screen.dart",
+      "sha256": "21923946d053c1558d1ab2c2df9774ac24decf4f1a307cca6142759ca8bf8864"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/features/pos/offline_cash_screen.dart",
+      "package": "sources/trexvenpos/lib/src/features/pos/offline_cash_screen.dart",
+      "sha256": "4dc4cbf6acc5f5824e2255b1ebc6ddda61c985d190b3ad77c39f5c430b48f4e2"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/features/pos/operations_screen.dart",
+      "package": "sources/trexvenpos/lib/src/features/pos/operations_screen.dart",
+      "sha256": "af28fb452f0ccbd0b17f2e183fb3fc37e1549da1b00e9fa9e4636f2fb9dd2ce9"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/features/pos/payment_confirmation_dialog.dart",
+      "package": "sources/trexvenpos/lib/src/features/pos/payment_confirmation_dialog.dart",
+      "sha256": "fad3ffcb8562ac89201bc51a77f2d9cc1beae58bcde5ef37bb20c84f8f23fc8c"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/features/pos/pending_sale_provider.dart",
+      "package": "sources/trexvenpos/lib/src/features/pos/pending_sale_provider.dart",
+      "sha256": "50242c364f4f98418a4245119ef5287e63d9f2daf615131baaedaefa1236837a"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/features/pos/pos_shell.dart",
+      "package": "sources/trexvenpos/lib/src/features/pos/pos_shell.dart",
+      "sha256": "b42dcc33c6b0d44a165aea0a42e9480dcd823eccc19596df2008be4ecf3fbabf"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/features/pos/recent_sales_screen.dart",
+      "package": "sources/trexvenpos/lib/src/features/pos/recent_sales_screen.dart",
+      "sha256": "6a1c0009f99d23beeb448b1524cf62fcd9d8da2d2f33cc25d484c661307c6f31"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/features/pos/sales_provider.dart",
+      "package": "sources/trexvenpos/lib/src/features/pos/sales_provider.dart",
+      "sha256": "21016f852c09024a17f4cb3c7381036f62495295d1919708bc29963a6de4c766"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/features/pos/sales_repository.dart",
+      "package": "sources/trexvenpos/lib/src/features/pos/sales_repository.dart",
+      "sha256": "17aac5a2b7cdd6c6bfd3a9c974ecee0f6ae983a00fdf61c361f528486f72626e"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/models/business.dart",
+      "package": "sources/trexvenpos/lib/src/models/business.dart",
+      "sha256": "b7092ef27970a5dc6b04f3bc59d13db4ac3ec2737b6754d36911db2b31ebf71e"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/models/employee.dart",
+      "package": "sources/trexvenpos/lib/src/models/employee.dart",
+      "sha256": "a39ba5c26d4f0185c2cd7f9ba12e43fb2a408bb850b9304941a050d82dbef5a0"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/models/price_levels.dart",
+      "package": "sources/trexvenpos/lib/src/models/price_levels.dart",
+      "sha256": "d005c302ba23702c7296f14f6f3ca65b104a4b1217ea7ecce3f7fc121a125b69"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/models/product.dart",
+      "package": "sources/trexvenpos/lib/src/models/product.dart",
+      "sha256": "4086c6d5d808388c8a5091808491001b16e7f27bfd1ed135bbfb7e376126cfad"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/models/sale.dart",
+      "package": "sources/trexvenpos/lib/src/models/sale.dart",
+      "sha256": "bb0c388c4fdc3ee058ddb024930b5b9900618b28b3587b6a0d035dadf8438cf2"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/services/network_failure.dart",
+      "package": "sources/trexvenpos/lib/src/services/network_failure.dart",
+      "sha256": "3455533ae623a52be132c3226ddac948c77b369f61f61f254763e0a777bd9e61"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/services/network_failure_native.dart",
+      "package": "sources/trexvenpos/lib/src/services/network_failure_native.dart",
+      "sha256": "a87ef70762ae96374fb550f3294d1c4dbcabb8e0b913e1458489275da33d85e4"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/services/offline_cash_file.dart",
+      "package": "sources/trexvenpos/lib/src/services/offline_cash_file.dart",
+      "sha256": "a577f86e7f03d8546436f99b6d85ca7a219a89d96a16fc82f42ac1270025453f"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/services/offline_cash_queue.dart",
+      "package": "sources/trexvenpos/lib/src/services/offline_cash_queue.dart",
+      "sha256": "cc9259bfdafc24017df61e25e0fcd256f64da118d9b4ced5fab8d56da3845970"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/services/offline_cash_unsupported.dart",
+      "package": "sources/trexvenpos/lib/src/services/offline_cash_unsupported.dart",
+      "sha256": "c1b986dca3c1314c9223141879c15361b4174dce38032ad327b1def2f1cefb86"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/services/offline_session.dart",
+      "package": "sources/trexvenpos/lib/src/services/offline_session.dart",
+      "sha256": "2d9ca53f84a4a724cece953a91ba4585f840bb1f05b29de43ac1faab77a6693f"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/services/pending_sale.dart",
+      "package": "sources/trexvenpos/lib/src/services/pending_sale.dart",
+      "sha256": "d6e681f2db1abf5529abdec1c41be2704123fe2f03e2db7bb6e0b8823b5ff015"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/services/pending_sale_file.dart",
+      "package": "sources/trexvenpos/lib/src/services/pending_sale_file.dart",
+      "sha256": "d70cb33acedcb92504500d97a2dc88ee3b9a58920083085df73e4a3b17bc6528"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/services/pending_sale_unsupported.dart",
+      "package": "sources/trexvenpos/lib/src/services/pending_sale_unsupported.dart",
+      "sha256": "72f595db552597046d614eae75e52540268d95462f66dbdd4cf31fbb96e845b1"
+    },
+    {
+      "root": "pos",
+      "source": "lib/src/services/sale_errors.dart",
+      "package": "sources/trexvenpos/lib/src/services/sale_errors.dart",
+      "sha256": "a68b6ad136a05f3a30a986eef35a6da930a468c510d73b1876f6ce0559db1e6b"
+    },
+    {
+      "root": "pos",
+      "source": "pubspec.lock",
+      "package": "sources/trexvenpos/pubspec.lock",
+      "sha256": "8e8a583a01d47c5ed45ab5d8b890549a99411fd6e3a429da8cc3196dda2a6555"
+    },
+    {
+      "root": "pos",
+      "source": "pubspec.yaml",
+      "package": "sources/trexvenpos/pubspec.yaml",
+      "sha256": "da2abbfe9264e0eb478877ca524b95fd2c65bd724c76e3334a7126d46b3a238e"
+    },
+    {
+      "root": "pos",
+      "source": "test/access_boundaries_test.dart",
+      "package": "sources/trexvenpos/test/access_boundaries_test.dart",
+      "sha256": "a19b0c22fcec39cdbc6e6145d6194ba9e2292021c7fd0a79761d2f874a910d40"
+    },
+    {
+      "root": "pos",
+      "source": "test/auth_session_test.dart",
+      "package": "sources/trexvenpos/test/auth_session_test.dart",
+      "sha256": "b6f4f77fe74d71f6393cd45f9f9a31a7f6f7ec414b0001e71bc1c27a018ee66a"
+    },
+    {
+      "root": "pos",
+      "source": "test/batch_2_contract_test.dart",
+      "package": "sources/trexvenpos/test/batch_2_contract_test.dart",
+      "sha256": "491347309233a7d36c833280a290c060134badf2ef81e05ee175ac0be41fd2a1"
+    },
+    {
+      "root": "pos",
+      "source": "test/batch_3_product_repository_test.dart",
+      "package": "sources/trexvenpos/test/batch_3_product_repository_test.dart",
+      "sha256": "bdca66e3262545ee76a86e3408356014a2ae530d4396453d2d9d946b5524cce0"
+    },
+    {
+      "root": "pos",
+      "source": "test/batch_3_quantity_contract_test.dart",
+      "package": "sources/trexvenpos/test/batch_3_quantity_contract_test.dart",
+      "sha256": "3a589cb28f096f5584a46de95654e63a8adc175fdb714fb0f817519d95b812a9"
+    },
+    {
+      "root": "pos",
+      "source": "test/branch_context_test.dart",
+      "package": "sources/trexvenpos/test/branch_context_test.dart",
+      "sha256": "dbbadeefd7b7afeba7aea2977fbdbe50fd30006e5037e275075b472ff065720d"
+    },
+    {
+      "root": "pos",
+      "source": "test/checkout_flow_test.dart",
+      "package": "sources/trexvenpos/test/checkout_flow_test.dart",
+      "sha256": "fe7200f6745826a4cc0e0c1d6b984a08d254b49da983f098955d8917c2fe8f1c"
+    },
+    {
+      "root": "pos",
+      "source": "test/employee_settings_test.dart",
+      "package": "sources/trexvenpos/test/employee_settings_test.dart",
+      "sha256": "76c940cf6550bc97f878197eb4140064ea5baadc3828eb342c79566bd3a0d3b6"
+    },
+    {
+      "root": "pos",
+      "source": "test/offline_cash_queue_test.dart",
+      "package": "sources/trexvenpos/test/offline_cash_queue_test.dart",
+      "sha256": "f6c5e665599e59bc8045a2542ca9aadcaefe73fea670c3388f36e2561326814c"
+    },
+    {
+      "root": "pos",
+      "source": "test/offline_restart_characterization_test.dart",
+      "package": "sources/trexvenpos/test/offline_restart_characterization_test.dart",
+      "sha256": "419408f2b5528851546c7ba0d609c2dc55f55b036eed71982bb0e9bb654f61ec"
+    },
+    {
+      "root": "pos",
+      "source": "test/pending_sale_live_restart_test.dart",
+      "package": "sources/trexvenpos/test/pending_sale_live_restart_test.dart",
+      "sha256": "7fc0626800590724133bc8b212c0b1d874d77e5b582022522212704a212bffbb"
+    },
+    {
+      "root": "pos",
+      "source": "test/pending_sale_test.dart",
+      "package": "sources/trexvenpos/test/pending_sale_test.dart",
+      "sha256": "62907916a79aea302b6f7fe29dc22cdc50f223bb4e0d2017013fa5d489a3cb0e"
+    },
+    {
+      "root": "pos",
+      "source": "test/permission_service_test.dart",
+      "package": "sources/trexvenpos/test/permission_service_test.dart",
+      "sha256": "d5751d71cb6423207680eb9aa82d306cf8e26e500b8323cb247a779ba00ac2aa"
+    },
+    {
+      "root": "pos",
+      "source": "test/sale_submission_test.dart",
+      "package": "sources/trexvenpos/test/sale_submission_test.dart",
+      "sha256": "ca7d708fc8b1fe5ef2aff57e8ff8d2cd1d74deec1fb21237e115f94cd010d02e"
+    },
+    {
+      "root": "pos",
+      "source": "test/widget_test.dart",
+      "package": "sources/trexvenpos/test/widget_test.dart",
+      "sha256": "30cb4b70d6e149586450fd824d6bfedad00cb4731557cc93da15381d54e6bbc3"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/tests/batch_2_authorization_tests.sql",
+      "package": "verification/batch_2_authorization_tests.sql",
+      "sha256": "277aa6d7f0464f7534a9501e0b721145ada8aa6b834282a9aba87d66391fb4f6"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/tests/batch_2_branch_isolation_tests.sql",
+      "package": "verification/batch_2_branch_isolation_tests.sql",
+      "sha256": "7640506d6698e4e6a037c2eb2831b78d8e8d6c2396a36204a425080a1cd2278f"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/tests/batch_2_checkout_compatibility_tests.sql",
+      "package": "verification/batch_2_checkout_compatibility_tests.sql",
+      "sha256": "a0e1b79db0e77c085667ef60e8f3a99dd8cdcd76c977b67a3aed51519f8b1cc7"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/tests/batch_2_price_security_tests.sql",
+      "package": "verification/batch_2_price_security_tests.sql",
+      "sha256": "941aa664d561b7f1fd83ca748e940d8aace4d477ae26f3915986fd6971caf207"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/tests/batch_3_catalog_inventory_tests.sql",
+      "package": "verification/batch_3_catalog_inventory_tests.sql",
+      "sha256": "15411fe753ae94988b2526c95511545ce95aca3d80819021f3df21e0e86c021c"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/tests/batch_4_financial_operations_tests.sql",
+      "package": "verification/batch_4_financial_operations_tests.sql",
+      "sha256": "e44be2cb5cf13d158f61ca8c85c9fb3ce7698ebe7618427ce2329ef6bc5a6386"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/tests/batch_4_offline_cash_tests.sql",
+      "package": "verification/batch_4_offline_cash_tests.sql",
+      "sha256": "a58c4c616657ce8d562cb201180cd6c580fa5b4436df1c4910bfda4703d92902"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/tests/batch_4_recovery_boundary_tests.sql",
+      "package": "verification/batch_4_recovery_boundary_tests.sql",
+      "sha256": "30efe4571a04bc1737a9e4c2c7ca7b941fcb083126d73ea179fb0e4516ad6e46"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/tests/batch_5_inventory_operations_tests.sql",
+      "package": "verification/batch_5_inventory_operations_tests.sql",
+      "sha256": "f2c8016335edb1f5b5587c38da7d547d52012ed1126385d876e9c1587e0f81a0"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/tests/batch_6_shared_drawer_tests.sql",
+      "package": "verification/batch_6_shared_drawer_tests.sql",
+      "sha256": "9154ade6af0f05d207db33cd5225b20a23346287d96ed57527cd88d3c03da3de"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/tests/batch_7_subscription_security_tests.sql",
+      "package": "verification/batch_7_subscription_security_tests.sql",
+      "sha256": "408bc18d233be9612e688d0a2e67b9610f44f31bc29799dfac39512a537a9969"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/tests/batch_8_owner_session_tests.sql",
+      "package": "verification/batch_8_owner_session_tests.sql",
+      "sha256": "c46562b6462ccfd989819a38c3b1647bf637c68ebe0412a328b6e5cb9e8b9db8"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/tests/batch_9_notification_tests.sql",
+      "package": "verification/batch_9_notification_tests.sql",
+      "sha256": "14f62c52bac3057285fb7ceaaaaa6ad149387bf46d8591863072a3679e521031"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/tests/batch_2_fixture.sql",
+      "package": "verification/batch_2_fixture.sql",
+      "sha256": "0ac7020063d91bfd49ffa193b2f86c44fbed8d37a0c2eb4eca86d0d8f7514c4e"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/tests/run_final_native_qa.py",
+      "package": "review/run_final_native_qa.py",
+      "sha256": "46b2199dd9083ee0595d073f62f04ebfa5257794e881601eaaf7a54bf155114e"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/tests/prepare_staging_final_qa.py",
+      "package": "review/prepare_staging_final_qa.py",
+      "sha256": "45efb1f27432b4f21e15d562a51c15efad7245d845df7162e1250bfcd00d302e"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/tests/test_final_release_history_guard.py",
+      "package": "review/test_final_release_history_guard.py",
+      "sha256": "c3d44d1cd3ccbd203463911edc196ff84a5391426ae04192558c5e3327d925ef"
+    },
+    {
+      "root": "owner",
+      "source": "supabase/releases/render_final_guarded_migration.py",
+      "package": "review/render_final_guarded_migration.py",
+      "sha256": "7a6a017daacbbcf7104bed720d6eb249a71cfec7644554a1495e638b0941a790"
+    },
+    {
+      "root": "owner",
+      "source": "docs/implementation/TREXVEN_FINAL_IMPLEMENTATION_AND_RELEASE_READINESS_REPORT.md",
+      "package": "review/TREXVEN_FINAL_IMPLEMENTATION_AND_RELEASE_READINESS_REPORT.md",
+      "sha256": "d2f79765fe3f7bcea298e1e950cb034742f79d0c76bc5e35513bca6449d20f81"
+    },
+    {
+      "root": "owner",
+      "source": "docs/implementation/BATCH_8_9_OUTSTANDING_WORK_REGISTER.md",
+      "package": "review/BATCH_8_9_OUTSTANDING_WORK_REGISTER.md",
+      "sha256": "d15951e9a153a7538bb0af3a8e36a1d2391a0b2ba1dab0a7d4b43091f50eb42b"
+    },
+    {
+      "root": "owner",
+      "source": "docs/implementation/COORDINATED_FINAL_ROLLOUT_AND_RECOVERY.md",
+      "package": "review/COORDINATED_FINAL_ROLLOUT_AND_RECOVERY.md",
+      "sha256": "fbe7761f299386d392603305aef64a3ad819673acfb7b73b811996f2153b4c1f"
+    },
+    {
+      "root": "owner",
+      "source": "docs/implementation/FEATURE_GAP_MATRIX.md",
+      "package": "review/FEATURE_GAP_MATRIX.md",
+      "sha256": "07369677e3ecddb896c71e200f8540ea69d8f1d855579d7be422517506a1747f"
+    },
+    {
+      "root": "owner",
+      "source": "docs/implementation/MIGRATION_AND_ROLLBACK_PLAN.md",
+      "package": "review/MIGRATION_AND_ROLLBACK_PLAN.md",
+      "sha256": "eae70b01b3daceb8f0eb4baa219513994381645f736ffe90063433ed70e8a8af"
+    },
+    {
+      "root": "owner",
+      "source": "docs/implementation/KPI_COMPONENT_AUDIT.md",
+      "package": "review/KPI_COMPONENT_AUDIT.md",
+      "sha256": "9d2c6174db3fdad037b8774ed1ca88646f86e10c36543b05c0a562177b8241ad"
+    }
+  ],
+  "evidence": [
+    {
+      "root": "owner",
+      "source": "docs/implementation/evidence/batch_9_backup_freshness.json",
+      "package": "evidence/batch_9_backup_freshness.json",
+      "sha256": "a3145619e404227922a3d85b9a7a380a512aefb5ec9c198175c8db120562d2bf"
+    },
+    {
+      "root": "owner",
+      "source": "docs/implementation/evidence/batch_9_concurrency_results.json",
+      "package": "evidence/batch_9_concurrency_results.json",
+      "sha256": "f3397435235b64edadcd604862d5081956624585073a2d953ed8bb6117f3473c"
+    },
+    {
+      "root": "owner",
+      "source": "docs/implementation/evidence/batch_9_failed_replay_cleanup.json",
+      "package": "evidence/batch_9_failed_replay_cleanup.json",
+      "sha256": "55fa22d47093a84fed8b18a06acc2887a40f28f9103c3d434d1453a926779c64"
+    },
+    {
+      "root": "owner",
+      "source": "docs/implementation/evidence/batch_9_final_application_results.json",
+      "package": "evidence/batch_9_final_application_results.json",
+      "sha256": "6d6850e8f14c670b9dc94cc1767182578c7f147e81abcd104ff82396c86a724e"
+    },
+    {
+      "root": "owner",
+      "source": "docs/implementation/evidence/batch_9_native_edge_jwt_results.json",
+      "package": "evidence/batch_9_native_edge_jwt_results.json",
+      "sha256": "aac0d1f43d19970ecd32ad4cb16e696f0c69fe47631503582deb58ad05ac80f9"
+    },
+    {
+      "root": "owner",
+      "source": "docs/implementation/evidence/batch_9_native_replay_results.json",
+      "package": "evidence/batch_9_native_replay_results.json",
+      "sha256": "b207511fe42515c06f1fb507a0418dc0fefd4c25448b68a04f0b9a34f9ff8419"
+    },
+    {
+      "root": "owner",
+      "source": "docs/implementation/evidence/batch_9_previous_apk_inventory.json",
+      "package": "evidence/batch_9_previous_apk_inventory.json",
+      "sha256": "97ee8b261fe8168c5280713a6de29ada8800ea05ec8c59f650837fbdb82642ea"
+    },
+    {
+      "root": "owner",
+      "source": "docs/implementation/evidence/batch_9_production_backup_recovery.json",
+      "package": "evidence/batch_9_production_backup_recovery.json",
+      "sha256": "81c4d65aad6f8134766ad8035aa1c02ae54b55392a2d05f7976e0ee8611ce681"
+    },
+    {
+      "root": "owner",
+      "source": "docs/implementation/evidence/batch_9_production_final_preflight.json",
+      "package": "evidence/batch_9_production_final_preflight.json",
+      "sha256": "4401b355cda09f12f9aeaf236002de99675e6f4f69a2c199ffec343f370e7a77"
+    },
+    {
+      "root": "owner",
+      "source": "docs/implementation/evidence/batch_9_project_and_staging_edge_identity.json",
+      "package": "evidence/batch_9_project_and_staging_edge_identity.json",
+      "sha256": "ea0cd013ae4aaa7a027f13d3ad49501d4a8fc8459f3b29bc9599288cb5f410e2"
+    },
+    {
+      "root": "owner",
+      "source": "docs/implementation/evidence/batch_9_release_history_guard.json",
+      "package": "evidence/batch_9_release_history_guard.json",
+      "sha256": "3b12f1d462133e1bfb7b828f0495eaa467044d3818a889a8936ca28baf2dc8cd"
+    },
+    {
+      "root": "owner",
+      "source": "docs/implementation/evidence/batch_9_staging_edge_gateway_results.json",
+      "package": "evidence/batch_9_staging_edge_gateway_results.json",
+      "sha256": "c8ee6a5014d057794a1c658c530055009d1b089bed901d4d6e5a9118a9f809c5"
+    },
+    {
+      "root": "owner",
+      "source": "docs/implementation/evidence/batch_9_staging_notification_and_advisors.json",
+      "package": "evidence/batch_9_staging_notification_and_advisors.json",
+      "sha256": "5745f3dd9acbe9d54f8881d224664ad6cf322e463029b06ee5030be6ef907cc5"
+    },
+    {
+      "root": "owner",
+      "source": "docs/implementation/evidence/batch_9_staging_runtime_results.json",
+      "package": "evidence/batch_9_staging_runtime_results.json",
+      "sha256": "6eb41cb51fb782b837089ad24b05c9bd106299c9b15f4dcf368be0d28fdee6fe"
+    },
+    {
+      "root": "owner",
+      "source": "docs/implementation/evidence/batch_9_staging_source_and_history.json",
+      "package": "evidence/batch_9_staging_source_and_history.json",
+      "sha256": "9e947383f2de3cac7f5d7dc14ced5f4b252fe0176016c294d5bb7fa4e6cf5be2"
+    }
+  ],
+  "guarded_execution": [
+    {
+      "package": "execution/20261009070338_batch_4_financial_operations.sql",
+      "sha256": "031ed38e119ae10f648e54d16532861931ab916e45bdbec5c8c5977bd9f890ac"
+    },
+    {
+      "package": "execution/20261009070340_batch_4_offline_cash_reconciliation.sql",
+      "sha256": "37ef7a130f1b141b778b37a50bbf991a111b90ef2e44832182ab14c5882c0f93"
+    },
+    {
+      "package": "execution/20261009075117_batch_4_recovery_and_history.sql",
+      "sha256": "92c7b2cb10def500da7bb83e39c056f4c1c96e4f4df06a56b10d905bc5a04c9b"
+    },
+    {
+      "package": "execution/20261009075318_batch_5_inventory_operations.sql",
+      "sha256": "357be8d5910c0f8aa4d2325f3ff8c888e9dcbbc37c2a0c6f2737b53c972006d3"
+    },
+    {
+      "package": "execution/20261009075612_batch_5_inventory_review_controls.sql",
+      "sha256": "2abaeab2d165fd81519ed9e7f60f6806da82c0cfea48de7d67ab079894fdf8f9"
+    },
+    {
+      "package": "execution/20261009075911_batch_6_shared_cash_drawers.sql",
+      "sha256": "3475612a514992a1c1132b71e47e4a0fc92d88b191e122c20119a4d2fdf869ac"
+    },
+    {
+      "package": "execution/20261009080227_batch_6_handover_and_access.sql",
+      "sha256": "fa8c24c606c647a4f1d63b2606d7b8b1f98daff98754f05914b0348f9f578944"
+    },
+    {
+      "package": "execution/20261009080751_batch_4_financial_audit_events.sql",
+      "sha256": "6a4a3a01bc7926b08c7f6be747bf0908c84387436985ed20824a9023f52086ed"
+    },
+    {
+      "package": "execution/20261009080842_batch_5_dormant_transfer_foundation.sql",
+      "sha256": "debe44c08dbef851e786e3168e1b6ca533be6ea8ee0fc583fb2d010524ea4231"
+    },
+    {
+      "package": "execution/20261009081002_batch_7_subscription_billing_foundation.sql",
+      "sha256": "c3a3204fb31f016cbb63c1ac68a523413ad646ca59af61c915568823e0d14805"
+    },
+    {
+      "package": "execution/20261009081504_batch_7_enforcement_and_operations.sql",
+      "sha256": "6dbc25b88af5cc87d4b8eaca1df58bfb5686357ecb87eccd586e504812b1e759"
+    },
+    {
+      "package": "execution/20261009082051_batch_7_verified_provider_and_entitlement_controls.sql",
+      "sha256": "4ac9604f16c6b2ac809445cf7fdb067ddf030d97f620024effedc0884c019988"
+    },
+    {
+      "package": "execution/20261009082951_batch_7_final_access_controls.sql",
+      "sha256": "18d5e2e316d3ce8163285a71de6e102ec1396bb8d45990b37402342f58c66817"
+    },
+    {
+      "package": "execution/20261009122632_batch_4_transaction_recovery_boundaries.sql",
+      "sha256": "3fb001440ebed305f1a13d588101ce24d4d349b947386108f9633cdbe2af0582"
+    },
+    {
+      "package": "execution/20261009135919_batch_8_owner_payment_and_session_integration.sql",
+      "sha256": "8e457ca6d321f7aa9dbe266055f1259d81134a5eb33b736d83840d2667c72a05"
+    },
+    {
+      "package": "execution/20261009184148_batch_9_role_scoped_in_app_alerts.sql",
+      "sha256": "690a52bd668d3358c1d7dab1bd7ee784dd6aaac63c42ed52c92f16e1a4a0f4a9"
+    }
+  ],
+  "package_config": "supabase/config.toml",
+  "package_config_sha256": "a4fab7e733d3880e8aa6f5605f9d5051785059dc7806edcd044700ad5c7b7fb0",
+  "source_change_inventory_sha256": "00bf3c48a1ab6061a3da81377605a437a149657cd5d2ee3fc2261369bcc6cffb",
+  "android_artifacts": {
+    "owner": null,
+    "pos": null,
+    "installed_versions_verified": false
+  },
+  "remaining_gates": [
+    "Adequate safe C build scratch space and final Android APK builds",
+    "Connected test device: package/signer, startup, update, secure key and pending-sale retention",
+    "Fresh production identity/history/catalog and backup fingerprint check immediately before deployment",
+    "Explicit approval of the frozen complete candidate"
+  ]
+}

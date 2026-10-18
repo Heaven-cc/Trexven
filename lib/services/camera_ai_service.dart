@@ -24,8 +24,7 @@ class CameraAiService {
     });
   }
 
-  /// Ask Claude to analyze one specific camera event (with its snapshot
-  /// image, if the vision backend captured one for this event).
+  /// Explain one stored camera event using structured TREXVEN evidence.
   Future<String> analyzeSpecificEvent({
     required String cameraId,
     required String eventId,
@@ -42,43 +41,6 @@ class CameraAiService {
       throw Exception('Camera AI could not answer for this event.');
     }
     return answer.toString();
-  }
-
-  // ============================================================
-  // ANALYZE GENERAL CAMERA OBSERVATION
-  // ============================================================
-
-  Future<Map<String, dynamic>> analyzeObservation({
-    required String cameraId,
-    required String observation,
-  }) async {
-    return _invoke({
-      'camera_id': cameraId,
-      'event_type': 'observation',
-      'data': {
-        'observation': observation,
-      },
-    });
-  }
-
-  // ============================================================
-  // ASK ANGEL ABOUT CAMERA ACTIVITY
-  // ============================================================
-
-  Future<String> askAboutEvents(String question) async {
-    final result = await _invoke({
-      'event_type': 'question',
-      'data': {
-        'question': question,
-      },
-    });
-
-    final answer = result['answer'];
-    if (answer != null) {
-      return answer.toString();
-    }
-
-    throw Exception('Camera AI could not answer the question.');
   }
 
   Future<Map<String, dynamic>> _invoke(

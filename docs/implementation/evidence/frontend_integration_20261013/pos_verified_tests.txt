@@ -1,0 +1,30 @@
+00:00 +0: loading C:/Users/USER/AndroidStudioProjects/trexvenpos/test/sale_submission_test.dart
+00:00 +0: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/sale_submission_test.dart: Checkout maps Cash and returns the saved receipt on retries
+00:00 +1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/sale_submission_test.dart: Checkout maps POS Terminal and returns the saved receipt on retries
+00:00 +2: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/sale_submission_test.dart: Checkout maps Transfer and returns the saved receipt on retries
+00:00 +3: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/sale_submission_test.dart: Cart retains retry identity until its contents change
+00:00 +4: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/sale_submission_test.dart: Fractional currency totals match database decimal arithmetic
+00:00 +5: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/sale_submission_test.dart: Checkout exposes actionable database errors
+00:00 +6: loading C:/Users/USER/AndroidStudioProjects/trexvenpos/test/pending_sale_test.dart
+00:05 +6: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/pending_sale_test.dart: verified legacy payment enrichment survives restart with the original identity
+00:06 +7: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/pending_sale_test.dart: payment enrichment cannot replace the original cart or business
+00:06 +8: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/pending_sale_test.dart: legacy v1 journal survives an app update without changing request or membership IDs
+00:06 +9: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/pending_sale_test.dart: unrecognized journal is retained and fails closed during an update
+00:06 +10: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/pending_sale_test.dart: payment journals survive both authorization and validation rejection
+00:06 +11: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/pending_sale_test.dart: journal flushes before submission and survives a fresh process
+00:06 +12: loading C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_3_quantity_test.dart
+00:06 +12 -1: loading C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_3_quantity_test.dart [E]
+  Failed to load "C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_3_quantity_test.dart": Does not exist.
+00:06 +12 -1: loading C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart
+00:09 +12 -1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Revoked POS permission also blocks sale completion
+00:09 +13 -1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Explicit owner denial overrides default sales permission
+00:09 +14 -1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Null selling price remains pending even with forged active flags
+00:09 +15 -1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Sales cannot gain price or staff administration from stale grants
+00:09 +16 -1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Owner-only Vision stays denied for explicitly granted managers
+00:09 +17 -1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Legacy sale JSON has no new branch key; branch receipts round-trip
+00:09 +18 -1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Branch sale uses distinct API and retains original retry context
+00:10 +19 -1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Business sales reader scopes business/branch and preserves other staff receipts
+00:10 +20 -1: Some tests failed.
+
+Failing tests:
+  C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_3_quantity_test.dart: loading C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_3_quantity_test.dart

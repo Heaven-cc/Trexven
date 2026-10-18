@@ -1,0 +1,47 @@
+00:00 +0: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/angel_flow_test.dart
+00:00 +0: C:/Users/USER/AndroidStudioProjects/Trexven/test/angel_flow_test.dart: New chat stays open, supplies an explicit conversation, and uncertain send only refreshes history
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: <1>
+  Actual: <0>
+Requests: GET
+https://example.invalid/rest/v1/angel_conversations?select=id%2Ctitle%2Cupdated_at&business_id=eq.business&user_id=eq.synthetic-owner&order=updated_at.desc.nullslast%2Cid.desc.nullslast&offset=0&limit=100;
+GET
+https://example.invalid/rest/v1/angel_conversations?select=id&id=eq.old-chat&business_id=eq.business&user_id=eq.synthetic-owner;
+GET
+https://example.invalid/rest/v1/angel_messages?select=id%2Crole%2Ccontent%2Ccreated_at&conversation_id=eq.old-chat&order=created_at.desc.nullslast%2Cid.desc.nullslast&limit=100;
+POST https://example.invalid/rest/v1/angel_conversations; GET
+https://example.invalid/rest/v1/angel_conversations?select=id&id=eq.de42ac6d-ad1b-48e7-b422-0f3704d9261c&business_id=eq.business&user_id=eq.synthetic-owner;
+screen: Refresh history · send outcome unknown; Message Angel...; TREXVEN Angel; Angel; Angel took
+too long to respond. Please check your connection.
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/angel_flow_test.dart:61:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/angel_flow_test.dart line 61
+The test description was:
+  New chat stays open, supplies an explicit conversation, and uncertain send only refreshes history
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:04 +0 -1: C:/Users/USER/AndroidStudioProjects/Trexven/test/angel_flow_test.dart: New chat stays open, supplies an explicit conversation, and uncertain send only refreshes history [E]
+  Test failed. See exception logs above.
+  The test description was: New chat stays open, supplies an explicit conversation, and uncertain send only refreshes history
+  
+00:04 +0 -1: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/dashboard_density_test.dart
+00:06 +0 -1: C:/Users/USER/AndroidStudioProjects/Trexven/test/dashboard_density_test.dart: (setUpAll)
+00:06 +0 -1: C:/Users/USER/AndroidStudioProjects/Trexven/test/dashboard_density_test.dart: Dashboard cards remain usable at width 320.0 scale 1.0
+00:08 +1 -1: C:/Users/USER/AndroidStudioProjects/Trexven/test/dashboard_density_test.dart: Dashboard cards remain usable at width 320.0 scale 2.0
+00:08 +2 -1: C:/Users/USER/AndroidStudioProjects/Trexven/test/dashboard_density_test.dart: Dashboard cards remain usable at width 412.0 scale 1.0
+00:08 +3 -1: C:/Users/USER/AndroidStudioProjects/Trexven/test/dashboard_density_test.dart: Dashboard cards remain usable at width 412.0 scale 2.0
+00:09 +4 -1: C:/Users/USER/AndroidStudioProjects/Trexven/test/dashboard_density_test.dart: (tearDownAll)
+00:09 +4 -1: Some tests failed.
+
+Failing tests:
+  C:/Users/USER/AndroidStudioProjects/Trexven/test/angel_flow_test.dart: New chat stays open, supplies an explicit conversation, and uncertain send only refreshes history

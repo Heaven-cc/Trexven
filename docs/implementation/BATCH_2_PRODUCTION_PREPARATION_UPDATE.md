@@ -1,0 +1,45 @@
+# Production deployment executed — 9 October 2026
+
+The [execution report](PRODUCTION_DEPLOYMENT_EXECUTION_REPORT.md) supersedes earlier undeployed/approval-blocked status below. Under the user's final explicit authorization, all seven migrations committed (CLI exit 0, history now 16); Batch 2 and Batch 3 are DEPLOYED. Reviewed Edge Functions are DEPLOYED: employee-login v6 (JWT false), create-employee v7, manage-employee v4 and angel v12 (JWT true). Retrieved sources match the frozen package; unrelated functions remain unchanged. Main backend integration for the approved scope is COMPLETE.
+
+All original values across 78 existing non-history tables were preserved. Four canonical permission reference rows were added exactly as approved; the original seven permission rows are unchanged. Postflight verified 39 reviewed functions, RLS/grants/catalog, valid indexes and dormant empty branches. The protected C pre-deployment backup passed immediate checksum/freshness checks; no refresh was required. The timezone remains unset per explicit exclusion, so daily-sales flows need a separate clock configuration decision. No apps were installed/published, no local data cleared, no branches activated and no production synthetic records created. Device verification was explicitly waived for this backend execution and remains an app-update limitation.
+
+---
+
+# Current final compatibility status — 9 October 2026
+
+This section supersedes earlier readiness statements below. The [final coordinated plan](FINAL_COMPATIBILITY_AND_COORDINATED_DEPLOYMENT_PLAN.md) records exact evidence, changes, migration order and deployment gates. Owner tests: 75 passed; POS: 47 passed + 1 explicit skip; Deno: 9 passed; isolated SQL: 105 assertions across five passing suites; staging JWT: 54/54 checks. Analysis exits 1 with 208 Owner / 4 POS informational findings and no errors/warnings. Both ARM64 debug candidate APKs built at actual 1.0.0+2 and match previous local artifact signing identities; installed-device identity remains unverified.
+
+Production's unchanged main schema and exact seven pending files passed read-only preflight/dry-run. The original D backup failed a later checksum and is rejected. A protected replacement on C passed fresh full recovery (79 table fingerprints, 30 schema groups), DPAPI encryption/decryption and latest unchanged-data verification. Same-profile recovery and Storage-object/offsite limits are documented. This replaces earlier credential/backup/JWT blockers; do not use the older D copy.
+
+Remaining: connect actual test installations to verify signature/ABI/version and resolve/preserve pending requests/drafts, then obtain explicit approval for the seven migrations and four reviewed Edge Functions. Guarded Africa/Lagos configuration requires its own explicit inclusion. No production write, branch activation, app installation/publication or production Edge deployment occurred. Unsynced persisted POS requests must survive in-place replacement; uninstall/data clear is not approved. Owner in-memory drafts must be resolved before restart.
+
+---
+
+# Operational prerequisite update ? 9 October 2026
+
+Production database backup/recovery is now verified for the documented local scope: encrypted protected archive, two full isolated restores, 79 matching table fingerprints and 30 matching application catalog groups. Earlier backup/access blockers below are superseded by [the actual recovery report](PRODUCTION_OPERATIONAL_BACKUP_RECOVERY_REPORT.md). Installed/distributed client compatibility, authenticated Edge replacement acceptance and explicit rollout approval remain gates. No production migration, configuration change or Edge deployment occurred. DPAPI requires the original Windows profile/keys; Storage object bytes and independent offsite recovery are not covered.
+
+---
+
+# Batch 2 production preparation update — 9 October 2026
+
+Production remains unchanged and read-only. Batch 2 is complete and staging verified; it is not production integrated. Batch 3 proceeds locally by the latest explicit instruction.
+
+Secure connection inspection found no nonempty SUPABASE_DB_URL, SUPABASE_DB_PASSWORD, DATABASE_URL, PGSERVICEFILE, PGSERVICE, PGPASSWORD or PGPASSFILE at process/user/machine scopes, no checked PostgreSQL pass/service file, and no PowerShell SecretManagement module. Windows Credential Manager has the Supabase CLI target name only; its contents were not read. This supplies no confirmed PostgreSQL operational-backup connection. Repository example configuration is not an operational credential. No credential values were printed, exported, rotated or generated.
+
+Missing configuration: a confirmed production PostgreSQL 17 connection accessible to pg_dump via an existing protected credential. Locate the existing database credential and provide it through an ACL-protected external PostgreSQL service/passfile with PGSERVICEFILE/PGSERVICE/PGPASSFILE, or through a protected process-only SUPABASE_DB_URL. Supply the location/variable name only, never passwords in chat or Git. Validate hostname/project identity before any read-only dump. Do not reset or generate a password to bypass this gate.
+
+The supported production backups-list API reported WAL-G enabled, PITR disabled and zero available backups, with an empty physical backup object. No production operational backup was created. A schema-only export is not an operational backup. The earlier synthetic pg_dump/pg_restore recovery drill is real evidence of the procedure but cannot substitute for a protected production backup or production-specific recovery acceptance. Keep any future production dump encrypted/access controlled outside these repositories and never restore customer records into adversarial test fixtures.
+
+Local build evidence (aapt, not just pubspec): Owner com.ODT.odt, versionName 1.0.0/versionCode 1, SHA-256 863088195bd151992a91d6996452a19e77045c3d3018a7f448dbd0c54c5ce18a; POS odtweb.com.trexvenpos, versionName 1.0.0/versionCode 1, SHA-256 a3569b64019a6d29c975aec0c44f8541845c9fa614078ad15cd4c561ba560282. Each has two identical local debug copies. No AAB was found, no connected adb device is available, and installed/distributed builds and source lineage remain unconfirmed. No APK was overwritten or deployed. See evidence/batch_2_build_connection_inventory_20261009.json for paths, timestamps and actual configuration presence.
+
+Proposed Nigeria timezone mapping: business 7de5d490-6883-45d5-b3fd-e9b85b3832bc, existing country Nigeria, to Africa/Lagos. This is not applied. A future approved guarded update must require this exact ID and country and leave historical timestamps unchanged; no other businesses are inferred.
+
+JWT gateway proposal: retain verify_jwt=true for create-employee, manage-employee and angel; employee-login remains false because login precedes an Auth session. Local config now records those settings. [Supported Supabase auth-header documentation](https://supabase.com/docs/guides/functions/auth-headers) says gateway validation supports symmetric and asymmetric user JWTs. All authenticated handlers additionally resolve auth.getUser and trusted membership/ownership; client IDs/permission JSON do not authorize. Prior staging HTTP verification used false on the new handlers, so it does not prove true-gateway valid-session acceptance. Fresh local Deno helper tests passed nine; a true-gateway valid-session/missing/invalid-token acceptance run remains pending in an approved function test environment and after any approved deployment. No global JWT weakening occurred.
+
+Production versions still employee-login v4/false, create-employee v5/true, manage-employee v2/true, angel v10/true. Other production functions are outside the replacement manifest. Provider live calls were not made because they can write chat/rate-limit records. The final deployment manifest is blocked until backup, client compatibility, smoke safeguards and separate explicit production approval are satisfied.
+
+Main-backend alignment update: see [MAIN_BACKEND_ALIGNMENT_REPORT.md](MAIN_BACKEND_ALIGNMENT_REPORT.md) and the guarded release package in supabase/releases/main_backend_alignment_20261009. Fresh live metadata matches all six baseline sections; the supported CLI applied exactly seven pending files to a new disposable with nine original history metadata entries, recorded history 16 and returned an empty second dry-run. Post-push 105 SQL assertions and 27 local HTTP checks passed. No production history repair, baseline restore or additional Flutter fix is required. Production backup, client/Edge acceptance and explicit approval gates remain pending.
+
+Intended-passfile backup update: the supplied file and account-only ACL are verified. The official Supabase CA resolved the TLS trust failure while retaining verify-full; PostgreSQL then rejected authentication. No operational dump/recovery ran. See PRODUCTION_BACKUP_PREREQUISITE_STATUS.md and production_backup_pgpass_connection.json. The next required action is correction of the existing protected database credential, not a production reset.

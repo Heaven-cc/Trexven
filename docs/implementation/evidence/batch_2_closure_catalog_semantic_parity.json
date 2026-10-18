@@ -1,0 +1,754 @@
+{
+  "normalization": [
+    "OIDs resolved to actual qualified relation/function identities including managed Auth indexes",
+    "Reviewed function/trigger SQL AST normalization",
+    "Row ordering ignored; column ordinals, owners, grants and validation state retained"
+  ],
+  "groups": [
+    {
+      "database": "postgres",
+      "group": "structure.tables",
+      "match": true,
+      "source_count": 34,
+      "staging_count": 34
+    },
+    {
+      "database": "postgres",
+      "group": "structure.columns",
+      "match": true,
+      "source_count": 339,
+      "staging_count": 339
+    },
+    {
+      "database": "postgres",
+      "group": "structure.constraints",
+      "match": true,
+      "source_count": 131,
+      "staging_count": 131
+    },
+    {
+      "database": "postgres",
+      "group": "structure.indexes",
+      "match": true,
+      "source_count": 108,
+      "staging_count": 108
+    },
+    {
+      "database": "postgres",
+      "group": "structure.types",
+      "match": true
+    },
+    {
+      "database": "postgres",
+      "group": "structure.inheritance",
+      "match": true
+    },
+    {
+      "database": "postgres",
+      "group": "functions",
+      "match": true,
+      "source_count": 45,
+      "staging_count": 45
+    },
+    {
+      "database": "postgres",
+      "group": "security.rules",
+      "match": true
+    },
+    {
+      "database": "postgres",
+      "group": "security.policies",
+      "match": true,
+      "source_count": 122,
+      "staging_count": 122
+    },
+    {
+      "database": "postgres",
+      "group": "security.triggers",
+      "match": true,
+      "source_count": 15,
+      "staging_count": 15
+    },
+    {
+      "database": "postgres",
+      "group": "security.publications",
+      "match": true,
+      "source_count": 7,
+      "staging_count": 7
+    },
+    {
+      "database": "postgres",
+      "group": "security.event_triggers",
+      "match": true
+    },
+    {
+      "database": "postgres",
+      "group": "acl.tables",
+      "match": true,
+      "source_count": 34,
+      "staging_count": 34
+    },
+    {
+      "database": "postgres",
+      "group": "acl.columns",
+      "match": true,
+      "source_count": 20,
+      "staging_count": 20
+    },
+    {
+      "database": "postgres",
+      "group": "acl.schemas",
+      "match": true,
+      "source_count": 2,
+      "staging_count": 2
+    },
+    {
+      "database": "postgres",
+      "group": "acl.defaults",
+      "match": true,
+      "source_count": 6,
+      "staging_count": 6
+    },
+    {
+      "database": "postgres",
+      "group": "acl.functions",
+      "match": true,
+      "source_count": 45,
+      "staging_count": 45
+    },
+    {
+      "database": "postgres",
+      "group": "dependencies.custom_casts",
+      "match": true
+    },
+    {
+      "database": "postgres",
+      "group": "dependencies.custom_operators",
+      "match": true
+    },
+    {
+      "database": "postgres",
+      "group": "dependencies.custom_aggregates",
+      "match": true
+    },
+    {
+      "database": "postgres",
+      "group": "dependencies.custom_collations",
+      "match": true
+    },
+    {
+      "database": "postgres",
+      "group": "dependencies.external_constraints",
+      "match": true,
+      "source_count": 8,
+      "staging_count": 8
+    },
+    {
+      "database": "postgres",
+      "group": "dependencies.publication_settings",
+      "match": true,
+      "source_count": 1,
+      "staging_count": 1
+    },
+    {
+      "database": "postgres",
+      "group": "dependencies.external_object_dependencies",
+      "match": true,
+      "source_count": 102,
+      "staging_count": 102
+    },
+    {
+      "database": "postgres",
+      "group": "extras.statistics_objects",
+      "match": true
+    },
+    {
+      "database": "postgres",
+      "group": "extras.object_descriptions",
+      "match": true
+    },
+    {
+      "database": "postgres",
+      "group": "extras.extension_dependencies",
+      "match": true
+    },
+    {
+      "database": "postgres",
+      "group": "extras.managed_auth_references",
+      "match": true,
+      "source_count": 7,
+      "staging_count": 7
+    },
+    {
+      "database": "postgres",
+      "group": "extras.unusual_column_metadata",
+      "match": true
+    },
+    {
+      "database": "postgres",
+      "group": "extras.managed_schema_functions",
+      "match": true,
+      "source_count": 6,
+      "staging_count": 6
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "structure.tables",
+      "match": true,
+      "source_count": 34,
+      "staging_count": 34
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "structure.columns",
+      "match": true,
+      "source_count": 339,
+      "staging_count": 339
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "structure.constraints",
+      "match": true,
+      "source_count": 131,
+      "staging_count": 131
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "structure.indexes",
+      "match": true,
+      "source_count": 108,
+      "staging_count": 108
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "structure.types",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "structure.inheritance",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "functions",
+      "match": true,
+      "source_count": 45,
+      "staging_count": 45
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "security.rules",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "security.policies",
+      "match": true,
+      "source_count": 122,
+      "staging_count": 122
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "security.triggers",
+      "match": true,
+      "source_count": 15,
+      "staging_count": 15
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "security.publications",
+      "match": true,
+      "source_count": 7,
+      "staging_count": 7
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "security.event_triggers",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "acl.tables",
+      "match": true,
+      "source_count": 34,
+      "staging_count": 34
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "acl.columns",
+      "match": true,
+      "source_count": 20,
+      "staging_count": 20
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "acl.schemas",
+      "match": true,
+      "source_count": 2,
+      "staging_count": 2
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "acl.defaults",
+      "match": true,
+      "source_count": 6,
+      "staging_count": 6
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "acl.functions",
+      "match": true,
+      "source_count": 45,
+      "staging_count": 45
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "dependencies.custom_casts",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "dependencies.custom_operators",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "dependencies.custom_aggregates",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "dependencies.custom_collations",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "dependencies.external_constraints",
+      "match": true,
+      "source_count": 8,
+      "staging_count": 8
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "dependencies.publication_settings",
+      "match": true,
+      "source_count": 1,
+      "staging_count": 1
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "dependencies.external_object_dependencies",
+      "match": true,
+      "source_count": 102,
+      "staging_count": 102
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "extras.statistics_objects",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "extras.object_descriptions",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "extras.extension_dependencies",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "extras.managed_auth_references",
+      "match": true,
+      "source_count": 7,
+      "staging_count": 7
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "extras.unusual_column_metadata",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_replay2",
+      "group": "extras.managed_schema_functions",
+      "match": true,
+      "source_count": 6,
+      "staging_count": 6
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "structure.tables",
+      "match": true,
+      "source_count": 34,
+      "staging_count": 34
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "structure.columns",
+      "match": true,
+      "source_count": 339,
+      "staging_count": 339
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "structure.constraints",
+      "match": true,
+      "source_count": 131,
+      "staging_count": 131
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "structure.indexes",
+      "match": true,
+      "source_count": 108,
+      "staging_count": 108
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "structure.types",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "structure.inheritance",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "functions",
+      "match": true,
+      "source_count": 45,
+      "staging_count": 45
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "security.rules",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "security.policies",
+      "match": true,
+      "source_count": 122,
+      "staging_count": 122
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "security.triggers",
+      "match": true,
+      "source_count": 15,
+      "staging_count": 15
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "security.publications",
+      "match": true,
+      "source_count": 7,
+      "staging_count": 7
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "security.event_triggers",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "acl.tables",
+      "match": true,
+      "source_count": 34,
+      "staging_count": 34
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "acl.columns",
+      "match": true,
+      "source_count": 20,
+      "staging_count": 20
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "acl.schemas",
+      "match": true,
+      "source_count": 2,
+      "staging_count": 2
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "acl.defaults",
+      "match": true,
+      "source_count": 6,
+      "staging_count": 6
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "acl.functions",
+      "match": true,
+      "source_count": 45,
+      "staging_count": 45
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "dependencies.custom_casts",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "dependencies.custom_operators",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "dependencies.custom_aggregates",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "dependencies.custom_collations",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "dependencies.external_constraints",
+      "match": true,
+      "source_count": 8,
+      "staging_count": 8
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "dependencies.publication_settings",
+      "match": true,
+      "source_count": 1,
+      "staging_count": 1
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "dependencies.external_object_dependencies",
+      "match": true,
+      "source_count": 102,
+      "staging_count": 102
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "extras.statistics_objects",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "extras.object_descriptions",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "extras.extension_dependencies",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "extras.managed_auth_references",
+      "match": true,
+      "source_count": 7,
+      "staging_count": 7
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "extras.unusual_column_metadata",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_restored",
+      "group": "extras.managed_schema_functions",
+      "match": true,
+      "source_count": 6,
+      "staging_count": 6
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "structure.tables",
+      "match": true,
+      "source_count": 34,
+      "staging_count": 34
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "structure.columns",
+      "match": true,
+      "source_count": 339,
+      "staging_count": 339
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "structure.constraints",
+      "match": true,
+      "source_count": 131,
+      "staging_count": 131
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "structure.indexes",
+      "match": true,
+      "source_count": 108,
+      "staging_count": 108
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "structure.types",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "structure.inheritance",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "functions",
+      "match": true,
+      "source_count": 45,
+      "staging_count": 45
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "security.rules",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "security.policies",
+      "match": true,
+      "source_count": 122,
+      "staging_count": 122
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "security.triggers",
+      "match": true,
+      "source_count": 15,
+      "staging_count": 15
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "security.publications",
+      "match": true,
+      "source_count": 7,
+      "staging_count": 7
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "security.event_triggers",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "acl.tables",
+      "match": true,
+      "source_count": 34,
+      "staging_count": 34
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "acl.columns",
+      "match": true,
+      "source_count": 20,
+      "staging_count": 20
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "acl.schemas",
+      "match": true,
+      "source_count": 2,
+      "staging_count": 2
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "acl.defaults",
+      "match": true,
+      "source_count": 6,
+      "staging_count": 6
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "acl.functions",
+      "match": true,
+      "source_count": 45,
+      "staging_count": 45
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "dependencies.custom_casts",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "dependencies.custom_operators",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "dependencies.custom_aggregates",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "dependencies.custom_collations",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "dependencies.external_constraints",
+      "match": true,
+      "source_count": 8,
+      "staging_count": 8
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "dependencies.publication_settings",
+      "match": true,
+      "source_count": 1,
+      "staging_count": 1
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "dependencies.external_object_dependencies",
+      "match": true,
+      "source_count": 102,
+      "staging_count": 102
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "extras.statistics_objects",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "extras.object_descriptions",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "extras.extension_dependencies",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "extras.managed_auth_references",
+      "match": true,
+      "source_count": 7,
+      "staging_count": 7
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "extras.unusual_column_metadata",
+      "match": true
+    },
+    {
+      "database": "trexven_b2_schemaonly",
+      "group": "extras.managed_schema_functions",
+      "match": true,
+      "source_count": 6,
+      "staging_count": 6
+    }
+  ],
+  "match": true
+}

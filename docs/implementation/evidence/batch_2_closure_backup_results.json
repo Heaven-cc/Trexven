@@ -1,0 +1,18 @@
+[
+  {
+    "step": "pg_dump",
+    "exit": 0
+  },
+  {
+    "step": "restore_create",
+    "exit": 0
+  },
+  {
+    "step": "pg_restore",
+    "exit": 0
+  },
+  {
+    "step": "restore_identity",
+    "exit": 0
+  }
+]

@@ -1,0 +1,173 @@
+[
+  {
+    "name": "owner own business",
+    "pass": true
+  },
+  {
+    "name": "cross-business owner read denied",
+    "pass": true
+  },
+  {
+    "name": "employee owner-only staff contract denied",
+    "pass": true
+  },
+  {
+    "name": "manager self permission escalation denied",
+    "pass": true
+  },
+  {
+    "name": "manager owner promotion denied",
+    "pass": true
+  },
+  {
+    "name": "sales price PATCH denied",
+    "pass": true
+  },
+  {
+    "name": "inventory price PATCH denied",
+    "pass": true
+  },
+  {
+    "name": "manager price PATCH denied",
+    "pass": true
+  },
+  {
+    "name": "inventory price INSERT denied",
+    "pass": true
+  },
+  {
+    "name": "inventory price UPSERT denied",
+    "pass": true
+  },
+  {
+    "name": "inventory bulk pricing denied atomically",
+    "pass": true
+  },
+  {
+    "name": "failed bulk leaves no pending row",
+    "pass": true
+  },
+  {
+    "name": "inventory cost price denied",
+    "pass": true
+  },
+  {
+    "name": "inventory pending product allowed",
+    "pass": true
+  },
+  {
+    "name": "pending product cannot sell",
+    "pass": true
+  },
+  {
+    "name": "forged product business denied",
+    "pass": true
+  },
+  {
+    "name": "permission metadata direct mutation denied",
+    "pass": true
+  },
+  {
+    "name": "explicit manager pricing grant works",
+    "pass": true
+  },
+  {
+    "name": "stale JWT price revocation immediate",
+    "pass": true
+  },
+  {
+    "name": "assigned branches only REST",
+    "pass": true
+  },
+  {
+    "name": "forged branch checkout denied",
+    "pass": true
+  },
+  {
+    "name": "anonymous public checkout denied",
+    "pass": true
+  },
+  {
+    "name": "private transaction RPC unavailable",
+    "pass": true
+  },
+  {
+    "name": "last stock concurrent checkout exactly once",
+    "pass": true
+  },
+  {
+    "name": "concurrent duplicate request returns same receipt",
+    "pass": true
+  },
+  {
+    "name": "legacy complete_pos_sale RPC works",
+    "pass": true
+  },
+  {
+    "name": "wrong total failure leaves stock and sales unchanged",
+    "pass": true
+  },
+  {
+    "name": "revoked checkout with stale JWT fails immediately",
+    "pass": true
+  },
+  {
+    "name": "changed price rejects stale checkout",
+    "pass": true
+  },
+  {
+    "name": "multi-branch legacy request requires explicit branch",
+    "pass": true
+  },
+  {
+    "name": "authorized explicit branch checkout and retry",
+    "pass": true
+  },
+  {
+    "name": "unmapped legacy receipt blocked for branch employee",
+    "pass": true
+  },
+  {
+    "name": "owner legacy receipt recovery unchanged",
+    "pass": true
+  },
+  {
+    "name": "branch assignment revocation stale JWT immediate",
+    "pass": true
+  },
+  {
+    "name": "revocation ordered against in-flight checkout",
+    "pass": true
+  },
+  {
+    "name": "revocation ordered against in-flight checkout",
+    "pass": false,
+    "error": "Held-row overlap not observed"
+  },
+  {
+    "name": "revocation ordered against in-flight checkout",
+    "pass": false,
+    "error": "Held-row overlap not observed"
+  },
+  {
+    "name": "committing concurrent price change rejects stale checkout atomically",
+    "pass": false,
+    "error": "Held-row overlap not observed"
+  },
+  {
+    "name": "revocation ordered against in-flight checkout",
+    "pass": true
+  },
+  {
+    "name": "committing concurrent price change rejects stale checkout atomically",
+    "pass": true
+  },
+  {
+    "name": "revocation ordered against in-flight checkout",
+    "pass": true
+  },
+  {
+    "name": "committing concurrent price change rejects stale checkout atomically",
+    "pass": true
+  }
+]

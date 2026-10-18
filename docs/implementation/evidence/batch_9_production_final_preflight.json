@@ -1,0 +1,45 @@
+{
+  "project": "ufehcfrlygqvminfjumf",
+  "checked_utc": "2026-10-09T19:38:11.926373+00:00",
+  "production_writes": 0,
+  "pgpassfile_used": true,
+  "credentials_printed": false,
+  "tls_mode": "verify-full",
+  "linked_ref_host_user_verified": true,
+  "history_matches": true,
+  "expected_history_entries": 16,
+  "catalog_metadata": {
+    "database": "postgres",
+    "user": "postgres",
+    "read_only": "on",
+    "history": [
+      "20260819180000",
+      "20260823100000",
+      "20261002014604",
+      "20261002015419",
+      "20261002123039",
+      "20261002124738",
+      "20261003224001",
+      "20261004025120",
+      "20261005004045",
+      "20261007215736",
+      "20261007215743",
+      "20261007215831",
+      "20261008002119",
+      "20261008020234",
+      "20261008021428",
+      "20261009003200"
+    ],
+    "core_contracts": [
+      {
+        "name": "complete_pos_sale",
+        "arguments": "p_business_id uuid, p_employee_id uuid, p_total numeric, p_payment_method text, p_items jsonb"
+      },
+      {
+        "name": "submit_trexven_sale",
+        "arguments": "p_request_id uuid, p_business_id uuid, p_employee_id uuid, p_total numeric, p_payment_method text, p_items jsonb, p_quick boolean"
+      }
+    ],
+    "pending_batch4_absent": true
+  }
+}

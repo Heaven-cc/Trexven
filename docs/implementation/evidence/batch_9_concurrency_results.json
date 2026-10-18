@@ -1,0 +1,15 @@
+{
+  "target": "owned synthetic loopback 54402",
+  "production_writes": 0,
+  "production_data_used": false,
+  "same_key_concurrent_clients": 8,
+  "same_key_receipts": 1,
+  "same_key_payment_records": 1,
+  "scarce_stock_concurrent_clients": 8,
+  "scarce_stock_committed_sales": 1,
+  "scarce_stock_rejections": 7,
+  "negative_stock_prevented": true,
+  "revoked_permission_denied": true,
+  "passed": true,
+  "cleanup": "Discard only this owned synthetic stack after recovery verification"
+}

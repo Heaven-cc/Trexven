@@ -1,0 +1,13 @@
+{
+  "production_project": "ufehcfrlygqvminfjumf",
+  "production_writes": 0,
+  "checked_utc": "2026-10-09T19:37:52.150213+00:00",
+  "tls": "verify-full",
+  "encrypted_archive_integrity": true,
+  "schema_drift_groups": [],
+  "tables_checked": 84,
+  "changed_table_count": 0,
+  "backup_still_matches": true,
+  "credentials_printed": false,
+  "customer_records_logged": false
+}

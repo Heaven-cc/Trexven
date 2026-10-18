@@ -1,0 +1,39 @@
+00:00 +0: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_contract_test.dart
+00:00 +0: Shared form 320.0/1.0/light retains values, labels and dropdown
+00:01 +1: Owner login 320.0/1.0/light fits with keyboard
+00:02 +2: Shared form 320.0/1.0/dark retains values, labels and dropdown
+00:02 +3: Owner login 320.0/1.0/dark fits with keyboard
+00:02 +4: Shared form 320.0/1.3/light retains values, labels and dropdown
+00:02 +5: Owner login 320.0/1.3/light fits with keyboard
+00:02 +6: Shared form 320.0/1.3/dark retains values, labels and dropdown
+00:03 +7: Owner login 320.0/1.3/dark fits with keyboard
+00:03 +8: Shared form 320.0/2.0/light retains values, labels and dropdown
+00:03 +9: Owner login 320.0/2.0/light fits with keyboard
+00:03 +10: Shared form 320.0/2.0/dark retains values, labels and dropdown
+00:03 +11: Owner login 320.0/2.0/dark fits with keyboard
+00:04 +12: Shared form 340.0/1.0/light retains values, labels and dropdown
+00:04 +13: Owner login 340.0/1.0/light fits with keyboard
+00:04 +14: Shared form 340.0/1.0/dark retains values, labels and dropdown
+00:04 +15: Owner login 340.0/1.0/dark fits with keyboard
+00:04 +16: Shared form 340.0/1.3/light retains values, labels and dropdown
+00:04 +17: Owner login 340.0/1.3/light fits with keyboard
+00:04 +18: Shared form 340.0/1.3/dark retains values, labels and dropdown
+00:05 +19: Owner login 340.0/1.3/dark fits with keyboard
+00:05 +20: Shared form 340.0/2.0/light retains values, labels and dropdown
+00:05 +21: Owner login 340.0/2.0/light fits with keyboard
+00:05 +22: Shared form 340.0/2.0/dark retains values, labels and dropdown
+00:05 +23: Owner login 340.0/2.0/dark fits with keyboard
+00:05 +24: Shared form 390.0/1.0/light retains values, labels and dropdown
+00:06 +25: Owner login 390.0/1.0/light fits with keyboard
+00:06 +26: Shared form 390.0/1.0/dark retains values, labels and dropdown
+00:06 +27: Owner login 390.0/1.0/dark fits with keyboard
+00:06 +28: Shared form 390.0/1.3/light retains values, labels and dropdown
+00:06 +29: Owner login 390.0/1.3/light fits with keyboard
+00:06 +30: Shared form 390.0/1.3/dark retains values, labels and dropdown
+00:06 +31: Owner login 390.0/1.3/dark fits with keyboard
+00:07 +32: Shared form 390.0/2.0/light retains values, labels and dropdown
+00:07 +33: Owner login 390.0/2.0/light fits with keyboard
+00:07 +34: Shared form 390.0/2.0/dark retains values, labels and dropdown
+00:07 +35: Owner login 390.0/2.0/dark fits with keyboard
+00:07 +36: Both theme variants share geometry and complete surface themes
+00:07 +37: All tests passed!

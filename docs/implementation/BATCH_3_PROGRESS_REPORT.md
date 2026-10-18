@@ -1,0 +1,15 @@
+# Batch 3 progress — 9 October 2026
+
+Implemented locally: grouped sellable variants; product metadata/create/edit/archive; manufacturer barcode/SKU uniqueness and duplicate scan failures; category/name/barcode/SKU search; precise measured-unit checkout; atomic stock adjustments/restock with reasons, request replay and movement history; low-stock alerts including zero with recovery deduplication; future selling-price audit history; owner-reviewed CSV/XLSX creation and updates; pending unpriced inventory creation and trusted backend price restrictions. All preserve existing product/membership/receipt identity and legacy integer queue serialization.
+
+Implemented and database-tested: fresh baseline-to-Batch-3 replay, authorization and cross-business isolation, price/quantity direct-write denial, bulk rollback/update/replay, legacy checkout, fractional stock/receipts, stale-session permission revocation, concurrent stock updates and in-flight authorization locking. See the exact counts in [test results](BATCH_3_TEST_RESULTS.md).
+
+Implemented but not device-tested: native Android file chooser and scanner hardware; local forms and repositories are covered by parsing/model/repository and existing widget tests. No APK install, release signing, publishing or production deployment occurred. The existing APK inventory cannot identify installed/distributed builds.
+
+Pending master-plan scope: reviewed OCR ingestion/provider integration; real active-branch stock/price workflows and mapping; physical scanner/file chooser instrumentation; final coordinated client release acceptance. Branches were not activated and historical inventory was not distributed. Branch mutations fail closed meanwhile. Purchase costs, full encrypted offline queue and later UI/KPI work remain deferred to their designated batches.
+
+Blocked production readiness: protected production operational backup/recovery evidence; installed/distributed build inventory and compatibility; valid-session smoke acceptance for gateway JWT validation retained true on authenticated Edge Functions; separate production deployment approval. Main backend is still pre-Batch-2. This is local verified development, not production integration or public-release readiness.
+
+No mixed commit was made: the Owner worktree already contained substantial staged/unstaged prior work, and the POS directory has no Git repository. Changes remain reviewable by files, migration checksum, tests and reports.
+
+Main-backend alignment update: see [MAIN_BACKEND_ALIGNMENT_REPORT.md](MAIN_BACKEND_ALIGNMENT_REPORT.md) and the guarded release package in supabase/releases/main_backend_alignment_20261009. Fresh live metadata matches all six baseline sections; the supported CLI applied exactly seven pending files to a new disposable with nine original history metadata entries, recorded history 16 and returned an empty second dry-run. Post-push 105 SQL assertions and 27 local HTTP checks passed. No production history repair, baseline restore or additional Flutter fix is required. Production backup, client/Edge acceptance and explicit approval gates remain pending.

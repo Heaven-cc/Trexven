@@ -1,0 +1,39 @@
+Command: node --test supabase/tests/angel_test.cjs supabase/tests/create_employee_test.cjs supabase/tests/manage_employee_test.cjs supabase/tests/camera_native_test.cjs supabase/tests/batch_9_edge_handlers_test.cjs
+Exit code: 0
+# (node:2640) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# PASS: native camera evidence, no external fetch, scoped reads, independent limiter, missing evidence, authentication and uncertainty.
+# Subtest: supabase\\tests\\camera_native_test.cjs
+ok 3 - supabase\\tests\\camera_native_test.cjs
+  ---
+  duration_ms: 3605.2765
+  type: 'test'
+  ...
+# (node:16948) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# PASS: nine employee-creation mock scenarios, provisional roles, caller-derived authorization, collisions and safe compensation.
+# Subtest: supabase\\tests\\create_employee_test.cjs
+ok 4 - supabase\\tests\\create_employee_test.cjs
+  ---
+  duration_ms: 3083.2529
+  type: 'test'
+  ...
+# (node:7096) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# PASS: six employee-reset authorization cases; cross-business and owner/manager protection.
+# Subtest: supabase\\tests\\manage_employee_test.cjs
+ok 5 - supabase\\tests\\manage_employee_test.cjs
+  ---
+  duration_ms: 3863.8032
+  type: 'test'
+  ...
+1..38
+# tests 38
+# suites 0
+# pass 38
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 8580.5817
+

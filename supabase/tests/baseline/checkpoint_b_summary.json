@@ -1,0 +1,69 @@
+{
+  "target": "qysspzlfiysekvxnlzsh",
+  "baseline_sha256": "5eb2ee5437911b21eab424a05abf21eb7cc7945bc805e5a41d58459e21b3e21e",
+  "recovery_migration_sha256": "4f9a93633d401ad9e66b55870e5720c1081c0151408e2d31f8b082303fdb0ca3",
+  "final_catalog_counts": {
+    "tables": 34,
+    "columns": 339,
+    "constraints": 131,
+    "indexes": 108
+  },
+  "final_functions": 43,
+  "final_policies": 121,
+  "final_triggers": 15,
+  "advisors": {
+    "security": [
+      {
+        "name": "rls_enabled_no_policy",
+        "level": "INFO",
+        "baseline": 3,
+        "final": 3
+      },
+      {
+        "name": "authenticated_security_definer_function_executable",
+        "level": "WARN",
+        "baseline": 5,
+        "final": 12
+      }
+    ],
+    "performance": [
+      {
+        "name": "unindexed_foreign_keys",
+        "level": "INFO",
+        "baseline": 25,
+        "final": 34
+      },
+      {
+        "name": "auth_rls_initplan",
+        "level": "WARN",
+        "baseline": 16,
+        "final": 16
+      },
+      {
+        "name": "unused_index",
+        "level": "INFO",
+        "baseline": 61,
+        "final": 41
+      },
+      {
+        "name": "multiple_permissive_policies",
+        "level": "WARN",
+        "baseline": 61,
+        "final": 61
+      },
+      {
+        "name": "duplicate_index",
+        "level": "WARN",
+        "baseline": 9,
+        "final": 9
+      }
+    ]
+  },
+  "http": {
+    "distinct_checks": 36,
+    "final_pass": 36,
+    "recorded_attempts": 42,
+    "failed_attempts_retained": 3,
+    "real_auth_signins": 5
+  }
+}

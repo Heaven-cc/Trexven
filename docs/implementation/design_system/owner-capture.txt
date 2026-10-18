@@ -1,0 +1,10 @@
+00:00 +0: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_visual_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: Owner login visual light
+00:02 +1: Owner login visual dark
+00:02 +2: Owner setup visual light
+00:03 +3: Owner setup visual dark
+00:03 +4: Owner camera visual light
+00:04 +5: Owner camera visual dark
+00:04 +6: (tearDownAll)
+00:04 +6: All tests passed!

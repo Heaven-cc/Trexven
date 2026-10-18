@@ -1,0 +1,34 @@
+{
+  "timestamp_utc": "2026-10-10T01:05:12.442642+00:00",
+  "owner": {
+    "passed": 99,
+    "failed": 0,
+    "skipped": 0,
+    "test_exit": 0,
+    "analysis_exit": 1,
+    "error": 0,
+    "warning": 0,
+    "info": 260
+  },
+  "pos": {
+    "passed": 78,
+    "failed": 0,
+    "skipped": 1,
+    "skip_reason": "Explicit disposable live fixture required (LIVE_RESTART_PHASE)",
+    "test_exit": 0,
+    "analysis_exit": 1,
+    "error": 0,
+    "warning": 0,
+    "info": 69
+  },
+  "format": {
+    "files": 70,
+    "changed_on_check": 0,
+    "exit": 0
+  },
+  "owner_shared_screen_files": 57,
+  "pos_screen_files": 13,
+  "device_tests_performed": false,
+  "production_writes": false,
+  "apk_or_aab_builds": false
+}

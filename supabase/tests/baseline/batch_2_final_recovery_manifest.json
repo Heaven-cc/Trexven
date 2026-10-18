@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-08",
+  "source_project": "qysspzlfiysekvxnlzsh",
+  "restoration_executed": false,
+  "artifact_hashes": {
+    "TREXVEN_PRE_BATCH_2_BASELINE.sql": "5eb2ee5437911b21eab424a05abf21eb7cc7945bc805e5a41d58459e21b3e21e",
+    "BATCH_2_FINAL_RECOVERY_CHECKPOINT.sql": "020aee18499cc5d392f023ae86d23377aa1a1649684068bf40903c996b5bdb46"
+  },
+  "migration_hashes": {
+    "20261007215736_batch_2_authorization_price_enforcement.sql": "55a69cd97eb1fbbd2a034467e9cda93d5551c7fcd415f6ea4d778f53d2a1b8e7",
+    "20261007215743_batch_2_branch_assignment_foundation.sql": "2537fb48a9c7fc77088a30f2158f917d45bed39126d670fff3d5dfed4358f34a",
+    "20261007215831_batch_2_branch_checkout_compatibility.sql": "86feacc6be132aedb1a2999500a633e9a433f41c0965dbb7bb51a2f931278283",
+    "20261008002119_batch_2_staging_security_recovery.sql": "4f9a93633d401ad9e66b55870e5720c1081c0151408e2d31f8b082303fdb0ca3"
+  },
+  "note": "Schema-only checkpoint; includes NOT VALID state and all four migrations. No Auth/application rows or migration history restored. Disposable target guard adaptation requires review."
+}

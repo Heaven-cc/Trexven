@@ -1,0 +1,57 @@
+{
+  "target": "sixth owned loopback schema copy only",
+  "historical_metadata_versions_restored": [
+    "20260819180000",
+    "20260823100000",
+    "20261002014604",
+    "20261002015419",
+    "20261002123039",
+    "20261002124738",
+    "20261003224001",
+    "20261004025120",
+    "20261005004045"
+  ],
+  "pending_files": [
+    "20261007215736_batch_2_authorization_price_enforcement.sql",
+    "20261007215743_batch_2_branch_assignment_foundation.sql",
+    "20261007215831_batch_2_branch_checkout_compatibility.sql",
+    "20261008002119_batch_2_staging_security_recovery.sql",
+    "20261008020234_batch_2_purchase_cost_contract.sql",
+    "20261008021428_batch_2_business_day_contract.sql",
+    "20261009003200_batch_3_catalog_inventory_foundation.sql"
+  ],
+  "results": [
+    {
+      "step": "dry_run",
+      "exit": 0
+    },
+    {
+      "step": "apply",
+      "exit": 0
+    },
+    {
+      "step": "second_dry_run",
+      "exit": 0
+    }
+  ],
+  "final_history_versions": [
+    "20260819180000",
+    "20260823100000",
+    "20261002014604",
+    "20261002015419",
+    "20261002123039",
+    "20261002124738",
+    "20261003224001",
+    "20261004025120",
+    "20261005004045",
+    "20261007215736",
+    "20261007215743",
+    "20261007215831",
+    "20261008002119",
+    "20261008020234",
+    "20261008021428",
+    "20261009003200"
+  ],
+  "old_migrations_reexecuted": false,
+  "production_writes": 0
+}

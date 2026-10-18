@@ -1,0 +1,3 @@
+00:00 +0: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/angel_flow_test.dart
+00:00 +0: New chat stays open, supplies an explicit conversation, and uncertain send only refreshes history
+00:02 +1: All tests passed!

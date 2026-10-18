@@ -1,0 +1,12 @@
+[
+  {
+    "database": "postgres",
+    "exit": 0,
+    "result": "BEGIN\nDO\nDELETE 5\nDELETE 5\nDELETE 0\nDELETE 5\nDELETE 1\nDELETE 2\nDELETE 6\nDELETE 16\nDELETE 4\nDELETE 15\nDELETE 0\nDELETE 10\nCOMMIT\n{\"sales\": 0, \"history\": 7, \"database\": \"postgres\", \"receipts\": 0, \"sessions\": 0, \"auth_users\": 0, \"businesses\": 0, \"identities\": 0, \"permissions\": 11, \"refresh_tokens\": 0}\n"
+  },
+  {
+    "database": "trexven_b2_restored",
+    "exit": 0,
+    "result": "BEGIN\nDO\nDELETE 5\nDELETE 5\nDELETE 0\nDELETE 5\nDELETE 1\nDELETE 2\nDELETE 6\nDELETE 16\nDELETE 4\nDELETE 15\nDELETE 0\nDELETE 10\nCOMMIT\n{\"sales\": 0, \"history\": 7, \"database\": \"trexven_b2_restored\", \"receipts\": 0, \"sessions\": 0, \"auth_users\": 0, \"businesses\": 0, \"identities\": 0, \"permissions\": 11, \"refresh_tokens\": 0}\n"
+  }
+]

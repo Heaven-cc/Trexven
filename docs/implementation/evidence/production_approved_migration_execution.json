@@ -1,0 +1,94 @@
+{
+  "project": "ufehcfrlygqvminfjumf",
+  "executed_at_utc": "2026-10-09T06:44:35.197747+00:00",
+  "cli_exit": 0,
+  "migration_history": [
+    {
+      "name": "camera_ai_fixes",
+      "version": "20260819180000"
+    },
+    {
+      "name": "employee_management",
+      "version": "20260823100000"
+    },
+    {
+      "name": "backend_integration_repairs",
+      "version": "20261002014604"
+    },
+    {
+      "name": "backend_rpc_grants_hardening",
+      "version": "20261002015419"
+    },
+    {
+      "name": "helper_function_anon_execute_hardening",
+      "version": "20261002123039"
+    },
+    {
+      "name": "account_delete_audit_fk_hardening",
+      "version": "20261002124738"
+    },
+    {
+      "name": "testing_readiness_access_controls",
+      "version": "20261003224001"
+    },
+    {
+      "name": "native_camera_rate_isolation",
+      "version": "20261004025120"
+    },
+    {
+      "name": "sale_submission_reliability",
+      "version": "20261005004045"
+    },
+    {
+      "name": "batch_2_authorization_price_enforcement",
+      "version": "20261007215736"
+    },
+    {
+      "name": "batch_2_branch_assignment_foundation",
+      "version": "20261007215743"
+    },
+    {
+      "name": "batch_2_branch_checkout_compatibility",
+      "version": "20261007215831"
+    },
+    {
+      "name": "batch_2_staging_security_recovery",
+      "version": "20261008002119"
+    },
+    {
+      "name": "batch_2_purchase_cost_contract",
+      "version": "20261008020234"
+    },
+    {
+      "name": "batch_2_business_day_contract",
+      "version": "20261008021428"
+    },
+    {
+      "name": "batch_3_catalog_inventory_foundation",
+      "version": "20261009003200"
+    }
+  ],
+  "expected_16_versions_match": true,
+  "original_tables_compared": 78,
+  "original_column_values_preserved": true,
+  "branch_and_timezone_checks": {
+    "branches_empty": true,
+    "timezones_unset": true,
+    "assignments_empty": true,
+    "branches_disabled": true
+  },
+  "edge_deployed": false,
+  "tls": "verify-full",
+  "credential_source": "PGPASSFILE",
+  "customer_records_logged": false,
+  "permission_reference_additions": [
+    "override_price",
+    "apply_discount",
+    "adjust_stock",
+    "view_finance"
+  ],
+  "preservation_difference_investigation": "Only four reference permissions explicitly inserted by approved migration 20261007215736; all seven original permission rows match; other 77 original tables match.",
+  "changed_tables_expected_reference_additions": [
+    "public.permissions"
+  ]
+}

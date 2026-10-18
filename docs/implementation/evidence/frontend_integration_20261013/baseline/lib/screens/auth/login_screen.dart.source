@@ -1,0 +1,379 @@
+import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:trexven_operations/trexven_operations.dart';
+
+import '../../widgets/google_sign_in_button.dart';
+import '../../widgets/trexven_auth_design.dart';
+import 'forgot_password_screen.dart';
+import 'register_screen.dart';
+
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final _formKey = GlobalKey<FormState>();
+
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  bool _obscurePassword = true;
+  bool _rememberMe = false;
+  bool _loading = false;
+
+  Future<void> _signIn() async {
+    if (_loading) return;
+
+    if (!(_formKey.currentState?.validate() ?? false)) {
+      return;
+    }
+
+    setState(() => _loading = true);
+
+    try {
+      final email = _emailController.text.trim();
+      final password = _passwordController.text;
+
+      final response =
+          await Supabase.instance.client.auth.signInWithPassword(
+        email: email,
+        password: password,
+      );
+
+      if (!mounted) return;
+
+      final user = response.user;
+
+      if (user == null) {
+        _showError(
+          'Unable to sign in. Please check your account details.',
+        );
+        return;
+      }
+
+      if (user.emailConfirmedAt == null) {
+        await Supabase.instance.client.auth.signOut();
+
+        if (!mounted) return;
+
+        await _showEmailVerificationMessage(email);
+        return;
+      }
+    } on AuthException catch (error) {
+      if (!mounted) return;
+
+      _showError(_getAuthErrorMessage(error));
+    } catch (_) {
+      if (!mounted) return;
+
+      _showError(
+        'Something went wrong while signing in. Please try again.',
+      );
+    } finally {
+      if (mounted) {
+        setState(() => _loading = false);
+      }
+    }
+  }
+
+  String _getAuthErrorMessage(AuthException error) {
+    final message = error.message.toLowerCase();
+
+    if (message.contains('invalid login credentials')) {
+      return 'Incorrect email or password.';
+    }
+
+    if (message.contains('email not confirmed')) {
+      return 'Please verify your email address before signing in.';
+    }
+
+    if (message.contains('too many requests')) {
+      return 'Too many attempts. Please wait and try again.';
+    }
+
+    return CustomerPresentation.error(error);
+  }
+
+  Future<void> _showEmailVerificationMessage(
+      String email,
+      ) async {
+    await showDialog<void>(
+      context: context,
+      builder: (dialogContext) {
+        return AlertDialog(
+          title: const Text('Email not verified'),
+          content: Text(
+            'Please verify your email address before signing in.\n\n'
+            'We sent a verification link to:\n$email',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext),
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showError(String message) {
+    if (!mounted) return;
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+  }
+
+  void _openRegister() {
+    if (_loading) return;
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const RegisterScreen(),
+      ),
+    );
+  }
+
+  void _openForgotPassword() {
+    if (_loading) return;
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const ForgotPasswordScreen(),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  Widget _buildRememberMeRow(BuildContext context) {
+    return Row(
+      children: [
+        SizedBox(
+          width: 24,
+          height: 24,
+          child: Checkbox(
+            value: _rememberMe,
+            activeColor: TrexvenAuthColors.blue,
+            checkColor: Colors.white,
+            side: const BorderSide(
+              color: TrexvenAuthColors.border,
+              width: 1.5,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
+            onChanged: _loading
+                ? null
+                : (value) {
+                    setState(() {
+                      _rememberMe = value ?? false;
+                    });
+                  },
+          ),
+        ),
+        const SizedBox(width: 9),
+        const Expanded(
+          child: Text(
+            'Remember me',
+            style: TextStyle(
+              color: TrexvenAuthColors.navy,
+              fontSize: 13,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+        TextButton(
+          onPressed: _loading ? null : _openForgotPassword,
+          style: TextButton.styleFrom(
+            foregroundColor: TrexvenAuthColors.blue,
+            padding: const EdgeInsets.symmetric(
+              horizontal: 4,
+              vertical: 8,
+            ),
+          ),
+          child: const Text(
+            'Forgot password?',
+            style: TextStyle(
+              color: TrexvenAuthColors.blue,
+              fontSize: 13,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildLoginForm(BuildContext context) {
+    return TrexvenAuthCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          TrexvenAuthField(
+            label: 'Email address',
+            hint: 'Enter your email address',
+            controller: _emailController,
+            enabled: !_loading,
+            keyboardType: TextInputType.emailAddress,
+            prefixIcon: const Icon(
+              Icons.mail_outline_rounded,
+              color: TrexvenAuthColors.muted,
+            ),
+            validator: (value) {
+              final email = value?.trim() ?? '';
+              if (email.isEmpty) {
+                return 'Please enter your email address.';
+              }
+              if (!RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$').hasMatch(email)) {
+                return 'Please enter a valid email address.';
+              }
+              return null;
+            },
+          ),
+          const SizedBox(height: 18),
+          TrexvenAuthField(
+            label: 'Password',
+            hint: 'Enter your password',
+            controller: _passwordController,
+            enabled: !_loading,
+            obscureText: _obscurePassword,
+            prefixIcon: const Icon(
+              Icons.lock_outline_rounded,
+              color: TrexvenAuthColors.muted,
+            ),
+            suffixIcon: IconButton(
+              tooltip: _obscurePassword ? 'Show password' : 'Hide password',
+              icon: Icon(
+                _obscurePassword
+                    ? Icons.visibility_outlined
+                    : Icons.visibility_off_outlined,
+                color: TrexvenAuthColors.muted,
+              ),
+              onPressed: () {
+                setState(() {
+                  _obscurePassword = !_obscurePassword;
+                });
+              },
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your password.';
+              }
+              return null;
+            },
+          ),
+          const SizedBox(height: 14),
+          _buildRememberMeRow(context),
+          const SizedBox(height: 22),
+          TrexvenAuthPrimaryButton(
+            label: 'Sign In',
+            loading: _loading,
+            showArrow: true,
+            onPressed: _signIn,
+          ),
+          const SizedBox(height: 24),
+          const TrexvenAuthOrDivider(),
+          const SizedBox(height: 22),
+          GoogleSignInButton(
+            enabled: !_loading,
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TrexvenAuthShell(
+      child: Column(
+        children: [
+          const TrexvenAuthBackButton(),
+          Expanded(
+            child: SingleChildScrollView(
+              keyboardDismissBehavior:
+                  ScrollViewKeyboardDismissBehavior.onDrag,
+              padding: const EdgeInsets.fromLTRB(24, 8, 24, 28),
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 440),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        const Center(
+                          child: TrexvenAuthBrand(size: 76),
+                        ),
+                        const SizedBox(height: 16),
+                        const Text(
+                          'Welcome back',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 26,
+                            fontWeight: FontWeight.w800,
+                            color: TrexvenAuthColors.navy,
+                            letterSpacing: -0.5,
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        const Text(
+                          'Sign in to your business manager account',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: TrexvenAuthColors.muted,
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        _buildLoginForm(context),
+                        const SizedBox(height: 24),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text(
+                              "Don't have an account? ",
+                              style: TextStyle(
+                                color: TrexvenAuthColors.muted,
+                                fontSize: 14,
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: _loading ? null : _openRegister,
+                              child: const Text(
+                                'Create account',
+                                style: TextStyle(
+                                  color: TrexvenAuthColors.blue,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

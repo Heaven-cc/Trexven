@@ -1,0 +1,17 @@
+# Batch 3 production schema compatibility — 9 October 2026
+
+Production identity: `ufehcfrlygqvminfjumf`, Heaven-cc's Project, eu-west-3, PostgreSQL 17.6.1.155. Read-only catalog comparison remains equal to the recovered pre-Batch-2 catalog: 32 application tables and 22 functions; nine prior migration-history entries, no Batch 2/bootstrap. The separate staging reference is `qysspzlfiysekvxnlzsh`, Trexven-Staging, eu-west-1, 17.11.0.003. Neither was written.
+
+Production prerequisites are all six immutable Batch 2 migrations, in the manifest order. The recovered baseline is for reconstruction only and must NEVER be restored over production. New Batch 3 migration `20261009003200_batch_3_catalog_inventory_foundation.sql` has SHA-256 `1045d82c16082f519af78e379a54b53fe9f4955da39d9455bfb123a423424823` and needs separate production approval.
+
+The additive model retains `products.id` as the sale-item/stock identity, adds optional group/variant fields, a composite group/business FK initially NOT VALID, request and low-stock private state, triggers and scoped RPCs. Private tables have RLS and no public policies/grants. Existing products are not assigned groups; existing quantity/price/active flags are not rewritten. No Auth/Storage/Vault platform infrastructure is recreated.
+
+Preflight the nonempty trimmed business-scoped barcode and SKU uniqueness indexes before any production approval. The previous read-only duplicate/orphan/invalid-price checks found none; recheck immediately before deployment. Current production has two `piece` products with whole stock, compatible with the new whole-unit rule. Historical unit fields remain unchanged; unit changes after stock or sale/movement history are rejected.
+
+Owner and POS libs still reference only the main production URL; no staging reference was introduced. Reads narrowly fall back to the legacy explicit non-cost product projection only for missing optional catalog columns, never for authorization errors. Restart/recreate repository instances after deployment because absence detection is cached. Catalog writes now require the Batch 3 RPCs. Current source therefore cannot be advertised as a fully working Batch-2-only production candidate.
+
+Legacy checkout public RPC signatures, request keys, membership actor IDs, receipt identifiers, sale-item relationships and integer offline payloads remain unchanged. Measured quantities extend numeric values compatibly; inactive and null-priced items cannot sell, existing explicit zero prices remain sellable. Direct absolute stock writes intentionally fail after Batch 3; old clients using them need a coordinated replacement. Installed APK compatibility is unconfirmed, even though local debug artifacts declare 1.0.0+1.
+
+Branches stay dormant; catalog mutations reject an activated-branch business until scoped workflow/mapping is approved. No default-branch activation or historical movement occurs. Fractional transactions make reverting to the old integer-only checkout implementation unsafe; forward-recover while retaining numeric receipts and history.
+
+Fresh main alignment: all six live catalog sections still match the baseline. The exact seven-file order was additionally applied through the supported CLI to a new disposable with the nine original history metadata entries restored; final history 16, second dry-run empty, 105 SQL and 27 local HTTP checks passed. No extra reconciliation migration or Flutter fix was needed. See MAIN_BACKEND_ALIGNMENT_REPORT.md.

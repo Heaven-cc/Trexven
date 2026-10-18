@@ -1,0 +1,32 @@
+{
+  "target": "separate disposable loopback stack",
+  "baseline_sha256": "5eb2ee5437911b21eab424a05abf21eb7cc7945bc805e5a41d58459e21b3e21e",
+  "migrations": [
+    {
+      "file": "20261007215736_batch_2_authorization_price_enforcement.sql",
+      "sha256": "55a69cd97eb1fbbd2a034467e9cda93d5551c7fcd415f6ea4d778f53d2a1b8e7"
+    },
+    {
+      "file": "20261007215743_batch_2_branch_assignment_foundation.sql",
+      "sha256": "2537fb48a9c7fc77088a30f2158f917d45bed39126d670fff3d5dfed4358f34a"
+    },
+    {
+      "file": "20261007215831_batch_2_branch_checkout_compatibility.sql",
+      "sha256": "86feacc6be132aedb1a2999500a633e9a433f41c0965dbb7bb51a2f931278283"
+    },
+    {
+      "file": "20261008002119_batch_2_staging_security_recovery.sql",
+      "sha256": "4f9a93633d401ad9e66b55870e5720c1081c0151408e2d31f8b082303fdb0ca3"
+    },
+    {
+      "file": "20261008020234_batch_2_purchase_cost_contract.sql",
+      "sha256": "497f6cccce70b51454747d29b5ea61b49e89d00f8f549dc2d3ac9d2bbcbae61b"
+    },
+    {
+      "file": "20261008021428_batch_2_business_day_contract.sql",
+      "sha256": "26003a9e8d16241a47140c48fca7422381aed607f6d948d73c949025a38a37aa"
+    }
+  ],
+  "batch_3_applied": true,
+  "batch_3_sha256": "bc3a22adef0c2e647288a47c7cfdc2feafe8d4d99688834ef61cf23aaa3c4d28"
+}

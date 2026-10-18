@@ -1,0 +1,23 @@
+{
+  "batch_2_final_rest_results.json": {
+    "attempts": 43,
+    "passing_attempts": 39,
+    "failed_attempts": 4,
+    "unique_checks": 36,
+    "latest_passing_checks": 36
+  },
+  "batch_2_final_edge_results.json": {
+    "attempts": 32,
+    "passing_attempts": 32,
+    "failed_attempts": 0,
+    "unique_checks": 32,
+    "latest_passing_checks": 32
+  },
+  "batch_2_final_boundary_results.json": {
+    "attempts": 28,
+    "passing_attempts": 26,
+    "failed_attempts": 2,
+    "unique_checks": 10,
+    "latest_passing_checks": 10
+  }
+}

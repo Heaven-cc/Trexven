@@ -1,0 +1,905 @@
+
+import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:trexven_design_system/trexven_design_system.dart';
+import 'package:trexven_operations/trexven_operations.dart';
+
+import '../../services/database_service.dart';
+import '../../models/subscription_plan.dart';
+
+class BillingScreen extends StatefulWidget {
+  const BillingScreen({super.key});
+
+  @override
+  State<BillingScreen> createState() => _BillingScreenState();
+}
+
+class _BillingScreenState extends State<BillingScreen> {
+  static const bg = Color(0xFF141414);
+  static const card = Color(0xFF222222);
+  static const border = Color(0xFF383838);
+  static const blue = Color(0xFF5A9BFA);
+  static const selected = Color(0xFF293447);
+  static const muted = Color(0xFFAAAAAA);
+
+  OperationsClient? _api;
+  List<SubscriptionPlan> _plans = [];
+  List<Map<String, dynamic>> _history = [];
+  Map<String, dynamic> _subscription = {};
+
+  bool _loading = false;
+  bool _busy = false;
+  bool _autoRenew = false;
+
+  String _coreCycle = 'monthly';
+  String _proChoice = 'regular';
+
+  String? _error;
+  String? _message;
+
+  // Supabase must supply verified offer configuration.
+  Map<String, dynamic>? _proOffer;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  Future<void> _load() async {
+    if (_loading) return;
+
+    setState(() {
+      _loading = true;
+      _error = null;
+    });
+
+    try {
+      final businessId =
+      await DatabaseService().requireBusinessId();
+
+      final api = OperationsClient(
+        Supabase.instance.client,
+        businessId,
+      );
+
+      final rows = await Supabase.instance.client
+          .from('subscription_plans')
+          .select(
+        'id,name,price,currency,interval_months,features',
+      )
+          .eq('active', true)
+          .order('rank');
+
+      final entitlement = await api.call(
+        'get_trexven_entitlements',
+        {'p_business_id': businessId},
+      );
+
+      final payments = await api.list('billing_payments');
+
+      if (!mounted) return;
+
+      setState(() {
+        _api = api;
+        _plans = (rows as List)
+            .map(
+              (r) => SubscriptionPlan.fromJson(
+            Map<String, dynamic>.from(r as Map),
+          ),
+        )
+            .toList();
+
+        _subscription =
+        Map<String, dynamic>.from(entitlement as Map);
+        _history = payments;
+
+        // Remains null until a real backend offer
+        // configuration endpoint is connected.
+        _proOffer = null;
+      });
+    } catch (_) {
+      if (mounted) {
+        setState(() {
+          _error =
+          'Unable to load billing information. Please try again.';
+        });
+      }
+    } finally {
+      if (mounted) setState(() => _loading = false);
+    }
+  }
+
+  String _label(dynamic value) {
+    final text = '${value ?? ''}'.replaceAll('_', ' ').trim();
+    if (text.isEmpty) return '—';
+    return text[0].toUpperCase() + text.substring(1);
+  }
+
+  String _date(dynamic value) {
+    final parsed = DateTime.tryParse('${value ?? ''}');
+    if (parsed == null) return '—';
+    final d = parsed.toLocal();
+    return '${d.day}/${d.month}/${d.year}';
+  }
+
+  String _money(dynamic amount, String? currency) {
+    final value = num.tryParse('$amount');
+    if (value == null) return '—';
+    final symbol = switch ((currency ?? '').toUpperCase()) {
+      'NGN' => '₦',
+      'USD' => '\$',
+      'GBP' => '£',
+      'EUR' => '€',
+      _ => '${currency ?? ''} ',
+    };
+    return '$symbol${value.toStringAsFixed(2)}';
+  }
+
+  SubscriptionPlan? _planFor(String tier, int months) {
+    for (final plan in _plans) {
+      if (plan.tier.name.toLowerCase() == tier &&
+          plan.intervalMonths == months) {
+        return plan;
+      }
+    }
+    return null;
+  }
+
+  List<String> _features(String tier) {
+    for (final plan in _plans) {
+      if (plan.tier.name.toLowerCase() == tier) {
+        return plan.features;
+      }
+    }
+    return [];
+  }
+
+  bool get _configured =>
+      _subscription['configured'] == true;
+
+  Future<void> _cancel() async {
+    if (_busy || _api == null || !_configured) return;
+
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Request cancellation?'),
+        content: const Text(
+          'Your cancellation request will be recorded '
+              'for review. Your plan stays unchanged until processed.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, false),
+            child: const Text('Keep plan'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, true),
+            child: const Text('Request cancellation'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed != true || !mounted) return;
+
+    setState(() => _busy = true);
+
+    try {
+      await _api!.call(
+        'request_trexven_subscription_change',
+        {
+          'p_business_id': _api!.businessId,
+          'p_request_id': _api!.requestId(),
+          'p_action': 'cancel',
+          'p_plan_id': null,
+        },
+      );
+
+      if (mounted) {
+        setState(() {
+          _message =
+          'Cancellation request received for review.';
+        });
+      }
+    } catch (_) {
+      if (mounted) {
+        setState(() {
+          _message =
+          'Cancellation was not confirmed. Check your '
+              'subscription before trying again.';
+        });
+      }
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Theme(
+      data: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: bg,
+        colorScheme: const ColorScheme.dark(
+          primary: blue,
+          surface: card,
+        ),
+      ),
+      child: Scaffold(
+        appBar: AppBar(title: const Text('Billing & Plans')),
+        backgroundColor: bg,
+        body: SafeArea(
+          child: _loading
+              ? const Center(child: TrexvenLoading())
+              : _error != null
+              ? _errorView()
+              : RefreshIndicator(
+            onRefresh: _load,
+            child: ListView(
+              padding: const EdgeInsets.fromLTRB(
+                20, 18, 20, 36,
+              ),
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: IconButton(
+                    onPressed: () =>
+                        Navigator.maybePop(context),
+                    icon: const Icon(
+                      Icons.close_rounded,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 32),
+                const Text(
+                  'Get more TREXVEN',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 29,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: 14),
+                const Text(
+                  'Choose the plan right for your business',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white70,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                const Text(
+                  'Plan upgrades are not available yet.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: Colors.white70,
+                  ),
+                ),
+                const SizedBox(height: 24),
+                _managementSection(),
+                const SizedBox(height: 28),
+                _startCard(),
+                const SizedBox(height: 22),
+                _coreCard(),
+                const SizedBox(height: 22),
+                _proCard(),
+                const SizedBox(height: 24),
+                _historySection(),
+                if (_message != null) ...[
+                  const SizedBox(height: 16),
+                  Text(
+                    _message!,
+                    style: const TextStyle(
+                      color: Colors.white70,
+                    ),
+                  ),
+                ],
+                const SizedBox(height: 30),
+                const Center(
+                  child: Text(
+                    'Terms of Service     Privacy Policy',
+                    style: TextStyle(
+                      color: muted,
+                      fontSize: 12,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _startCard() {
+    final plan = _planFor('start', 1);
+    return _planCard(
+      name: 'Start',
+      description: 'Everything you need to get started',
+      options: [
+        _option(
+          selectedOption: true,
+          title: plan?.priceDisplay ?? 'Price unavailable',
+          subtitle: 'Billed monthly',
+          onTap: null,
+        ),
+      ],
+      features: _features('start'),
+      buttonLabel: 'Get Start plan',
+    );
+  }
+
+  Widget _coreCard() {
+    final monthly = _planFor('core', 1);
+    final yearly = _planFor('core', 12);
+
+    return _planCard(
+      name: 'Core',
+      description: 'More control. Better business insights.',
+      popular: true,
+      options: [
+        _option(
+          selectedOption: _coreCycle == 'monthly',
+          title:
+          monthly?.priceDisplay ?? 'Price unavailable',
+          subtitle: 'Billed monthly',
+          onTap: monthly == null
+              ? null
+              : () => setState(
+                () => _coreCycle = 'monthly',
+          ),
+        ),
+        _option(
+          selectedOption: _coreCycle == 'yearly',
+          title:
+          yearly?.priceDisplay ?? 'Price unavailable',
+          subtitle: 'Billed annually',
+          onTap: yearly == null
+              ? null
+              : () => setState(
+                () => _coreCycle = 'yearly',
+          ),
+        ),
+      ],
+      features: _features('core'),
+      buttonLabel: 'Get Core plan',
+    );
+  }
+
+  Widget _proCard() {
+    final yearly = _planFor('pro', 12);
+    final offer = _proOffer;
+    final hasOffer = offer?['enabled'] == true;
+
+    return _planCard(
+      name: 'Pro',
+      description: 'The complete TREXVEN experience',
+      options: [
+        if (hasOffer)
+          _option(
+            selectedOption: _proChoice == 'intro',
+            title: _money(
+              offer!['intro_price'],
+              offer['currency'] as String?,
+            ),
+            subtitle:
+            '${offer['duration_days']} days introductory access',
+            onTap: () => setState(
+                  () => _proChoice = 'intro',
+            ),
+          ),
+        _option(
+          selectedOption:
+          !hasOffer || _proChoice == 'regular',
+          title:
+          yearly?.priceDisplay ?? 'Price unavailable',
+          subtitle: 'Billed annually',
+          onTap: yearly == null
+              ? null
+              : () => setState(
+                () => _proChoice = 'regular',
+          ),
+        ),
+      ],
+      features: _features('pro'),
+      buttonLabel: 'Get Pro plan',
+      footer: hasOffer && _proChoice == 'intro'
+          ? Column(
+        children: [
+          SwitchListTile.adaptive(
+            value: _autoRenew,
+            activeTrackColor: blue,
+            title: const Text(
+              'Automatic renewal',
+              style: TextStyle(fontSize: 13),
+            ),
+            subtitle: const Text(
+              'Optional. Authorize the full Pro '
+                  'subscription charge after the '
+                  'introductory period.',
+              style: TextStyle(
+                fontSize: 11,
+                color: muted,
+              ),
+            ),
+            onChanged: (value) {
+              setState(() => _autoRenew = value);
+            },
+          ),
+          Text(
+            _autoRenew
+                ? 'Recurring payment authorization '
+                'will be required at checkout.'
+                : 'Your Pro access ends after the '
+                'introductory period unless '
+                'you subscribe manually.',
+            style: const TextStyle(
+              color: muted,
+              fontSize: 11,
+            ),
+          ),
+        ],
+      )
+          : null,
+    );
+  }
+
+  Widget _planCard({
+    required String name,
+    required String description,
+    required List<Widget> options,
+    required List<String> features,
+    required String buttonLabel,
+    bool popular = false,
+    Widget? footer,
+  }) {
+    return Container(
+      decoration: BoxDecoration(
+        color: card,
+        border: Border.all(color: border),
+        borderRadius: BorderRadius.circular(24),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(22),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        name,
+                        style: const TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    if (popular)
+                      const Text(
+                        'POPULAR',
+                        style: TextStyle(
+                          color: blue,
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  description,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    color: Colors.white70,
+                  ),
+                ),
+                const SizedBox(height: 24),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    for (var i = 0; i < options.length; i++) ...[
+                      if (i > 0) const SizedBox(width: 10),
+                      Expanded(child: options[i]),
+                    ],
+                  ],
+                ),
+                if (footer != null) ...[
+                  const SizedBox(height: 12),
+                  footer,
+                ],
+                const SizedBox(height: 22),
+                SizedBox(
+                  width: double.infinity,
+                  child: FilledButton(
+                    onPressed: null,
+                    style: FilledButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      disabledBackgroundColor:
+                      Colors.white.withValues(alpha: .75),
+                      disabledForegroundColor:
+                      Colors.black87,
+                      minimumSize: const Size(0, 48),
+                      shape: const StadiumBorder(),
+                    ),
+                    child: Text(buttonLabel),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                const Text(
+                  'Checkout is not available yet.',
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: muted,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          ),
+          const Divider(
+            height: 1,
+            color: border,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(22),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Included with $name:',
+                  style: const TextStyle(
+                    fontSize: 13,
+                    color: Colors.white70,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 15),
+                if (features.isEmpty)
+                  const Text(
+                    'Features unavailable',
+                    style: TextStyle(color: muted),
+                  ),
+                for (final feature in features)
+                  Padding(
+                    padding:
+                    const EdgeInsets.only(bottom: 12),
+                    child: Row(
+                      crossAxisAlignment:
+                      CrossAxisAlignment.start,
+                      children: [
+                        const Icon(
+                          Icons.check_rounded,
+                          size: 19,
+                          color: muted,
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Text(
+                            feature,
+                            style: const TextStyle(
+                              fontSize: 13,
+                              color: Colors.white70,
+                              height: 1.4,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _option({
+    required bool selectedOption,
+    required String title,
+    required String subtitle,
+    VoidCallback? onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(17),
+      child: Container(
+        constraints: const BoxConstraints(
+          minHeight: 145,
+        ),
+        padding: const EdgeInsets.all(15),
+        decoration: BoxDecoration(
+          color: selectedOption ? selected : card,
+          border: Border.all(
+            color: selectedOption ? blue : border,
+          ),
+          borderRadius: BorderRadius.circular(17),
+        ),
+        child: Column(
+          crossAxisAlignment:
+          CrossAxisAlignment.start,
+          children: [
+            Icon(
+              selectedOption
+                  ? Icons.radio_button_checked
+                  : Icons.radio_button_unchecked,
+              color: selectedOption ? blue : muted,
+              size: 25,
+            ),
+            const SizedBox(height: 18),
+            Text(
+              title,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            const SizedBox(height: 6),
+            Text(
+              subtitle,
+              style: const TextStyle(
+                color: muted,
+                fontSize: 11,
+                height: 1.4,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _managementSection() {
+    final status =
+    '${_subscription['status'] ?? ''}'.toLowerCase();
+
+    final canCancel = _configured &&
+        status != 'expired' &&
+        status != 'canceled';
+
+    return _darkSection(
+      title: 'Manage Subscription',
+      children: [
+        if (_configured) ...[
+          const Text(
+            'Current plan',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 13,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            _label(_subscription['plan']),
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 13,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            _label(_subscription['status']),
+            style: const TextStyle(
+              color: muted,
+              fontSize: 12,
+            ),
+          ),
+        ] else ...[
+          const Text(
+            'No active subscription',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 13,
+            ),
+          ),
+        ],
+        if (_subscription['renews_at'] != null)
+          Text(
+            'Renews: ${_date(_subscription['renews_at'])}',
+            style: const TextStyle(color: muted),
+          ),
+        if (_subscription['expires_at'] != null)
+          Text(
+            'Expires: ${_date(_subscription['expires_at'])}',
+            style: const TextStyle(color: muted),
+          ),
+        if (canCancel) ...[
+          const SizedBox(height: 14),
+          TextButton(
+            onPressed: _busy ? null : _cancel,
+            child: Text(
+              _busy
+                  ? 'Sending request…'
+                  : 'Request cancellation',
+            ),
+          ),
+        ],
+        if (_api != null)
+          TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) =>
+                      AccountOperationsScreen(api: _api!),
+                ),
+              );
+            },
+            child: const Text(
+              'Account requests and recovery',
+            ),
+          ),
+      ],
+    );
+  }
+
+  Widget _historySection() {
+    return _darkSection(
+      title: 'Billing History',
+      children: [
+        if (_history.isEmpty)
+          const Text(
+            'No billing payments yet.',
+            style: TextStyle(color: muted),
+          ),
+        for (final payment in _history)
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            title: Text(
+              _money(
+                payment['amount'],
+                payment['currency'] as String?,
+              ),
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 13,
+              ),
+            ),
+            subtitle: Text(
+              _date(payment['verified_at']),
+              style: const TextStyle(
+                color: muted,
+                fontSize: 11,
+              ),
+            ),
+            trailing: Text(
+              _label(payment['status']),
+              style: const TextStyle(
+                color: muted,
+                fontSize: 11,
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+
+  Widget _darkSection({
+    required String title,
+    required List<Widget> children,
+  }) {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: card,
+        border: Border.all(color: border),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              fontSize: 17,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(height: 14),
+          ...children,
+        ],
+      ),
+    );
+  }
+
+  Widget _errorView() {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            _error!,
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 12),
+          TextButton(
+            onPressed: _load,
+            child: const Text('Try again'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class BillingPlanCard extends StatelessWidget {
+  final SubscriptionPlan plan;
+  final bool current;
+
+  const BillingPlanCard({
+    super.key,
+    required this.plan,
+    this.current = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(22),
+      decoration: BoxDecoration(
+        color: current ? const Color(0xFF293447) : const Color(0xFF222222),
+        border: Border.all(color: const Color(0xFF383838)),
+        borderRadius: BorderRadius.circular(24),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  plan.name,
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              if (current)
+                const Text(
+                  'Current plan',
+                  style: TextStyle(
+                    color: Color(0xFF5A9BFA),
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Text(
+            plan.description,
+            style: const TextStyle(fontSize: 14, color: Colors.white70),
+          ),
+          const SizedBox(height: 12),
+          for (final feature in plan.features)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Row(
+                children: [
+                  const Icon(Icons.check_rounded, size: 18, color: Colors.white70),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(feature, style: const TextStyle(fontSize: 13, color: Colors.white70)),
+                  ),
+                ],
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}

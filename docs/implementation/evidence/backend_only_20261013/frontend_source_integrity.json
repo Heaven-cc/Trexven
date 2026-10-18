@@ -1,0 +1,46 @@
+{
+  "source_checks": [
+    {
+      "app": "Trexven",
+      "protected_source_files": 164,
+      "modified": [],
+      "deleted": [],
+      "added": []
+    },
+    {
+      "app": "trexvenpos",
+      "protected_source_files": 91,
+      "modified": [],
+      "deleted": [],
+      "added": []
+    }
+  ],
+  "generated_android_artifacts_changed_during_audit": [
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\android\\.gradle\\buildOutputCleanup\\outputFiles.bin",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\android\\.gradle\\8.14\\executionHistory\\executionHistory.lock",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\android\\.gradle\\buildOutputCleanup\\buildOutputCleanup.lock",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\android\\.gradle\\8.14\\checksums\\checksums.lock",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\android\\.gradle\\8.14\\executionHistory\\executionHistory.bin",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\android\\.gradle\\8.14\\fileHashes\\resourceHashesCache.bin",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\android\\.gradle\\8.14\\fileHashes\\fileHashes.bin",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\android\\.gradle\\8.14\\fileHashes\\fileHashes.lock",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\android\\local.properties",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\android\\.gradle\\8.14\\checksums\\md5-checksums.bin",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\android\\.gradle\\8.14\\checksums\\sha1-checksums.bin"
+  ],
+  "protected_git_status_changes": 0,
+  "pos_git_repository_available": false,
+  "final_checks": [
+    {
+      "app": "Trexven",
+      "protected_source_files": 164,
+      "changed_or_deleted": []
+    },
+    {
+      "app": "trexvenpos",
+      "protected_source_files": 91,
+      "changed_or_deleted": []
+    }
+  ],
+  "final_verified_at_utc": "2026-10-13T01:07:08.127800+00:00"
+}

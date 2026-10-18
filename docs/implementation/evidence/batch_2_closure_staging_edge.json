@@ -1,0 +1,130 @@
+[
+  {
+    "name": "employee-login manager real session and canonical role",
+    "pass": true
+  },
+  {
+    "name": "employee-login sales real session and canonical role",
+    "pass": true
+  },
+  {
+    "name": "employee-login inventory real session and canonical role",
+    "pass": true
+  },
+  {
+    "name": "employee-login wrong password denied",
+    "pass": true
+  },
+  {
+    "name": "employee-login missing credentials denied",
+    "pass": true
+  },
+  {
+    "name": "employee-login disabled account denied",
+    "pass": true
+  },
+  {
+    "name": "owner create-employee atomic Auth/staff/membership",
+    "pass": true
+  },
+  {
+    "name": "create-employee sales denied",
+    "pass": true
+  },
+  {
+    "name": "create-employee inventory denied",
+    "pass": true
+  },
+  {
+    "name": "create-employee other_owner denied",
+    "pass": true
+  },
+  {
+    "name": "create-employee anonymous denied",
+    "pass": true
+  },
+  {
+    "name": "manager cannot create manager",
+    "pass": true
+  },
+  {
+    "name": "owner cannot promote new staff to owner",
+    "pass": true
+  },
+  {
+    "name": "forged business create denied",
+    "pass": true
+  },
+  {
+    "name": "manager can create provisional ordinary staff",
+    "pass": true
+  },
+  {
+    "name": "forced persistence failure Auth compensation",
+    "pass": true
+  },
+  {
+    "name": "manager can suspend ordinary staff",
+    "pass": true
+  },
+  {
+    "name": "manage-employee sales denied",
+    "pass": true
+  },
+  {
+    "name": "manage-employee inventory denied",
+    "pass": true
+  },
+  {
+    "name": "manage-employee other_owner denied",
+    "pass": true
+  },
+  {
+    "name": "manage-employee anonymous denied",
+    "pass": true
+  },
+  {
+    "name": "manager self password reset denied",
+    "pass": true
+  },
+  {
+    "name": "forged business reset denied",
+    "pass": true
+  },
+  {
+    "name": "owner password reset and old password denial",
+    "pass": true
+  },
+  {
+    "name": "manager reset authorized ordinary staff",
+    "pass": true
+  },
+  {
+    "name": "Angel manager unauthorized selected business denied",
+    "pass": true
+  },
+  {
+    "name": "Angel sales unauthorized selected business denied",
+    "pass": true
+  },
+  {
+    "name": "Angel inventory unauthorized selected business denied",
+    "pass": true
+  },
+  {
+    "name": "Angel other_owner unauthorized selected business denied",
+    "pass": true
+  },
+  {
+    "name": "Angel anonymous unauthorized selected business denied",
+    "pass": true
+  },
+  {
+    "name": "Angel owner selected-business auth without provider",
+    "pass": true
+  },
+  {
+    "name": "Angel forged-business owner denied",
+    "pass": true
+  }
+]

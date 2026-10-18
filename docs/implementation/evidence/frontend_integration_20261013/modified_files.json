@@ -1,0 +1,53 @@
+{
+  "modified": [
+    "lib/screens/dashboard/angel_screen.dart",
+    "lib/screens/dashboard/dashboard_screen.dart",
+    "lib/screens/finance/finance_tab.dart",
+    "lib/screens/finance/operational_finance_screen.dart",
+    "lib/screens/finance/record_sale_screen.dart",
+    "lib/screens/intelligence/event_detail_screen.dart",
+    "lib/services/alert_navigation.dart",
+    "lib/services/alert_service.dart",
+    "lib/services/database_service.dart",
+    "packages/trexven_operations/lib/src/inventory_operations_screen.dart",
+    "packages/trexven_operations/lib/src/operations_client.dart",
+    "packages/trexven_operations/lib/src/payment_confirmation_dialog.dart",
+    "packages/trexven_operations/lib/trexven_operations.dart",
+    "pubspec.lock",
+    "pubspec.yaml",
+    "test/catalog_repository_test.dart",
+    "test/dashboard_density_test.dart",
+    "test/finance_loading_test.dart",
+    "test/intelligence_experience_test.dart",
+    "test/record_sale_flow_test.dart",
+    "test/ui_density_test.dart"
+  ],
+  "new": [
+    "lib/screens/finance/expense_history_screen.dart",
+    "lib/screens/finance/transaction_history_screen.dart",
+    "lib/services/angel_repository.dart",
+    "lib/services/business_reporting.dart",
+    "lib/services/owner_checkout.dart",
+    "packages/trexven_operations/lib/src/stock_count_batch.dart",
+    "packages/trexven_operations/lib/src/text_controller_scope.dart",
+    "test/angel_flow_test.dart",
+    "test/angel_repository_test.dart",
+    "test/business_reporting_test.dart",
+    "test/finance_repository_test.dart",
+    "test/integration_test_support.dart",
+    "test/owner_checkout_test.dart",
+    "test/owner_notifications_test.dart",
+    "test/record_sale_payments_test.dart",
+    "test/stock_count_batch_test.dart",
+    "test/stock_count_flow_test.dart"
+  ],
+  "deleted": [],
+  "protected_auth_unchanged": {
+    "lib/main.dart": true,
+    "lib/screens/welcome_screen.dart": true,
+    "lib/screens/auth/login_screen.dart": true,
+    "lib/screens/auth/register_screen.dart": true,
+    "lib/screens/auth/account_gate.dart": true,
+    "lib/services/auth_service.dart": true
+  }
+}

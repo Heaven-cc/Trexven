@@ -1,0 +1,13 @@
+{
+  "missing_report_links": [],
+  "credential_shaped_artifacts": [],
+  "six_migration_hashes_match": true,
+  "source_edits_this_task": false,
+  "owner_tests": 66,
+  "pos_tests": 37,
+  "pos_skipped": 1,
+  "owner_analysis_exit": 1,
+  "pos_analysis_exit": 1,
+  "production_writes": 0,
+  "production_deployments": 0
+}

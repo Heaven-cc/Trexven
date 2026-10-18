@@ -1,0 +1,602 @@
+[
+  {
+    "database": "postgres",
+    "group": "structure.types",
+    "match": true
+  },
+  {
+    "database": "postgres",
+    "group": "structure.tables",
+    "match": false
+  },
+  {
+    "database": "postgres",
+    "group": "structure.columns",
+    "match": false
+  },
+  {
+    "database": "postgres",
+    "group": "structure.indexes",
+    "match": false
+  },
+  {
+    "database": "postgres",
+    "group": "structure.constraints",
+    "match": false
+  },
+  {
+    "database": "postgres",
+    "group": "structure.inheritance",
+    "match": true
+  },
+  {
+    "database": "postgres",
+    "group": "functions",
+    "match": false
+  },
+  {
+    "database": "postgres",
+    "group": "security.rules",
+    "match": true
+  },
+  {
+    "database": "postgres",
+    "group": "security.policies",
+    "match": true
+  },
+  {
+    "database": "postgres",
+    "group": "security.triggers",
+    "match": false
+  },
+  {
+    "database": "postgres",
+    "group": "security.publications",
+    "match": true
+  },
+  {
+    "database": "postgres",
+    "group": "security.event_triggers",
+    "match": true
+  },
+  {
+    "database": "postgres",
+    "group": "acl.tables",
+    "match": true
+  },
+  {
+    "database": "postgres",
+    "group": "acl.columns",
+    "match": true
+  },
+  {
+    "database": "postgres",
+    "group": "acl.schemas",
+    "match": true
+  },
+  {
+    "database": "postgres",
+    "group": "acl.defaults",
+    "match": true
+  },
+  {
+    "database": "postgres",
+    "group": "acl.functions",
+    "match": true
+  },
+  {
+    "database": "postgres",
+    "group": "dependencies.custom_casts",
+    "match": true
+  },
+  {
+    "database": "postgres",
+    "group": "dependencies.custom_operators",
+    "match": true
+  },
+  {
+    "database": "postgres",
+    "group": "dependencies.custom_aggregates",
+    "match": true
+  },
+  {
+    "database": "postgres",
+    "group": "dependencies.custom_collations",
+    "match": true
+  },
+  {
+    "database": "postgres",
+    "group": "dependencies.external_constraints",
+    "match": false
+  },
+  {
+    "database": "postgres",
+    "group": "dependencies.publication_settings",
+    "match": true
+  },
+  {
+    "database": "postgres",
+    "group": "dependencies.external_object_dependencies",
+    "match": false
+  },
+  {
+    "database": "postgres",
+    "group": "extras.statistics_objects",
+    "match": true
+  },
+  {
+    "database": "postgres",
+    "group": "extras.object_descriptions",
+    "match": true
+  },
+  {
+    "database": "postgres",
+    "group": "extras.extension_dependencies",
+    "match": true
+  },
+  {
+    "database": "postgres",
+    "group": "extras.managed_auth_references",
+    "match": true
+  },
+  {
+    "database": "postgres",
+    "group": "extras.unusual_column_metadata",
+    "match": true
+  },
+  {
+    "database": "postgres",
+    "group": "extras.managed_schema_functions",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "structure.types",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "structure.tables",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "structure.columns",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "structure.indexes",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "structure.constraints",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "structure.inheritance",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "functions",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "security.rules",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "security.policies",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "security.triggers",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "security.publications",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "security.event_triggers",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "acl.tables",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "acl.columns",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "acl.schemas",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "acl.defaults",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "acl.functions",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "dependencies.custom_casts",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "dependencies.custom_operators",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "dependencies.custom_aggregates",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "dependencies.custom_collations",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "dependencies.external_constraints",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "dependencies.publication_settings",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "dependencies.external_object_dependencies",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "extras.statistics_objects",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "extras.object_descriptions",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "extras.extension_dependencies",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "extras.managed_auth_references",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "extras.unusual_column_metadata",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_replay2",
+    "group": "extras.managed_schema_functions",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "structure.types",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "structure.tables",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "structure.columns",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "structure.indexes",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "structure.constraints",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "structure.inheritance",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "functions",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "security.rules",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "security.policies",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "security.triggers",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "security.publications",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "security.event_triggers",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "acl.tables",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "acl.columns",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "acl.schemas",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "acl.defaults",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "acl.functions",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "dependencies.custom_casts",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "dependencies.custom_operators",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "dependencies.custom_aggregates",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "dependencies.custom_collations",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "dependencies.external_constraints",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "dependencies.publication_settings",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "dependencies.external_object_dependencies",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "extras.statistics_objects",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "extras.object_descriptions",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "extras.extension_dependencies",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "extras.managed_auth_references",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "extras.unusual_column_metadata",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_restored",
+    "group": "extras.managed_schema_functions",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "structure.types",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "structure.tables",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "structure.columns",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "structure.indexes",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "structure.constraints",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "structure.inheritance",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "functions",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "security.rules",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "security.policies",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "security.triggers",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "security.publications",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "security.event_triggers",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "acl.tables",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "acl.columns",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "acl.schemas",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "acl.defaults",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "acl.functions",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "dependencies.custom_casts",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "dependencies.custom_operators",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "dependencies.custom_aggregates",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "dependencies.custom_collations",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "dependencies.external_constraints",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "dependencies.publication_settings",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "dependencies.external_object_dependencies",
+    "match": false
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "extras.statistics_objects",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "extras.object_descriptions",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "extras.extension_dependencies",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "extras.managed_auth_references",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "extras.unusual_column_metadata",
+    "match": true
+  },
+  {
+    "database": "trexven_b2_schemaonly",
+    "group": "extras.managed_schema_functions",
+    "match": false
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "target": "sixth disposable loopback stack",
+  "revocation_waited_for_in_flight_authorization": true,
+  "post_revocation_adjustment_denied": true,
+  "final_stock": 101,
+  "passed": true
+}

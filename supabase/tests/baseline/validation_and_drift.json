@@ -1,0 +1,170 @@
+{
+  "migration_comparisons": [
+    {
+      "version": "20260819180000",
+      "name": "camera_ai_fixes",
+      "local_statements": 6,
+      "remote_statements": 6,
+      "normalized_ast_equal": true,
+      "local_sha256": "360256fe044cf5e0928b895291483224e7f91278cb70243baea41f8690df0e89",
+      "recorded_sql_sha256": "1f11846cc12ccb6d2e42386cb47701542c0ff5e9a3dca085a7c57e0470591d57"
+    },
+    {
+      "version": "20260823100000",
+      "name": "employee_management",
+      "local_statements": 13,
+      "remote_statements": 13,
+      "normalized_ast_equal": false,
+      "local_sha256": "4ef1ea7e08314c1ce62ee4c5b39141195886b89cd1d01bf43d8b63c4f5c246af",
+      "recorded_sql_sha256": "06920a5be5a1745fc9f96bb4dff8834cc8017a4e0f77ab269fc98ea40766cf84"
+    },
+    {
+      "version": "20261002014604",
+      "name": "backend_integration_repairs",
+      "local_statements": 26,
+      "remote_statements": 26,
+      "normalized_ast_equal": true,
+      "local_sha256": "ebbb545c6ad4a74e8db39e9b5fa671a245f92370c13b829a80ae077e22cb2fd5",
+      "recorded_sql_sha256": "f4f41177be297a8588097d366d40df7373e5c5224f2ac18adeec8180e91c7f2e"
+    },
+    {
+      "version": "20261002015419",
+      "name": "backend_rpc_grants_hardening",
+      "local_statements": 11,
+      "remote_statements": 11,
+      "normalized_ast_equal": false,
+      "local_sha256": "29faa1becefcc0ee8263e1243e5d711a5953c76d267cf71bb80e7d8be4b3ba1e",
+      "recorded_sql_sha256": "ef9edf8b5ead8bc2e807e62070b34887f3444ed1de8bf3b919b77cefcf36f951"
+    },
+    {
+      "version": "20261002123039",
+      "name": "helper_function_anon_execute_hardening",
+      "local_statements": 4,
+      "remote_statements": 4,
+      "normalized_ast_equal": true,
+      "local_sha256": "239ae9718be63d1f93a68e4d8e003d54464a8313f6781b32d080e18c3fa1298a",
+      "recorded_sql_sha256": "50933a35a4cc80d65e1f4dddae5aed8f62616d779a8c3385e06afc54e9c9fd51"
+    },
+    {
+      "version": "20261002124738",
+      "name": "account_delete_audit_fk_hardening",
+      "local_statements": 3,
+      "remote_statements": 3,
+      "normalized_ast_equal": true,
+      "local_sha256": "370a97189d62e1ce7d63d3da7885ddcf56b877623b8ffa890f5a71ebe11ac90c",
+      "recorded_sql_sha256": "454d3e8214f1dd5064b4ce4184e53f13eaa04673b42cbaa2abf5d6378847aa6b"
+    },
+    {
+      "version": "20261003224001",
+      "name": "testing_readiness_access_controls",
+      "local_statements": 33,
+      "remote_statements": 33,
+      "normalized_ast_equal": true,
+      "local_sha256": "7889b902509438d42e419cdfd2368e44e859880ad62e568f686fcc47bff0e7ed",
+      "recorded_sql_sha256": "bc0361bcb8804d6541602cbb3e98805e8ba8e23cde95235e65f2ed5fafc6ed96"
+    },
+    {
+      "version": "20261004025120",
+      "name": "native_camera_rate_isolation",
+      "local_statements": 10,
+      "remote_statements": 10,
+      "normalized_ast_equal": true,
+      "local_sha256": "23a6b730419a65b37665a27a2d489ebb70a3fbff4d2d2b540ea9a1e1b25afb13",
+      "recorded_sql_sha256": "f6cd6bcf2aee866918bdadd381830d0470f6544b59c2576f01683b19812d8130"
+    },
+    {
+      "version": "20261005004045",
+      "name": "sale_submission_reliability",
+      "local_statements": 12,
+      "remote_statements": 12,
+      "normalized_ast_equal": true,
+      "local_sha256": "9709e52ad6e3793dd105b78495e1f3451e5e86683d7634dd319fcc4726963b8d",
+      "recorded_sql_sha256": "79c8983968602cd303fd579ecfef18e3d7a29e6fc28ce54cd4442d9a75d73427"
+    }
+  ],
+  "table_create_definitions_in_history": [
+    "private.angel_request_windows",
+    "private.camera_explanation_request_windows",
+    "private.sale_requests",
+    "public.audit_logs",
+    "public.employee_permissions",
+    "public.employees",
+    "public.permissions"
+  ],
+  "tables_without_create_definition": [
+    "public.alerts",
+    "public.angel_conversations",
+    "public.angel_insights",
+    "public.angel_messages",
+    "public.business_activity",
+    "public.business_members",
+    "public.business_settings",
+    "public.businesses",
+    "public.camera_ai_jobs",
+    "public.camera_detections",
+    "public.camera_event_links",
+    "public.camera_events",
+    "public.camera_health_logs",
+    "public.camera_zones",
+    "public.cameras",
+    "public.cash_transactions",
+    "public.employee_activity",
+    "public.expenses",
+    "public.financial_transactions",
+    "public.inventory",
+    "public.inventory_movements",
+    "public.products",
+    "public.recordings",
+    "public.sale_items",
+    "public.sales"
+  ],
+  "live_functions_matching_latest_repository_body_contract": [
+    "private.consume_camera_explanation_request",
+    "private.has_business_permission",
+    "private.submit_trexven_sale",
+    "public.angel_sales_summary",
+    "public.camera_event_to_alert",
+    "public.complete_pos_sale",
+    "public.complete_trexven_onboarding",
+    "public.consume_angel_request",
+    "public.consume_camera_explanation_request",
+    "public.is_business_member",
+    "public.record_trexven_sale",
+    "public.set_trexven_employee_status",
+    "public.submit_trexven_sale",
+    "public.update_trexven_employee"
+  ],
+  "live_functions_without_repository_create_definition": [
+    "private.complete_pos_sale",
+    "private.complete_pos_sale_with_receipt",
+    "private.record_trexven_sale",
+    "public.get_camera_activity_summary",
+    "public.get_camera_dashboard",
+    "public.update_businesses_updated_at",
+    "public.update_updated_at",
+    "public.user_owns_business"
+  ],
+  "live_functions_differing_from_latest_repository_body_contract": [],
+  "baseline_statement_counts": {
+    "TransactionStmt": 2,
+    "VariableSetStmt": 2,
+    "DoStmt": 3,
+    "CreateSchemaStmt": 1,
+    "CreateStmt": 32,
+    "AlterTableStmt": 307,
+    "CreateFunctionStmt": 22,
+    "AlterOwnerStmt": 22,
+    "IndexStmt": 61,
+    "CreatePolicyStmt": 108,
+    "CreateTrigStmt": 8,
+    "GrantStmt": 1064,
+    "AlterDefaultPrivilegesStmt": 51,
+    "AlterPublicationStmt": 7
+  },
+  "plpgsql_functions_parsed": 12,
+  "sql_function_bodies_parsed": 10,
+  "do_blocks_parsed": 3,
+  "baseline_sha256": "5eb2ee5437911b21eab424a05abf21eb7cc7945bc805e5a41d58459e21b3e21e",
+  "catalog_sha256": "1f812618dff947acbb5eea8c87ff1a18d0efab6f973e1a7476c6833359c917cc",
+  "database_tests_executed": false
+}

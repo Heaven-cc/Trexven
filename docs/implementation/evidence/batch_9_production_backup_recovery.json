@@ -1,0 +1,30 @@
+{
+  "production_project": "ufehcfrlygqvminfjumf",
+  "production_writes": 0,
+  "credential_source": "Windows profile protected PGPASSFILE",
+  "credentials_printed": false,
+  "customer_records_logged": false,
+  "tls_mode": "verify-full",
+  "time_utc": "2026-10-09T14:40:50.016468+00:00",
+  "restore_verified": true,
+  "production_schema_drift_sections": [],
+  "archive_path": "C:\\Users\\USER\\AppData\\Roaming\\TREXVEN\\backups\\ufehcfrlygqvminfjumf\\final-qa9-d85cb65515d549d6a7d4d259619a1946\\production.dump.dpapi",
+  "archive_bytes": 730790,
+  "encrypted_sha256": "fe39bfd54d0c11a128e38a437408fdc11ebd64e5d93878eb2189d4f45faf6a48",
+  "plaintext_sha256": "45ab58e012b3ab7488b54be2faeb48a0901617cea4fdbefbb62ee1a9d77fcb66",
+  "encryption": "Windows DPAPI CurrentUser",
+  "decrypt_hash_verified": true,
+  "snapshot_consistent": true,
+  "production_history_entries": 16,
+  "restore_exit": 0,
+  "schema_mismatch_groups": [],
+  "table_fingerprints_compared": 84,
+  "fingerprint_mismatch_tables": [],
+  "recovery_target": {
+    "runtime": "owned native loopback",
+    "port": 54402,
+    "database": "trexven_final_recovery_bb9c40d31986",
+    "api_exposed": false
+  },
+  "isolated_recovery_cleanup_exit": 0
+}

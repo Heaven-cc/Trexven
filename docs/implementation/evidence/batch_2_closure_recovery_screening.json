@@ -1,0 +1,9 @@
+{
+  "sha256": "d5b246667730156bcdc5e903cc555f6b969a85cdfaa38b17c9a145529cefcca0",
+  "statements": 1675,
+  "top_level_data_inserts": 0,
+  "auth_user_inserts": 0,
+  "production_project_refs": 0,
+  "not_valid_constraints": 7,
+  "execution": "Actually restored into trexven_b2_schemaonly, using a guard-only disposable identity adaptation; no application or Auth records imported."
+}

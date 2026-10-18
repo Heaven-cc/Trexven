@@ -1,0 +1,7 @@
+00:00 +0: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart
+00:00 +0: Searchable cart merges, independently edits and removes products; requires confirmation
+00:07 +1: Terminal needs external reference and explicit user confirmation
+00:09 +2: Transfer needs external reference and explicit user confirmation
+00:11 +3: Full credit collects debtor details and requires an explicit exact-cart approval
+00:13 +4: Partial credit collects debtor details and requires an explicit exact-cart approval
+00:16 +5: All tests passed!

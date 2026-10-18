@@ -1,0 +1,474 @@
+[
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\main.dart",
+    "hash": "2624F0AC87417D7655DD75B7C333F3084CA6F8C53463B8D1413D9DEC02A3FA60"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\core\\constants.dart",
+    "hash": "CAC37AC640E2FE833F775E1165B9406BEBE2E0E1D187F466D6108DEFB413B830"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\auth\\auth_provider.dart",
+    "hash": "D3DD2F28482DD049C7F3DA03E9322665628852B24175189C1B955378AEC58EBF"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\auth\\branch_context.dart",
+    "hash": "2726BFC80B0906BAC1C008DBE4449D8638833498F8F42D4B2B55CD4ECDFD1A20"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\auth\\login_screen.dart",
+    "hash": "24E06B67264D0F92A55BD8509685240E5AA1757E2DD6BF7DE0683A8927515E4C"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\auth\\permission_service.dart",
+    "hash": "DE31F961AD651059D097F477BF501815A44F4FCA3CA4C94DF7619DF2D128A51C"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\inventory\\catalog_edit_screen.dart",
+    "hash": "D8DCC444BAF609A3DC2277EA53B01034734869A30D68615623EB412881A86B83"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\inventory\\product_detail_screen.dart",
+    "hash": "11DCEEEBFB4BA15530CFE0EF11128BE68828ACDEC08412EDAB7AE3D3AB8D40B9"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\inventory\\product_provider.dart",
+    "hash": "4ECD32DED57D9A4596659260A0E3739E5B35F289311722359F63811A1260FE8F"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\inventory\\product_repository.dart",
+    "hash": "0952568A35B8D2C058AE8A22339A2B39A0F1B0AF3F379ECD1180BE50663FB6A7"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\inventory\\product_search_screen.dart",
+    "hash": "9D70B758C3F24412EB41E178B665914CA9195DEA303ECFD63495FCD3A7DC825F"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\inventory\\quick_add_screen.dart",
+    "hash": "C104066936B29EBD2926D366C880E4BA4D44B801969598FD03139BD8EEAD2FA8"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\inventory\\scanner_screen.dart",
+    "hash": "226D128C9EFD8A101532DB68721508C1A6FA658634E11A90FE56C60251A602C4"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\pos\\cart_provider.dart",
+    "hash": "9AFBE86E9FBF916EE4ADA15163A1DE3548C940F77851443798251702B3FC93F4"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\pos\\checkout_screen.dart",
+    "hash": "F568C413F136DD8E3D6159F20918FF1937DBA7DE056327AB4AB3B113B8CE0A74"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\pos\\dashboard_screen.dart",
+    "hash": "D57DBB6532BA4DF70B293240F50F23847C9C55887B81E544897FC89781E20022"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\pos\\employee_settings_screen.dart",
+    "hash": "65B1C037134945A67B43C8A58C7B422F5FD8A72E349C8AEC61F953521C3A979F"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\pos\\offline_cash_screen.dart",
+    "hash": "B92A1B3F2EF26BFDBE8C7FA01C30D2DD67C079D19F1DAD60A75B86B5D0256039"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\pos\\operations_screen.dart",
+    "hash": "BEDE5FDCB9BB9075E7EBFD5C226A780F47EF2B708131AC60BF6D741F48B7B2AE"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\pos\\payment_confirmation_dialog.dart",
+    "hash": "FAD3FFCB8562AC89201BC51A77F2D9CC1BEAE58BCDE5EF37BB20C84F8F23FC8C"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\pos\\pending_sale_provider.dart",
+    "hash": "9E2570148958325DB8482810CE292D61CEEB32770CFAE73AB513EA4D5BA676C7"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\pos\\pos_shell.dart",
+    "hash": "D0E6886674DE5C83BBF3D6AC1CCBC265F4EF39830EE4528323E739E61A5F6498"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\pos\\recent_sales_screen.dart",
+    "hash": "D4F6A890FBD8F05D4543C0B27410D5B5AA7FCCD192BE1E186D23CF79123AF0F3"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\pos\\sales_provider.dart",
+    "hash": "21016F852C09024A17F4CB3C7381036F62495295D1919708BC29963A6DE4C766"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\pos\\sales_repository.dart",
+    "hash": "17AAC5A2B7CDD6C6BFD3A9C974ECEE0F6AE983A00FDF61C361F528486F72626E"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\models\\business.dart",
+    "hash": "B7092EF27970A5DC6B04F3BC59D13DB4AC3EC2737B6754D36911DB2B31EBF71E"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\models\\employee.dart",
+    "hash": "A39BA5C26D4F0185C2CD7F9BA12E43FB2A408BB850B9304941A050D82DBEF5A0"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\models\\price_levels.dart",
+    "hash": "D005C302BA23702C7296F14F6F3CA65B104A4B1217EA7ECCE3F7FC121A125B69"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\models\\product.dart",
+    "hash": "4086C6D5D808388C8A5091808491001B16E7F27BFD1ED135BBFB7E376126CFAD"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\models\\sale.dart",
+    "hash": "BB0C388C4FDC3EE058DDB024930B5B9900618B28B3587B6A0D035DADF8438CF2"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\services\\network_failure_native.dart",
+    "hash": "A87EF70762AE96374FB550F3294D1C4DBCABB8E0B913E1458489275DA33D85E4"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\services\\network_failure.dart",
+    "hash": "3455533AE623A52BE132C3226DDAC948C77B369F61F61F254763E0A777BD9E61"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\services\\offline_cash_file.dart",
+    "hash": "A577F86E7F03D8546436F99B6D85CA7A219A89D96A16FC82F42AC1270025453F"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\services\\offline_cash_queue.dart",
+    "hash": "CC9259BFDAFC24017DF61E25E0FCD256F64DA118D9B4CED5FAB8D56DA3845970"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\services\\offline_cash_unsupported.dart",
+    "hash": "C1B986DCA3C1314C9223141879C15361B4174DCE38032AD327B1DEF2F1CEFB86"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\services\\offline_session.dart",
+    "hash": "2D9CA53F84A4A724CECE953A91BA4585F840BB1F05B29DE43AC1FAAB77A6693F"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\services\\pending_sale_file.dart",
+    "hash": "D70CB33ACEDCB92504500D97A2DC88EE3B9A58920083085DF73E4A3B17BC6528"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\services\\pending_sale_unsupported.dart",
+    "hash": "72F595DB552597046D614EAE75E52540268D95462F66DBDD4CF31FBB96E845B1"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\services\\pending_sale.dart",
+    "hash": "D6E681F2DB1ABF5529ABDEC1C41BE2704123FE2F03E2DB7BB6E0B8823B5FF015"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\services\\sale_errors.dart",
+    "hash": "48B13012BB0E062F9D1A57E245297657FC336C6390CDEED9F5F1D85FF836E432"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\assets\\trexvenpos_logo.png",
+    "hash": "73DD7841412A29412A9FCABFC7A0A2BD4B3FE086CFFB9207A83F94A1B67B21CB"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\.gitignore",
+    "hash": "C9AF75DBC2C8AA867476A09426C80B178C4AEED8B9393AE48503EEDFA3273D71"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\build.gradle.kts",
+    "hash": "218F400E3FFF31C9C986A2535DFB974560E1B4D33CC27B7C1FEE96A2B7E44454"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\gradle.properties",
+    "hash": "0C9351CF93DDB73A18755287292EBD5FB074CF78A3B2510B378B4EFF99C579FB"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\gradlew",
+    "hash": "EC56C02543666D92D9AC5AE7FCC48F88CE4DE0DEB8B7F9B39928CA46F68C1B2B"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\gradlew.bat",
+    "hash": "C13C6E91B9A517783976DE213D46398C661EA9E17651376D7301E839EAEDCC62"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\hs_err_pid19948.log",
+    "hash": "B04B60BF519F312105CA082CC96D7D9F46B0A569B06AEE5726C2B21012583A05"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\local.properties",
+    "hash": "ACFDA96ECFC85FA93150A1D3726FC2785847314BEA3A5459DFF1805823F5BF23"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\settings.gradle.kts",
+    "hash": "4D438E37BD80CCC48DED4892C9026994CABE8CFB9C20D2947A609248495C869B"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\trexvenpos_android.iml",
+    "hash": "7CDD3D4159F365C95EA1B0466FBEE3B6E3BAFCC4487AA396C822A98A4EA6220F"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\.gradle\\file-system.probe",
+    "hash": "A8CF91E1EBD39A3A003E75D303F9E6D0EC9055E8C94BCF5D719E2FF6C27ED7D7"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\.gradle\\8.14\\gc.properties",
+    "hash": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\.gradle\\8.14\\checksums\\checksums.lock",
+    "hash": "DA1B9CCD2D21B12A2A02ADADAFE9B7504BE67A1DB3AE1DC4C2056AFE71A00410"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\.gradle\\8.14\\checksums\\md5-checksums.bin",
+    "hash": "50F51F7328550436939562E44E826E39CE5CDB39D30985B26B8685CB0515C0EE"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\.gradle\\8.14\\checksums\\sha1-checksums.bin",
+    "hash": "C63F1B480640B258960ED47BF819F5358DE77836BF05688BD55A805835E9A83F"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\.gradle\\8.14\\executionHistory\\executionHistory.bin",
+    "hash": "B7444AA382CE4D3745B4B8BFE9283CB7EBB74E7BC2CB0DAACCCB9C8C21B65CC7"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\.gradle\\8.14\\executionHistory\\executionHistory.lock",
+    "hash": "B08B1386B2292204B4302DE7112F5877CC297C86B3F5F29183A00CAEBACC4F3B"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\.gradle\\8.14\\fileChanges\\last-build.bin",
+    "hash": "6E340B9CFFB37A989CA544E6BB780A2C78901D3FB33738768511A30617AFA01D"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\.gradle\\8.14\\fileHashes\\fileHashes.bin",
+    "hash": "95ACF34C9B7FB021CAB6F27F51BEDE52C04D1241EB8350978DB5F9758C6D241D"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\.gradle\\8.14\\fileHashes\\fileHashes.lock",
+    "hash": "C0C365394293E08C0D29C340332A511E75E58F5B96F56835066B067A817B4987"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\.gradle\\8.14\\fileHashes\\resourceHashesCache.bin",
+    "hash": "A3999BABCC7F46ADDBC207DEFCC1BA6614509717C5ED3782915171CC41AFAF1F"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\.gradle\\9.1.0\\gc.properties",
+    "hash": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\.gradle\\9.1.0\\checksums\\checksums.lock",
+    "hash": "4C68A8EC7C3BF4FC9AABD7E322649D864D94E18984AEF6DE720F2D28B5413D51"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\.gradle\\9.1.0\\checksums\\md5-checksums.bin",
+    "hash": "9DDFCE00FC84AF699C9D5BC146DD9A7995BA2AB1FE3302CE26126CFA77EDD377"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\.gradle\\9.1.0\\checksums\\sha1-checksums.bin",
+    "hash": "D4BBF603407EE65EC77CCD9A495009B81B660CCEC09E72D121EE4D5A874E44D0"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\.gradle\\9.1.0\\executionHistory\\executionHistory.bin",
+    "hash": "CFEE6C8695D152E81655F05529C9CAF3518094E8A63BC5A5FF993C75E0221F43"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\.gradle\\9.1.0\\executionHistory\\executionHistory.lock",
+    "hash": "9EAF6EF406C9E32421BC4D2877F0ED60B5DAD8DCAF77841BE59F869DFD4717FB"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\.gradle\\9.1.0\\fileChanges\\last-build.bin",
+    "hash": "6E340B9CFFB37A989CA544E6BB780A2C78901D3FB33738768511A30617AFA01D"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\.gradle\\9.1.0\\fileHashes\\fileHashes.bin",
+    "hash": "BD195F61868AC09AB21F67017C3D03EB37419B3628C317D14E64B018053F6B0C"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\.gradle\\9.1.0\\fileHashes\\fileHashes.lock",
+    "hash": "E2D13256F77AF62F69BEB649339C731E39D27E11CAB2D76C91D2744EAAA52093"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\.gradle\\9.1.0\\fileHashes\\resourceHashesCache.bin",
+    "hash": "643836D6FEAC448EB270823283AE9FF51272B23BC5B19F9882021ABD22D0FF40"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\.gradle\\buildOutputCleanup\\buildOutputCleanup.lock",
+    "hash": "915D3FD8D0F5BDC841D316A1F616134DC3BF7EAE5EE0ED5457F77120AD0745C4"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\.gradle\\buildOutputCleanup\\cache.properties",
+    "hash": "E64E78854941622FE7DA0524973FCE35112C61A2074FC36E8E780EB79E71C538"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\.gradle\\buildOutputCleanup\\outputFiles.bin",
+    "hash": "91AEFE1A17DEE5D9A6B84B88606C9F4F06C2272ADD232017ABCDEEE4152E8828"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\.gradle\\noVersion\\buildLogic.lock",
+    "hash": "6AA2203A805F65BDC430734252CED384F31D19BD6C7C916D6A0A02B4ABCA97F6"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\.gradle\\vcs-1\\gc.properties",
+    "hash": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\app\\build.gradle.kts",
+    "hash": "AC60DC5C58E1184E63E65EAC61455DE16AB38B8C72E264C713EE349C4D7EB9BF"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\app\\src\\debug\\AndroidManifest.xml",
+    "hash": "B01A4541A8144C15BC617BAB7EB267C99FA1476368FBBDA5A12CDBF4E316A34C"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\app\\src\\main\\AndroidManifest.xml",
+    "hash": "B28A70C33490C96AC89A20E579063DAD5A7AB32BED057385EC009FBA3045AF76"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\app\\src\\main\\java\\io\\flutter\\plugins\\GeneratedPluginRegistrant.java",
+    "hash": "6A40BFE52D01427CCD1B7B9ED9309B6A4F513CCA86E6D52962D40D431F70BD73"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\app\\src\\main\\kotlin\\odtweb\\com\\trexvenpos\\MainActivity.kt",
+    "hash": "8A90137ABF0693CB6186A0AB8C4F9ADEFEA5523649BB69349C351F80921721D7"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\app\\src\\main\\res\\drawable\\launch_background.xml",
+    "hash": "2DF60E2CFBEE873CE2858088CF003E6B93498F2F568476DA437610467EA1A9D7"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\app\\src\\main\\res\\drawable-v21\\launch_background.xml",
+    "hash": "DCA312EC77DE83E43EF70A825C299B51451247286C29167D62F19165750B8793"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png",
+    "hash": "6A7C8F0D703E3682108F9662F813302236240D3F8F638BB391E32BFB96055FEF"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\app\\src\\main\\res\\mipmap-hdpi\\launcher_icon.png",
+    "hash": "D158A65648D8306AF15768A98F3A85040F2A8BEB398D406D56FF63ABE8774E97"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png",
+    "hash": "C7C0C0189145E4E32A401C61C9BDC615754B0264E7AFAE24E834BB81049EAF81"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\app\\src\\main\\res\\mipmap-mdpi\\launcher_icon.png",
+    "hash": "25A5C055B8EA6394F62F445C5D25C3E67B4D5CD85DAED4C32FFED8C3E6D0F5F7"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png",
+    "hash": "E14AA40904929BF313FDED22CF7E7FFCBF1D1AAC4263B5EF1BE8BFCE650397AA"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\app\\src\\main\\res\\mipmap-xhdpi\\launcher_icon.png",
+    "hash": "4AD8F1798884B7C8079A76CD65698FC8308DEA480FC29DAC23C6512A5D9FE687"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png",
+    "hash": "4D470BF22D5C17D84EDC5F82516D1BA8A1C09559CD761CEFB792F86D9F52B540"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\launcher_icon.png",
+    "hash": "E6029F616831EEBEC00093435096D2003E2ED0B881CF73B70E34B0E08E6769A9"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png",
+    "hash": "3C34E1F298D0C9EA3455D46DB6B7759C8211A49E9EC6E44B635FC5C87DFB4180"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\launcher_icon.png",
+    "hash": "CB694FAA3141EDF0D4C91EE98CD9E3BC99C58FF88C02D7444E3B09B5F1AEC14A"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\app\\src\\main\\res\\values\\styles.xml",
+    "hash": "CCA15A99B59380A548BF6A890F7CA5380EE509B1F9BBB2F5F9EC3589FA25C2F7"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+    "hash": "EA763597DC1A84C8034251CAEE98D7753E0FBF57340FFC94677427DE4B537516"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\app\\src\\profile\\AndroidManifest.xml",
+    "hash": "B01A4541A8144C15BC617BAB7EB267C99FA1476368FBBDA5A12CDBF4E316A34C"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\gradle\\wrapper\\gradle-wrapper.jar",
+    "hash": "16CAEAF66D57A0D1D2087FEF6A97EFA62DE8DA69AFA5B908F40DB35AFC4342DA"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\android\\gradle\\wrapper\\gradle-wrapper.properties",
+    "hash": "1220FDD333A881E47441DE07B23F9DD1EBD35459730543AE429CF249847D91BF"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\test\\access_boundaries_test.dart",
+    "hash": "A19B0C22FCEC39CDBC6E6145D6194BA9E2292021C7FD0A79761D2F874A910D40"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\test\\auth_session_test.dart",
+    "hash": "B6F4F77FE74D71F6393CD45F9F9A31A7F6F7EC414B0001E71BC1C27A018EE66A"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\test\\batch_2_contract_test.dart",
+    "hash": "C3DDE859AD3E9053635E8701078101F87DD2E709414574B62D728A948C14D5B6"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\test\\batch_3_product_repository_test.dart",
+    "hash": "BDCA66E3262545EE76A86E3408356014A2AE530D4396453D2D9D946B5524CCE0"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\test\\batch_3_quantity_contract_test.dart",
+    "hash": "3A589CB28F096F5584A46DE95654E63A8ADC175FDB714FB0F817519D95B812A9"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\test\\branch_context_test.dart",
+    "hash": "06AA66CB0E7898C50597FCBF57392EE41CA5F67B0CF58B8A6AA1A6696994EDCD"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\test\\checkout_flow_test.dart",
+    "hash": "7726E997C82B0B8BA83AE26904F17E0A81CA18B73BE029121AD1DF9B50D5ACFA"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\test\\design_system_checkout_matrix_test.dart",
+    "hash": "F673F68C4C76BCA8D56F167CC76DD59FB643EE243304327FB86DA35F72D3E7FC"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\test\\design_system_screen_matrix_test.dart",
+    "hash": "2C4DA05714A4A9DE270A75B35322649233EBC49977DC0F0DC05409C8AA554A89"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\test\\design_system_visual_test.dart",
+    "hash": "9A615DB2C08707542813DE99A82EE8B4EEDE036E9B6227F1F7EB7AFD5A14C9CA"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\test\\employee_settings_test.dart",
+    "hash": "76C940CF6550BC97F878197EB4140064EA5BAADC3828EB342C79566BD3A0D3B6"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\test\\frontend_product_navigation_test.dart",
+    "hash": "D47A5C59632782E529CE785A9A412DC4BCB9BE9364AF9D2D96A2B792A1A0223F"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\test\\offline_cash_queue_test.dart",
+    "hash": "F6C5E665599E59BC8045A2542CA9AADCAEFE73FEA670C3388F36E2561326814C"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\test\\offline_restart_characterization_test.dart",
+    "hash": "2FA6DBE29A762D22D0881844834E333E6C0B1FE379C51893DD6F254624C5B9B7"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\test\\pending_sale_live_restart_test.dart",
+    "hash": "7FC0626800590724133BC8B212C0B1D874D77E5B582022522212704A212BFFBB"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\test\\pending_sale_test.dart",
+    "hash": "62907916A79AEA302B6F7FE29DC22CDC50F223BB4E0D2017013FA5D489A3CB0E"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\test\\permission_service_test.dart",
+    "hash": "21F1A69ED741B96C0F9A04479D21A307C5807BDC1B7F152D60F498F0BD694225"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\test\\sale_submission_test.dart",
+    "hash": "CA7D708FC8B1FE5EF2AFF57E8FF8D2CD1D74DEEC1FB21237E115F94CD010D02E"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\test\\visual_reference_dashboard_test.dart",
+    "hash": "E27D9F2FD94DAFC6EA016D5C8D5FD0FB5A4F78672A59E968831682DE532D4780"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\test\\widget_test.dart",
+    "hash": "30CB4B70D6E149586450FD824D6BFEDAD00CB4731557CC93DA15381D54E6BBC3"
+  }
+]

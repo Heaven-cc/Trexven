@@ -1,0 +1,84 @@
+{
+  "manifest_sha256": "9d7ed348a6b31a02200e9fe3ff6e93a11dcb14125d7c2b6fb6f22de31f8ea328",
+  "matches_original_manifest": true,
+  "frozen_files_checked": 280,
+  "frozen_file_mismatches": [],
+  "current_backend_sources_checked": [
+    {
+      "path": "supabase/migrations/20261009070338_batch_4_financial_operations.sql",
+      "matches_frozen": true
+    },
+    {
+      "path": "supabase/migrations/20261009070340_batch_4_offline_cash_reconciliation.sql",
+      "matches_frozen": true
+    },
+    {
+      "path": "supabase/migrations/20261009075117_batch_4_recovery_and_history.sql",
+      "matches_frozen": true
+    },
+    {
+      "path": "supabase/migrations/20261009075318_batch_5_inventory_operations.sql",
+      "matches_frozen": true
+    },
+    {
+      "path": "supabase/migrations/20261009075612_batch_5_inventory_review_controls.sql",
+      "matches_frozen": true
+    },
+    {
+      "path": "supabase/migrations/20261009075911_batch_6_shared_cash_drawers.sql",
+      "matches_frozen": true
+    },
+    {
+      "path": "supabase/migrations/20261009080227_batch_6_handover_and_access.sql",
+      "matches_frozen": true
+    },
+    {
+      "path": "supabase/migrations/20261009080751_batch_4_financial_audit_events.sql",
+      "matches_frozen": true
+    },
+    {
+      "path": "supabase/migrations/20261009080842_batch_5_dormant_transfer_foundation.sql",
+      "matches_frozen": true
+    },
+    {
+      "path": "supabase/migrations/20261009081002_batch_7_subscription_billing_foundation.sql",
+      "matches_frozen": true
+    },
+    {
+      "path": "supabase/migrations/20261009081504_batch_7_enforcement_and_operations.sql",
+      "matches_frozen": true
+    },
+    {
+      "path": "supabase/migrations/20261009082051_batch_7_verified_provider_and_entitlement_controls.sql",
+      "matches_frozen": true
+    },
+    {
+      "path": "supabase/migrations/20261009082951_batch_7_final_access_controls.sql",
+      "matches_frozen": true
+    },
+    {
+      "path": "supabase/migrations/20261009122632_batch_4_transaction_recovery_boundaries.sql",
+      "matches_frozen": true
+    },
+    {
+      "path": "supabase/migrations/20261009135919_batch_8_owner_payment_and_session_integration.sql",
+      "matches_frozen": true
+    },
+    {
+      "path": "supabase/migrations/20261009184148_batch_9_role_scoped_in_app_alerts.sql",
+      "matches_frozen": true
+    },
+    {
+      "path": "supabase/functions/camera-ai/index.ts",
+      "matches_frozen": true
+    },
+    {
+      "path": "supabase/functions/delete-account/index.ts",
+      "matches_frozen": true
+    },
+    {
+      "path": "supabase/functions/deno.lock",
+      "matches_frozen": true
+    }
+  ]
+}

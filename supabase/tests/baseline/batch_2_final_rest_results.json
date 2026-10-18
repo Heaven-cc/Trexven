@@ -1,0 +1,178 @@
+[
+  {
+    "name": "owner own business",
+    "pass": true
+  },
+  {
+    "name": "cross-business owner read denied",
+    "pass": true
+  },
+  {
+    "name": "employee owner-only staff contract denied",
+    "pass": true
+  },
+  {
+    "name": "manager self permission escalation denied",
+    "pass": true
+  },
+  {
+    "name": "manager owner promotion denied",
+    "pass": true
+  },
+  {
+    "name": "sales price PATCH denied",
+    "pass": true
+  },
+  {
+    "name": "inventory price PATCH denied",
+    "pass": true
+  },
+  {
+    "name": "manager price PATCH denied",
+    "pass": true
+  },
+  {
+    "name": "inventory price INSERT denied",
+    "pass": true
+  },
+  {
+    "name": "inventory price UPSERT denied",
+    "pass": true
+  },
+  {
+    "name": "inventory bulk pricing denied atomically",
+    "pass": true
+  },
+  {
+    "name": "failed bulk leaves no pending row",
+    "pass": true
+  },
+  {
+    "name": "inventory cost price denied",
+    "pass": true
+  },
+  {
+    "name": "inventory pending product allowed",
+    "pass": true
+  },
+  {
+    "name": "pending product cannot sell",
+    "pass": true
+  },
+  {
+    "name": "forged product business denied",
+    "pass": true
+  },
+  {
+    "name": "permission metadata direct mutation denied",
+    "pass": true
+  },
+  {
+    "name": "explicit manager pricing grant works",
+    "pass": true
+  },
+  {
+    "name": "stale JWT price revocation immediate",
+    "pass": true
+  },
+  {
+    "name": "assigned branches only REST",
+    "pass": true
+  },
+  {
+    "name": "forged branch checkout denied",
+    "pass": true
+  },
+  {
+    "name": "anonymous public checkout denied",
+    "pass": true
+  },
+  {
+    "name": "private transaction RPC unavailable",
+    "pass": true
+  },
+  {
+    "name": "last stock concurrent checkout exactly once",
+    "pass": true
+  },
+  {
+    "name": "concurrent duplicate request returns same receipt",
+    "pass": true
+  },
+  {
+    "name": "legacy complete_pos_sale RPC works",
+    "pass": true
+  },
+  {
+    "name": "wrong total failure leaves stock and sales unchanged",
+    "pass": true
+  },
+  {
+    "name": "revoked checkout with stale JWT fails immediately",
+    "pass": true
+  },
+  {
+    "name": "changed price rejects stale checkout",
+    "pass": true
+  },
+  {
+    "name": "revocation ordered against in-flight checkout",
+    "pass": true
+  },
+  {
+    "name": "committing concurrent price change rejects stale checkout atomically",
+    "pass": false,
+    "error": "Unexpected response {\"status\":200,\"ok\":true,\"data\":{\"id\":\"740d8e41-67fb-4c8d-a295-1d39041cae69\",\"tax\":0,\"notes\":null,\"total\":10,\"status\":\"completed\",\"sold_at\":\"2026-10-08T01:06:39.69399+00:00\",\"discount\":0,\"quantity\":1,\"subtotal\":10,\"reference\":null,\"created_at\":\"2026-10-08T01:06:39.69399+00:00\",\"product_id\":null,\"sale_items\":[{\"id\":\"a9a97fad-513d-4880-ad0d-2f2fc633d2de\",\"total\":10,\"sale_id\":\"740d8e41-67fb-4c8d-a295-1d39041cae69\",\"discount\":0,\"quantity\":1,\"product_id\":\"c18897a0-6d30-4c17-b838-46b9e4549d49\",\"unit_price\":10,\"product_name\":\"Synthetic REST product\"}],\"unit_price\":0,\"business_id\":\"d6010483-3796-44e6-b553-63cbb93ebaa4\",\"employee_id\":\"ed2d16a0-6857-4422-aa71-6b863a6480a1\",\"sale_number\":\"TRX-740d8e41-67fb-4c8d-a295-1d39041cae69\",\"total_amount\":10,\"customer_name\":null,\"payment_method\":\"cash\"}}"
+  },
+  {
+    "name": "revocation ordered against in-flight checkout",
+    "pass": true
+  },
+  {
+    "name": "committing concurrent price change rejects stale checkout atomically",
+    "pass": true
+  },
+  {
+    "name": "multi-branch legacy request requires explicit branch",
+    "pass": false,
+    "error": "Unexpected response {\"status\":200,\"ok\":true,\"data\":{\"id\":\"c07d24d4-2ee1-4b4b-88f0-2ddf9bc4e4e5\",\"tax\":0,\"notes\":null,\"total\":10,\"status\":\"completed\",\"sold_at\":\"2026-10-08T01:07:22.405931+00:00\",\"discount\":0,\"quantity\":1,\"subtotal\":10,\"reference\":null,\"created_at\":\"2026-10-08T01:07:22.405931+00:00\",\"product_id\":null,\"sale_items\":[{\"id\":\"f3dfc627-17f0-456e-9c89-e79e71e9daf7\",\"total\":10,\"sale_id\":\"c07d24d4-2ee1-4b4b-88f0-2ddf9bc4e4e5\",\"discount\":0,\"quantity\":1,\"product_id\":\"c18897a0-6d30-4c17-b838-46b9e4549d49\",\"unit_price\":10,\"product_name\":\"Synthetic REST product\"}],\"unit_price\":0,\"business_id\":\"d6010483-3796-44e6-b553-63cbb93ebaa4\",\"employee_id\":\"ed2d16a0-6857-4422-aa71-6b863a6480a1\",\"sale_number\":\"TRX-c07d24d4-2ee1-4b4b-88f0-2ddf9bc4e4e5\",\"total_amount\":10,\"customer_name\":null,\"payment_method\":\"cash\"}}"
+  },
+  {
+    "name": "authorized explicit branch checkout and retry",
+    "pass": false,
+    "error": "HTTP 403 {\"code\":\"42501\",\"details\":null,\"hint\":null,\"message\":\"Branch operations not activated\"}"
+  },
+  {
+    "name": "unmapped legacy receipt blocked for branch employee",
+    "pass": false,
+    "error": "Unexpected response {\"status\":200,\"ok\":true,\"data\":{\"id\":\"bb251be9-b8fd-46fa-b425-0c85d5ea7a5b\",\"tax\":0,\"notes\":null,\"total\":10,\"status\":\"completed\",\"sold_at\":\"2026-10-08T00:56:54.507426+00:00\",\"discount\":0,\"quantity\":1,\"subtotal\":10,\"reference\":null,\"created_at\":\"2026-10-08T00:56:54.507426+00:00\",\"product_id\":null,\"sale_items\":[{\"id\":\"c2a8cd6f-6d14-4f0a-9e46-9e7b67feb42c\",\"total\":10,\"sale_id\":\"bb251be9-b8fd-46fa-b425-0c85d5ea7a5b\",\"discount\":0,\"quantity\":1,\"product_id\":\"c18897a0-6d30-4c17-b838-46b9e4549d49\",\"unit_price\":10,\"product_name\":\"Synthetic REST product\"}],\"unit_price\":0,\"business_id\":\"d6010483-3796-44e6-b553-63cbb93ebaa4\",\"employee_id\":\"ed2d16a0-6857-4422-aa71-6b863a6480a1\",\"sale_number\":\"TRX-bb251be9-b8fd-46fa-b425-0c85d5ea7a5b\",\"total_amount\":10,\"customer_name\":null,\"payment_method\":\"cash\"}}"
+  },
+  {
+    "name": "owner legacy receipt recovery unchanged",
+    "pass": true
+  },
+  {
+    "name": "branch assignment revocation stale JWT immediate",
+    "pass": true
+  },
+  {
+    "name": "multi-branch legacy request requires explicit branch",
+    "pass": true
+  },
+  {
+    "name": "authorized explicit branch checkout and retry",
+    "pass": true
+  },
+  {
+    "name": "unmapped legacy receipt blocked for branch employee",
+    "pass": true
+  },
+  {
+    "name": "owner legacy receipt recovery unchanged",
+    "pass": true
+  },
+  {
+    "name": "branch assignment revocation stale JWT immediate",
+    "pass": true
+  }
+]

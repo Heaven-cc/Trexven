@@ -1,0 +1,27 @@
+[
+  {
+    "suite": "batch_3_catalog_inventory_tests",
+    "exit": 0,
+    "assertion_calls": 42
+  },
+  {
+    "suite": "batch_2_authorization_tests",
+    "exit": 0,
+    "assertion_calls": 21
+  },
+  {
+    "suite": "batch_2_branch_isolation_tests",
+    "exit": 0,
+    "assertion_calls": 17
+  },
+  {
+    "suite": "batch_2_price_security_tests",
+    "exit": 0,
+    "assertion_calls": 14
+  },
+  {
+    "suite": "batch_2_checkout_compatibility_tests",
+    "exit": 0,
+    "assertion_calls": 11
+  }
+]

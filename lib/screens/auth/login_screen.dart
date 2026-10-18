@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:trexven_operations/trexven_operations.dart';
 
-import '../../widgets/trexven_logo.dart';
+import '../../widgets/google_sign_in_button.dart';
+import '../../widgets/trexven_auth_design.dart';
 import 'forgot_password_screen.dart';
 import 'register_screen.dart';
-import '../main_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -24,7 +25,11 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _loading = false;
 
   Future<void> _signIn() async {
-    if (!_formKey.currentState!.validate()) return;
+    if (_loading) return;
+
+    if (!(_formKey.currentState?.validate() ?? false)) {
+      return;
+    }
 
     setState(() => _loading = true);
 
@@ -32,7 +37,8 @@ class _LoginScreenState extends State<LoginScreen> {
       final email = _emailController.text.trim();
       final password = _passwordController.text;
 
-      final response = await Supabase.instance.client.auth.signInWithPassword(
+      final response =
+          await Supabase.instance.client.auth.signInWithPassword(
         email: email,
         password: password,
       );
@@ -42,73 +48,61 @@ class _LoginScreenState extends State<LoginScreen> {
       final user = response.user;
 
       if (user == null) {
-        setState(() => _loading = false);
-        _showError('Unable to sign in. Please check your account details.');
+        _showError(
+          'Unable to sign in. Please check your account details.',
+        );
         return;
       }
 
       if (user.emailConfirmedAt == null) {
         await Supabase.instance.client.auth.signOut();
+
         if (!mounted) return;
-        setState(() => _loading = false);
+
         await _showEmailVerificationMessage(email);
         return;
       }
-
-      // Fetch business data
-      final businessData = await Supabase.instance.client
-          .from('businesses')
-          .select('business_name')
-          .eq('owner_id', user.id)
-          .maybeSingle();
-
-      if (!mounted) return;
-      setState(() => _loading = false);
-
-      if (businessData == null) {
-        _showError('Business record not found. Please contact support.');
-        return;
-      }
-
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(
-          builder: (_) => MainScreen(
-            businessName: businessData['business_name'] ?? 'Your Business',
-            ownerName: user.userMetadata?['full_name'] ?? 'Owner',
-          ),
-        ),
-        (route) => false,
-      );
     } on AuthException catch (error) {
       if (!mounted) return;
-      setState(() => _loading = false);
+
       _showError(_getAuthErrorMessage(error));
-    } catch (error) {
+    } catch (_) {
       if (!mounted) return;
-      setState(() => _loading = false);
-      _showError('Something went wrong while signing in. Please try again.');
+
+      _showError(
+        'Something went wrong while signing in. Please try again.',
+      );
+    } finally {
+      if (mounted) {
+        setState(() => _loading = false);
+      }
     }
   }
 
   String _getAuthErrorMessage(AuthException error) {
     final message = error.message.toLowerCase();
+
     if (message.contains('invalid login credentials')) {
       return 'Incorrect email or password.';
     }
+
     if (message.contains('email not confirmed')) {
       return 'Please verify your email address before signing in.';
     }
+
     if (message.contains('too many requests')) {
-      return 'Too many attempts. Please wait a moment and try again.';
+      return 'Too many attempts. Please wait and try again.';
     }
-    return error.message;
+
+    return CustomerPresentation.error(error);
   }
 
-  Future<void> _showEmailVerificationMessage(String email) async {
+  Future<void> _showEmailVerificationMessage(
+      String email,
+      ) async {
     await showDialog<void>(
       context: context,
-      builder: (context) {
+      builder: (dialogContext) {
         return AlertDialog(
           title: const Text('Email not verified'),
           content: Text(
@@ -117,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           actions: [
             TextButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () => Navigator.pop(dialogContext),
               child: const Text('OK'),
             ),
           ],
@@ -127,10 +121,34 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _showError(String message) {
+    if (!mounted) return;
+
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
         behavior: SnackBarBehavior.floating,
+      ),
+    );
+  }
+
+  void _openRegister() {
+    if (_loading) return;
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const RegisterScreen(),
+      ),
+    );
+  }
+
+  void _openForgotPassword() {
+    if (_loading) return;
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const ForgotPasswordScreen(),
       ),
     );
   }
@@ -142,230 +160,220 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Color(0xFF0F172A),
+  Widget _buildRememberMeRow(BuildContext context) {
+    return Row(
+      children: [
+        SizedBox(
+          width: 24,
+          height: 24,
+          child: Checkbox(
+            value: _rememberMe,
+            activeColor: TrexvenAuthColors.blue,
+            checkColor: Colors.white,
+            side: BorderSide(
+              color: TrexvenAuthColors.border(context),
+              width: 1.5,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
+            onChanged: _loading
+                ? null
+                : (value) {
+                    setState(() {
+                      _rememberMe = value ?? false;
+                    });
+                  },
           ),
-          onPressed: () => Navigator.pop(context),
         ),
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(24, 20, 24, 30),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const Center(child: TrexvenLogo(size: 62)),
-                const SizedBox(height: 28),
-                const Text(
-                  'Welcome back',
-                  style: TextStyle(
-                    fontSize: 29,
-                    fontWeight: FontWeight.w800,
-                    color: Color(0xFF0F172A),
-                  ),
-                ),
-                const SizedBox(height: 7),
-                const Text(
-                  'Sign in to securely access your business.',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Color(0xFF64748B),
-                  ),
-                ),
-                const SizedBox(height: 30),
-                TextFormField(
-                  controller: _emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                    hintText: 'Email Address',
-                    prefixIcon: Icon(
-                      Icons.mail_outline,
-                      color: Color(0xFF64748B),
-                    ),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.trim().isEmpty) {
-                      return 'Please enter your email address.';
-                    }
-                    if (!RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$').hasMatch(value.trim())) {
-                      return 'Please enter a valid email address.';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 15),
-                TextFormField(
-                  controller: _passwordController,
-                  obscureText: _obscurePassword,
-                  decoration: InputDecoration(
-                    hintText: 'Password',
-                    prefixIcon: const Icon(
-                      Icons.lock_outline,
-                      color: Color(0xFF64748B),
-                    ),
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        _obscurePassword
-                            ? Icons.visibility_outlined
-                            : Icons.visibility_off_outlined,
-                        color: const Color(0xFF64748B),
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          _obscurePassword = !_obscurePassword;
-                        });
-                      },
-                    ),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your password.';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 8),
-                Row(
-                  children: [
-                    Checkbox(
-                      value: _rememberMe,
-                      activeColor: const Color(0xFF2563EB),
-                      onChanged: (value) {
-                        setState(() {
-                          _rememberMe = value ?? false;
-                        });
-                      },
-                    ),
-                    const Text(
-                      'Remember me',
-                      style: TextStyle(
-                        color: Color(0xFF64748B),
-                        fontSize: 13,
-                      ),
-                    ),
-                    const Spacer(),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => const ForgotPasswordScreen(),
-                          ),
-                        );
-                      },
-                      child: const Text(
-                        'Forgot password?',
-                        style: TextStyle(
-                          color: Color(0xFF2563EB),
-                          fontWeight: FontWeight.w700,
-                          fontSize: 13,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 18),
-                ElevatedButton(
-                  onPressed: _loading ? null : _signIn,
-                  child: _loading
-                      ? const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              width: 19,
-                              height: 19,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2,
-                                color: Colors.white,
-                              ),
-                            ),
-                            SizedBox(width: 12),
-                            Text('Signing you in...'),
-                          ],
-                        )
-                      : const Text('Sign In'),
-                ),
-                const SizedBox(height: 25),
-                const Row(
-                  children: [
-                    Expanded(child: Divider(color: Color(0xFFE2E8F0))),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 14),
-                      child: Text(
-                        'OR',
-                        style: TextStyle(
-                          color: Color(0xFF94A3B8),
-                          fontSize: 12,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                    Expanded(child: Divider(color: Color(0xFFE2E8F0))),
-                  ],
-                ),
-                const SizedBox(height: 22),
-                OutlinedButton.icon(
-                  onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(
-                          'Google sign-in isn\'t set up yet — use email and password for now.',
-                        ),
-                      ),
-                    );
-                  },
-                  icon: const Icon(Icons.g_mobiledata),
-                  label: const Text('Continue with Google'),
-                  style: OutlinedButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 52),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                    side: const BorderSide(color: Color(0xFFCBD5E1)),
-                  ),
-                ),
-                const SizedBox(height: 24),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "Don't have an account? ",
-                      style: TextStyle(
-                        color: Color(0xFF64748B),
-                        fontSize: 14,
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (_) => const RegisterScreen()),
-                        );
-                      },
-                      child: const Text(
-                        'Create one',
-                        style: TextStyle(
-                          color: Color(0xFF2563EB),
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+        const SizedBox(width: 9),
+        Expanded(
+          child: Text(
+            'Remember me',
+            style: TextStyle(
+              color: TrexvenAuthColors.navy(context),
+              fontSize: 13,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ),
+        TextButton(
+          onPressed: _loading ? null : _openForgotPassword,
+          style: TextButton.styleFrom(
+            foregroundColor: TrexvenAuthColors.blue,
+            padding: const EdgeInsets.symmetric(
+              horizontal: 4,
+              vertical: 8,
+            ),
+          ),
+          child: const Text(
+            'Forgot password?',
+            style: TextStyle(
+              color: TrexvenAuthColors.blue,
+              fontSize: 13,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildLoginForm(BuildContext context) {
+    return TrexvenAuthCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          TrexvenAuthField(
+            label: 'Email address',
+            hint: 'Enter your email address',
+            controller: _emailController,
+            enabled: !_loading,
+            keyboardType: TextInputType.emailAddress,
+            prefixIcon: Icon(
+              Icons.mail_outline_rounded,
+              color: TrexvenAuthColors.muted(context),
+            ),
+            validator: (value) {
+              final email = value?.trim() ?? '';
+              if (email.isEmpty) {
+                return 'Please enter your email address.';
+              }
+              if (!RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$').hasMatch(email)) {
+                return 'Please enter a valid email address.';
+              }
+              return null;
+            },
+          ),
+          const SizedBox(height: 18),
+          TrexvenAuthField(
+            label: 'Password',
+            hint: 'Enter your password',
+            controller: _passwordController,
+            enabled: !_loading,
+            obscureText: _obscurePassword,
+            prefixIcon: Icon(
+              Icons.lock_outline_rounded,
+              color: TrexvenAuthColors.muted(context),
+            ),
+            suffixIcon: IconButton(
+              tooltip: _obscurePassword ? 'Show password' : 'Hide password',
+              icon: Icon(
+                _obscurePassword
+                    ? Icons.visibility_outlined
+                    : Icons.visibility_off_outlined,
+                color: TrexvenAuthColors.muted(context),
+              ),
+              onPressed: () {
+                setState(() {
+                  _obscurePassword = !_obscurePassword;
+                });
+              },
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter your password.';
+              }
+              return null;
+            },
+          ),
+          const SizedBox(height: 14),
+          _buildRememberMeRow(context),
+          const SizedBox(height: 22),
+          TrexvenAuthPrimaryButton(
+            label: 'Sign In',
+            loading: _loading,
+            showArrow: true,
+            onPressed: _signIn,
+          ),
+          const SizedBox(height: 24),
+          const TrexvenAuthOrDivider(),
+          const SizedBox(height: 22),
+          GoogleSignInButton(
+            enabled: !_loading,
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TrexvenAuthShell(
+      child: Column(
+        children: [
+          const TrexvenAuthBackButton(),
+          Expanded(
+            child: SingleChildScrollView(
+              keyboardDismissBehavior:
+                  ScrollViewKeyboardDismissBehavior.onDrag,
+              padding: const EdgeInsets.fromLTRB(24, 8, 24, 28),
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 440),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        const Center(
+                          child: TrexvenAuthBrand(size: 76),
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                          'Welcome back',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 26,
+                            fontWeight: FontWeight.w800,
+                            color: TrexvenAuthColors.navy(context),
+                            letterSpacing: -0.5,
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          'Sign in to your business manager account',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: TrexvenAuthColors.muted(context),
+                          ),
+                        ),
+                        const SizedBox(height: 24),
+                        _buildLoginForm(context),
+                        const SizedBox(height: 24),
+                        Wrap(
+                          alignment: WrapAlignment.center,
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          children: [
+                            Text(
+                              "Don't have an account? ",
+                              style: TextStyle(
+                                color: TrexvenAuthColors.muted(context),
+                                fontSize: 14,
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: _loading ? null : _openRegister,
+                              child: const Text(
+                                'Create account',
+                                style: TextStyle(
+                                  color: TrexvenAuthColors.blue,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

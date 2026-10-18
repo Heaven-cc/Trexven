@@ -1,0 +1,134 @@
+import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:odt/core/app_theme.dart';
+import 'package:odt/core/user_provider.dart';
+import 'package:odt/screens/dashboard/dashboard_screen.dart';
+import 'package:odt/widgets/trexven_widgets.dart';
+
+void main() {
+  setUpAll(() async {
+    SharedPreferences.setMockInitialValues({});
+    await Supabase.initialize(
+      url: 'https://example.invalid',
+      publishableKey: 'test',
+      authOptions: const FlutterAuthClientOptions(autoRefreshToken: false),
+      httpClient: MockClient(
+        (request) async => http.Response(
+          jsonEncode(
+            request.url.path.endsWith('/businesses')
+                ? request.headers['accept']?.contains('object') == true
+                      ? {'id': 'b', 'business_name': 'Shop', 'owner_id': 'u'}
+                      : [
+                          {'id': 'b', 'business_name': 'Shop', 'owner_id': 'u'},
+                        ]
+                : [],
+          ),
+          200,
+          headers: {'content-type': 'application/json'},
+          request: request,
+        ),
+      ),
+    );
+    final payload = base64Url
+        .encode(
+          utf8.encode(
+            jsonEncode({
+              'sub': 'u',
+              'exp': DateTime.now().millisecondsSinceEpoch ~/ 1000 + 3600,
+            }),
+          ),
+        )
+        .replaceAll('=', '');
+    await Supabase.instance.client.auth.setInitialSession(
+      jsonEncode({
+        'access_token': 'eyJhbGciOiJIUzI1NiJ9.$payload.test',
+        'refresh_token': 'test',
+        'token_type': 'bearer',
+        'expires_in': 3600,
+        'user': {
+          'id': 'u',
+          'aud': 'authenticated',
+          'app_metadata': {},
+          'user_metadata': {},
+          'created_at': '2026-01-01T00:00:00Z',
+        },
+      }),
+    );
+  });
+  tearDownAll(() => Supabase.instance.dispose());
+  for (final width in [320.0, 412.0]) {
+    for (final scale in [1.0, 2.0]) {
+      testWidgets(
+        'Dashboard cards remain usable at width $width scale $scale',
+        (tester) async {
+          tester.view.physicalSize = Size(width, 844);
+          tester.view.devicePixelRatio = 1;
+          addTearDown(tester.view.resetPhysicalSize);
+          addTearDown(tester.view.resetDevicePixelRatio);
+          late UserProvider user;
+          await tester.runAsync(() async {
+            user = UserProvider();
+            await Future<void>.delayed(const Duration(milliseconds: 20));
+          });
+          int cameraOpens = 0;
+          await tester.pumpWidget(
+            ChangeNotifierProvider<UserProvider>.value(
+              value: user,
+              child: MaterialApp(
+                theme: AppTheme.lightTheme,
+                builder: (context, child) => MediaQuery(
+                  data: MediaQuery.of(
+                    context,
+                  ).copyWith(textScaler: TextScaler.linear(scale)),
+                  child: child!,
+                ),
+                home: Scaffold(
+                  body: DashboardScreen(
+                    ownerName: 'Owner',
+                    businessName: 'Shop',
+                    onOpenCameras: () => cameraOpens++,
+                  ),
+                ),
+              ),
+            ),
+          );
+          await tester.runAsync(
+            () => Future<void>.delayed(const Duration(milliseconds: 100)),
+          );
+          await tester.pumpAndSettle();
+          final hero = find.byKey(const ValueKey('dashboard-sales-hero'));
+          expect(hero, findsOneWidget);
+          expect(tester.getSize(hero).width, width - 32);
+          for (var i = 0; i < 4; i++) {
+            final card = find.byKey(ValueKey('dashboard-kpi-$i'));
+            await tester.ensureVisible(card);
+            // Compact cards grow with content and text scaling, while retaining
+            // a usable target. The former 132px minimum prevented compact KPIs.
+            expect(tester.getSize(card).height, greaterThanOrEqualTo(48));
+            expect(tester.getSize(card).width, lessThanOrEqualTo(width - 32));
+          }
+          final cameras = find.byKey(
+            const ValueKey('dashboard-action-Cameras'),
+          );
+          await tester.ensureVisible(cameras);
+          await tester.pumpAndSettle();
+          expect(tester.getSize(cameras).height, greaterThanOrEqualTo(78));
+          await tester.tap(
+            find.ancestor(of: cameras, matching: find.byType(TrexvenPressable)),
+          );
+          await tester.pumpAndSettle();
+          expect(cameraOpens, 1);
+          expect(tester.takeException(), isNull);
+          await tester.pumpWidget(const SizedBox());
+          user.dispose();
+        },
+      );
+    }
+  }
+}

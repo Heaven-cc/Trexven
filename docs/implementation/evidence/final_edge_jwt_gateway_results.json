@@ -1,0 +1,285 @@
+{
+  "project": "qysspzlfiysekvxnlzsh",
+  "checks": [
+    {
+      "check": "isolated Auth fixture owner",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "genuine Auth session owner",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "synthetic owner onboarding owner",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "isolated Auth fixture other_owner",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "genuine Auth session other_owner",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "synthetic owner onboarding other_owner",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "create-employee rejects missing JWT",
+      "passed": true,
+      "http_status": 401
+    },
+    {
+      "check": "create-employee rejects no credentials",
+      "passed": true,
+      "http_status": 401
+    },
+    {
+      "check": "create-employee rejects malformed JWT",
+      "passed": true,
+      "http_status": 401
+    },
+    {
+      "check": "create-employee rejects tampered JWT",
+      "passed": true,
+      "http_status": 401
+    },
+    {
+      "check": "create-employee rejects API key as bearer",
+      "passed": true,
+      "http_status": 401
+    },
+    {
+      "check": "manage-employee rejects missing JWT",
+      "passed": true,
+      "http_status": 401
+    },
+    {
+      "check": "manage-employee rejects no credentials",
+      "passed": true,
+      "http_status": 401
+    },
+    {
+      "check": "manage-employee rejects malformed JWT",
+      "passed": true,
+      "http_status": 401
+    },
+    {
+      "check": "manage-employee rejects tampered JWT",
+      "passed": true,
+      "http_status": 401
+    },
+    {
+      "check": "manage-employee rejects API key as bearer",
+      "passed": true,
+      "http_status": 400
+    },
+    {
+      "check": "angel rejects missing JWT",
+      "passed": true,
+      "http_status": 401
+    },
+    {
+      "check": "angel rejects no credentials",
+      "passed": true,
+      "http_status": 401
+    },
+    {
+      "check": "angel rejects malformed JWT",
+      "passed": true,
+      "http_status": 401
+    },
+    {
+      "check": "angel rejects tampered JWT",
+      "passed": true,
+      "http_status": 401
+    },
+    {
+      "check": "angel rejects API key as bearer",
+      "passed": true,
+      "http_status": 401
+    },
+    {
+      "check": "valid owner JWT creates manager",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "pre-session employee-login returns trusted manager",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "Auth verifies actual returned manager JWT",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "valid owner JWT creates sales_employee",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "pre-session employee-login returns trusted sales_employee",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "Auth verifies actual returned sales_employee JWT",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "valid owner JWT creates inventory_employee",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "pre-session employee-login returns trusted inventory_employee",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "Auth verifies actual returned inventory_employee JWT",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "valid owner JWT creates employee",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "pre-session employee-login returns trusted employee",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "Auth verifies actual returned employee JWT",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "valid sales_employee JWT cannot administer staff",
+      "passed": true,
+      "http_status": 400
+    },
+    {
+      "check": "valid sales_employee JWT cannot reset staff",
+      "passed": true,
+      "http_status": 403
+    },
+    {
+      "check": "valid inventory_employee JWT cannot administer staff",
+      "passed": true,
+      "http_status": 400
+    },
+    {
+      "check": "valid inventory_employee JWT cannot reset staff",
+      "passed": true,
+      "http_status": 403
+    },
+    {
+      "check": "valid other_owner JWT cannot administer staff",
+      "passed": true,
+      "http_status": 400
+    },
+    {
+      "check": "valid other_owner JWT cannot reset staff",
+      "passed": true,
+      "http_status": 403
+    },
+    {
+      "check": "valid owner JWT resets authorized ordinary staff",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "old credential rejected after owner reset",
+      "passed": true,
+      "http_status": 401
+    },
+    {
+      "check": "new credential returns real session after owner reset",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "valid manager JWT resets authorized ordinary staff",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "old credential rejected after manager reset",
+      "passed": true,
+      "http_status": 401
+    },
+    {
+      "check": "new credential returns real session after manager reset",
+      "passed": true,
+      "http_status": 200
+    },
+    {
+      "check": "manager cannot promote staff with a valid JWT",
+      "passed": true,
+      "http_status": 403
+    },
+    {
+      "check": "manager cannot reset self through admin route",
+      "passed": true,
+      "http_status": 403
+    },
+    {
+      "check": "Angel denies valid non-owner/cross-owner manager JWT",
+      "passed": true,
+      "http_status": 403
+    },
+    {
+      "check": "Angel denies valid non-owner/cross-owner sales_employee JWT",
+      "passed": true,
+      "http_status": 403
+    },
+    {
+      "check": "Angel denies valid non-owner/cross-owner inventory_employee JWT",
+      "passed": true,
+      "http_status": 403
+    },
+    {
+      "check": "Angel denies valid non-owner/cross-owner other_owner JWT",
+      "passed": true,
+      "http_status": 403
+    },
+    {
+      "check": "Angel valid owner JWT reaches owned-business handler without provider",
+      "passed": true,
+      "http_status": 503
+    },
+    {
+      "check": "owner revokes manager authority",
+      "passed": true,
+      "http_status": 204
+    },
+    {
+      "check": "existing valid manager JWT denied immediately after revocation",
+      "passed": true,
+      "http_status": 403
+    }
+  ],
+  "passed": true,
+  "production_writes": 0,
+  "session_jwt_algorithm": "ES256",
+  "gateway_flags": {
+    "create-employee": true,
+    "manage-employee": true,
+    "angel": true,
+    "employee-login": false
+  },
+  "synthetic_auth_cleanup_passed": true
+}

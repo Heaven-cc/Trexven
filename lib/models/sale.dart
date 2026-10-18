@@ -3,7 +3,7 @@ class Sale {
   final String? businessId;
   final String productId;
   final String productName;
-  final int quantity;
+  final num quantity;
   final double unitPrice;
   final double totalPrice;
   final String? employeeId;
@@ -22,6 +22,9 @@ class Sale {
   });
 
   factory Sale.fromMap(Map<String, dynamic> map) {
+    final quantity = map['quantity'] is num
+        ? map['quantity'] as num
+        : num.tryParse(map['quantity']?.toString() ?? '');
     return Sale(
       id: map['id']?.toString(),
       businessId: map['business_id']?.toString(),
@@ -30,14 +33,12 @@ class Sale {
       // is only populated when the caller merges it in from a product
       // lookup (see DatabaseService.getSales/getSalesStream).
       productName: map['product_name']?.toString() ?? '',
-      quantity: (map['quantity'] as num?)?.toInt() ?? 0,
+      quantity: quantity != null && quantity.isFinite ? quantity : 0,
       unitPrice: (map['unit_price'] as num?)?.toDouble() ?? 0,
       totalPrice: (map['total'] as num?)?.toDouble() ?? 0,
       employeeId: map['employee_id']?.toString(),
       createdAt: map['created_at'] != null
-          ? DateTime.tryParse(
-        map['created_at'].toString(),
-      )
+          ? DateTime.tryParse(map['created_at'].toString())
           : null,
     );
   }

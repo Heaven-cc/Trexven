@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-08",
+  "files": {
+    "Trexven/lib/screens/auth/account_gate.dart": "cb571187a79bc3ccb28788fa3db91262c432b755e8750fb9e6a68445d43d3b96",
+    "Trexven/supabase/functions/employee-login/index.ts": "4cee6ad9cb63f84759c5d4eae8f2a76cfc2757e744262d2be9ee4c11ca10f105",
+    "Trexven/supabase/functions/create-employee/index.ts": "d46286898fb98dbcdfe78ac15d28b10ce4f4ba779a16cbdb8e027ceaadd3eb3c",
+    "Trexven/supabase/functions/manage-employee/index.ts": "54aff407e0e82ddad27cd10e44ea83f6fe798ae773cc4747300cc06497ddb089",
+    "Trexven/supabase/functions/angel/index.ts": "cffa95bca24584a453760cf34173f598518c20b75b1e24277307e5aa57649d47",
+    "Trexven/supabase/functions/_shared/employee-access.ts": "66c6867a4f99f0e5a0daa9d59ec8a9ec6c3c07456e80394f5ca1924521e0eeb0",
+    "Trexven/supabase/functions/_shared/login-permissions.ts": "85a70f1291120707fd71bd7204d48e8794634f600cd21cae6460e037a43c4c8e",
+    "Trexven/supabase/functions/deno.lock": "9c6e6e0436e7a4bd991af30af32face843d35fe3a570e4eb10390eefcf13e122",
+    "Trexven/supabase/tests/angel_test.cjs": "0a3b764c1e6cdba5c3ba8c4648bd110794d4c959d57029df76ad4807cebd79ae",
+    "Trexven/supabase/tests/batch_2_final_edge.cjs": "c38511ee9a0c6c12b578c69207d2a5dffc49d1e6574ec7a209403933c4feb004",
+    "Trexven/supabase/tests/batch_2_final_boundaries.cjs": "65cd912ea10b655289559b8ec3e7c96e7ca241716685ded437bc7343bee7a37c",
+    "Trexven/supabase/tests/checkpoint_b_rest.cjs": "7c1092b994f017ec73a7fa6b4566b6b706ebfd23f09c9153844006840bc6da66",
+    "Trexven/supabase/tests/baseline/build_baseline.py": "9324e4f36c28b148edde3c753571cb044845d110b30f0a230eb861f9d067cfca",
+    "trexvenpos/supabase/functions/employee-login/index.ts": "4cee6ad9cb63f84759c5d4eae8f2a76cfc2757e744262d2be9ee4c11ca10f105",
+    "trexvenpos/lib/src/features/auth/business_selection_screen.dart": "7ede303b84c78322696f0297b52b8b101d3791cc5558fb81c2604a29e2f087cd",
+    "trexvenpos/test/offline_restart_characterization_test.dart": "419408f2b5528851546c7ba0d609c2dc55f55b036eed71982bb0e9bb654f61ec"
+  }
+}

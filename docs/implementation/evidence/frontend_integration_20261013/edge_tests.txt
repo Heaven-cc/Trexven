@@ -1,0 +1,243 @@
+TAP version 13
+# (node:6384) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# PASS: Angel new chat isolation, conversation continuation, permissions, persisted history, exact sales totals, rate limit, authentication and persistence failure.
+# Subtest: supabase\\tests\\angel_test.cjs
+ok 1 - supabase\\tests\\angel_test.cjs
+  ---
+  duration_ms: 866.5504
+  type: 'test'
+  ...
+# (node:12212) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: lifecycle acknowledges only a preserved, requested receipt using caller JWT
+ok 2 - lifecycle acknowledges only a preserved, requested receipt using caller JWT
+  ---
+  duration_ms: 381.2286
+  type: 'test'
+  ...
+# Subtest: lifecycle rejects missing JWT before RPC
+ok 3 - lifecycle rejects missing JWT before RPC
+  ---
+  duration_ms: 7.152
+  type: 'test'
+  ...
+# Subtest: camera rejects missing JWT before RPC
+ok 4 - camera rejects missing JWT before RPC
+  ---
+  duration_ms: 14.1857
+  type: 'test'
+  ...
+# Subtest: lifecycle rejects non-bearer credentials before RPC
+ok 5 - lifecycle rejects non-bearer credentials before RPC
+  ---
+  duration_ms: 6.345
+  type: 'test'
+  ...
+# Subtest: camera rejects non-bearer credentials before RPC
+ok 6 - camera rejects non-bearer credentials before RPC
+  ---
+  duration_ms: 8.3209
+  type: 'test'
+  ...
+# Subtest: lifecycle rejects invalid JWT before RPC
+ok 7 - lifecycle rejects invalid JWT before RPC
+  ---
+  duration_ms: 63.2563
+  type: 'test'
+  ...
+# Subtest: camera rejects invalid JWT before RPC
+ok 8 - camera rejects invalid JWT before RPC
+  ---
+  duration_ms: 11.7924
+  type: 'test'
+  ...
+# Subtest: lifecycle rejects legacy destructive payload without mutation
+ok 9 - lifecycle rejects legacy destructive payload without mutation
+  ---
+  duration_ms: 12.8293
+  type: 'test'
+  ...
+# Subtest: lifecycle rejects missing request without mutation
+ok 10 - lifecycle rejects missing request without mutation
+  ---
+  duration_ms: 7.31
+  type: 'test'
+  ...
+# Subtest: lifecycle rejects null JSON without mutation
+ok 11 - lifecycle rejects null JSON without mutation
+  ---
+  duration_ms: 20.097
+  type: 'test'
+  ...
+# Subtest: lifecycle rejects malformed JSON without mutation
+ok 12 - lifecycle rejects malformed JSON without mutation
+  ---
+  duration_ms: 4.9119
+  type: 'test'
+  ...
+# Subtest: lifecycle ignores forged user, owner, role and destructive kind
+ok 13 - lifecycle ignores forged user, owner, role and destructive kind
+  ---
+  duration_ms: 16.6721
+  type: 'test'
+  ...
+# Subtest: lifecycle forwards database denial for employee
+ok 14 - lifecycle forwards database denial for employee
+  ---
+  duration_ms: 6.412
+  type: 'test'
+  ...
+# Subtest: lifecycle forwards database denial for manager
+ok 15 - lifecycle forwards database denial for manager
+  ---
+  duration_ms: 11.9736
+  type: 'test'
+  ...
+# Subtest: lifecycle forwards database denial for foreign-owner
+ok 16 - lifecycle forwards database denial for foreign-owner
+  ---
+  duration_ms: 4.3059
+  type: 'test'
+  ...
+# Subtest: lifecycle rpcFailure never claims confirmation
+ok 17 - lifecycle rpcFailure never claims confirmation
+  ---
+  duration_ms: 5.7722
+  type: 'test'
+  ...
+# Subtest: lifecycle emptyReceipt never claims confirmation
+ok 18 - lifecycle emptyReceipt never claims confirmation
+  ---
+  duration_ms: 7.1551
+  type: 'test'
+  ...
+# Subtest: lifecycle badReceipt never claims confirmation
+ok 19 - lifecycle badReceipt never claims confirmation
+  ---
+  duration_ms: 4.8193
+  type: 'test'
+  ...
+# Subtest: lifecycle logs only a fixed failure code
+ok 20 - lifecycle logs only a fixed failure code
+  ---
+  duration_ms: 12.4494
+  type: 'test'
+  ...
+# Subtest: camera derives business and actor from verified records
+ok 21 - camera derives business and actor from verified records
+  ---
+  duration_ms: 14.4174
+  type: 'test'
+  ...
+# Subtest: camera hidden foreign event stops before feature and limiter
+ok 22 - camera hidden foreign event stops before feature and limiter
+  ---
+  duration_ms: 10.2819
+  type: 'test'
+  ...
+# Subtest: camera entitlement denial stops before privileged limiter and insights
+ok 23 - camera entitlement denial stops before privileged limiter and insights
+  ---
+  duration_ms: 6.3588
+  type: 'test'
+  ...
+# Subtest: camera limiter denial returns 429
+ok 24 - camera limiter denial returns 429
+  ---
+  duration_ms: 18.5108
+  type: 'test'
+  ...
+# Subtest: camera missing correlated evidence is stated honestly
+ok 25 - camera missing correlated evidence is stated honestly
+  ---
+  duration_ms: 16.0325
+  type: 'test'
+  ...
+# Subtest: camera invalid payload null returns 400
+ok 26 - camera invalid payload null returns 400
+  ---
+  duration_ms: 12.8725
+  type: 'test'
+  ...
+# Subtest: camera invalid payload { returns 400
+ok 27 - camera invalid payload { returns 400
+  ---
+  duration_ms: 17.4765
+  type: 'test'
+  ...
+# Subtest: camera invalid payload {} returns 400
+ok 28 - camera invalid payload {} returns 400
+  ---
+  duration_ms: 17.0647
+  type: 'test'
+  ...
+# Subtest: camera database failure leaks no details
+ok 29 - camera database failure leaks no details
+  ---
+  duration_ms: 13.8889
+  type: 'test'
+  ...
+# Subtest: lifecycle missing configuration is unavailable
+ok 30 - lifecycle missing configuration is unavailable
+  ---
+  duration_ms: 4.2279
+  type: 'test'
+  ...
+# Subtest: lifecycle preflight needs no credentials
+ok 31 - lifecycle preflight needs no credentials
+  ---
+  duration_ms: 4.3942
+  type: 'test'
+  ...
+# Subtest: lifecycle rejects unsupported method
+ok 32 - lifecycle rejects unsupported method
+  ---
+  duration_ms: 12.0207
+  type: 'test'
+  ...
+# Subtest: camera missing configuration is unavailable
+ok 33 - camera missing configuration is unavailable
+  ---
+  duration_ms: 55.9199
+  type: 'test'
+  ...
+# Subtest: camera preflight needs no credentials
+ok 34 - camera preflight needs no credentials
+  ---
+  duration_ms: 17.9956
+  type: 'test'
+  ...
+# Subtest: camera rejects unsupported method
+ok 35 - camera rejects unsupported method
+  ---
+  duration_ms: 37.8172
+  type: 'test'
+  ...
+# (node:10688) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# PASS: nine employee-creation mock scenarios, provisional roles, caller-derived authorization, collisions and safe compensation.
+# Subtest: supabase\\tests\\create_employee_test.cjs
+ok 3 - supabase\\tests\\create_employee_test.cjs
+  ---
+  duration_ms: 811.4415
+  type: 'test'
+  ...
+# (node:6156) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# PASS: six employee-reset authorization cases; cross-business and owner/manager protection.
+# Subtest: supabase\\tests\\manage_employee_test.cjs
+ok 4 - supabase\\tests\\manage_employee_test.cjs
+  ---
+  duration_ms: 803.1433
+  type: 'test'
+  ...
+1..37
+# tests 37
+# suites 0
+# pass 37
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1694.2706

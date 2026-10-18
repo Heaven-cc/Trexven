@@ -1,0 +1,11 @@
+{
+  "project_id": "ufehcfrlygqvminfjumf",
+  "verification": "read-only PostgreSQL privilege catalog query via Supabase MCP; no customer rows read",
+  "role": "authenticated",
+  "full_table_product_select": false,
+  "unreadable_product_columns": [
+    "cost_price"
+  ],
+  "other_product_columns_readable": true,
+  "resolution": "Existing business-scoped column projection; no grants or RLS changes"
+}

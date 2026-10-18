@@ -1,0 +1,188 @@
+{
+  "project": "ufehcfrlygqvminfjumf",
+  "time_utc": "2026-10-09T05:51:52.975947+00:00",
+  "preflight_passed": true,
+  "dump_exit": 0,
+  "table_fingerprint_count": 79,
+  "archive_path": "C:\\Users\\USER\\AppData\\Roaming\\TREXVEN\\backups\\ufehcfrlygqvminfjumf\\20261009-5f220e743115415bb00699c4b30dcfd8\\production.dump.dpapi",
+  "archive_bytes": 615549,
+  "archive_sha256": "e73eda6ee33bc49392944b42e6f6cf7cfe6abab33fe6c58450387ed093a6d748",
+  "snapshot_consistent": true,
+  "production_writes": 0,
+  "restore_verified": true,
+  "archive_list_exit": 0,
+  "recovery_target": {
+    "runtime": "native",
+    "stack": "trexven-batch3-replay6",
+    "port": 54372,
+    "database": "trexven_backup_restore_87422b3c413d",
+    "api_exposed": false
+  },
+  "restore_exit": 0,
+  "schema_comparison": [
+    {
+      "group": "structure.tables",
+      "match": true,
+      "source_count": 32,
+      "staging_count": 32
+    },
+    {
+      "group": "structure.columns",
+      "match": true,
+      "source_count": 319,
+      "staging_count": 319
+    },
+    {
+      "group": "structure.constraints",
+      "match": true,
+      "source_count": 115,
+      "staging_count": 115
+    },
+    {
+      "group": "structure.indexes",
+      "match": true,
+      "source_count": 96,
+      "staging_count": 96
+    },
+    {
+      "group": "structure.types",
+      "match": true
+    },
+    {
+      "group": "structure.inheritance",
+      "match": true
+    },
+    {
+      "group": "security.rules",
+      "match": true
+    },
+    {
+      "group": "security.policies",
+      "match": true,
+      "source_count": 108,
+      "staging_count": 108
+    },
+    {
+      "group": "security.triggers",
+      "match": true,
+      "source_count": 8,
+      "staging_count": 8
+    },
+    {
+      "group": "security.publications",
+      "match": true,
+      "source_count": 7,
+      "staging_count": 7
+    },
+    {
+      "group": "security.event_triggers",
+      "match": true
+    },
+    {
+      "group": "functions",
+      "match": true,
+      "source_count": 22,
+      "staging_count": 22
+    },
+    {
+      "group": "acl.tables",
+      "match": true,
+      "source_count": 32,
+      "staging_count": 32
+    },
+    {
+      "group": "acl.columns",
+      "match": true
+    },
+    {
+      "group": "acl.schemas",
+      "match": true,
+      "source_count": 2,
+      "staging_count": 2
+    },
+    {
+      "group": "acl.defaults",
+      "match": true,
+      "source_count": 6,
+      "staging_count": 6
+    },
+    {
+      "group": "acl.functions",
+      "match": true,
+      "source_count": 22,
+      "staging_count": 22
+    },
+    {
+      "group": "dependencies.custom_casts",
+      "match": true
+    },
+    {
+      "group": "dependencies.custom_operators",
+      "match": true
+    },
+    {
+      "group": "dependencies.custom_aggregates",
+      "match": true
+    },
+    {
+      "group": "dependencies.custom_collations",
+      "match": true
+    },
+    {
+      "group": "dependencies.external_constraints",
+      "match": true,
+      "source_count": 8,
+      "staging_count": 8
+    },
+    {
+      "group": "dependencies.publication_settings",
+      "match": true,
+      "source_count": 1,
+      "staging_count": 1
+    },
+    {
+      "group": "dependencies.external_object_dependencies",
+      "match": true,
+      "source_count": 87,
+      "staging_count": 87
+    },
+    {
+      "group": "extras.statistics_objects",
+      "match": true
+    },
+    {
+      "group": "extras.object_descriptions",
+      "match": true
+    },
+    {
+      "group": "extras.extension_dependencies",
+      "match": true
+    },
+    {
+      "group": "extras.managed_auth_references",
+      "match": true,
+      "source_count": 7,
+      "staging_count": 7
+    },
+    {
+      "group": "extras.unusual_column_metadata",
+      "match": true
+    },
+    {
+      "group": "extras.managed_schema_functions",
+      "match": true,
+      "source_count": 6,
+      "staging_count": 6
+    }
+  ],
+  "application_schema_match": true,
+  "fingerprint_tables_compared": 79,
+  "fingerprint_mismatches": [],
+  "isolated_database_cleanup_exit": 0,
+  "encrypted_sha256": "d780083e12483367a5628a7b813984e9c36f330b9a0e52afcce40b6ba93086d0",
+  "archive_encryption": "Windows DPAPI CurrentUser",
+  "decrypt_hash_match": true,
+  "plaintext_archive_removed": true,
+  "dedicated_runtime_stopped_and_removed": true,
+  "supersedes_corrupted_drive_D_backup": true
+}

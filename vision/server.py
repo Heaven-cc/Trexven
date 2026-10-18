@@ -118,7 +118,7 @@ def process_camera(camera: dict[str, Any]) -> None:
 
             for event in events.events_from_detections(detections, zones):
                 # High/critical events get a snapshot attached so the camera-ai
-                # edge function can hand Claude an actual image, not just
+                # reviewers can inspect an actual image, not just
                 # detection JSON. Best-effort — a snapshot failure must never
                 # block the event itself from being recorded.
                 if event.get("severity") in ("high", "critical"):

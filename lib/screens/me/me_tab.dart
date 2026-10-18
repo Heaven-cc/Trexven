@@ -1,198 +1,246 @@
+import 'package:trexven_design_system/trexven_design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../core/user_provider.dart';
 import '../../services/auth_service.dart';
-import '../../services/vision_service.dart';
+import '../intelligence/vision_server_screen.dart';
 import '../welcome_screen.dart';
+import 'employment_screen.dart';
+import 'profile_screen.dart';
+import 'business_profile_screen.dart';
+import 'permissions_screen.dart';
+import 'notifications_settings_screen.dart';
+import 'security_screen.dart';
+import 'appearance_screen.dart';
+import 'data_backup_screen.dart';
+import 'help_support_screen.dart';
+import 'about_screen.dart';
+import 'billing_screen.dart';
+import 'package:trexven_operations/trexven_operations.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MeTab extends StatelessWidget {
   final String ownerName;
   final String businessName;
 
-  MeTab({
-    super.key,
-    required this.ownerName,
-    required this.businessName,
-  });
+  MeTab({super.key, required this.ownerName, required this.businessName});
 
   final AuthService _auth = AuthService();
-  final VisionService _vision = VisionService();
-
-  void _showVisionSettings(BuildContext context) async {
-    await _vision.init();
-    final urlCtrl = TextEditingController(text: _vision.baseUrl);
-    final keyCtrl = TextEditingController(text: _vision.apiKey);
-
-    if (!context.mounted) return;
-
-    showDialog(
-      context: context,
-      builder: (ctx) {
-        return AlertDialog(
-          title: const Text(
-            'Vision Server Configuration',
-            style: TextStyle(fontWeight: FontWeight.w800),
-          ),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Text(
-                  'Set the URL and API key of your AI Vision server (local or cloud).',
-                  style: TextStyle(fontSize: 13, color: Color(0xFF64748B)),
-                ),
-                const SizedBox(height: 16),
-                TextField(
-                  controller: urlCtrl,
-                  decoration: const InputDecoration(
-                    labelText: 'Vision Server URL',
-                    hintText: 'http://192.168.1.50:8000 or https://ai.yourdomain.com',
-                    prefixIcon: Icon(Icons.cloud_outlined),
-                  ),
-                ),
-                const SizedBox(height: 14),
-                TextField(
-                  controller: keyCtrl,
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: 'Vision API Key',
-                    hintText: 'Secret API Key',
-                    prefixIcon: Icon(Icons.key_outlined),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(ctx),
-              child: const Text('Cancel'),
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                await _vision.setServerUrl(urlCtrl.text.trim());
-                await _vision.setApiKey(keyCtrl.text.trim());
-                if (ctx.mounted) Navigator.pop(ctx);
-                if (context.mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Vision server configuration saved!'),
-                      backgroundColor: Color(0xFF16A34A),
-                    ),
-                  );
-                }
-              },
-              child: const Text('Save'),
-            ),
-          ],
-        );
-      },
+  void _showVisionSettings(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => VisionServerScreen()),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    const Color blue = Color(0xFF2563EB);
-    const Color muted = Color(0xFF64748B);
-    const Color border = Color(0xFFE2E8F0);
-    const Color dark = Color(0xFF0F172A);
+    final theme = Theme.of(context);
+    final muted = theme.trexvenColors.muted!;
+    final userProvider = context.watch<UserProvider>();
 
     return SingleChildScrollView(
-      padding: const EdgeInsets.fromLTRB(20, 15, 20, 30),
+      padding: TrexvenSpacing.pagePadding,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Me',
             style: TextStyle(
-              fontSize: 28,
+              fontSize: TrexvenSpacing.pageTitle,
               fontWeight: FontWeight.w800,
-              color: dark,
+              color: theme.colorScheme.onSurface,
             ),
           ),
-          const SizedBox(height: 18),
-          Container(
-            padding: const EdgeInsets.all(18),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(18),
-              border: Border.all(color: border),
+          SizedBox(height: TrexvenSpacing.fieldGap),
+          TrexvenTapCard(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) =>
+                    ProfileScreen(initialName: userProvider.ownerName),
+              ),
             ),
+            padding: EdgeInsets.all(18),
             child: Row(
               children: [
-                const CircleAvatar(
+                CircleAvatar(
                   radius: 27,
-                  backgroundColor: Color(0xFFEFF6FF),
-                  child: Icon(Icons.person_outline, color: blue, size: 29),
+                  backgroundColor: theme.colorScheme.primary.withValues(
+                    alpha: 0.08,
+                  ),
+                  child: Icon(
+                    Icons.person_outline,
+                    color: theme.colorScheme.primary,
+                    size: 29,
+                  ),
                 ),
-                const SizedBox(width: 14),
+                SizedBox(width: 14),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(ownerName, style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 17)),
-                      const SizedBox(height: 3),
-                      Text(businessName, style: const TextStyle(color: muted, fontSize: 13)),
+                      Text(
+                        userProvider.ownerName,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w800,
+                          fontSize: TrexvenFontSize.section,
+                          color: theme.colorScheme.onSurface,
+                        ),
+                      ),
+                      SizedBox(height: 3),
+                      Text(
+                        userProvider.businessName,
+                        style: TextStyle(
+                          color: muted,
+                          fontSize: TrexvenFontSize.body,
+                        ),
+                      ),
                     ],
                   ),
                 ),
-                const Icon(Icons.chevron_right_rounded, color: Color(0xFF94A3B8)),
+                Icon(
+                  Icons.chevron_right_rounded,
+                  color: theme.trexvenColors.muted?.withValues(alpha: 0.5),
+                ),
               ],
             ),
           ),
-          const SizedBox(height: 24),
+          SizedBox(height: TrexvenSpacing.sectionGap),
           _meSection(
+            context,
             title: 'Business & AI',
             children: [
-              _meItem(
-                Icons.memory_outlined,
-                'Vision Server Settings',
+              TrexvenSettingsTile(
+                icon: Icons.memory_outlined,
+                title: 'Vision Server Settings',
                 subtitle: 'Configure Local/Cloud Vision AI Server',
                 onTap: () => _showVisionSettings(context),
               ),
-              _meItem(Icons.storefront_outlined, 'Business Profile'),
-              _meItem(Icons.people_outline, 'Employees'),
-              _meItem(Icons.security_outlined, 'Permissions'),
+              TrexvenSettingsTile(
+                icon: Icons.storefront_outlined,
+                title: 'Business Profile',
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => BusinessProfileScreen()),
+                ),
+              ),
+              TrexvenSettingsTile(
+                icon: Icons.people_outline,
+                title: 'Employees',
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => EmploymentScreen()),
+                ),
+              ),
+              TrexvenSettingsTile(
+                icon: Icons.security_outlined,
+                title: 'Permissions',
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => PermissionsScreen()),
+                ),
+              ),
             ],
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: TrexvenSpacing.fieldGap),
           _meSection(
+            context,
+            title: 'Subscription',
+            children: [
+              _SubscriptionSettings(businessId: userProvider.business?.id),
+            ],
+          ),
+          SizedBox(height: TrexvenSpacing.fieldGap),
+          _meSection(
+            context,
             title: 'Settings',
             children: [
-              _meItem(Icons.notifications_outlined, 'Notifications'),
-              _meItem(Icons.lock_outline, 'Security'),
-              _meItem(Icons.palette_outlined, 'Appearance'),
-              _meItem(Icons.cloud_outlined, 'Data & Backup'),
+              TrexvenSettingsTile(
+                icon: Icons.notifications_outlined,
+                title: 'Notifications',
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => NotificationsSettingsScreen(),
+                  ),
+                ),
+              ),
+              TrexvenSettingsTile(
+                icon: Icons.lock_outline,
+                title: 'Security',
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => SecurityScreen()),
+                ),
+              ),
+              TrexvenSettingsTile(
+                icon: Icons.palette_outlined,
+                title: 'Appearance',
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => AppearanceScreen()),
+                ),
+              ),
+              TrexvenSettingsTile(
+                icon: Icons.cloud_outlined,
+                title: 'Data & Backup',
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => DataBackupScreen()),
+                ),
+              ),
             ],
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: TrexvenSpacing.fieldGap),
           _meSection(
+            context,
             title: 'Support',
             children: [
-              _meItem(Icons.help_outline, 'Help & Support'),
-              _meItem(Icons.info_outline, 'About TREXVEN'),
+              TrexvenSettingsTile(
+                icon: Icons.help_outline,
+                title: 'Help & Support',
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => HelpSupportScreen()),
+                ),
+              ),
+              TrexvenSettingsTile(
+                icon: Icons.info_outline,
+                title: 'About TREXVEN',
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => AboutScreen()),
+                ),
+              ),
             ],
           ),
-          const SizedBox(height: 30),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(17),
-              border: Border.all(color: border),
-            ),
+          SizedBox(height: TrexvenSpacing.fieldGap),
+          TrexvenTapCard(
+            onTap: () async {
+              await _auth.signOut();
+              if (context.mounted) {
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (_) => WelcomeScreen()),
+                  (route) => false,
+                );
+              }
+            },
+            padding: EdgeInsets.zero,
+            backgroundColor: theme.trexvenColors.error?.withValues(alpha: 0.05),
             child: ListTile(
-              leading: const Icon(Icons.logout_rounded, color: Colors.red),
-              title: const Text(
-                'Sign Out',
-                style: TextStyle(color: Colors.red, fontWeight: FontWeight.w600, fontSize: 14),
+              leading: Icon(
+                Icons.logout_rounded,
+                color: theme.trexvenColors.error!,
               ),
-              onTap: () async {
-                await _auth.signOut();
-                if (context.mounted) {
-                  Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (_) => const WelcomeScreen()),
-                    (route) => false,
-                  );
-                }
-              },
+              title: Text(
+                'Sign Out',
+                style: TextStyle(
+                  color: theme.trexvenColors.error!,
+                  fontWeight: FontWeight.w600,
+                  fontSize: TrexvenFontSize.body,
+                ),
+              ),
             ),
           ),
         ],
@@ -200,41 +248,98 @@ class MeTab extends StatelessWidget {
     );
   }
 
-  Widget _meSection({required String title, required List<Widget> children}) {
+  Widget _meSection(
+    BuildContext context, {
+    required String title,
+    required List<Widget> children,
+  }) {
+    final theme = Theme.of(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           title,
-          style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: Color(0xFF64748B)),
+          style: TextStyle(
+            fontSize: TrexvenFontSize.body,
+            fontWeight: FontWeight.w700,
+            color: theme.trexvenColors.muted,
+          ),
         ),
-        const SizedBox(height: 9),
+        SizedBox(height: 9),
         Container(
+          clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(17),
-            border: Border.all(color: const Color(0xFFE2E8F0)),
+            color: theme.trexvenColors.cardBackground,
+            borderRadius: BorderRadius.circular(TrexvenRadii.card),
           ),
           child: Column(children: children),
         ),
       ],
     );
   }
+}
 
-  Widget _meItem(
-    IconData icon,
-    String title, {
-    String? subtitle,
-    VoidCallback? onTap,
-  }) {
-    return ListTile(
-      leading: Icon(icon, color: const Color(0xFF2563EB)),
-      title: Text(title, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
-      subtitle: subtitle != null
-          ? Text(subtitle, style: const TextStyle(fontSize: 12, color: Color(0xFF64748B)))
-          : null,
-      trailing: const Icon(Icons.chevron_right_rounded, color: Color(0xFF94A3B8)),
-      onTap: onTap,
-    );
+class _SubscriptionSettings extends StatefulWidget {
+  final String? businessId;
+  const _SubscriptionSettings({required this.businessId});
+  @override
+  State<_SubscriptionSettings> createState() => _SubscriptionSettingsState();
+}
+
+class _SubscriptionSettingsState extends State<_SubscriptionSettings> {
+  Future<BusinessEntitlements>? subscription;
+  void load() {
+    final id = widget.businessId;
+    subscription = id == null
+        ? null
+        : BusinessEntitlements.load(
+            OperationsClient(Supabase.instance.client, id),
+          );
   }
+
+  @override
+  void initState() {
+    super.initState();
+    load();
+  }
+
+  @override
+  void didUpdateWidget(covariant _SubscriptionSettings oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.businessId != widget.businessId) load();
+  }
+
+  @override
+  Widget build(BuildContext context) => FutureBuilder<BusinessEntitlements>(
+    future: subscription,
+    builder: (context, snapshot) => TrexvenSettingsTile(
+      icon: Icons.credit_card_outlined,
+      title: 'Manage Subscription',
+      trailing: snapshot.hasData && snapshot.data!.configured
+          ? Text(
+              CustomerPresentation.label(snapshot.data!.plan),
+              style: Theme.of(context).textTheme.labelLarge,
+            )
+          : null,
+      subtitle: widget.businessId == null
+          ? 'Select your business'
+          : snapshot.hasError
+          ? 'Subscription status unavailable'
+          : !snapshot.hasData
+          ? 'Loading subscription'
+          : snapshot.data!.configured
+          ? CustomerPresentation.label(snapshot.data!.status)
+          : 'No active subscription',
+      onTap: widget.businessId == null
+          ? null
+          : () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => BillingScreen()),
+              );
+              if (mounted) setState(load);
+            },
+    ),
+  );
 }

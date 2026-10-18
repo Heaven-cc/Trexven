@@ -1,0 +1,20 @@
+{
+  "project": "ufehcfrlygqvminfjumf",
+  "checked_utc": "2026-10-09T21:34:59.527435+00:00",
+  "read_only": true,
+  "reviewed_functions_checked": 83,
+  "function_contract_mismatches": [],
+  "frozen_history_source_mismatches": [],
+  "history_entries": 32,
+  "security": {
+    "invalid_indexes": 0,
+    "all_application_tables_rls": true,
+    "branch_tables_not_writable": true,
+    "purchase_cost_select_denied": true,
+    "camera_guard_not_directly_callable": true
+  },
+  "anon_lifecycle_rpc_rejected": true,
+  "anon_denial_sqlstate": "42501",
+  "customer_records_logged": false,
+  "passed": true
+}

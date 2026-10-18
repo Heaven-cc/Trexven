@@ -1,26 +1,25 @@
+import 'package:trexven_design_system/trexven_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../services/alert_service.dart';
+import '../../services/alert_navigation.dart';
 
 class AlertsScreen extends StatefulWidget {
-  const AlertsScreen({super.key});
+  const AlertsScreen({super.key, this.alertService});
+  final AlertService? alertService;
 
   @override
   State<AlertsScreen> createState() => _AlertsScreenState();
 }
 
 class _AlertsScreenState extends State<AlertsScreen> {
-  static const _bg = Color(0xFFF8FAFC);
-  static const _dark = Color(0xFF0F172A);
-  static const _blue = Color(0xFF2563EB);
-  static const _muted = Color(0xFF64748B);
-
-  final _alertService = AlertService();
+  late final _alertService = widget.alertService ?? AlertService();
 
   @override
   void initState() {
     super.initState();
     _alertService.addListener(_onAlertsChanged);
+    _alertService.refresh();
   }
 
   @override
@@ -35,48 +34,87 @@ class _AlertsScreenState extends State<AlertsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final alerts = _alertService.alerts;
 
     return Scaffold(
-      backgroundColor: _bg,
       appBar: AppBar(
-        backgroundColor: _bg,
         elevation: 0,
-        title: const Text(
-          'Security Alerts',
+        title: Text(
+          'Notifications',
           style: TextStyle(
-            fontSize: 18,
+            fontSize: TrexvenFontSize.section,
             fontWeight: FontWeight.w800,
-            color: _dark,
+            color: theme.colorScheme.onSurface,
           ),
         ),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded, color: _dark),
+          icon: Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: theme.colorScheme.onSurface,
+          ),
           onPressed: () => Navigator.pop(context),
         ),
         actions: [
+          IconButton(
+            tooltip: 'Refresh notifications',
+            onPressed: _alertService.refresh,
+            icon: Icon(Icons.refresh),
+          ),
           if (alerts.any((a) => a['is_read'] != true))
             TextButton(
-              onPressed: () => _alertService.markAllRead(),
-              child: const Text('Mark all read'),
+              onPressed: () async {
+                try {
+                  await _alertService.markAllRead();
+                } catch (_) {
+                  if (context.mounted)
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          'Some notifications could not be marked read. Please retry.',
+                        ),
+                      ),
+                    );
+                }
+              },
+              child: Text(
+                'Mark all read',
+                style: TextStyle(color: theme.colorScheme.primary),
+              ),
             ),
         ],
       ),
-      body: alerts.isEmpty
-          ? _buildEmptyState()
-          : ListView.builder(
-              padding: const EdgeInsets.all(18),
-              itemCount: alerts.length,
-              itemBuilder: (context, index) {
-                final alert = alerts[index];
-                return _buildAlertCard(alert);
-              },
+      body: Column(
+        children: [
+          if (_alertService.connectionError != null)
+            Padding(
+              padding: EdgeInsets.all(12),
+              child: Text(_alertService.connectionError!),
             ),
+          Expanded(
+            child: _alertService.loading
+                ? Center(child: TrexvenLoading())
+                : alerts.isEmpty
+                ? _buildEmptyState(theme)
+                : ListView.builder(
+                    padding: EdgeInsets.all(18),
+                    itemCount: alerts.length,
+                    itemBuilder: (context, index) {
+                      final alert = alerts[index];
+                      return _buildAlertCard(theme, alert);
+                    },
+                  ),
+          ),
+        ],
+      ),
     );
   }
 
-  Widget _buildAlertCard(Map<String, dynamic> alert) {
+  Widget _buildAlertCard(ThemeData theme, Map<String, dynamic> alert) {
     final isRead = alert['is_read'] == true;
+    final muted = theme.trexvenColors.muted!;
+    final brandBlue = theme.colorScheme.primary;
+
     final severity = alert['severity']?.toString().toLowerCase() ?? 'info';
     final title = alert['title']?.toString() ?? 'Security Alert';
     final message = alert['message']?.toString() ?? '';
@@ -91,47 +129,41 @@ class _AlertsScreenState extends State<AlertsScreen> {
 
     switch (severity) {
       case 'critical':
-        badgeColor = const Color(0xFFEF4444);
+        badgeColor = theme.trexvenColors.error!;
         icon = Icons.warning_amber_rounded;
         break;
       case 'warning':
-        badgeColor = const Color(0xFFF59E0B);
+        badgeColor = theme.trexvenColors.warning!;
         icon = Icons.error_outline_rounded;
         break;
       default:
-        badgeColor = _blue;
+        badgeColor = brandBlue;
         icon = Icons.info_outline_rounded;
     }
 
     return GestureDetector(
-      onTap: () {
-        if (!isRead && alert['id'] != null) {
-          _alertService.markRead(alert['id']);
-        }
-      },
+      onTap: () => openAlertDestination(context, alert, service: _alertService),
       child: Container(
-        margin: const EdgeInsets.only(bottom: 12),
-        padding: const EdgeInsets.all(16),
+        margin: EdgeInsets.only(bottom: 12),
+        padding: TrexvenSpacing.cardPadding,
         decoration: BoxDecoration(
-          color: isRead ? Colors.white : const Color(0xFFEFF6FF),
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-            color: isRead ? const Color(0xFFE2E8F0) : const Color(0xFFBFDBFE),
-            width: isRead ? 1 : 1.5,
-          ),
+          color: isRead
+              ? theme.trexvenColors.cardBackground
+              : brandBlue.withValues(alpha: 0.08),
+          borderRadius: BorderRadius.circular(TrexvenRadii.card),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: const EdgeInsets.all(10),
+              padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
                 color: badgeColor.withValues(alpha: 0.12),
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(TrexvenRadii.card),
               ),
               child: Icon(icon, color: badgeColor, size: 22),
             ),
-            const SizedBox(width: 14),
+            SizedBox(width: 14),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -143,22 +175,36 @@ class _AlertsScreenState extends State<AlertsScreen> {
                         child: Text(
                           title,
                           style: TextStyle(
-                            fontWeight: isRead ? FontWeight.w700 : FontWeight.w900,
-                            fontSize: 14,
-                            color: _dark,
+                            fontWeight: isRead
+                                ? FontWeight.w700
+                                : FontWeight.w900,
+                            fontSize: TrexvenFontSize.body,
+                            color: theme.colorScheme.onSurface,
                           ),
                         ),
                       ),
                       Text(
                         dateStr,
-                        style: const TextStyle(fontSize: 11, color: _muted),
+                        style: TextStyle(
+                          fontSize: TrexvenFontSize.caption,
+                          color: muted,
+                        ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 6),
+                  SizedBox(height: 6),
+                  if (alert['camera_name'] != null)
+                    Text(
+                      alert['camera_name'].toString(),
+                      style: TextStyle(color: muted),
+                    ),
                   Text(
                     message,
-                    style: const TextStyle(fontSize: 13, color: _muted, height: 1.4),
+                    style: TextStyle(
+                      fontSize: TrexvenFontSize.body,
+                      color: muted,
+                      height: 1.4,
+                    ),
                   ),
                 ],
               ),
@@ -169,34 +215,35 @@ class _AlertsScreenState extends State<AlertsScreen> {
     );
   }
 
-  Widget _buildEmptyState() {
+  Widget _buildEmptyState(ThemeData theme) {
+    final muted = theme.trexvenColors.muted!;
+
     return Center(
       child: Container(
-        padding: const EdgeInsets.all(32),
-        margin: const EdgeInsets.all(24),
+        padding: EdgeInsets.all(32),
+        margin: TrexvenSpacing.pagePadding,
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: const Color(0xFFE2E8F0)),
+          color: theme.trexvenColors.cardBackground,
+          borderRadius: BorderRadius.circular(TrexvenRadii.card),
         ),
-        child: const Column(
+        child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.notifications_off_outlined, size: 48, color: _muted),
-            SizedBox(height: 16),
+            Icon(Icons.notifications_off_outlined, size: 48, color: muted),
+            SizedBox(height: TrexvenSpacing.fieldGap),
             Text(
-              'No security alerts',
+              'No notifications',
               style: TextStyle(
-                fontSize: 16,
+                fontSize: TrexvenFontSize.input,
                 fontWeight: FontWeight.w800,
-                color: _dark,
+                color: theme.colorScheme.onSurface,
               ),
             ),
             SizedBox(height: 6),
             Text(
-              'AI alerts generated by loitering, crowd detection or zone violations will appear here.',
+              'Important camera and business notifications will appear here.',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 13, color: _muted),
+              style: TextStyle(fontSize: TrexvenFontSize.body, color: muted),
             ),
           ],
         ),

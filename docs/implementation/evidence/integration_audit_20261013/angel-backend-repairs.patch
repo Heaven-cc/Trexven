@@ -1,0 +1,40 @@
+--- deployed/angel-v12/index.ts
++++ local/supabase/functions/angel/index.ts
+@@ -190,17 +190,8 @@
+     if (!data) throw new Error("Conversation access denied");
+     return data.id;
+   }
+-  const { data: existing, error: lookupError } = await admin
+-    .from("angel_conversations")
+-    .select("id")
+-    .eq("business_id", businessId)
+-    .eq("user_id", userId)
+-    .order("updated_at", { ascending: false })
+-    .limit(1)
+-    .maybeSingle();
+-  if (lookupError) throw lookupError;
+-  if (existing?.id) return existing.id;
+-
++  // The client omits conversation_id when starting a new chat.
++  // Continuation must use the explicitly authorized conversation above.
+   const { data: created, error: createError } = await admin
+     .from("angel_conversations")
+     .insert({ business_id: businessId, user_id: userId, title: message.slice(0, 80) })
+@@ -242,7 +233,16 @@
+     if (rateError) throw rateError;
+     if (!allowed) return json({ success: false, error: "Too many messages. Try again in a minute." }, 429);
+ 
+-    const body = (await req.json()) as AngelRequest;
++    let body: AngelRequest;
++    try {
++      const parsed = await req.json();
++      if (parsed === null || typeof parsed !== "object" || Array.isArray(parsed)) {
++        return json({ success: false, error: "A JSON object is required." }, 400);
++      }
++      body = parsed as AngelRequest;
++    } catch (_error) {
++      return json({ success: false, error: "A valid JSON object is required." }, 400);
++    }
+     const message = typeof body.message === "string" ? body.message.trim() : "";
+     if (!message) return json({ success: false, error: "Please provide a message." }, 400);
+     if (message.length > 5000) return json({ success: false, error: "Message is too long." }, 400);

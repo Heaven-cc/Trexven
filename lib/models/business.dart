@@ -4,8 +4,12 @@ class Business {
   final String? businessType;
   final String? address;
   final String? phone;
+  final String? email;
+  final String? website;
   final String? country;
   final String? currency;
+  final String? logoUrl;
+  final Map<String, dynamic>? businessHours;
   final String ownerId;
 
   Business({
@@ -14,8 +18,12 @@ class Business {
     this.businessType,
     this.address,
     this.phone,
+    this.email,
+    this.website,
     this.country,
     this.currency,
+    this.logoUrl,
+    this.businessHours,
     required this.ownerId,
   });
 
@@ -26,8 +34,12 @@ class Business {
       businessType: map['business_type']?.toString(),
       address: map['address']?.toString(),
       phone: map['phone']?.toString(),
+      email: map['email']?.toString(),
+      website: map['website']?.toString(),
       country: map['country']?.toString(),
       currency: map['currency']?.toString(),
+      logoUrl: map['logo_url']?.toString(),
+      businessHours: map['business_hours'] as Map<String, dynamic>?,
       ownerId: map['owner_id']?.toString() ?? '',
     );
   }
@@ -39,8 +51,12 @@ class Business {
       'business_type': businessType,
       'address': address,
       'phone': phone,
+      'email': email,
+      'website': website,
       'country': country,
       'currency': currency,
+      'logo_url': logoUrl,
+      'business_hours': businessHours,
       'owner_id': ownerId,
     };
   }

@@ -1,0 +1,27 @@
+{
+  "changed_source_files": [
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\dashboard\\dashboard_screen.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\finance\\finance_tab.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\inventory\\add_product_screen.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\inventory\\inventory_tab.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\pos\\dashboard_screen.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\packages\\trexven_design_system\\lib\\src\\components\\surfaces.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\packages\\trexven_design_system\\lib\\src\\theme\\trexven_theme.dart"
+  ],
+  "removed_dead_source_files": [
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\widgets\\quick_action.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\widgets\\stat_card.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\intelligence\\camera_detail_screen.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\intelligence\\camera_intelligence_screen.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\intelligence\\camera_screen.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\auth\\business_selection_screen.dart"
+  ],
+  "unchanged_source_count": 133,
+  "main_screen_byte_unchanged": true,
+  "navigation_bar_theme_unchanged": true,
+  "modified_services_models_or_operations": [],
+  "tests_added": [
+    "Owner/test/visual_reference_matrix_test.dart",
+    "POS/test/visual_reference_dashboard_test.dart"
+  ]
+}

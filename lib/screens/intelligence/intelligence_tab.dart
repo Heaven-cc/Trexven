@@ -1,29 +1,41 @@
+import 'package:trexven_design_system/trexven_design_system.dart';
+import 'package:trexven_operations/trexven_operations.dart';
 import 'package:flutter/material.dart';
 import '../../models/camera.dart';
-import '../../services/camera_intelligence_service.dart';
+import '../../services/vision_service.dart';
 import 'add_camera_screen.dart';
 import 'live_feed_screen.dart';
+import 'vision_server_screen.dart';
 import 'recordings_screen.dart';
-import 'camera_detail_screen.dart';
+import 'events_screen.dart';
 
 class IntelligenceTab extends StatefulWidget {
-  const IntelligenceTab({super.key});
+  const IntelligenceTab({
+    super.key,
+    this.loadCameras,
+    this.liveFrameLoader,
+    this.vision,
+  });
+  final Future<List<Camera>> Function()? loadCameras;
+  final Future<List<int>?> Function()? liveFrameLoader;
+  final VisionService? vision;
 
   @override
   State<IntelligenceTab> createState() => _IntelligenceTabState();
 }
 
 class _IntelligenceTabState extends State<IntelligenceTab> {
-  final CameraIntelligenceService _intelligenceService =
-      CameraIntelligenceService();
+  late final VisionService _intelligenceService;
 
   bool _loading = true;
   String? _error;
   List<Camera> _cameras = [];
+  bool _needsSetup = false;
 
   @override
   void initState() {
     super.initState();
+    _intelligenceService = widget.vision ?? VisionService();
     _loadCameras();
   }
 
@@ -34,12 +46,27 @@ class _IntelligenceTabState extends State<IntelligenceTab> {
     });
 
     try {
-      final cameras = await _intelligenceService.getCameras();
+      if (widget.loadCameras == null) {
+        await _intelligenceService.init();
+        if (!mounted) return;
+        if (!_intelligenceService.isConfigured) {
+          setState(() {
+            _needsSetup = true;
+            _cameras = [];
+            _loading = false;
+          });
+          return;
+        }
+      }
+      final cameras =
+          await (widget.loadCameras?.call() ??
+              _intelligenceService.getCameras());
 
       if (!mounted) return;
 
       setState(() {
         _cameras = cameras;
+        _needsSetup = false;
         _loading = false;
       });
     } catch (error) {
@@ -47,15 +74,22 @@ class _IntelligenceTabState extends State<IntelligenceTab> {
 
       setState(() {
         _loading = false;
-        _error = error.toString();
+        _error = CustomerPresentation.error(
+          error,
+          fallback: 'We could not load your cameras. Please try again.',
+        );
       });
     }
   }
 
   Future<void> _addCamera() async {
+    if (_needsSetup) {
+      await _openVisionServer();
+      return;
+    }
     final result = await Navigator.push<bool>(
       context,
-      MaterialPageRoute(builder: (_) => const AddCameraScreen()),
+      MaterialPageRoute(builder: (_) => AddCameraScreen()),
     );
 
     if (result == true) {
@@ -63,176 +97,185 @@ class _IntelligenceTabState extends State<IntelligenceTab> {
     }
   }
 
+  Future<void> _openVisionServer() async {
+    await Navigator.push<void>(
+      context,
+      MaterialPageRoute(
+        builder: (_) => VisionServerScreen(connectOnOpen: !_needsSetup),
+      ),
+    );
+    if (mounted) await _loadCameras();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final muted = theme.trexvenColors.muted!;
+    final brandBlue = theme.colorScheme.primary;
+
     final online = _cameras.where((c) => c.isOnline).length;
     final offline = _cameras.where((c) => c.isOffline).length;
     final aiEnabled = _cameras.where((c) => c.aiEnabled).length;
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF8FAFC),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFF8FAFC),
         elevation: 0,
-        title: const Text(
+        title: Text(
           'Intelligence',
           style: TextStyle(
-            fontSize: 22,
+            fontSize: TrexvenFontSize.section,
             fontWeight: FontWeight.w800,
-            color: Color(0xFF0F172A),
+            color: theme.colorScheme.onSurface,
           ),
         ),
         actions: [
           IconButton(
+            tooltip: 'AI Live',
+            icon: Icon(Icons.auto_awesome),
+            onPressed: _cameras.isEmpty
+                ? null
+                : () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) =>
+                          LiveFeedScreen(camera: _cameras.first, aiLive: true),
+                    ),
+                  ),
+          ),
+          IconButton(
+            tooltip: 'Vision Server',
+            icon: Icon(Icons.dns_outlined),
+            onPressed: _openVisionServer,
+          ),
+          IconButton(
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (_) => const RecordingsScreen(),
-                ),
+                MaterialPageRoute(builder: (_) => RecordingsScreen()),
               );
             },
-            icon: const Icon(
+            icon: Icon(
               Icons.video_library_outlined,
-              color: Color(0xFF0F172A),
+              color: theme.colorScheme.onSurface,
             ),
             tooltip: 'Recordings',
           ),
           IconButton(
             onPressed: _loadCameras,
-            icon: const Icon(
+            icon: Icon(
               Icons.refresh_rounded,
-              color: Color(0xFF0F172A),
+              color: theme.colorScheme.onSurface,
             ),
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _addCamera,
-        backgroundColor: const Color(0xFF2563EB),
-        icon: const Icon(
-          Icons.videocam_outlined,
+        backgroundColor: brandBlue,
+        icon: Icon(
+          _needsSetup ? Icons.dns_outlined : Icons.videocam_outlined,
           color: Colors.white,
         ),
-        label: const Text(
-          'Add camera',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w700,
-          ),
+        label: Text(
+          _needsSetup ? 'Connect Vision server' : 'Add camera',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
         ),
       ),
       body: RefreshIndicator(
         onRefresh: _loadCameras,
         child: _loading
-            ? const Center(
-                child: CircularProgressIndicator(),
-              )
+            ? Center(child: TrexvenLoading())
             : _error != null
-                ? ListView(
-                    padding: const EdgeInsets.all(24),
-                    children: [
-                      const SizedBox(height: 100),
-                      const Icon(
-                        Icons.error_outline,
-                        size: 50,
-                        color: Color(0xFFEF4444),
+            ? ListView(
+                padding: TrexvenSpacing.pagePadding,
+                children: [
+                  SizedBox(height: 100),
+                  Icon(
+                    Icons.error_outline,
+                    size: 50,
+                    color: theme.trexvenColors.error,
+                  ),
+                  SizedBox(height: TrexvenSpacing.fieldGap),
+                  Center(
+                    child: Text(
+                      'Could not load cameras',
+                      style: TextStyle(
+                        fontSize: TrexvenFontSize.section,
+                        fontWeight: FontWeight.w800,
                       ),
-                      const SizedBox(height: 16),
-                      const Center(
-                        child: Text(
-                          'Could not load cameras',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        _error!,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: Color(0xFF64748B),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Center(
-                        child: ElevatedButton(
-                          onPressed: _loadCameras,
-                          child: const Text('Retry'),
-                        ),
-                      ),
-                    ],
-                  )
-                : ListView(
-                    padding: const EdgeInsets.fromLTRB(
-                      18,
-                      8,
-                      18,
-                      100,
                     ),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    _error!,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: muted),
+                  ),
+                  SizedBox(height: TrexvenSpacing.fieldGap),
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: _loadCameras,
+                      child: Text('Retry'),
+                    ),
+                  ),
+                ],
+              )
+            : _needsSetup
+            ? ListView(
+                padding: const EdgeInsets.fromLTRB(18, 8, 18, 100),
+                children: [_buildEmptyState()],
+              )
+            : ListView(
+                padding: EdgeInsets.fromLTRB(18, 8, 18, 100),
+                children: [
+                  _buildOverview(online, offline, aiEnabled),
+                  SizedBox(height: TrexvenSpacing.fieldGap),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _buildOverview(
-                        online,
-                        offline,
-                        aiEnabled,
-                      ),
-                      const SizedBox(height: 22),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'Cameras',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w800,
-                              color: Color(0xFF0F172A),
-                            ),
-                          ),
-                          TextButton.icon(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => const RecordingsScreen(),
-                                ),
-                              );
-                            },
-                            icon: const Icon(
-                              Icons.play_circle_outline_rounded,
-                              size: 16,
-                              color: Color(0xFF2563EB),
-                            ),
-                            label: const Text(
-                              'Recordings',
-                              style: TextStyle(
-                                color: Color(0xFF2563EB),
-                                fontWeight: FontWeight.w700,
-                                fontSize: 13,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      if (_cameras.isEmpty)
-                        _buildEmptyState()
-                      else
-                        ..._cameras.map(
-                          _buildCameraCard,
+                      Text(
+                        'Cameras',
+                        style: TextStyle(
+                          fontSize: TrexvenFontSize.section,
+                          fontWeight: FontWeight.w800,
+                          color: theme.colorScheme.onSurface,
                         ),
+                      ),
+                      TextButton.icon(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => EventsScreen()),
+                          );
+                        },
+                        icon: Icon(
+                          Icons.timeline_rounded,
+                          size: 16,
+                          color: brandBlue,
+                        ),
+                        label: Text(
+                          'Events',
+                          style: TextStyle(
+                            color: brandBlue,
+                            fontWeight: FontWeight.w700,
+                            fontSize: TrexvenFontSize.body,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
+                  SizedBox(height: 10),
+                  if (_cameras.isEmpty)
+                    _buildEmptyState()
+                  else
+                    ..._cameras.map(_buildCameraCard),
+                ],
+              ),
       ),
     );
   }
 
-  Widget _buildOverview(
-    int online,
-    int offline,
-    int aiEnabled,
-  ) {
+  Widget _buildOverview(int online, int offline, int aiEnabled) {
     return Row(
       children: [
         Expanded(
@@ -242,7 +285,7 @@ class _IntelligenceTabState extends State<IntelligenceTab> {
             value: _cameras.length.toString(),
           ),
         ),
-        const SizedBox(width: 8),
+        SizedBox(width: 8),
         Expanded(
           child: _statCard(
             icon: Icons.wifi_rounded,
@@ -250,7 +293,7 @@ class _IntelligenceTabState extends State<IntelligenceTab> {
             value: online.toString(),
           ),
         ),
-        const SizedBox(width: 8),
+        SizedBox(width: 8),
         Expanded(
           child: _statCard(
             icon: Icons.auto_awesome,
@@ -267,39 +310,32 @@ class _IntelligenceTabState extends State<IntelligenceTab> {
     required String title,
     required String value,
   }) {
+    final theme = Theme.of(context);
+    final muted = theme.trexvenColors.muted!;
+
     return Container(
-      padding: const EdgeInsets.all(14),
+      padding: EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: const Color(0xFFE2E8F0),
-        ),
+        color: theme.trexvenColors.cardBackground,
+        borderRadius: BorderRadius.circular(TrexvenRadii.card),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(
-            icon,
-            size: 20,
-            color: const Color(0xFF2563EB),
-          ),
-          const SizedBox(height: 10),
+          Icon(icon, size: 20, color: theme.colorScheme.primary),
+          SizedBox(height: 10),
           Text(
             value,
-            style: const TextStyle(
-              fontSize: 22,
+            style: TextStyle(
+              fontSize: TrexvenFontSize.section,
               fontWeight: FontWeight.w800,
-              color: Color(0xFF0F172A),
+              color: theme.colorScheme.onSurface,
             ),
           ),
-          const SizedBox(height: 2),
+          SizedBox(height: 2),
           Text(
             title,
-            style: const TextStyle(
-              fontSize: 11,
-              color: Color(0xFF64748B),
-            ),
+            style: TextStyle(fontSize: TrexvenFontSize.caption, color: muted),
           ),
         ],
       ),
@@ -307,69 +343,67 @@ class _IntelligenceTabState extends State<IntelligenceTab> {
   }
 
   Widget _buildCameraCard(Camera camera) {
-    final statusColor = camera.isOnline
-        ? const Color(0xFF16A34A)
-        : camera.isDegraded
-            ? const Color(0xFFF59E0B)
-            : const Color(0xFF94A3B8);
+    final theme = Theme.of(context);
+    final brandBlue = theme.colorScheme.primary;
+    final muted = theme.trexvenColors.muted!;
 
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => CameraDetailScreen(camera: camera),
-          ),
-        );
-      },
-      child: Container(
-        margin: const EdgeInsets.only(bottom: 10),
-        padding: const EdgeInsets.all(15),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(17),
-          border: Border.all(
-            color: const Color(0xFFE2E8F0),
-          ),
-        ),
+    final statusColor = camera.isOnline
+        ? (theme.trexvenColors.success!)
+        : camera.isDegraded
+        ? (theme.trexvenColors.warning!)
+        : muted;
+
+    return Padding(
+      padding: EdgeInsets.only(bottom: 10),
+      child: TrexvenTapCard(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => LiveFeedScreen(
+                camera: camera,
+                frameLoader: widget.liveFrameLoader,
+              ),
+            ),
+          );
+        },
+        padding: EdgeInsets.all(15),
+        borderRadius: 17,
         child: Row(
           children: [
             Container(
               width: 50,
               height: 50,
               decoration: BoxDecoration(
-                color: const Color(0xFFEFF6FF),
-                borderRadius: BorderRadius.circular(14),
+                color: brandBlue.withValues(alpha: 0.08),
+                borderRadius: BorderRadius.circular(TrexvenRadii.card),
               ),
-              child: const Icon(
-                Icons.videocam_rounded,
-                color: Color(0xFF2563EB),
-              ),
+              child: Icon(Icons.videocam_rounded, color: brandBlue),
             ),
-            const SizedBox(width: 13),
+            SizedBox(width: 13),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     camera.name,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.w800,
-                      color: Color(0xFF0F172A),
+                      color: theme.colorScheme.onSurface,
                     ),
                   ),
                   if (camera.location != null)
                     Padding(
-                      padding: const EdgeInsets.only(top: 3),
+                      padding: EdgeInsets.only(top: 3),
                       child: Text(
                         camera.location!,
-                        style: const TextStyle(
-                          fontSize: 12,
-                          color: Color(0xFF64748B),
+                        style: TextStyle(
+                          fontSize: TrexvenFontSize.caption,
+                          color: muted,
                         ),
                       ),
                     ),
-                  const SizedBox(height: 7),
+                  SizedBox(height: 7),
                   Row(
                     children: [
                       Container(
@@ -380,28 +414,24 @@ class _IntelligenceTabState extends State<IntelligenceTab> {
                           shape: BoxShape.circle,
                         ),
                       ),
-                      const SizedBox(width: 5),
+                      SizedBox(width: 5),
                       Text(
                         camera.status,
                         style: TextStyle(
-                          fontSize: 11,
+                          fontSize: TrexvenFontSize.caption,
                           color: statusColor,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
                       if (camera.aiEnabled) ...[
-                        const SizedBox(width: 10),
-                        const Icon(
-                          Icons.auto_awesome,
-                          size: 13,
-                          color: Color(0xFF2563EB),
-                        ),
-                        const SizedBox(width: 3),
-                        const Text(
+                        SizedBox(width: 10),
+                        Icon(Icons.auto_awesome, size: 13, color: brandBlue),
+                        SizedBox(width: 3),
+                        Text(
                           'AI enabled',
                           style: TextStyle(
-                            fontSize: 11,
-                            color: Color(0xFF2563EB),
+                            fontSize: TrexvenFontSize.caption,
+                            color: brandBlue,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -417,20 +447,23 @@ class _IntelligenceTabState extends State<IntelligenceTab> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => LiveFeedScreen(camera: camera),
+                    builder: (_) => LiveFeedScreen(
+                      camera: camera,
+                      frameLoader: widget.liveFrameLoader,
+                    ),
                   ),
                 );
               },
-              icon: const Icon(
+              icon: Icon(
                 Icons.play_circle_fill_rounded,
-                color: Color(0xFF2563EB),
+                color: brandBlue,
                 size: 28,
               ),
               tooltip: 'Live Feed',
             ),
-            const Icon(
+            Icon(
               Icons.chevron_right_rounded,
-              color: Color(0xFF94A3B8),
+              color: muted.withValues(alpha: 0.5),
             ),
           ],
         ),
@@ -439,17 +472,15 @@ class _IntelligenceTabState extends State<IntelligenceTab> {
   }
 
   Widget _buildEmptyState() {
+    final theme = Theme.of(context);
+    final brandBlue = theme.colorScheme.primary;
+    final muted = theme.trexvenColors.muted!;
+
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 25,
-        vertical: 40,
-      ),
+      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 40),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(
-          color: const Color(0xFFE2E8F0),
-        ),
+        color: theme.trexvenColors.cardBackground,
+        borderRadius: BorderRadius.circular(TrexvenRadii.card),
       ),
       child: Column(
         children: [
@@ -457,39 +488,39 @@ class _IntelligenceTabState extends State<IntelligenceTab> {
             width: 68,
             height: 68,
             decoration: BoxDecoration(
-              color: const Color(0xFFEFF6FF),
-              borderRadius: BorderRadius.circular(22),
+              color: brandBlue.withValues(alpha: 0.08),
+              borderRadius: BorderRadius.circular(TrexvenRadii.card),
             ),
-            child: const Icon(
-              Icons.videocam_outlined,
-              size: 34,
-              color: Color(0xFF2563EB),
-            ),
+            child: Icon(Icons.videocam_outlined, size: 34, color: brandBlue),
           ),
-          const SizedBox(height: 16),
-          const Text(
-            'No cameras yet',
+          SizedBox(height: TrexvenSpacing.fieldGap),
+          Text(
+            _needsSetup ? 'Set up Intelligence' : 'No cameras yet',
             style: TextStyle(
-              fontSize: 18,
+              fontSize: TrexvenFontSize.section,
               fontWeight: FontWeight.w800,
-              color: Color(0xFF0F172A),
+              color: theme.colorScheme.onSurface,
             ),
           ),
-          const SizedBox(height: 7),
-          const Text(
-            'Add an IP camera to start building your business intelligence system.',
+          SizedBox(height: 7),
+          Text(
+            _needsSetup
+                ? 'Connect your Vision server, then add your first camera to start monitoring your business.'
+                : 'Add an IP camera to start building your business intelligence system.',
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 13,
+              fontSize: TrexvenFontSize.body,
               height: 1.5,
-              color: Color(0xFF64748B),
+              color: muted,
             ),
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: TrexvenSpacing.fieldGap),
           ElevatedButton.icon(
             onPressed: _addCamera,
-            icon: const Icon(Icons.add_rounded),
-            label: const Text('Add your first camera'),
+            icon: Icon(_needsSetup ? Icons.dns_outlined : Icons.add_rounded),
+            label: Text(
+              _needsSetup ? 'Connect Vision server' : 'Add your first camera',
+            ),
           ),
         ],
       ),

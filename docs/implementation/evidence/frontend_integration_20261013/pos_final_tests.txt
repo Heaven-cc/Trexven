@@ -1,0 +1,29 @@
+00:00 +0: loading C:/Users/USER/AndroidStudioProjects/trexvenpos/test/sale_submission_test.dart
+00:00 +0: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/sale_submission_test.dart: Checkout maps Cash and returns the saved receipt on retries
+00:00 +1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/sale_submission_test.dart: Checkout maps POS Terminal and returns the saved receipt on retries
+00:00 +2: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/sale_submission_test.dart: Checkout maps Transfer and returns the saved receipt on retries
+00:00 +3: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/sale_submission_test.dart: Cart retains retry identity until its contents change
+00:00 +4: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/sale_submission_test.dart: Fractional currency totals match database decimal arithmetic
+00:00 +5: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/sale_submission_test.dart: Checkout exposes actionable database errors
+00:00 +6: loading C:/Users/USER/AndroidStudioProjects/trexvenpos/test/pending_sale_test.dart
+00:05 +6: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/pending_sale_test.dart: verified legacy payment enrichment survives restart with the original identity
+00:05 +7: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/pending_sale_test.dart: payment enrichment cannot replace the original cart or business
+00:05 +8: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/pending_sale_test.dart: legacy v1 journal survives an app update without changing request or membership IDs
+00:05 +9: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/pending_sale_test.dart: unrecognized journal is retained and fails closed during an update
+00:05 +10: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/pending_sale_test.dart: payment journals survive both authorization and validation rejection
+00:05 +11: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/pending_sale_test.dart: journal flushes before submission and survives a fresh process
+00:05 +12: loading C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_3_quantity_contract_test.dart
+00:09 +12: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_3_quantity_contract_test.dart: fractional cart quantity rounds each line to currency precision
+00:09 +13: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_3_quantity_contract_test.dart: pieces, nonfinite quantities and excessive precision are rejected
+00:09 +14: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_3_quantity_contract_test.dart: variant identity survives copied model and legacy barcode remains text
+00:09 +15: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_3_quantity_contract_test.dart: receipt item quantity keeps fractional and legacy integer representations
+00:09 +16: loading C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart
+00:10 +16: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Revoked POS permission also blocks sale completion
+00:11 +17: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Explicit owner denial overrides default sales permission
+00:11 +18: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Null selling price remains pending even with forged active flags
+00:11 +19: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Sales cannot gain price or staff administration from stale grants
+00:11 +20: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Owner-only Vision stays denied for explicitly granted managers
+00:11 +21: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Legacy sale JSON has no new branch key; branch receipts round-trip
+00:11 +22: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Branch sale uses distinct API and retains original retry context
+00:11 +23: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Business sales reader scopes business/branch and preserves other staff receipts
+00:11 +24: All tests passed!

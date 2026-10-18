@@ -1,0 +1,93 @@
+00:00 +0: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/owner_checkout_test.dart
+00:00 +0: C:/Users/USER/AndroidStudioProjects/Trexven/test/owner_checkout_test.dart: Owner cash cart uses one exact approved atomic transaction
+00:00 +1: C:/Users/USER/AndroidStudioProjects/Trexven/test/owner_checkout_test.dart: Owner card cart uses one exact approved atomic transaction
+00:00 +2: C:/Users/USER/AndroidStudioProjects/Trexven/test/owner_checkout_test.dart: Owner bank_transfer cart uses one exact approved atomic transaction
+00:00 +3: C:/Users/USER/AndroidStudioProjects/Trexven/test/owner_checkout_test.dart: Owner credit cart uses one exact approved atomic transaction
+00:00 +4: C:/Users/USER/AndroidStudioProjects/Trexven/test/owner_checkout_test.dart: Owner partial cart uses one exact approved atomic transaction
+00:00 +5: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart
+00:03 +5: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart: Unconfirmed quick sale retries the same request and returns the receipt
+00:07 +6: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart: Selection and quantity survive fresh stream rows; double tap submits once
+00:08 +7: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart: pending financial intent blocks collecting a second payment
+00:08 +8: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart: fractional sale keeps exact units, payment and request on rejection
+00:10 +9: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart
+00:11 +9: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart: Searchable cart merges, independently edits and removes products; requires confirmation
+00:17 +10: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart: Terminal needs external reference and explicit user confirmation
+00:19 +11: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart: Transfer needs external reference and explicit user confirmation
+00:20 +12: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart: Full credit collects debtor details and requires an explicit exact-cart approval
+00:20 +13: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart: Partial credit collects debtor details and requires an explicit exact-cart approval
+00:21 +14: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/finance_repository_test.dart
+00:22 +14: C:/Users/USER/AndroidStudioProjects/Trexven/test/finance_repository_test.dart: Finance summary uses authoritative interval and pages all sales/items and expenses
+00:23 +15: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/finance_loading_test.dart
+00:24 +15: C:/Users/USER/AndroidStudioProjects/Trexven/test/finance_loading_test.dart: Finance retains requests on rebuild and refreshes explicitly
+00:26 +16: C:/Users/USER/AndroidStudioProjects/Trexven/test/finance_loading_test.dart: Finance failure is visible and retry recovers
+00:27 +17: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/business_reporting_test.dart
+00:28 +17: C:/Users/USER/AndroidStudioProjects/Trexven/test/business_reporting_test.dart: Calendar periods follow the business timezone across DST
+00:28 +18: C:/Users/USER/AndroidStudioProjects/Trexven/test/business_reporting_test.dart: All buckets include zeros and exclude the exclusive end
+00:28 +19: C:/Users/USER/AndroidStudioProjects/Trexven/test/business_reporting_test.dart: Custom range includes the complete final business day
+00:28 +20: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/stock_count_batch_test.dart
+00:30 +20: C:/Users/USER/AndroidStudioProjects/Trexven/test/stock_count_batch_test.dart: Camera batch accumulates lines and preserves captured versions
+00:30 +21: C:/Users/USER/AndroidStudioProjects/Trexven/test/stock_count_batch_test.dart: Missing, ambiguous or out-of-session barcode and invalid quantity rejected
+00:30 +22: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/stock_count_flow_test.dart
+00:31 +22: C:/Users/USER/AndroidStudioProjects/Trexven/test/stock_count_flow_test.dart: Camera count reviews multiple lines and recovers the exact original batch
+00:35 +23: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/owner_notifications_test.dart
+00:37 +23: C:/Users/USER/AndroidStudioProjects/Trexven/test/owner_notifications_test.dart: Owner inbox pages role feed, deduplicates cloud alerts and uses personal acknowledgements
+00:38 +24: C:/Users/USER/AndroidStudioProjects/Trexven/test/owner_notifications_test.dart: Late Owner inbox response is discarded after sign-out
+00:38 +25: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/angel_repository_test.dart
+00:40 +25: C:/Users/USER/AndroidStudioProjects/Trexven/test/angel_repository_test.dart: New chat has an explicit stable identity; message history uses an authorized cursor
+00:40 +26: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/angel_flow_test.dart
+00:42 +26: C:/Users/USER/AndroidStudioProjects/Trexven/test/angel_flow_test.dart: New chat stays open, supplies an explicit conversation, and uncertain send only refreshes history
+00:45 +27: C:/Users/USER/AndroidStudioProjects/Trexven/test/angel_flow_test.dart: Late conversation creation after sign-out never restores a draft or sends
+00:46 +28: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/intelligence_experience_test.dart
+00:50 +28: C:/Users/USER/AndroidStudioProjects/Trexven/test/intelligence_experience_test.dart: camera card opens in-app live feed, with Events and existing Recordings access
+00:53 +29: C:/Users/USER/AndroidStudioProjects/Trexven/test/intelligence_experience_test.dart: live feed never overlaps requests, clears stale image, reconnects and disposes
+00:53 +30: C:/Users/USER/AndroidStudioProjects/Trexven/test/intelligence_experience_test.dart: disposing live feed ignores a late response
+00:54 +31: C:/Users/USER/AndroidStudioProjects/Trexven/test/intelligence_experience_test.dart: Events display stored detections without fabricated confidence
+00:54 +32: C:/Users/USER/AndroidStudioProjects/Trexven/test/intelligence_experience_test.dart: event detail exposes only its stored associated clip
+00:54 +33: C:/Users/USER/AndroidStudioProjects/Trexven/test/intelligence_experience_test.dart: local and cloud notifications use one inbox, durable read state and badge updates
+00:55 +34: C:/Users/USER/AndroidStudioProjects/Trexven/test/intelligence_experience_test.dart: notification tap opens its event and marks it read
+00:55 +35: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart
+00:57 +35: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(320.0, 568.0) at text scale 1.0
+01:01 +36: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(320.0, 568.0) at text scale 2.0
+01:02 +37: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(390.0, 844.0) at text scale 1.0
+01:03 +38: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(390.0, 844.0) at text scale 2.0
+01:04 +39: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(800.0, 1000.0) at text scale 1.0
+01:05 +40: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(800.0, 1000.0) at text scale 2.0
+01:05 +41: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(780.0, 360.0) at text scale 1.0
+01:06 +42: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(780.0, 360.0) at text scale 2.0
+01:06 +43: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Shared action grows for long labels and large text
+01:07 +44: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/dashboard_density_test.dart
+01:09 +44: C:/Users/USER/AndroidStudioProjects/Trexven/test/dashboard_density_test.dart: (setUpAll)
+01:09 +44: C:/Users/USER/AndroidStudioProjects/Trexven/test/dashboard_density_test.dart: Dashboard cards remain usable at width 320.0 scale 1.0
+01:11 +45: C:/Users/USER/AndroidStudioProjects/Trexven/test/dashboard_density_test.dart: Dashboard cards remain usable at width 320.0 scale 2.0
+01:11 +46: C:/Users/USER/AndroidStudioProjects/Trexven/test/dashboard_density_test.dart: Dashboard cards remain usable at width 412.0 scale 1.0
+01:11 +47: C:/Users/USER/AndroidStudioProjects/Trexven/test/dashboard_density_test.dart: Dashboard cards remain usable at width 412.0 scale 2.0
+01:12 +48: C:/Users/USER/AndroidStudioProjects/Trexven/test/dashboard_density_test.dart: (tearDownAll)
+01:12 +48: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/catalog_repository_test.dart
+01:14 +48: C:/Users/USER/AndroidStudioProjects/Trexven/test/catalog_repository_test.dart: Dashboard aggregates all authorized pages instead of truncating KPIs
+01:14 +49: C:/Users/USER/AndroidStudioProjects/Trexven/test/catalog_repository_test.dart: Dashboard uses granted catalog columns and counts empty sellable stock
+01:14 +50: C:/Users/USER/AndroidStudioProjects/Trexven/test/catalog_repository_test.dart: Owner reads pre-Batch-3 product schema without SELECT star or cost
+01:14 +51: C:/Users/USER/AndroidStudioProjects/Trexven/test/catalog_repository_test.dart: stock intent sends an authorized delta and stable request, not an absolute overwrite
+01:14 +52: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/confirmed_operation_recovery_test.dart
+01:15 +52: C:/Users/USER/AndroidStudioProjects/Trexven/test/confirmed_operation_recovery_test.dart: confirmed payment survives P0001 and restart recovery
+01:16 +53: C:/Users/USER/AndroidStudioProjects/Trexven/test/confirmed_operation_recovery_test.dart: confirmed payment survives 42501 and restart recovery
+01:16 +54: C:/Users/USER/AndroidStudioProjects/Trexven/test/confirmed_operation_recovery_test.dart: confirmed payment survives 23514 and restart recovery
+01:16 +55: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/notification_account_isolation_test.dart
+01:17 +55: C:/Users/USER/AndroidStudioProjects/Trexven/test/notification_account_isolation_test.dart: account change hides cached notifications
+01:19 +56: C:/Users/USER/AndroidStudioProjects/Trexven/test/notification_account_isolation_test.dart: account change hides in-flight notifications
+01:19 +57: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart
+01:20 +57: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Multiple owned businesses require explicit selection
+01:20 +58: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Forged owner selection is rejected without writes
+01:20 +59: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Selected business ownership is rechecked on every lookup
+01:20 +60: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Owner business resolves without creating records
+01:20 +61: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Employee membership cannot enter the Owner app
+01:20 +62: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Suspended membership cannot enter onboarding as a new owner
+01:20 +63: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: New account returns no business without inserting duplicates
+01:20 +64: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Product reads are explicitly scoped to the resolved business
+01:20 +65: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Sale uses one atomic RPC and never directly writes product stock
+01:20 +66: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Rejected sale propagates to the UI without a fallback write
+01:20 +67: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Invalid quantities fail before sending a request
+01:20 +68: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Password reset calls Supabase with the registered mobile callback
+01:20 +69: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Google OAuth URL requests Google and the callback without embedded secrets
+01:20 +70: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/operation_journal_test.dart
+01:22 +70: C:/Users/USER/AndroidStudioProjects/Trexven/test/operation_journal_test.dart: interrupted financial intent survives restart and reuses the exact original request
+01:22 +71: All tests passed!

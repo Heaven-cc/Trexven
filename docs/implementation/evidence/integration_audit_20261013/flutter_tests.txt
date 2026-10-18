@@ -1,0 +1,162 @@
+00:00 +0: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart
+00:00 +0: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Multiple owned businesses require explicit selection
+00:00 +1: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Forged owner selection is rejected without writes
+00:00 +2: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Selected business ownership is rechecked on every lookup
+00:00 +3: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Owner business resolves without creating records
+00:00 +4: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Employee membership cannot enter the Owner app
+00:00 +5: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Suspended membership cannot enter onboarding as a new owner
+00:00 +6: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: New account returns no business without inserting duplicates
+00:00 +7: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Product reads are explicitly scoped to the resolved business
+00:00 +8: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Sale uses one atomic RPC and never directly writes product stock
+00:00 +9: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Rejected sale propagates to the UI without a fallback write
+00:00 +10: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Invalid quantities fail before sending a request
+00:00 +11: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Password reset calls Supabase with the registered mobile callback
+00:00 +12: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Google OAuth URL requests Google and the callback without embedded secrets
+00:00 +13: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/catalog_repository_test.dart
+00:03 +13: C:/Users/USER/AndroidStudioProjects/Trexven/test/catalog_repository_test.dart: Dashboard aggregates all authorized pages instead of truncating KPIs
+00:03 +14: C:/Users/USER/AndroidStudioProjects/Trexven/test/catalog_repository_test.dart: Dashboard uses granted catalog columns and counts empty sellable stock
+00:03 +15: C:/Users/USER/AndroidStudioProjects/Trexven/test/catalog_repository_test.dart: Owner reads pre-Batch-3 product schema without SELECT star or cost
+00:03 +16: C:/Users/USER/AndroidStudioProjects/Trexven/test/catalog_repository_test.dart: stock intent sends an authorized delta and stable request, not an absolute overwrite
+00:03 +17: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart
+00:07 +17: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart: Unconfirmed quick sale retries the same request and returns the receipt
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following StateError was thrown running a test:
+Bad state: No element
+
+When the exception was thrown, this was the stack:
+#0      Iterable.first (dart:core/iterable.dart:663:7)
+#1      _FirstFinderMixin.filter (package:flutter_test/src/finders.dart:1383:28)
+#3      _AncestorFinderMixin.allCandidates (package:flutter_test/src/finders.dart:1857:49)
+#4      FinderBase.evaluate (package:flutter_test/src/finders.dart:1030:76)
+#5      WidgetController.widgetList (package:flutter_test/src/controller.dart:848:19)
+#6      WidgetController._maybeViewOf (package:flutter_test/src/controller.dart:795:34)
+#7      WidgetController.tap (package:flutter_test/src/controller.dart:1078:31)
+#8      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart:98:20)
+<asynchronous suspension>
+#9      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#10     TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided 2 frames from dart:async-patch and package:stack_trace)
+
+The test description was:
+  Unconfirmed quick sale retries the same request and returns the receipt
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:10 +17 -1: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart: Unconfirmed quick sale retries the same request and returns the receipt [E]
+  Test failed. See exception logs above.
+  The test description was: Unconfirmed quick sale retries the same request and returns the receipt
+  
+Warning: At least one test in this suite creates an HttpClient. When running a test suite that uses
+TestWidgetsFlutterBinding, all HTTP requests will return status code 400, and no network request
+will actually be made. Any test expecting a real network connection and status code will fail.
+To test code that needs an HttpClient, provide your own HttpClient implementation to the code under
+test, so that your test can consistently provide a testable response to the code under test.
+00:10 +17 -1: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart: Selection and quantity survive fresh stream rows; double tap submits once
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following StateError was thrown running a test:
+Bad state: No element
+
+When the exception was thrown, this was the stack:
+#0      Iterable.first (dart:core/iterable.dart:663:7)
+#1      _FirstFinderMixin.filter (package:flutter_test/src/finders.dart:1383:28)
+#3      _AncestorFinderMixin.allCandidates (package:flutter_test/src/finders.dart:1857:49)
+#4      FinderBase.evaluate (package:flutter_test/src/finders.dart:1030:76)
+#5      WidgetController.widgetList (package:flutter_test/src/controller.dart:848:19)
+#6      WidgetController._maybeViewOf (package:flutter_test/src/controller.dart:795:34)
+#7      WidgetController.tap (package:flutter_test/src/controller.dart:1078:31)
+#8      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart:143:20)
+<asynchronous suspension>
+#9      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#10     TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided 2 frames from dart:async-patch and package:stack_trace)
+
+The test description was:
+  Selection and quantity survive fresh stream rows; double tap submits once
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:11 +17 -2: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart: Selection and quantity survive fresh stream rows; double tap submits once [E]
+  Test failed. See exception logs above.
+  The test description was: Selection and quantity survive fresh stream rows; double tap submits once
+  
+00:11 +17 -2: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart: pending financial intent blocks collecting a second payment
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following StateError was thrown running a test:
+Bad state: No element
+
+When the exception was thrown, this was the stack:
+#0      Iterable.first (dart:core/iterable.dart:663:7)
+#1      _FirstFinderMixin.filter (package:flutter_test/src/finders.dart:1383:28)
+#3      _AncestorFinderMixin.allCandidates (package:flutter_test/src/finders.dart:1857:49)
+#4      FinderBase.evaluate (package:flutter_test/src/finders.dart:1030:76)
+#5      WidgetController.widgetList (package:flutter_test/src/controller.dart:848:19)
+#6      WidgetController._maybeViewOf (package:flutter_test/src/controller.dart:795:34)
+#7      WidgetController.tap (package:flutter_test/src/controller.dart:1078:31)
+#8      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart:209:18)
+<asynchronous suspension>
+#9      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#10     TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided 2 frames from dart:async-patch and package:stack_trace)
+
+The test description was:
+  pending financial intent blocks collecting a second payment
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:11 +17 -3: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart: pending financial intent blocks collecting a second payment [E]
+  Test failed. See exception logs above.
+  The test description was: pending financial intent blocks collecting a second payment
+  
+00:11 +17 -3: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart: fractional sale keeps exact units, payment and request on rejection
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following StateError was thrown running a test:
+Bad state: No element
+
+When the exception was thrown, this was the stack:
+#0      Iterable.first (dart:core/iterable.dart:663:7)
+#1      _FirstFinderMixin.filter (package:flutter_test/src/finders.dart:1383:28)
+#3      _AncestorFinderMixin.allCandidates (package:flutter_test/src/finders.dart:1857:49)
+#4      FinderBase.evaluate (package:flutter_test/src/finders.dart:1030:76)
+#5      WidgetController.widgetList (package:flutter_test/src/controller.dart:848:19)
+#6      WidgetController._maybeViewOf (package:flutter_test/src/controller.dart:795:34)
+#7      WidgetController.tap (package:flutter_test/src/controller.dart:1078:31)
+#8      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart:247:20)
+<asynchronous suspension>
+#9      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#10     TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided 2 frames from dart:async-patch and package:stack_trace)
+
+The test description was:
+  fractional sale keeps exact units, payment and request on rejection
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:12 +17 -4: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart: fractional sale keeps exact units, payment and request on rejection [E]
+  Test failed. See exception logs above.
+  The test description was: fractional sale keeps exact units, payment and request on rejection
+  
+00:12 +17 -4: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/finance_loading_test.dart
+00:17 +17 -4: C:/Users/USER/AndroidStudioProjects/Trexven/test/finance_loading_test.dart: Finance retains requests on rebuild and refreshes explicitly
+00:22 +18 -4: C:/Users/USER/AndroidStudioProjects/Trexven/test/finance_loading_test.dart: Finance failure is visible and retry recovers
+00:23 +19 -4: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/inventory_loading_test.dart
+00:30 +19 -4: C:/Users/USER/AndroidStudioProjects/Trexven/test/inventory_loading_test.dart: Inventory search retains its stream; failure can be retried
+00:36 +20 -4: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/confirmed_operation_recovery_test.dart
+00:44 +20 -4: C:/Users/USER/AndroidStudioProjects/Trexven/test/confirmed_operation_recovery_test.dart: confirmed payment survives P0001 and restart recovery
+00:46 +21 -4: C:/Users/USER/AndroidStudioProjects/Trexven/test/confirmed_operation_recovery_test.dart: confirmed payment survives 42501 and restart recovery
+00:46 +22 -4: C:/Users/USER/AndroidStudioProjects/Trexven/test/confirmed_operation_recovery_test.dart: confirmed payment survives 23514 and restart recovery
+00:47 +23 -4: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/notification_account_isolation_test.dart
+00:50 +23 -4: C:/Users/USER/AndroidStudioProjects/Trexven/test/notification_account_isolation_test.dart: account change hides cached notifications
+00:53 +24 -4: C:/Users/USER/AndroidStudioProjects/Trexven/test/notification_account_isolation_test.dart: account change hides in-flight notifications
+00:54 +25 -4: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/operation_journal_test.dart
+00:56 +25 -4: C:/Users/USER/AndroidStudioProjects/Trexven/test/operation_journal_test.dart: interrupted financial intent survives restart and reuses the exact original request
+00:56 +26 -4: Some tests failed.
+
+Failing tests:
+  C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart: Selection and quantity survive fresh stream rows; double tap submits once
+  C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart: Unconfirmed quick sale retries the same request and returns the receipt
+  C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart: fractional sale keeps exact units, payment and request on rejection
+  C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart: pending financial intent blocks collecting a second payment

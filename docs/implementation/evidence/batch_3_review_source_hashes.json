@@ -1,0 +1,74 @@
+[
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\supabase\\migrations\\20261009003200_batch_3_catalog_inventory_foundation.sql",
+    "sha256": "1045d82c16082f519af78e379a54b53fe9f4955da39d9455bfb123a423424823"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\models\\product.dart",
+    "sha256": "0eb7db5fbd2e309ec64579e1027517824f29f39daf38570c98e75c49dcfb2fe7"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\services\\database_service.dart",
+    "sha256": "75fe0965ab18ac78220eec3b5e5bbf7390659ed5850b0d7dc3511d9603aa5e72"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\services\\catalog_import.dart",
+    "sha256": "3ea575a24f60cf6d677a288723ad9e9492a534744efcd93ecc62549bc55742c3"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\inventory\\catalog_editor_screen.dart",
+    "sha256": "e42a1bd7983f45f934ea5014a14efc9f76ab3bc70dcb0ac2f37fe224c186d310"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\inventory\\catalog_import_screen.dart",
+    "sha256": "f292d551cab3a38106264a671c51b795ef0806e08f138876ebcf5d32eeba0f81"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\pubspec.yaml",
+    "sha256": "69995fc1f45a7a8ebf24ee18bc04565a621c610cb62e9150a55461664169ae07"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\pubspec.lock",
+    "sha256": "bdc189279e6474cef701b2bc2a19dd5ad78ca2327e435c878ecc706ce46e0e50"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\supabase\\config.toml",
+    "sha256": "e2433fd54001fc397d976d11023afbc9a8ead61bb4c44b4c12fbbeb9a4ca7441"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\test\\catalog_import_test.dart",
+    "sha256": "de87b7a70e065d5ec0c81efdc5077de5814e70e6804646b98a11db6be2ee5c86"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\test\\catalog_repository_test.dart",
+    "sha256": "9aa72c06551199b360bd6e53775055759930b1e4e35837e52c17075e29c1167f"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\test\\batch_3_product_repository_test.dart",
+    "sha256": "bdca66e3262545ee76a86e3408356014a2ae530d4396453d2d9d946b5524cce0"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\test\\batch_3_quantity_contract_test.dart",
+    "sha256": "3a589cb28f096f5584a46de95654e63a8adc175fdb714fb0f817519d95b812a9"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\inventory\\product_repository.dart",
+    "sha256": "0952568a35b8d2c058ae8a22339a2b39a0f1b0af3f379ecd1180be50663fb6a7"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\inventory\\catalog_edit_screen.dart",
+    "sha256": "19c19a4db6f5af0d0c6732277b37ad1b52876b543a46591f510dae89ead2ac84"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\inventory\\quick_add_screen.dart",
+    "sha256": "85fc94a232caf98ba11ad33e836ca66a4dfc3336d0bc7a3b4ded171c1c8b1109"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\models\\product.dart",
+    "sha256": "4086c6d5d808388c8a5091808491001b16e7f27bfd1ed135bbfb7e376126cfad"
+  },
+  {
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\models\\sale.dart",
+    "sha256": "18442e78aced901532e6c3b170dee5dac9d93db952f2aa4aa6c8e18101503491"
+  }
+]

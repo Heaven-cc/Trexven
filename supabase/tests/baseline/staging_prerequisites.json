@@ -1,0 +1,97 @@
+{
+  "auth_columns": [
+    {
+      "name": "email",
+      "type": "character varying(255)"
+    },
+    {
+      "name": "id",
+      "type": "uuid"
+    },
+    {
+      "name": "raw_user_meta_data",
+      "type": "jsonb"
+    }
+  ],
+  "database_owner": "postgres",
+  "storage_helpers": [
+    "extension(name text)->text",
+    "filename(name text)->text",
+    "foldername(name text)->text[]"
+  ],
+  "extension_schemas": [
+    {
+      "name": "plpgsql",
+      "schema": "pg_catalog",
+      "version": "1.0"
+    },
+    {
+      "name": "pg_stat_statements",
+      "schema": "extensions",
+      "version": "1.11"
+    },
+    {
+      "name": "uuid-ossp",
+      "schema": "extensions",
+      "version": "1.1"
+    },
+    {
+      "name": "pgcrypto",
+      "schema": "extensions",
+      "version": "1.3"
+    },
+    {
+      "name": "supabase_vault",
+      "schema": "vault",
+      "version": "0.3.1"
+    }
+  ],
+  "global_default_acl": [
+    {
+      "acl": "{postgres=arwdDxtm/postgres,anon=arwdDxtm/postgres,authenticated=arwdDxtm/postgres,service_role=arwdDxtm/postgres}",
+      "kind": "r",
+      "owner": "postgres",
+      "schema": "public"
+    },
+    {
+      "acl": "{postgres=X/postgres,anon=X/postgres,authenticated=X/postgres,service_role=X/postgres}",
+      "kind": "f",
+      "owner": "postgres",
+      "schema": "public"
+    },
+    {
+      "acl": "{postgres=rwU/postgres,anon=rwU/postgres,authenticated=rwU/postgres,service_role=rwU/postgres}",
+      "kind": "S",
+      "owner": "postgres",
+      "schema": "public"
+    },
+    {
+      "acl": "{postgres=rwU/supabase_admin,anon=rwU/supabase_admin,authenticated=rwU/supabase_admin,service_role=rwU/supabase_admin}",
+      "kind": "S",
+      "owner": "supabase_admin",
+      "schema": "public"
+    },
+    {
+      "acl": "{postgres=arwdDxtm/supabase_admin,anon=arwdDxtm/supabase_admin,authenticated=arwdDxtm/supabase_admin,service_role=arwdDxtm/supabase_admin}",
+      "kind": "r",
+      "owner": "supabase_admin",
+      "schema": "public"
+    },
+    {
+      "acl": "{postgres=X/supabase_admin,anon=X/supabase_admin,authenticated=X/supabase_admin,service_role=X/supabase_admin}",
+      "kind": "f",
+      "owner": "supabase_admin",
+      "schema": "public"
+    }
+  ],
+  "public_schema_owner": "pg_database_owner",
+  "realtime_publication": {
+    "name": "supabase_realtime",
+    "delete": true,
+    "insert": true,
+    "update": true,
+    "truncate": true,
+    "all_tables": false
+  },
+  "can_assume_supabase_admin": false
+}

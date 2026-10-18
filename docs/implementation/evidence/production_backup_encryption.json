@@ -1,0 +1,9 @@
+﻿{
+    "encryption":  "Windows DPAPI CurrentUser",
+    "encrypted_archive":  "C:\\Users\\USER\\AppData\\Roaming\\TREXVEN\\backups\\ufehcfrlygqvminfjumf\\20261009-5f220e743115415bb00699c4b30dcfd8\\production.dump.dpapi",
+    "encrypted_sha256":  "d780083e12483367a5628a7b813984e9c36f330b9a0e52afcce40b6ba93086d0",
+    "plaintext_sha256":  "e73eda6ee33bc49392944b42e6f6cf7cfe6abab33fe6c58450387ed093a6d748",
+    "decrypt_hash_match":  true,
+    "requires_original_windows_profile_and_dpapi_keys":  true,
+    "supersedes_failed_drive_D_copy":  true
+}

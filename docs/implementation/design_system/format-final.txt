@@ -1,0 +1,4 @@
+Formatted lib\screens\auth\register_screen.dart
+Formatted lib\screens\me\help_support_screen.dart
+Formatted packages\trexven_design_system\lib\src\theme\trexven_theme.dart
+Formatted 90 files (3 changed) in 1.33 seconds.

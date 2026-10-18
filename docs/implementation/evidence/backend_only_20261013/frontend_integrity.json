@@ -1,0 +1,28 @@
+[
+  {
+    "app": "Trexven",
+    "protected_file_count": 191,
+    "modified": [
+      "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\android\\.gradle\\buildOutputCleanup\\outputFiles.bin",
+      "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\android\\.gradle\\8.14\\executionHistory\\executionHistory.lock",
+      "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\android\\.gradle\\buildOutputCleanup\\buildOutputCleanup.lock",
+      "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\android\\.gradle\\8.14\\checksums\\checksums.lock",
+      "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\android\\.gradle\\8.14\\executionHistory\\executionHistory.bin",
+      "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\android\\.gradle\\8.14\\fileHashes\\resourceHashesCache.bin",
+      "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\android\\.gradle\\8.14\\fileHashes\\fileHashes.bin",
+      "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\android\\.gradle\\8.14\\fileHashes\\fileHashes.lock",
+      "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\android\\local.properties",
+      "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\android\\.gradle\\8.14\\checksums\\md5-checksums.bin",
+      "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\android\\.gradle\\8.14\\checksums\\sha1-checksums.bin"
+    ],
+    "deleted": [],
+    "added": []
+  },
+  {
+    "app": "trexvenpos",
+    "protected_file_count": 118,
+    "modified": [],
+    "deleted": [],
+    "added": []
+  }
+]

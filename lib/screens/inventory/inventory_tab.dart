@@ -1,190 +1,1022 @@
+
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:trexven_operations/trexven_operations.dart';
+import 'package:trexven_design_system/trexven_design_system.dart';
+
+import '../../services/initial_load_timeout.dart';
 import '../../services/database_service.dart';
 import '../../models/product.dart';
+
+import 'catalog_editor_screen.dart';
+import 'catalog_import_screen.dart';
 import 'add_product_screen.dart';
+import 'scanner_screen.dart';
 
 class InventoryTab extends StatefulWidget {
-  const InventoryTab({super.key});
+  const InventoryTab({
+    super.key,
+    this.database,
+  });
+
+  final DatabaseService? database;
 
   @override
   State<InventoryTab> createState() => _InventoryTabState();
 }
 
 class _InventoryTabState extends State<InventoryTab> {
-  final DatabaseService _db = DatabaseService();
-  String _searchQuery = "";
+  late final DatabaseService _db;
+  late Stream<List<Product>> _products;
+
+  final TextEditingController _searchController =
+  TextEditingController();
+
+  final FocusNode _searchFocus = FocusNode();
+
+  String _searchQuery = '';
+  String? _category;
+
+  bool _showArchived = false;
+  bool _lowStockOnly = false;
+
+  String _sort = 'name';
+
+  Color get _background => Theme.of(context).scaffoldBackgroundColor;
+  Color get _card => Theme.of(context).trexvenColors.cardBackground ??
+      Theme.of(context).colorScheme.surfaceContainerLow;
+  Color get _navy => Theme.of(context).colorScheme.onSurface;
+  Color get _blue => Theme.of(context).trexvenColors.brandBlue ??
+      Theme.of(context).colorScheme.primary;
+  Color get _muted => Theme.of(context).colorScheme.onSurfaceVariant;
+  Color get _softBlue => _blue.withValues(alpha: .12);
 
   @override
-  Widget build(BuildContext context) {
-    const Color dark = Color(0xFF0F172A);
-    const Color muted = Color(0xFF64748B);
-    const Color border = Color(0xFFE2E8F0);
-    const Color blue = Color(0xFF2563EB);
+  void initState() {
+    super.initState();
 
-    return Scaffold(
-      backgroundColor: const Color(0xFFF8FAFC),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => const AddProductScreen()),
-          );
-        },
-        backgroundColor: blue,
-        child: const Icon(Icons.add, color: Colors.white),
+    _db = widget.database ?? DatabaseService();
+
+    _products = withInitialLoadTimeout(
+      _db.getProductsStream(),
+    );
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    _searchFocus.dispose();
+    super.dispose();
+  }
+
+  void _retry() {
+    setState(() {
+      _products = withInitialLoadTimeout(
+        _db.getProductsStream(),
+      );
+    });
+  }
+
+  Future<void> _openScreen(Widget screen) async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => screen,
       ),
-      body: StreamBuilder<List<Product>>(
-        stream: _db.getProductsStream(),
-        builder: (context, snapshot) {
-          final allProducts = snapshot.data ?? [];
-          final products = allProducts.where((p) => p.name.toLowerCase().contains(_searchQuery)).toList();
-          final lowStockCount = allProducts.where((p) => p.stock <= 5 && p.stock > 0).length;
-          final outOfStockCount = allProducts.where((p) => p.stock == 0).length;
+    );
+  }
 
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 15, 20, 10),
+  void _addProduct() {
+    _openScreen(
+      CatalogEditorScreen(database: _db),
+    );
+  }
+
+  void _restock() {
+    _openScreen(
+      AddProductScreen(
+        database: _db,
+        startInRestock: true,
+      ),
+    );
+  }
+
+  Future<void> _openOperations() async {
+    try {
+      final businessId = await _db.requireBusinessId();
+      if (!mounted) return;
+      await _openScreen(InventoryOperationsScreen(
+        api: OperationsClient(Supabase.instance.client, businessId),
+        scanBarcode: (context) => Navigator.push<String>(
+          context, MaterialPageRoute(builder: (_) => const ScannerScreen())),
+      ));
+      if (mounted) _retry();
+    } catch (error) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(CustomerPresentation.error(error,
+          fallback: 'Unable to open stock operations. Check business access.')),
+      ));
+    }
+  }
+
+  Future<void> _scan() async {
+    final scannedBarcode = await Navigator.push<String>(
+      context,
+      MaterialPageRoute(
+        builder: (_) => ScannerScreen(),
+      ),
+    );
+    if (mounted && scannedBarcode != null && scannedBarcode.isNotEmpty) {
+      setState(() {
+        _searchQuery = scannedBarcode;
+      });
+      _searchController.text = scannedBarcode;
+    }
+  }
+
+  Future<void> _showCategoryFilters(
+      List<Product> products,
+      ) async {
+    final categories = products
+        .map((p) => p.category)
+        .whereType<String>()
+        .where((c) => c.trim().isNotEmpty)
+        .toSet()
+        .toList()
+      ..sort();
+
+    await showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: _card,
+      isScrollControlled: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(22),
+        ),
+      ),
+      builder: (sheetContext) {
+        return StatefulBuilder(
+          builder: (context, refresh) {
+            return SafeArea(
+              top: false,
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(
+                  20, 22, 20, 24,
+                ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment:
+                  CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Inventory',
-                      style: TextStyle(fontSize: 28, fontWeight: FontWeight.w800, color: dark),
-                    ),
-                    const SizedBox(height: 6),
-                    const Text(
-                      'Manage products, quantities and stock.',
-                      style: TextStyle(color: muted, fontSize: 14),
-                    ),
-                    const SizedBox(height: 20),
-                    TextField(
-                      onChanged: (value) => setState(() => _searchQuery = value.toLowerCase()),
-                      decoration: InputDecoration(
-                        hintText: 'Search products...',
-                        prefixIcon: const Icon(Icons.search, color: muted),
-                        filled: true,
-                        fillColor: Colors.white,
-                        contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(14),
-                          borderSide: const BorderSide(color: border),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(14),
-                          borderSide: const BorderSide(color: border),
-                        ),
+                    Text(
+                      'Inventory filters',
+                      style: TextStyle(
+                        color: _navy,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
-                    const SizedBox(height: 20),
-                    Row(
+
+                    SizedBox(height: 18),
+
+                    Text(
+                      'Category',
+                      style: TextStyle(
+                        color: _navy,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+
+                    SizedBox(height: 10),
+
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
                       children: [
-                        Expanded(child: _miniStat('Products', '${allProducts.length}')),
-                        const SizedBox(width: 10),
-                        Expanded(child: _miniStat('Low Stock', '$lowStockCount')),
-                        const SizedBox(width: 10),
-                        Expanded(child: _miniStat('Out', '$outOfStockCount')),
+                        _categoryChoice(
+                          'All categories',
+                          _category == null,
+                              () {
+                            setState(() {
+                              _category = null;
+                            });
+                            refresh(() {});
+                          },
+                        ),
+
+                        for (final category in categories)
+                          _categoryChoice(
+                            category,
+                            _category == category,
+                                () {
+                              setState(() {
+                                _category = category;
+                              });
+                              refresh(() {});
+                            },
+                          ),
                       ],
+                    ),
+
+                    SizedBox(height: 16),
+
+                    SwitchListTile.adaptive(
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(
+                        'Include archived products',
+                      ),
+                      value: _showArchived,
+                      activeTrackColor: _blue,
+                      onChanged: (value) {
+                        setState(() {
+                          _showArchived = value;
+                        });
+                        refresh(() {});
+                      },
+                    ),
+
+                    SizedBox(height: 12),
+
+                    SizedBox(
+                      width: double.infinity,
+                      height: 48,
+                      child: FilledButton(
+                        onPressed: () {
+                          Navigator.pop(sheetContext);
+                        },
+                        style: FilledButton.styleFrom(
+                          backgroundColor: _blue,
+                          shape: RoundedRectangleBorder(
+                            borderRadius:
+                            BorderRadius.circular(13),
+                          ),
+                        ),
+                        child: Text('Done'),
+                      ),
                     ),
                   ],
                 ),
               ),
-              Expanded(
-                child: snapshot.connectionState == ConnectionState.waiting
-                    ? const Center(child: CircularProgressIndicator())
-                    : products.isEmpty
-                        ? _buildEmptyState()
-                        : ListView.builder(
-                            padding: const EdgeInsets.fromLTRB(20, 5, 20, 80),
-                            itemCount: products.length,
-                            itemBuilder: (context, index) {
-                              final product = products[index];
-                              final bool isLowStock = product.stock <= 5;
+            );
+          },
+        );
+      },
+    );
+  }
 
-                              return Container(
-                                margin: const EdgeInsets.only(bottom: 12),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(16),
-                                  border: Border.all(color: border),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withValues(alpha: 0.03),
-                                      blurRadius: 10,
-                                      offset: const Offset(0, 4),
-                                    ),
-                                  ],
-                                ),
-                                child: ListTile(
-                                  contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                                  title: Text(product.name, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16, color: dark)),
-                                  subtitle: Row(
-                                    children: [
-                                      Text(
-                                        'Stock: ${product.stock}',
-                                        style: TextStyle(fontWeight: FontWeight.w600, color: isLowStock ? Colors.red : muted),
-                                      ),
-                                      if (isLowStock) ...[
-                                        const SizedBox(width: 8),
-                                        Container(
-                                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                                          decoration: BoxDecoration(color: Colors.red.shade50, borderRadius: BorderRadius.circular(4)),
-                                          child: const Text('LOW', style: TextStyle(color: Colors.red, fontSize: 10, fontWeight: FontWeight.w900)),
-                                        ),
-                                      ],
-                                    ],
-                                  ),
-                                  trailing: Text('₦${product.price}', style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 17, color: blue)),
-                                ),
-                              );
-                            },
-                          ),
+  Widget _categoryChoice(
+      String label,
+      bool selected,
+      VoidCallback onTap,
+      ) {
+    return ChoiceChip(
+      label: Text(label),
+      selected: selected,
+      onSelected: (_) => onTap(),
+      selectedColor: _softBlue,
+      backgroundColor: _background,
+      side: BorderSide.none,
+      labelStyle: TextStyle(
+        color: selected ? _blue : _muted,
+        fontWeight:
+        selected ? FontWeight.w700 : FontWeight.w500,
+      ),
+    );
+  }
+
+  Future<void> _showSortOptions() async {
+    await showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: _card,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(22),
+        ),
+      ),
+      builder: (sheetContext) {
+        return SafeArea(
+          top: false,
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(
+              20, 22, 20, 22,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment:
+              CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Sort products',
+                  style: TextStyle(
+                    color: _navy,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+
+                SizedBox(height: 12),
+
+                RadioListTile<String>(
+                  title: Text('Name'),
+                  value: 'name',
+                  groupValue: _sort,
+                  activeColor: _blue,
+                  onChanged: (value) {
+                    setState(() {
+                      _sort = value ?? 'name';
+                    });
+                    Navigator.pop(sheetContext);
+                  },
+                ),
+
+                RadioListTile<String>(
+                  title: Text('Stock quantity'),
+                  value: 'stock',
+                  groupValue: _sort,
+                  activeColor: _blue,
+                  onChanged: (value) {
+                    setState(() {
+                      _sort = value ?? 'stock';
+                    });
+                    Navigator.pop(sheetContext);
+                  },
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: _background,
+      body: StreamBuilder<List<Product>>(
+        stream: _products,
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Center(
+              child: TrexvenErrorState(
+                message:
+                'Unable to load inventory. Please retry.',
+                onRetry: _retry,
               ),
-            ],
+            );
+          }
+
+          if (!snapshot.hasData) {
+            return Center(
+              child: TrexvenLoading(),
+            );
+          }
+
+          final allProducts = snapshot.data!;
+
+          final products = allProducts.where((p) {
+            final visible =
+                _showArchived ||
+                    p.active ||
+                    p.isPricePending;
+
+            final categoryMatches =
+                _category == null ||
+                    p.category == _category;
+
+            final stockMatches =
+                !_lowStockOnly || p.isLowStock;
+
+            final query = _searchQuery.trim().toLowerCase();
+
+            final searchMatches =
+                query.isEmpty ||
+                    [
+                      p.name,
+                      p.barcode ?? '',
+                      p.sku ?? '',
+                      p.category ?? '',
+                    ].any(
+                          (value) => value
+                          .toLowerCase()
+                          .contains(query),
+                    );
+
+            return visible &&
+                categoryMatches &&
+                stockMatches &&
+                searchMatches;
+          }).toList();
+
+          products.sort((a, b) {
+            if (_sort == 'stock') {
+              return a.stock.compareTo(b.stock);
+            }
+
+            return a.name
+                .toLowerCase()
+                .compareTo(b.name.toLowerCase());
+          });
+
+          final activeProducts = allProducts
+              .where(
+                (p) => p.active || p.isPricePending,
+          )
+              .toList();
+
+          final lowStockCount = activeProducts
+              .where((p) => p.isLowStock)
+              .length;
+
+          final outOfStockCount = allProducts
+              .where(
+                (p) =>
+            p.active &&
+                !p.isPricePending &&
+                p.stock == 0,
+          )
+              .length;
+
+          return RefreshIndicator(
+            onRefresh: () async {
+              _retry();
+            },
+            color: _blue,
+            child: CustomScrollView(
+              physics:
+              AlwaysScrollableScrollPhysics(
+                parent: BouncingScrollPhysics(),
+              ),
+              slivers: [
+                SliverPadding(
+                  padding: EdgeInsets.fromLTRB(
+                    16, 20, 16, 0,
+                  ),
+                  sliver: SliverToBoxAdapter(
+                    child: Column(
+                      crossAxisAlignment:
+                      CrossAxisAlignment.start,
+                      children: [
+                        _buildHeader(),
+
+                        SizedBox(height: 17),
+
+                        _buildSearch(),
+
+                        SizedBox(height: 14),
+
+                        _buildStatistics(
+                          activeProducts.length,
+                          lowStockCount,
+                          outOfStockCount,
+                        ),
+
+                        SizedBox(height: 18),
+
+                        _secondaryAction(
+                          icon: Icons.fact_check_outlined,
+                          title: 'Stocktaking & stock management',
+                          onTap: _openOperations,
+                        ),
+                        SizedBox(height: 16),
+                        _buildProductsHeading(),
+
+                        SizedBox(height: 16),
+
+                        _buildFilterBar(allProducts),
+
+                        SizedBox(height: 8),
+                      ],
+                    ),
+                  ),
+                ),
+
+                if (products.isEmpty)
+                  SliverToBoxAdapter(
+                    child: _buildEmptyState(),
+                  )
+                else
+                  SliverPadding(
+                    padding:
+                    EdgeInsets.symmetric(
+                      horizontal: 16,
+                    ),
+                    sliver: SliverList.builder(
+                      itemCount: products.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding:
+                          EdgeInsets.only(
+                            bottom: 10,
+                          ),
+                          child: _buildProductCard(
+                            products[index],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(
+                      16, 12, 16, 8,
+                    ),
+                    child: _buildBottomActions(),
+                  ),
+                ),
+
+                SliverToBoxAdapter(
+                  child: SizedBox(height: 20),
+                ),
+              ],
+            ),
           );
         },
       ),
     );
   }
 
-  Widget _miniStat(String title, String value) {
+  // ============================================================
+  // HEADER
+  // ============================================================
+
+  Widget _buildHeader() => Row(children: [
+    Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text('Inventory', style: TextStyle(color: _navy,
+        fontSize: 24, fontWeight: FontWeight.w700)),
+      SizedBox(height: 5),
+      Text('Products and stock management',
+        style: TextStyle(color: _muted, fontSize: 13)),
+    ])),
+    IconButton(onPressed: _addProduct, tooltip: 'Add product',
+      icon: Icon(Icons.add_rounded, color: _blue)),
+  ]);
+
+  // ============================================================
+  // SEARCH
+  // ============================================================
+
+  Widget _buildSearch() {
     return Container(
-      padding: const EdgeInsets.all(13),
+      constraints: const BoxConstraints(minHeight: 50),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: _card,
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: const Color(0xFFE2E8F0)),
       ),
-      child: Column(
-        children: [
-          Text(value, style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 18)),
-          const SizedBox(height: 3),
-          Text(title, style: const TextStyle(fontSize: 11, color: Color(0xFF64748B))),
-        ],
+      child: TextField(
+        controller: _searchController,
+        focusNode: _searchFocus,
+        textInputAction: TextInputAction.search,
+        onChanged: (value) {
+          setState(() {
+            _searchQuery = value.toLowerCase();
+          });
+        },
+        style: TextStyle(
+          color: _navy,
+          fontSize: 13,
+        ),
+        decoration: InputDecoration(
+          hintText:
+          'Search name, barcode, category or SKU',
+          hintStyle: TextStyle(
+            color: _muted,
+            fontSize: 12,
+          ),
+          prefixIcon: Icon(
+            Icons.search_rounded,
+            color: _muted,
+            size: 20,
+          ),
+          suffixIcon: _searchQuery.isNotEmpty
+              ? IconButton(
+            icon: Icon(
+              Icons.close_rounded,
+              size: 18,
+            ),
+            onPressed: () {
+              _searchController.clear();
+              setState(() {
+                _searchQuery = '';
+              });
+            },
+          )
+              : null,
+          border: InputBorder.none,
+          enabledBorder: InputBorder.none,
+          focusedBorder: InputBorder.none,
+          contentPadding:
+          EdgeInsets.symmetric(
+            vertical: 17,
+          ),
+        ),
       ),
     );
   }
 
+  // ============================================================
+  // THREE COMPACT STATISTICS CARDS
+  // ============================================================
+
+  Widget _buildStatistics(int products, int lowStock, int outOfStock) {
+    final values = [('$products', 'Products'), ('$lowStock', 'Low stock'),
+      ('$outOfStock', 'Out of stock')];
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(color: _card,
+        borderRadius: BorderRadius.circular(TrexvenRadii.card)),
+      child: LayoutBuilder(builder: (context, constraints) {
+        final metrics = [
+          for (final item in values)
+            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(item.$1, style: TextStyle(color: _navy,
+                fontSize: 25, fontWeight: FontWeight.w700)),
+              const SizedBox(height: 5),
+              Text(item.$2, style: TextStyle(color: _muted, fontSize: 12)),
+            ]),
+        ];
+        if (constraints.maxWidth < 280 ||
+            MediaQuery.textScalerOf(context).scale(14) > 21) {
+          return Wrap(spacing: 24, runSpacing: 16, children: metrics);
+        }
+        return Row(children: [for (final metric in metrics) Expanded(child: metric)]);
+      }),
+    );
+  }
+
+  // ============================================================
+  // ALL PRODUCTS HEADER
+  // ============================================================
+
+  Widget _buildProductsHeading() {
+    return Row(
+      children: [
+        Expanded(
+          child: Text(
+            'All products',
+            style: TextStyle(
+              color: _navy,
+              fontSize: 17,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  // ============================================================
+  // FILTER BAR
+  // ============================================================
+
+  Widget _buildFilterBar(
+      List<Product> products,
+      ) {
+    return Row(
+      children: [
+        Expanded(
+          flex: 11,
+          child: _filterButton(
+            text: _lowStockOnly
+                ? 'Low stock'
+                : 'All  |  Low stock',
+            selected: true,
+            onTap: () {
+              setState(() {
+                _lowStockOnly = !_lowStockOnly;
+              });
+            },
+          ),
+        ),
+
+        SizedBox(width: 8),
+
+        Expanded(
+          flex: 10,
+          child: _filterButton(
+            text: _category ?? 'Category',
+            selected: _category != null,
+            onTap: () {
+              _showCategoryFilters(products);
+            },
+          ),
+        ),
+
+        SizedBox(width: 8),
+
+        Expanded(
+          flex: 10,
+          child: _filterButton(
+            text: _sort == 'name'
+                ? 'Sort by'
+                : 'Stock ↑',
+            selected: _sort == 'stock',
+            onTap: _showSortOptions,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _filterButton({
+    required String text,
+    required bool selected,
+    required VoidCallback onTap,
+  }) {
+    return Material(
+      color: selected ? _softBlue : _card,
+      borderRadius: BorderRadius.circular(12),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: Container(
+          constraints: const BoxConstraints(minHeight: 42),
+          alignment: Alignment.center,
+          padding: EdgeInsets.symmetric(
+            horizontal: 8, vertical: 10,
+          ),
+          child: Text(
+            text,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: selected ? _blue : _muted,
+              fontSize: 11,
+              fontWeight: selected
+                  ? FontWeight.w600
+                  : FontWeight.w500,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  // ============================================================
+  // PRODUCT CARD
+  // ============================================================
+
+  Widget _buildProductCard(
+      Product product,
+      ) {
+    final currency = NumberFormat.currency(
+      symbol: 'NGN ',
+      decimalDigits: 2,
+    );
+
+    final price = product.isPricePending
+        ? 'Price pending'
+        : currency.format(product.price);
+
+    return Material(
+      color: _card,
+      borderRadius: BorderRadius.circular(15),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(15),
+        onTap: () {
+          _openScreen(
+            CatalogEditorScreen(
+              database: _db,
+              product: product,
+            ),
+          );
+        },
+        child: Container(
+          constraints:
+          BoxConstraints(minHeight: 88),
+          padding: EdgeInsets.symmetric(
+            horizontal: 13,
+            vertical: 13,
+          ),
+          child: Row(
+            children: [
+              Container(
+                width: 53,
+                height: 53,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: _softBlue,
+                  borderRadius:
+                  BorderRadius.circular(14),
+                ),
+                clipBehavior: Clip.antiAlias,
+                child: product.imageUrl?.trim().isNotEmpty == true
+                    ? Image.network(product.imageUrl!, width: 53, height: 53,
+                        fit: BoxFit.cover, cacheWidth: 160,
+                        errorBuilder: (_, _, _) => Icon(Icons.inventory_2_outlined,
+                          color: _blue, size: 25))
+                    : Icon(Icons.inventory_2_outlined, color: _blue, size: 25),
+              ),
+
+              SizedBox(width: 12),
+
+              Expanded(
+                child: Column(
+                  crossAxisAlignment:
+                  CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      product.name,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: _navy,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+
+                    SizedBox(height: 7),
+
+                    Text(
+                      'Catalog stock: ${product.stock} ${product.unit}',
+                      style: TextStyle(
+                        color: product.isLowStock
+                            ? Color(0xFFDC633F)
+                            : _muted,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              SizedBox(width: 8),
+
+              Flexible(
+                child: Text(
+                  price,
+                  maxLines: 2,
+                  textAlign: TextAlign.end,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: _blue,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  // ============================================================
+  // BOTTOM ACTIONS
+  // ============================================================
+
+  Widget _buildBottomActions() {
+    return Column(
+      children: [
+        Row(
+          children: [
+            Expanded(
+              child: _bottomAction(
+                'Scan',
+                _scan,
+              ),
+            ),
+
+            SizedBox(width: 10),
+
+            Expanded(
+              child: _bottomAction(
+                'Restock',
+                _restock,
+              ),
+            ),
+          ],
+        ),
+
+        SizedBox(height: 12),
+
+        Row(
+          children: [
+            Expanded(
+              child: _secondaryAction(
+                icon: Icons.upload_file_outlined,
+                title: 'Import products',
+                onTap: () {
+                  _openScreen(
+                    CatalogImportScreen(
+                      database: _db,
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _bottomAction(
+      String title,
+      VoidCallback onTap,
+      ) {
+    return Material(
+      color: _card,
+      borderRadius: BorderRadius.circular(14),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(14),
+        child: Container(
+          constraints: const BoxConstraints(minHeight: 48),
+          alignment: Alignment.center,
+          child: Text(
+            title,
+            style: TextStyle(
+              color: _navy,
+              fontSize: 14,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _secondaryAction({
+    required IconData icon,
+    required String title,
+    required VoidCallback onTap,
+  }) {
+    return TextButton.icon(
+      onPressed: onTap,
+      icon: Icon(
+        icon,
+        color: _blue,
+        size: 18,
+      ),
+      label: Text(
+        title,
+        style: TextStyle(
+          color: _blue,
+          fontSize: 12,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+    );
+  }
+
+  // ============================================================
+  // EMPTY STATE
+  // ============================================================
+
   Widget _buildEmptyState() {
-    return Center(
+    final isSearching =
+        _searchQuery.isNotEmpty ||
+            _category != null ||
+            _lowStockOnly;
+
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: 20,
+        vertical: 36,
+      ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(
-            _searchQuery.isEmpty ? Icons.inventory_2_outlined : Icons.search_off_rounded,
-            size: 64,
-            color: const Color(0xFFCBD5E1),
+            isSearching
+                ? Icons.search_off_rounded
+                : Icons.inventory_2_outlined,
+            size: 48,
+            color: _muted.withValues(alpha: 0.5),
           ),
-          const SizedBox(height: 16),
+
+          SizedBox(height: 12),
+
           Text(
-            _searchQuery.isEmpty ? 'No products yet' : 'No matches found',
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: Color(0xFF334155)),
+            isSearching
+                ? 'No matches found'
+                : 'No products yet',
+            style: TextStyle(
+              color: _navy,
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
+            ),
           ),
-          const SizedBox(height: 4),
+
+          SizedBox(height: 5),
+
           Text(
-            _searchQuery.isEmpty ? 'Start by adding your first product.' : 'Try searching for something else.',
-            style: const TextStyle(color: Color(0xFF64748B)),
+            isSearching
+                ? 'Try adjusting your search or filters.'
+                : 'Start by adding your first product.',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: _muted,
+              fontSize: 12,
+            ),
           ),
         ],
       ),

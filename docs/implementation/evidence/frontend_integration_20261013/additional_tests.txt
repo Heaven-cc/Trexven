@@ -1,0 +1,42 @@
+00:00 +0: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart
+00:00 +0: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(320.0, 568.0) at text scale 1.0
+00:04 +1: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(320.0, 568.0) at text scale 2.0
+00:05 +2: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(390.0, 844.0) at text scale 1.0
+00:11 +3: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(390.0, 844.0) at text scale 2.0
+00:12 +4: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(800.0, 1000.0) at text scale 1.0
+00:13 +5: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(800.0, 1000.0) at text scale 2.0
+00:14 +6: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(780.0, 360.0) at text scale 1.0
+00:15 +7: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(780.0, 360.0) at text scale 2.0
+00:16 +8: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Shared action grows for long labels and large text
+00:16 +9: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/owner_notifications_test.dart
+00:24 +9: C:/Users/USER/AndroidStudioProjects/Trexven/test/owner_notifications_test.dart: Owner inbox pages role feed, deduplicates cloud alerts and uses personal acknowledgements
+00:25 +10: C:/Users/USER/AndroidStudioProjects/Trexven/test/owner_notifications_test.dart: Late Owner inbox response is discarded after sign-out
+00:25 +11: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/finance_repository_test.dart
+00:31 +11: C:/Users/USER/AndroidStudioProjects/Trexven/test/finance_repository_test.dart: Finance summary uses authoritative interval and pages all sales/items and expenses
+00:32 +12: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/angel_repository_test.dart
+00:33 +12: C:/Users/USER/AndroidStudioProjects/Trexven/test/angel_repository_test.dart: New chat has an explicit stable identity; message history uses an authorized cursor
+00:34 +12 -1: C:/Users/USER/AndroidStudioProjects/Trexven/test/angel_repository_test.dart: New chat has an explicit stable identity; message history uses an authorized cursor [E]
+  Expected: 'created_at.desc,id.desc'
+    Actual: 'created_at.desc.nullslast,id.desc.nullslast'
+     Which: is different.
+            Expected: ... ed_at.desc,id.desc
+              Actual: ... ed_at.desc.nullslast ...
+                                    ^
+             Differ at offset 15
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test\angel_repository_test.dart 48:5                main.<fn>
+  
+00:34 +12 -1: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/intelligence_experience_test.dart
+00:39 +12 -1: C:/Users/USER/AndroidStudioProjects/Trexven/test/intelligence_experience_test.dart: camera card opens in-app live feed, with Events and existing Recordings access
+00:41 +13 -1: C:/Users/USER/AndroidStudioProjects/Trexven/test/intelligence_experience_test.dart: live feed never overlaps requests, clears stale image, reconnects and disposes
+00:42 +14 -1: C:/Users/USER/AndroidStudioProjects/Trexven/test/intelligence_experience_test.dart: disposing live feed ignores a late response
+00:42 +15 -1: C:/Users/USER/AndroidStudioProjects/Trexven/test/intelligence_experience_test.dart: Events display stored detections without fabricated confidence
+00:42 +16 -1: C:/Users/USER/AndroidStudioProjects/Trexven/test/intelligence_experience_test.dart: event detail exposes only its stored associated clip
+00:42 +17 -1: C:/Users/USER/AndroidStudioProjects/Trexven/test/intelligence_experience_test.dart: local and cloud notifications use one inbox, durable read state and badge updates
+00:42 +18 -1: C:/Users/USER/AndroidStudioProjects/Trexven/test/intelligence_experience_test.dart: notification tap opens its event and marks it read
+00:43 +19 -1: Some tests failed.
+
+Failing tests:
+  C:/Users/USER/AndroidStudioProjects/Trexven/test/angel_repository_test.dart: New chat has an explicit stable identity; message history uses an authorized cursor

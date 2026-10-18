@@ -1,0 +1,43 @@
+{
+  "production_writes": 0,
+  "projects": [
+    {
+      "id": "ufehcfrlygqvminfjumf",
+      "name": "Heaven-cc's Project",
+      "status": "ACTIVE_HEALTHY",
+      "region": "eu-west-3",
+      "database": {
+        "host": "db.ufehcfrlygqvminfjumf.supabase.co",
+        "version": "17.6.1.155",
+        "postgres_engine": "17",
+        "release_channel": "ga"
+      }
+    },
+    {
+      "id": "qysspzlfiysekvxnlzsh",
+      "name": "Trexven-Staging",
+      "status": "ACTIVE_HEALTHY",
+      "region": "eu-west-1",
+      "database": {
+        "host": "db.qysspzlfiysekvxnlzsh.supabase.co",
+        "version": "17.11.0.003",
+        "postgres_engine": "17",
+        "release_channel": "ga"
+      }
+    }
+  ],
+  "staging_reviewed_edges": [
+    {
+      "name": "camera-ai",
+      "version": 1,
+      "status": "ACTIVE",
+      "verify_jwt": true
+    },
+    {
+      "name": "delete-account",
+      "version": 1,
+      "status": "ACTIVE",
+      "verify_jwt": true
+    }
+  ]
+}

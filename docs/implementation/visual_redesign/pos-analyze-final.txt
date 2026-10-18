@@ -1,0 +1,69 @@
+Analyzing trexvenpos...                                         
+
+   info - Use an initializing formal to assign a parameter to a field. Try using an initialing formal ('this._offlineContext') to initialize the field - lib\src\features\auth\auth_provider.dart:78:8 - prefer_initializing_formals
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\auth\auth_provider.dart:170:13 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\auth\auth_provider.dart:177:15 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\auth\auth_provider.dart:394:9 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\auth\auth_provider.dart:397:9 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\auth\auth_provider.dart:400:9 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\auth\branch_context.dart:28:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\auth\branch_context.dart:42:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\auth\branch_context.dart:116:11 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\auth\permission_service.dart:64:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\inventory\catalog_edit_screen.dart:80:9 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\inventory\catalog_edit_screen.dart:273:9 - curly_braces_in_flow_control_structures
+   info - The import of 'payment_confirmation_dialog.dart' is unnecessary because all of the used elements are also provided by the import of 'package:trexven_operations/trexven_operations.dart'. Try removing the import directive - lib\src\features\pos\checkout_screen.dart:8:8 - unnecessary_import
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\checkout_screen.dart:130:13 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\checkout_screen.dart:222:11 - curly_braces_in_flow_control_structures
+   info - Use interpolation to compose strings and values. Try using string interpolation to build the composite string - lib\src\features\pos\checkout_screen.dart:242:15 - prefer_interpolation_to_compose_strings
+   info - Use the null-aware marker '?' rather than a null check via an 'if'. Try using '?' - lib\src\features\pos\checkout_screen.dart:516:9 - use_null_aware_elements
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\checkout_screen.dart:722:9 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\checkout_screen.dart:737:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\employee_settings_screen.dart:24:9 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\employee_settings_screen.dart:37:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\employee_settings_screen.dart:100:21 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\employee_settings_screen.dart:166:9 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\employee_settings_screen.dart:170:9 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\employee_settings_screen.dart:177:9 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\employee_settings_screen.dart:183:9 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\employee_settings_screen.dart:189:9 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\employee_settings_screen.dart:259:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\employee_settings_screen.dart:318:9 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\employee_settings_screen.dart:351:13 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\offline_cash_screen.dart:36:9 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\offline_cash_screen.dart:53:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\offline_cash_screen.dart:55:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\offline_cash_screen.dart:80:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\offline_cash_screen.dart:114:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\offline_cash_screen.dart:143:9 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\offline_cash_screen.dart:167:17 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\operations_screen.dart:43:7 - curly_braces_in_flow_control_structures
+   info - The import of 'payment_confirmation_dialog.dart' is unnecessary because all of the used elements are also provided by the import of 'package:trexven_operations/trexven_operations.dart'. Try removing the import directive - lib\src\features\pos\pending_sale_provider.dart:11:8 - unnecessary_import
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\pending_sale_provider.dart:64:9 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\pending_sale_provider.dart:75:9 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\pending_sale_provider.dart:82:9 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\pending_sale_provider.dart:157:11 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\pending_sale_provider.dart:167:11 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\pending_sale_provider.dart:176:11 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\pending_sale_provider.dart:228:9 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\pos_shell.dart:105:19 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\pos_shell.dart:212:21 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\pos_shell.dart:367:17 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\sales_repository.dart:91:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\features\pos\sales_repository.dart:124:9 - curly_braces_in_flow_control_structures
+   info - Import of a library in the 'lib/src' directory of another package. Try importing a public library that exports this library, or removing the import - lib\src\services\offline_cash_file.dart:7:8 - implementation_imports
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\services\offline_cash_queue.dart:98:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\services\offline_cash_queue.dart:140:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\services\offline_cash_queue.dart:150:9 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\services\offline_cash_queue.dart:192:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\services\offline_session.dart:59:5 - curly_braces_in_flow_control_structures
+   info - Use the null-aware marker '?' rather than a null check via an 'if'. Try using '?' - lib\src\services\pending_sale.dart:64:7 - use_null_aware_elements
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\services\pending_sale.dart:68:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\services\pending_sale_file.dart:51:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - lib\src\services\pending_sale_file.dart:66:7 - curly_braces_in_flow_control_structures
+   info - Parameter 'client' could be a super parameter. Trying converting 'client' to a super parameter - test\access_boundaries_test.dart:22:3 - use_super_parameters
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - test\auth_session_test.dart:78:11 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block. Try wrapping the statement in a block - test\auth_session_test.dart:325:11 - curly_braces_in_flow_control_structures
+   info - Parameter 'client' could be a super parameter. Trying converting 'client' to a super parameter - test\checkout_flow_test.dart:52:3 - use_super_parameters
+
+65 issues found. (ran in 10.7s)

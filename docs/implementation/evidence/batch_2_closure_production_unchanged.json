@@ -1,0 +1,8 @@
+{
+  "structure": true,
+  "functions": true,
+  "security": true,
+  "acl": true,
+  "dependencies": true,
+  "extras": true
+}

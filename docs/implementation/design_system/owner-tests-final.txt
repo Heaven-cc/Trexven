@@ -1,0 +1,171 @@
+00:00 +0: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart
+00:00 +0: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Multiple owned businesses require explicit selection
+00:00 +1: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Forged owner selection is rejected without writes
+00:00 +2: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Selected business ownership is rechecked on every lookup
+00:00 +3: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Owner business resolves without creating records
+00:00 +4: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Employee membership cannot enter the Owner app
+00:00 +5: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Suspended membership cannot enter onboarding as a new owner
+00:01 +6: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: New account returns no business without inserting duplicates
+00:01 +7: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Product reads are explicitly scoped to the resolved business
+00:01 +8: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Sale uses one atomic RPC and never directly writes product stock
+00:01 +9: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Rejected sale propagates to the UI without a fallback write
+00:01 +10: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Invalid quantities fail before sending a request
+00:01 +11: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Password reset calls Supabase with the registered mobile callback
+00:01 +12: C:/Users/USER/AndroidStudioProjects/Trexven/test/backend_service_test.dart: Google OAuth URL requests Google and the callback without embedded secrets
+00:02 +13: C:/Users/USER/AndroidStudioProjects/Trexven/test/billing_frontend_test.dart: (setUpAll)
+00:02 +13: C:/Users/USER/AndroidStudioProjects/Trexven/test/billing_frontend_test.dart: Canonical billing reads actual entitlement state without charging: enrolled=false
+00:04 +14: C:/Users/USER/AndroidStudioProjects/Trexven/test/build_error_fallback_test.dart: Build error fallback is bounded inside a scrolling form and retry works
+00:05 +15: C:/Users/USER/AndroidStudioProjects/Trexven/test/build_error_fallback_test.dart: Build error fallback is bounded inside a scrolling form and retry works
+00:08 +16: C:/Users/USER/AndroidStudioProjects/Trexven/test/catalog_import_test.dart: Friendly import headers preserve the legacy payload, zero prices and barcode text
+00:08 +17: C:/Users/USER/AndroidStudioProjects/Trexven/test/catalog_import_test.dart: Excel import preserves text barcodes and precise prices
+00:08 +18: C:/Users/USER/AndroidStudioProjects/Trexven/test/catalog_import_test.dart: Excel numeric barcode rejects potentially lost leading zeroes
+00:08 +19: C:/Users/USER/AndroidStudioProjects/Trexven/test/catalog_import_test.dart: quoted CSV preserves manufacturer leading zeroes and measurable stock
+00:08 +20: C:/Users/USER/AndroidStudioProjects/Trexven/test/catalog_import_test.dart: blank import prices remain absent and explicit free price remains zero
+00:08 +21: C:/Users/USER/AndroidStudioProjects/Trexven/test/catalog_import_test.dart: duplicate barcodes and SKUs reject before mutation
+00:08 +22: C:/Users/USER/AndroidStudioProjects/Trexven/test/catalog_import_test.dart: cost, malformed headers, quantity precision and fractional pieces reject
+00:09 +23: C:/Users/USER/AndroidStudioProjects/Trexven/test/catalog_import_test.dart: grouped product preserves precise quantity and low stock includes zero
+00:10 +24: C:/Users/USER/AndroidStudioProjects/Trexven/test/catalog_repository_test.dart: Dashboard aggregates all authorized pages instead of truncating KPIs
+00:10 +25: C:/Users/USER/AndroidStudioProjects/Trexven/test/catalog_repository_test.dart: Dashboard uses granted catalog columns and counts empty sellable stock
+00:10 +26: C:/Users/USER/AndroidStudioProjects/Trexven/test/catalog_repository_test.dart: Owner reads pre-Batch-3 product schema without SELECT star or cost
+00:11 +27: C:/Users/USER/AndroidStudioProjects/Trexven/test/catalog_repository_test.dart: stock intent sends an authorized delta and stable request, not an absolute overwrite
+00:11 +28: C:/Users/USER/AndroidStudioProjects/Trexven/test/confirmed_operation_recovery_test.dart: confirmed payment survives P0001 and restart recovery
+00:12 +29: C:/Users/USER/AndroidStudioProjects/Trexven/test/confirmed_operation_recovery_test.dart: confirmed payment survives 42501 and restart recovery
+00:12 +30: C:/Users/USER/AndroidStudioProjects/Trexven/test/confirmed_operation_recovery_test.dart: confirmed payment survives 23514 and restart recovery
+00:14 +31: C:/Users/USER/AndroidStudioProjects/Trexven/test/dashboard_density_test.dart: (setUpAll)
+00:15 +31: C:/Users/USER/AndroidStudioProjects/Trexven/test/dashboard_density_test.dart: Dashboard cards remain usable at width 320.0 scale 1.0
+00:18 +32: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_contract_test.dart: Shared form 320.0/1.0/light retains values, labels and dropdown
+00:18 +33: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_contract_test.dart: Shared form 320.0/1.0/light retains values, labels and dropdown
+00:19 +34: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_contract_test.dart: Shared form 320.0/1.0/light retains values, labels and dropdown
+00:19 +35: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_contract_test.dart: Shared form 320.0/1.0/light retains values, labels and dropdown
+00:20 +36: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_contract_test.dart: Owner login 320.0/1.0/light fits with keyboard
+00:21 +37: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_contract_test.dart: Shared form 320.0/1.0/dark retains values, labels and dropdown
+00:21 +38: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_contract_test.dart: Owner login 320.0/1.0/dark fits with keyboard
+00:22 +39: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_contract_test.dart: Shared form 320.0/1.3/light retains values, labels and dropdown
+00:22 +40: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_contract_test.dart: Owner login 320.0/1.3/light fits with keyboard
+00:23 +41: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_contract_test.dart: Shared form 320.0/1.3/dark retains values, labels and dropdown
+00:23 +42: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_contract_test.dart: Owner login 320.0/1.3/dark fits with keyboard
+00:24 +43: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_contract_test.dart: Shared form 320.0/2.0/light retains values, labels and dropdown
+00:24 +44: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_contract_test.dart: Owner login 320.0/2.0/light fits with keyboard
+00:24 +45: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/false
+00:25 +46: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/false
+00:25 +47: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/false
+00:26 +48: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/false
+00:26 +49: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/false
+00:26 +50: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/false
+00:27 +51: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/false
+00:27 +52: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/false
+00:27 +53: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/false
+00:28 +54: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/false
+00:28 +55: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/false
+00:28 +56: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/false
+00:28 +57: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/false
+00:29 +58: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/false
+00:29 +59: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/false
+00:30 +60: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/false
+00:30 +61: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/false
+00:31 +62: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/false
+00:31 +63: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/false
+00:32 +64: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/false
+00:32 +65: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/false
+00:32 +66: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_contract_test.dart: Shared form 390.0/1.3/dark retains values, labels and dropdown
+00:32 +67: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/true
+00:32 +68: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/true
+00:33 +69: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/true
+00:33 +70: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/true
+00:33 +71: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/true
+00:34 +72: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/true
+00:34 +73: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/true
+00:34 +74: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.3/false
+00:36 +75: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.3/true
+00:38 +76: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_visual_test.dart: Owner login visual light
+00:39 +77: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_visual_test.dart: Owner login visual light
+00:41 +78: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_visual_test.dart: Owner login visual light
+00:41 +79: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 340.0/1.0/false
+00:41 +80: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 340.0/1.0/false
+00:42 +81: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_visual_test.dart: Owner setup visual light
+00:42 +82: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 340.0/1.0/true
+00:43 +83: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 340.0/1.0/true
+00:44 +84: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_visual_test.dart: Owner camera visual light
+00:44 +85: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 340.0/1.3/false
+00:45 +86: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 340.0/1.3/false
+00:45 +87: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 340.0/1.3/true
+00:47 +88: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 340.0/2.0/false
+00:48 +89: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 340.0/2.0/true
+00:50 +90: C:/Users/USER/AndroidStudioProjects/Trexven/test/employment_loading_test.dart: (setUpAll)
+00:50 +90: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 390.0/1.0/false
+00:51 +91: C:/Users/USER/AndroidStudioProjects/Trexven/test/employment_loading_test.dart: Personnel stream errors offer retry and stats/list share one load
+00:53 +92: C:/Users/USER/AndroidStudioProjects/Trexven/test/employment_loading_test.dart: Personnel stream errors offer retry and stats/list share one load
+00:55 +93: C:/Users/USER/AndroidStudioProjects/Trexven/test/employment_loading_test.dart: Personnel stream errors offer retry and stats/list share one load
+00:55 +94: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 390.0/1.3/true
+00:56 +95: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 390.0/1.3/true
+00:56 +96: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 390.0/2.0/false
+00:57 +97: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 390.0/2.0/true
+00:59 +98: C:/Users/USER/AndroidStudioProjects/Trexven/test/finance_loading_test.dart: Finance retains requests on rebuild and refreshes explicitly
+01:05 +99: C:/Users/USER/AndroidStudioProjects/Trexven/test/finance_loading_test.dart: Finance retains requests on rebuild and refreshes explicitly
+01:06 +100: C:/Users/USER/AndroidStudioProjects/Trexven/test/finance_loading_test.dart: Finance retains requests on rebuild and refreshes explicitly
+01:06 +101: C:/Users/USER/AndroidStudioProjects/Trexven/test/finance_loading_test.dart: Finance retains requests on rebuild and refreshes explicitly
+01:06 +102: C:/Users/USER/AndroidStudioProjects/Trexven/test/frontend_refinement_test.dart: Angel accepts web links and rejects active/local or credential-bearing links
+01:06 +103: C:/Users/USER/AndroidStudioProjects/Trexven/test/finance_loading_test.dart: Finance failure is visible and retry recovers
+01:06 +104: C:/Users/USER/AndroidStudioProjects/Trexven/test/frontend_refinement_test.dart: Markdown, plan and Profile fit 320.0 in light mode with large text
+01:08 +105: C:/Users/USER/AndroidStudioProjects/Trexven/test/frontend_refinement_test.dart: Markdown, plan and Profile fit 320.0 in dark mode with large text
+01:09 +106: C:/Users/USER/AndroidStudioProjects/Trexven/test/frontend_refinement_test.dart: Markdown, plan and Profile fit 412.0 in light mode with large text
+01:10 +107: C:/Users/USER/AndroidStudioProjects/Trexven/test/frontend_refinement_test.dart: Markdown, plan and Profile fit 412.0 in light mode with large text
+01:10 +108: C:/Users/USER/AndroidStudioProjects/Trexven/test/frontend_refinement_test.dart: Markdown, plan and Profile fit 412.0 in light mode with large text
+01:11 +109: C:/Users/USER/AndroidStudioProjects/Trexven/test/frontend_refinement_test.dart: Markdown, plan and Profile fit 412.0 in dark mode with large text
+01:11 +110: C:/Users/USER/AndroidStudioProjects/Trexven/test/frontend_refinement_test.dart: Capture actual priority widgets with synthetic display fixtures
+01:13 +111: C:/Users/USER/AndroidStudioProjects/Trexven/test/frontend_refinement_test.dart: (tearDownAll)
+01:14 +111: C:/Users/USER/AndroidStudioProjects/Trexven/test/intelligence_experience_test.dart: camera card opens in-app live feed, with Events and existing Recordings access
+01:18 +112: C:/Users/USER/AndroidStudioProjects/Trexven/test/inventory_loading_test.dart: Inventory search retains its stream; failure can be retried
+01:18 +113: C:/Users/USER/AndroidStudioProjects/Trexven/test/inventory_loading_test.dart: Inventory search retains its stream; failure can be retried
+01:19 +114: C:/Users/USER/AndroidStudioProjects/Trexven/test/inventory_loading_test.dart: Inventory search retains its stream; failure can be retried
+01:19 +115: C:/Users/USER/AndroidStudioProjects/Trexven/test/inventory_loading_test.dart: Inventory search retains its stream; failure can be retried
+01:19 +116: C:/Users/USER/AndroidStudioProjects/Trexven/test/inventory_loading_test.dart: Inventory search retains its stream; failure can be retried
+01:20 +117: C:/Users/USER/AndroidStudioProjects/Trexven/test/inventory_loading_test.dart: Inventory search retains its stream; failure can be retried
+01:21 +118: C:/Users/USER/AndroidStudioProjects/Trexven/test/inventory_loading_test.dart: Inventory search retains its stream; failure can be retried
+01:26 +119: C:/Users/USER/AndroidStudioProjects/Trexven/test/notification_account_isolation_test.dart: account change hides cached notifications
+01:27 +120: C:/Users/USER/AndroidStudioProjects/Trexven/test/notification_account_isolation_test.dart: account change hides cached notifications
+01:29 +121: C:/Users/USER/AndroidStudioProjects/Trexven/test/notification_account_isolation_test.dart: account change hides cached notifications
+01:29 +122: C:/Users/USER/AndroidStudioProjects/Trexven/test/notification_account_isolation_test.dart: account change hides cached notifications
+01:29 +123: C:/Users/USER/AndroidStudioProjects/Trexven/test/notification_account_isolation_test.dart: account change hides in-flight notifications
+01:31 +124: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart: Unconfirmed quick sale retries the same request and returns the receipt
+01:36 +125: C:/Users/USER/AndroidStudioProjects/Trexven/test/restock_flow_test.dart: Restock validates and saves only the edited selling price before stock
+01:37 +126: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart: Selection and quantity survive fresh stream rows; double tap submits once
+01:38 +127: C:/Users/USER/AndroidStudioProjects/Trexven/test/restock_flow_test.dart: Rejected selling price prevents restock and retry preserves intent and identity
+01:38 +128: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart: pending financial intent blocks collecting a second payment
+01:38 +129: C:/Users/USER/AndroidStudioProjects/Trexven/test/restock_flow_test.dart: Committed price is not repeated when stock update needs retry
+01:39 +130: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart: fractional sale keeps exact units, payment and request on rejection
+01:40 +131: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart: fractional sale keeps exact units, payment and request on rejection
+01:40 +132: C:/Users/USER/AndroidStudioProjects/Trexven/test/restock_flow_test.dart: Restock distinguishes loading, failure, retry, empty, and deleted selection
+01:41 +133: C:/Users/USER/AndroidStudioProjects/Trexven/test/restock_flow_test.dart: Stalled product load becomes retryable instead of loading forever
+01:41 +134: C:/Users/USER/AndroidStudioProjects/Trexven/test/restock_flow_test.dart: Failed stock update restores controls and repeated taps write once
+01:42 +135: C:/Users/USER/AndroidStudioProjects/Trexven/test/restock_flow_test.dart: Failed stock update restores controls and repeated taps write once
+01:42 +136: C:/Users/USER/AndroidStudioProjects/Trexven/test/restock_flow_test.dart: Failed stock update restores controls and repeated taps write once
+01:43 +137: C:/Users/USER/AndroidStudioProjects/Trexven/test/shared_vision_experience_test.dart: shared requests are authenticated app paths
+01:43 +138: C:/Users/USER/AndroidStudioProjects/Trexven/test/shared_vision_experience_test.dart: AI Live switches camera with reason and clears offline video
+01:44 +139: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(320.0, 568.0) at text scale 1.0
+01:45 +140: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(320.0, 568.0) at text scale 1.0
+01:45 +141: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(320.0, 568.0) at text scale 1.0
+01:46 +142: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(320.0, 568.0) at text scale 1.0
+01:46 +143: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(320.0, 568.0) at text scale 2.0
+01:47 +144: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(390.0, 844.0) at text scale 1.0
+01:48 +145: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(390.0, 844.0) at text scale 1.0
+01:48 +146: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(390.0, 844.0) at text scale 1.0
+01:48 +147: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(390.0, 844.0) at text scale 1.0
+01:48 +148: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(390.0, 844.0) at text scale 1.0
+01:48 +149: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(390.0, 844.0) at text scale 1.0
+01:48 +150: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(390.0, 844.0) at text scale 1.0
+01:48 +151: C:/Users/USER/AndroidStudioProjects/Trexven/test/vision_service_test.dart: pairing screen loads saved address and masks the API key
+01:48 +152: C:/Users/USER/AndroidStudioProjects/Trexven/test/vision_service_test.dart: pairing screen loads saved address and masks the API key
+01:49 +153: C:/Users/USER/AndroidStudioProjects/Trexven/test/vision_service_test.dart: pairing screen loads saved address and masks the API key
+01:49 +154: C:/Users/USER/AndroidStudioProjects/Trexven/test/vision_service_test.dart: pairing screen loads saved address and masks the API key
+01:50 +155: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(780.0, 360.0) at text scale 1.0
+01:50 +156: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(780.0, 360.0) at text scale 1.0
+01:50 +157: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(780.0, 360.0) at text scale 1.0
+01:50 +158: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(780.0, 360.0) at text scale 1.0
+01:50 +159: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(780.0, 360.0) at text scale 1.0
+01:50 +160: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Record Sale fits Size(780.0, 360.0) at text scale 2.0
+01:51 +161: C:/Users/USER/AndroidStudioProjects/Trexven/test/ui_density_test.dart: Shared action grows for long labels and large text
+01:51 +162: C:/Users/USER/AndroidStudioProjects/Trexven/test/widget_test.dart: (setUpAll)
+01:52 +162: C:/Users/USER/AndroidStudioProjects/Trexven/test/widget_test.dart: Signed-out app boots and navigates to welcome
+01:53 +163: C:/Users/USER/AndroidStudioProjects/Trexven/test/widget_test.dart: (tearDownAll)
+01:53 +163: All tests passed!

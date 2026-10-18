@@ -1,0 +1,353 @@
+import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:trexven_design_system/trexven_design_system.dart';
+import 'package:trexven_operations/trexven_operations.dart';
+
+import '../../services/database_service.dart';
+import '../inventory/scanner_screen.dart';
+import '../../services/business_reporting.dart';
+import 'expense_history_screen.dart';
+
+class OperationalFinanceScreen extends StatefulWidget {
+  const OperationalFinanceScreen({super.key, this.period});
+  final BusinessPeriod? period;
+
+  @override
+  State<OperationalFinanceScreen> createState() =>
+      _OperationalFinanceScreenState();
+}
+
+class _OperationalFinanceScreenState extends State<OperationalFinanceScreen> {
+  late Future<String?> business;
+
+  Color get _background => Theme.of(context).scaffoldBackgroundColor;
+  Color get _navy => Theme.of(context).colorScheme.onSurface;
+  Color get _blue => Theme.of(context).colorScheme.primary;
+  Color get _muted => Theme.of(context).trexvenColors.muted ?? Theme.of(context).colorScheme.onSurfaceVariant;
+  Color get _border => Theme.of(context).trexvenColors.border ?? Theme.of(context).colorScheme.outlineVariant;
+  Color get _softBlue => Theme.of(context).colorScheme.primary.withValues(alpha: 0.12);
+
+  @override
+  void initState() {
+    super.initState();
+    _loadBusiness();
+  }
+
+  void _loadBusiness() {
+    business = DatabaseService().getCurrentBusinessId();
+  }
+
+  void _retry() {
+    setState(_loadBusiness);
+  }
+
+  void _open(Widget screen) {
+    Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => screen));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<String?>(
+      future: business,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState != ConnectionState.done) {
+          return _buildScaffold(child: const Center(child: TrexvenLoading()));
+        }
+
+        final businessId = snapshot.data;
+
+        if (snapshot.hasError ||
+            businessId == null ||
+            businessId.trim().isEmpty) {
+          return _buildScaffold(child: _buildErrorState());
+        }
+
+        final api = OperationsClient(Supabase.instance.client, businessId);
+
+        return _buildScaffold(
+          child: RefreshIndicator(
+            color: _blue,
+            onRefresh: () async {
+              _retry();
+              try {
+                await business;
+              } catch (_) {
+                // Error state is handled by FutureBuilder.
+              }
+            },
+            child: ListView(
+              padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
+              children: [
+                _buildHeader(),
+                const SizedBox(height: 22),
+                _buildSectionTitle('Financial management'),
+                const SizedBox(height: 10),
+                _buildMenuCard(
+                  icon: Icons.wallet_outlined,
+                  title: 'Expense history',
+                  description:
+                      'View recorded expenses. New entry awaits an approved write contract.',
+                  onTap: () =>
+                      _open(ExpenseHistoryScreen(period: widget.period)),
+                ),
+                const SizedBox(height: 10),
+                _buildMenuCard(
+                  icon: Icons.receipt_long_outlined,
+                  title: 'Credit and Returns',
+                  description:
+                      'Manage customer credit, repayments, returns and refunds.',
+                  onTap: () =>
+                      _open(FinancialOperationsScreen(api: api, owner: true)),
+                ),
+                const SizedBox(height: 22),
+                _buildSectionTitle('Business management'),
+                const SizedBox(height: 10),
+                _buildMenuCard(
+                  icon: Icons.inventory_2_outlined,
+                  title: 'Inventory Operations',
+                  description:
+                      'Handle stocktake, adjustments, write-offs and suppliers.',
+                  onTap: () => _open(
+                    InventoryOperationsScreen(
+                      api: api,
+                      scanBarcode: (context) => Navigator.push<String>(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const ScannerScreen(),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                _buildMenuCard(
+                  icon: Icons.account_balance_wallet_outlined,
+                  title: 'Shared Cash Drawers',
+                  description:
+                      'Manage cash registers, employee shifts and drawer activity.',
+                  onTap: () => _open(CashShiftScreen(api: api, owner: true)),
+                ),
+                const SizedBox(height: 22),
+                _buildSectionTitle('Access and security'),
+                const SizedBox(height: 10),
+                _buildMenuCard(
+                  icon: Icons.admin_panel_settings_outlined,
+                  title: 'Operational Employee Permissions',
+                  description: 'Review and manage employee operational access.',
+                  onTap: () => _open(OperationalPermissionsScreen(api: api)),
+                ),
+                const SizedBox(height: 22),
+                _buildInfoFooter(),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildScaffold({required Widget child}) {
+    return Scaffold(
+      backgroundColor: _background,
+      appBar: AppBar(
+        backgroundColor: _background,
+        surfaceTintColor: Colors.transparent,
+        elevation: 0,
+        titleSpacing: 0,
+        iconTheme: const IconThemeData(color: _navy),
+        title: const Text(
+          'Business Operations',
+          style: TextStyle(
+            color: _navy,
+            fontSize: 19,
+            fontWeight: FontWeight.w800,
+            letterSpacing: -0.4,
+          ),
+        ),
+      ),
+      body: child,
+    );
+  }
+
+  Widget _buildHeader() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Manage your business',
+          style: TextStyle(
+            color: _navy,
+            fontSize: 21,
+            fontWeight: FontWeight.w800,
+            letterSpacing: -0.5,
+          ),
+        ),
+        const SizedBox(height: 6),
+        const Text(
+          'Access your financial tools, inventory controls, '
+          'cash management and employee permissions.',
+          style: TextStyle(color: _muted, fontSize: 12, height: 1.5),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSectionTitle(String title) {
+    return Text(
+      title,
+      style: const TextStyle(
+        color: _navy,
+        fontSize: 13,
+        fontWeight: FontWeight.w800,
+        letterSpacing: 0.1,
+      ),
+    );
+  }
+
+  Widget _buildMenuCard({
+    required IconData icon,
+    required String title,
+    required String description,
+    required VoidCallback onTap,
+  }) {
+    return Material(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(14),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(14),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 14),
+          decoration: BoxDecoration(
+            border: Border.all(color: _border),
+            borderRadius: BorderRadius.circular(14),
+          ),
+          child: Row(
+            children: [
+              Container(
+                width: 43,
+                height: 43,
+                decoration: BoxDecoration(
+                  color: _softBlue,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Icon(icon, color: _blue, size: 22),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        color: _navy,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      description,
+                      style: const TextStyle(
+                        color: _muted,
+                        fontSize: 11,
+                        height: 1.4,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 8),
+              const Icon(Icons.chevron_right_rounded, color: _muted, size: 21),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildInfoFooter() {
+    return Container(
+      padding: const EdgeInsets.all(13),
+      decoration: BoxDecoration(
+        color: _softBlue,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: const Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(Icons.shield_outlined, color: _blue, size: 19),
+          SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              'Business operations are connected to your '
+              'verified business account. Financial actions '
+              'remain subject to server-side authorization.',
+              style: TextStyle(color: _navy, fontSize: 11, height: 1.5),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildErrorState() {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 62,
+              height: 62,
+              decoration: BoxDecoration(
+                color: _softBlue,
+                borderRadius: BorderRadius.circular(18),
+              ),
+              child: const Icon(
+                Icons.business_outlined,
+                color: _blue,
+                size: 29,
+              ),
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              'Business verification required',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: _navy,
+                fontSize: 16,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+            const SizedBox(height: 8),
+            const Text(
+              'We could not load your verified business. '
+              'Please check your account or try again.',
+              textAlign: TextAlign.center,
+              style: TextStyle(color: _muted, fontSize: 12, height: 1.5),
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              height: 42,
+              child: FilledButton.icon(
+                onPressed: _retry,
+                icon: const Icon(Icons.refresh_rounded, size: 17),
+                label: const Text('Try again'),
+                style: FilledButton.styleFrom(
+                  backgroundColor: _blue,
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(11),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

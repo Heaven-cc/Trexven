@@ -1,9 +1,10 @@
+import 'package:trexven_design_system/trexven_design_system.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../widgets/trexven_logo.dart';
 import 'welcome_screen.dart';
-import 'main_screen.dart';
+import 'auth/account_gate.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -23,13 +24,10 @@ class _SplashScreenState extends State<SplashScreen>
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 900),
+      duration: Duration(milliseconds: 900),
     );
 
-    _animation = CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeOut,
-    );
+    _animation = CurvedAnimation(parent: _controller, curve: Curves.easeOut);
 
     _controller.forward();
 
@@ -37,36 +35,23 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   Future<void> _checkSession() async {
-    // Wait for animation and a small delay
-    await Future.delayed(const Duration(milliseconds: 2200));
+    try {
+      // Let the entrance animation finish without an additional idle delay.
+      await Future.delayed(Duration(milliseconds: 900));
 
-    if (!mounted) return;
+      if (!mounted) return;
 
-    final session = Supabase.instance.client.auth.currentSession;
+      final session = Supabase.instance.client.auth.currentSession;
 
-    if (session == null) {
-      _navigateTo(const WelcomeScreen());
-    } else {
-      // Fetch user data to see if they have a business
-      try {
-        final userId = session.user.id;
-        final businessData = await Supabase.instance.client
-            .from('businesses')
-            .select('business_name')
-            .eq('owner_id', userId)
-            .maybeSingle();
-
-        if (businessData == null) {
-          // No business set up yet
-          _navigateTo(const WelcomeScreen());
-        } else {
-          _navigateTo(MainScreen(
-            businessName: businessData['business_name'] ?? 'Your Business',
-            ownerName: session.user.userMetadata?['full_name'] ?? 'Owner',
-          ));
-        }
-      } catch (e) {
-        _navigateTo(const WelcomeScreen());
+      if (session == null) {
+        _navigateTo(WelcomeScreen());
+      } else {
+        _navigateTo(AccountGate());
+      }
+    } catch (e) {
+      debugPrint('SplashScreen Error: $e');
+      if (mounted) {
+        _navigateTo(WelcomeScreen());
       }
     }
   }
@@ -87,35 +72,32 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF8FAFC),
+      backgroundColor: TrexvenTheme.primaryDark,
       body: Center(
         child: FadeTransition(
           opacity: _animation,
           child: ScaleTransition(
-            scale: Tween<double>(
-              begin: .85,
-              end: 1,
-            ).animate(_animation),
-            child: const Column(
+            scale: Tween<double>(begin: .85, end: 1).animate(_animation),
+            child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 TrexvenLogo(size: 72),
-                SizedBox(height: 20),
+                SizedBox(height: TrexvenSpacing.fieldGap),
                 Text(
                   'TREXVEN',
                   style: TextStyle(
-                    fontSize: 28,
+                    fontSize: TrexvenFontSize.display,
                     fontWeight: FontWeight.w900,
                     letterSpacing: 2,
-                    color: Color(0xFF0F172A),
+                    color: Colors.white,
                   ),
                 ),
                 SizedBox(height: 8),
                 Text(
                   'Smart management for your business.',
                   style: TextStyle(
-                    color: Color(0xFF64748B),
-                    fontSize: 14,
+                    color: Colors.white.withValues(alpha: 0.7),
+                    fontSize: TrexvenFontSize.body,
                   ),
                 ),
               ],

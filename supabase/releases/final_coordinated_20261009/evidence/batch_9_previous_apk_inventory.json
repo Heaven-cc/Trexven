@@ -1,0 +1,30 @@
+[
+  {
+    "app": "owner",
+    "artifact_present": true,
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+    "sha256": "06cec27d4f5743a6dd8f106d83532a58c18b08791fd4b0eaf9f607e7da68d746",
+    "package_metadata": "package: name='com.ODT.odt' versionCode='2' versionName='1.0.0' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'",
+    "badging_exit": 0,
+    "signature_verify_exit": 0,
+    "signing_certificate_sha256": [
+      "Signer #1 certificate SHA-256 digest: 66278e148f4a1ac8ef448ab6af2c3a78507981be76f1d7fb8f5e7472725b6285"
+    ],
+    "current_candidate_build": false,
+    "installed_version_confirmed": false
+  },
+  {
+    "app": "pos",
+    "artifact_present": true,
+    "path": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+    "sha256": "131295ab02b084f88823c5a74ef83e368e5ca0e8de5c0fde6ff8a9ebf0206fe9",
+    "package_metadata": "package: name='odtweb.com.trexvenpos' versionCode='2' versionName='1.0.0' platformBuildVersionName='16' platformBuildVersionCode='36' compileSdkVersion='36' compileSdkVersionCodename='16'",
+    "badging_exit": 0,
+    "signature_verify_exit": 0,
+    "signing_certificate_sha256": [
+      "Signer #1 certificate SHA-256 digest: 66278e148f4a1ac8ef448ab6af2c3a78507981be76f1d7fb8f5e7472725b6285"
+    ],
+    "current_candidate_build": false,
+    "installed_version_confirmed": false
+  }
+]

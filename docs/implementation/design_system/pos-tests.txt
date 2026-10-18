@@ -1,0 +1,85 @@
+00:00 +0: loading C:/Users/USER/AndroidStudioProjects/trexvenpos/test/access_boundaries_test.dart
+00:00 +0: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/access_boundaries_test.dart: Business selection cannot cross employee business assignments
+00:00 +1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/access_boundaries_test.dart: Direct quick-add route denies sales staff without a network call
+00:04 +2: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/auth_session_test.dart: Restored session retrieves trusted context and ignores editable metadata
+00:04 +3: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/access_boundaries_test.dart: Dashboard hides product creation from sales staff
+00:05 +4: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/access_boundaries_test.dart: Dashboard hides product creation from sales staff
+00:05 +5: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/access_boundaries_test.dart: Dashboard hides product creation from sales staff
+00:05 +6: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/access_boundaries_test.dart: Dashboard hides product creation from sales staff
+00:05 +7: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/access_boundaries_test.dart: Dashboard hides product creation from sales staff
+00:05 +8: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/access_boundaries_test.dart: Dashboard hides product creation from sales staff
+00:05 +9: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/access_boundaries_test.dart: Dashboard hides product creation from sales staff
+00:05 +10: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/access_boundaries_test.dart: Dashboard hides product creation from sales staff
+00:05 +11: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/access_boundaries_test.dart: Dashboard hides product creation from sales staff
+00:05 +12: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/access_boundaries_test.dart: Dashboard hides product creation from sales staff
+00:05 +13: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/access_boundaries_test.dart: Dashboard hides product creation from sales staff
+00:05 +14: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/access_boundaries_test.dart: Dashboard hides product creation from sales staff
+00:05 +15: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/access_boundaries_test.dart: Dashboard hides product creation from sales staff
+00:05 +16: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/access_boundaries_test.dart: Dashboard hides product creation from sales staff
+00:05 +17: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/access_boundaries_test.dart: Dashboard hides product creation from sales staff
+00:05 +18: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/access_boundaries_test.dart: Dashboard hides product creation from sales staff
+00:05 +19: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/access_boundaries_test.dart: Dashboard hides product creation from sales staff
+00:05 +20: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/access_boundaries_test.dart: Direct checkout denies inventory staff and preserves cart
+00:06 +21: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/access_boundaries_test.dart: Checkout rejects a cart from a different business
+00:07 +22: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Revoked POS permission also blocks sale completion
+00:07 +23: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Explicit owner denial overrides default sales permission
+00:07 +24: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Null selling price remains pending even with forged active flags
+00:07 +25: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Sales cannot gain price or staff administration from stale grants
+00:07 +26: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Owner-only Vision stays denied for explicitly granted managers
+00:07 +27: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Legacy sale JSON has no new branch key; branch receipts round-trip
+00:07 +28: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Branch sale uses distinct API and retains original retry context
+00:08 +29: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Business sales reader scopes business/branch and preserves other staff receipts
+00:08 +30: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_3_product_repository_test.dart: catalog read retries only absent new columns with non-cost legacy projection
+00:08 +31: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_3_product_repository_test.dart: permission denial does not invoke a legacy fallback
+00:08 +32: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_3_product_repository_test.dart: duplicate barcode fails explicitly and never chooses an arbitrary row
+00:08 +33: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_3_product_repository_test.dart: pending quick add returns database identity and omits all price and cost fields
+00:12 +34: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_3_quantity_contract_test.dart: fractional cart quantity rounds each line to currency precision
+00:12 +35: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_3_quantity_contract_test.dart: pieces, nonfinite quantities and excessive precision are rejected
+00:12 +36: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_3_quantity_contract_test.dart: variant identity survives copied model and legacy barcode remains text
+00:12 +37: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_3_quantity_contract_test.dart: receipt item quantity keeps fractional and legacy integer representations
+00:14 +38: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/branch_context_test.dart: No branch is selected automatically, even with one assignment
+00:14 +39: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/branch_context_test.dart: Multiple assignments allow explicit selection only within those assignments
+00:14 +40: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/branch_context_test.dart: Forged cross-business branch cannot become current context
+00:14 +41: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/branch_context_test.dart: Unfinished cart prevents switching and clearing its original branch
+00:14 +42: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/branch_context_test.dart: Legacy business payload does not activate branches
+00:17 +43: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/checkout_flow_test.dart: Actor change during submission preserves original intent without showing receipt
+00:22 +44: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/design_system_visual_test.dart: POS login visual light
+00:22 +45: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/checkout_flow_test.dart: Checkout guards taps, keeps ambiguous retry, then clears cart and displays saved receipt
+00:23 +46: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/checkout_flow_test.dart: Checkout guards taps, keeps ambiguous retry, then clears cart and displays saved receipt
+00:26 +47: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/employee_settings_test.dart: employee settings show their identity without business ownership or billing controls
+00:27 +48: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/employee_settings_test.dart: offline authorization disables password administration
+00:27 +49: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/employee_settings_test.dart: appearance survives a new controller without storing an identity or touching a journal
+00:29 +50: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/frontend_product_navigation_test.dart: POS selection remains present and price retry retains the product at scale 1.0
+00:33 +51: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/frontend_product_navigation_test.dart: POS selection remains present and price retry retains the product at scale 1.0
+00:33 +52: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/offline_cash_queue_test.dart: concurrent writers and duplicate enqueue retain every original key
+00:34 +53: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/frontend_product_navigation_test.dart: POS selection remains present and price retry retains the product at scale 1.6
+00:34 +54: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/offline_cash_queue_test.dart: authorization expiry, clock rollback, noncash and forged identities fail closed
+00:35 +55: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/offline_cash_queue_test.dart: tamper authentication and unknown envelope version preserve damaged data
+00:35 +56: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/offline_cash_queue_test.dart: wrong server receipt is never acknowledged or removed
+00:35 +57: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/offline_cash_queue_test.dart: encrypted lease and exact context survive restart for cash only
+00:35 +58: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/offline_cash_queue_test.dart: legacy cash ticket without trusted context cannot grant a restored session
+00:37 +59: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/offline_restart_characterization_test.dart: fresh process exposes existing cart/request/branch persistence boundary
+00:38 +60: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/pending_sale_live_restart_test.dart: real persisted restart retries the original RPC once without duplicate stock or receipt
+  Skip: Explicit disposable live fixture required.
+00:40 +60 ~1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/pending_sale_test.dart: verified legacy payment enrichment survives restart with the original identity
+00:40 +61 ~1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/pending_sale_test.dart: payment enrichment cannot replace the original cart or business
+00:40 +62 ~1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/pending_sale_test.dart: legacy v1 journal survives an app update without changing request or membership IDs
+00:40 +63 ~1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/pending_sale_test.dart: unrecognized journal is retained and fails closed during an update
+00:41 +64 ~1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/permission_service_test.dart: Only an active owner has unrestricted access
+00:41 +65 ~1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/pending_sale_test.dart: payment journals survive both authorization and validation rejection
+00:41 +66 ~1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/pending_sale_test.dart: payment journals survive both authorization and validation rejection
+00:41 +67 ~1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/pending_sale_test.dart: payment journals survive both authorization and validation rejection
+00:41 +68 ~1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/permission_service_test.dart: Sales staff cannot create products without a grant
+00:41 +69 ~1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/permission_service_test.dart: Unknown roles and inactive employees fail closed
+00:41 +70 ~1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/pending_sale_test.dart: journal flushes before submission and survives a fresh process
+00:41 +71 ~1: loading C:/Users/USER/AndroidStudioProjects/trexvenpos/test/sale_submission_test.dart
+00:44 +71 ~1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/sale_submission_test.dart: Checkout maps Cash and returns the saved receipt on retries
+00:45 +72 ~1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/sale_submission_test.dart: Checkout maps POS Terminal and returns the saved receipt on retries
+00:45 +73 ~1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/sale_submission_test.dart: Checkout maps Transfer and returns the saved receipt on retries
+00:45 +74 ~1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/sale_submission_test.dart: Cart retains retry identity until its contents change
+00:45 +75 ~1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/sale_submission_test.dart: Fractional currency totals match database decimal arithmetic
+00:45 +76 ~1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/sale_submission_test.dart: Checkout exposes actionable database errors
+00:45 +77 ~1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/widget_test.dart: Signed-out terminal displays employee login
+00:47 +78 ~1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/widget_test.dart: Live backend rows support receipt timestamps and standard prices
+00:48 +79 ~1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/widget_test.dart: Sales employee preserves both IDs and unknown status fails closed
+00:48 +80 ~1: All tests passed!

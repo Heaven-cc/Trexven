@@ -1,0 +1,7 @@
+{
+  "credential_shaped_artifacts": [],
+  "required_report_links_missing": [],
+  "baseline_regeneration_exit": 0,
+  "git_diff_check_exit": 1,
+  "git_diff_check_note": "Trailing whitespace in existing staged data_backup_screen work, outside cost-removal edits; unrelated formatting retained."
+}

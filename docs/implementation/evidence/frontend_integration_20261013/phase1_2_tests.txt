@@ -1,0 +1,88 @@
+00:00 +0: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart
+00:00 +0: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart: Unconfirmed quick sale retries the same request and returns the receipt
+00:04 +1: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart: Selection and quantity survive fresh stream rows; double tap submits once
+
+Warning: A call to tap() with finder "Found 1 widget with type "FilledButton": [
+  FilledButton-[<'record-sale-submit'>](style: ButtonStyle#ed13d(textStyle: WidgetStatePropertyAll(null), backgroundColor: WidgetStateMapper<Color?>({WidgetState.disabled: null, WidgetState.any: Color(alpha: 1.0000, red: 0.1569, green: 0.3922, blue: 0.9412, colorSpace: ColorSpace.sRGB)}), foregroundColor: WidgetStateMapper<Color?>({WidgetState.disabled: null, WidgetState.any: Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)}), overlayColor: WidgetStateMapper<Color?>({WidgetState.pressed: Color(alpha: 0.1020, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), WidgetState.hovered: Color(alpha: 0.0784, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), WidgetState.focused: Color(alpha: 0.1020, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)}), shape: WidgetStatePropertyAll(RoundedRectangleBorder(BorderSide(width: 0.0, style: none), BorderRadius.circular(14.0))), mouseCursor: WidgetStateMapper<MouseCursor?>({WidgetState.disabled: null, WidgetState.any: null})), dependencies: [IconTheme, InheritedCupertinoTheme, MediaQuery, _InheritedTheme, _LocalizationsScope-[GlobalKey#18c20], _ScrollableScope], state: _ButtonStyleState#25604),
+]" derived an Offset (Offset(400.0, 541.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#89ed6
+The hit test result at that offset is: HitTestResult(RenderPointerListener#35f0a@Offset(400.0, 4.0), RenderSemanticsGestureHandler#2d2a6@Offset(400.0, 4.0), RenderSemanticsAnnotations#11e15@Offset(400.0, 4.0), RenderPositionedBox#75736@Offset(400.0, 4.0), RenderAnimatedOpacity#a86d8@Offset(400.0, 4.0), RenderClipRect#23368@Offset(400.0, 4.0), RenderOffstage#69450@Offset(400.0, 4.0), RenderConstrainedBox#159a3@Offset(400.0, 4.0), RenderCustomMultiChildLayoutBox#557c6@Offset(400.0, 541.0), _RenderInkFeatures#56e50@Offset(400.0, 541.0), RenderPhysicalModel#1de95@Offset(400.0, 541.0), RenderSemanticsAnnotations#1f156@Offset(400.0, 541.0), RenderRepaintBoundary#1ca3d@Offset(400.0, 541.0), RenderIgnorePointer#2f32a@Offset(400.0, 541.0), RenderAnimatedOpacity#dc154@Offset(400.0, 541.0), RenderAnimatedOpacity#e74d7@Offset(400.0, 541.0), _RenderColoredBox#5b9c2@Offset(400.0, 541.0), RenderAnimatedOpacity#8747f@Offset(400.0, 541.0), RenderIgnorePointer#9aaf5@Offset(400.0, 541.0), RenderAnimatedOpacity#9f6b0@Offset(400.0, 541.0), RenderRepaintBoundary#81c94@Offset(400.0, 541.0), RenderSemanticsAnnotations#e0389@Offset(400.0, 541.0), RenderOffstage#e6dcf@Offset(400.0, 541.0), RenderSemanticsAnnotations#186dc@Offset(400.0, 541.0), _RenderTheater#79117@Offset(400.0, 541.0), RenderAbsorbPointer#b2fcc@Offset(400.0, 541.0), RenderPointerListener#f9731@Offset(400.0, 541.0), RenderSemanticsAnnotations#8edff@Offset(400.0, 541.0), RenderCustomPaint#bf30d@Offset(400.0, 541.0), RenderSemanticsAnnotations#2524d@Offset(400.0, 541.0), RenderSemanticsAnnotations#5314e@Offset(400.0, 541.0), RenderSemanticsAnnotations#8283c@Offset(400.0, 541.0), RenderTapRegionSurface#34193@Offset(400.0, 541.0), RenderSemanticsAnnotations#9f58d@Offset(400.0, 541.0), RenderSemanticsAnnotations#6c140@Offset(400.0, 541.0), HitTestEntry<HitTestTarget>#7a2b6(_ReusableRenderView#0419c), HitTestEntry<HitTestTarget>#fe4d7(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart:186:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: <2>
+  Actual: <1>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart:189:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart line 189
+The test description was:
+  Selection and quantity survive fresh stream rows; double tap submits once
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:06 +1 -1: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart: Selection and quantity survive fresh stream rows; double tap submits once [E]
+  Test failed. See exception logs above.
+  The test description was: Selection and quantity survive fresh stream rows; double tap submits once
+  
+00:06 +1 -1: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart: pending financial intent blocks collecting a second payment
+00:07 +2 -1: C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart: fractional sale keeps exact units, payment and request on rejection
+00:08 +3 -1: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/finance_loading_test.dart
+00:12 +3 -1: C:/Users/USER/AndroidStudioProjects/Trexven/test/finance_loading_test.dart: Finance retains requests on rebuild and refreshes explicitly
+00:15 +4 -1: C:/Users/USER/AndroidStudioProjects/Trexven/test/finance_loading_test.dart: Finance failure is visible and retry recovers
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: exactly one matching candidate
+  Actual: _TextWidgetFinder:<Found 0 widgets with text "Unable to load transactions. Please retry.":
+[]>
+   Which: means none were found but one was expected
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/finance_loading_test.dart:77:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/finance_loading_test.dart line 77
+The test description was:
+  Finance failure is visible and retry recovers
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:16 +4 -2: C:/Users/USER/AndroidStudioProjects/Trexven/test/finance_loading_test.dart: Finance failure is visible and retry recovers [E]
+  Test failed. See exception logs above.
+  The test description was: Finance failure is visible and retry recovers
+  
+00:16 +4 -2: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/business_reporting_test.dart
+00:19 +4 -2: C:/Users/USER/AndroidStudioProjects/Trexven/test/business_reporting_test.dart: Calendar periods follow the business timezone across DST
+00:19 +5 -2: C:/Users/USER/AndroidStudioProjects/Trexven/test/business_reporting_test.dart: All buckets include zeros and exclude the exclusive end
+00:19 +6 -2: C:/Users/USER/AndroidStudioProjects/Trexven/test/business_reporting_test.dart: Custom range includes the complete final business day
+00:19 +7 -2: Some tests failed.
+
+Failing tests:
+  C:/Users/USER/AndroidStudioProjects/Trexven/test/finance_loading_test.dart: Finance failure is visible and retry recovers
+  C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_flow_test.dart: Selection and quantity survive fresh stream rows; double tap submits once

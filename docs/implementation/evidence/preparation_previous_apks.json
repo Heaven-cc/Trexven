@@ -1,0 +1,20 @@
+[
+  {
+    "app": "owner",
+    "artifact": "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+    "application_id": "com.ODT.odt",
+    "version_code": "1",
+    "version_name": "1.0.0",
+    "sha256": "863088195bd151992a91d6996452a19e77045c3d3018a7f448dbd0c54c5ce18a",
+    "signer_sha256": "66278e148f4a1ac8ef448ab6af2c3a78507981be76f1d7fb8f5e7472725b6285"
+  },
+  {
+    "app": "pos",
+    "artifact": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+    "application_id": "odtweb.com.trexvenpos",
+    "version_code": "1",
+    "version_name": "1.0.0",
+    "sha256": "a3569b64019a6d29c975aec0c44f8541845c9fa614078ad15cd4c561ba560282",
+    "signer_sha256": "66278e148f4a1ac8ef448ab6af2c3a78507981be76f1d7fb8f5e7472725b6285"
+  }
+]

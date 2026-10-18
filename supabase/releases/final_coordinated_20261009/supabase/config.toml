@@ -1,0 +1,10 @@
+project_id = "trexven-final-coordinated"
+
+[functions.camera-ai]
+verify_jwt = true
+entrypoint = "./functions/camera-ai/index.ts"
+
+[functions.delete-account]
+verify_jwt = true
+entrypoint = "./functions/delete-account/index.ts"
+

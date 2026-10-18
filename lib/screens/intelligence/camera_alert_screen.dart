@@ -1,3 +1,5 @@
+import 'package:trexven_design_system/trexven_design_system.dart';
+import 'package:trexven_operations/trexven_operations.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/camera.dart';
@@ -8,19 +10,15 @@ import '../../services/camera_intelligence_service.dart';
 class CameraAlertsScreen extends StatefulWidget {
   final Camera camera;
 
-  const CameraAlertsScreen({
-    super.key,
-    required this.camera,
-  });
+  const CameraAlertsScreen({super.key, required this.camera});
 
   @override
-  State<CameraAlertsScreen> createState() =>
-      _CameraAlertsScreenState();
+  State<CameraAlertsScreen> createState() => _CameraAlertsScreenState();
 }
 
-class _CameraAlertsScreenState
-    extends State<CameraAlertsScreen> {
-  final CameraIntelligenceService _intelligenceService = CameraIntelligenceService();
+class _CameraAlertsScreenState extends State<CameraAlertsScreen> {
+  final CameraIntelligenceService _intelligenceService =
+      CameraIntelligenceService();
   final CameraAiService _aiService = CameraAiService();
   String? _analyzingEventId;
 
@@ -39,9 +37,14 @@ class _CameraAlertsScreenState
       await showDialog<void>(
         context: context,
         builder: (_) => AlertDialog(
-          title: const Row(
+          scrollable: true,
+          title: Row(
             children: [
-              Icon(Icons.auto_awesome, color: Color(0xFF2563EB), size: 20),
+              Icon(
+                Icons.auto_awesome,
+                color: TrexvenTheme.primaryBlue,
+                size: 20,
+              ),
               SizedBox(width: 8),
               Text('AI analysis'),
             ],
@@ -50,7 +53,7 @@ class _CameraAlertsScreenState
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text('Close'),
+              child: Text('Close'),
             ),
           ],
         ),
@@ -58,7 +61,14 @@ class _CameraAlertsScreenState
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Could not analyze this alert: $e')),
+        SnackBar(
+          content: Text(
+            CustomerPresentation.error(
+              e,
+              fallback: 'Could not analyze this alert. Please try again.',
+            ),
+          ),
+        ),
       );
     } finally {
       if (mounted) setState(() => _analyzingEventId = null);
@@ -67,39 +77,39 @@ class _CameraAlertsScreenState
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final brandBlue = theme.colorScheme.primary;
+    final muted = theme.trexvenColors.muted!;
+
     return Scaffold(
-      backgroundColor: const Color(0xFFF8FAFC),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFF8FAFC),
         elevation: 0,
-        title: const Text(
+        title: Text(
           'Camera Alerts',
           style: TextStyle(
             fontWeight: FontWeight.w800,
-            color: Color(0xFF0F172A),
+            color: theme.colorScheme.onSurface,
           ),
         ),
       ),
       body: StreamBuilder<List<CameraEvent>>(
-        stream: _intelligenceService.eventsStream(
-          widget.camera.id,
-        ),
+        stream: _intelligenceService.eventsStream(widget.camera.id),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Center(
               child: Text(
-                'Could not load alerts.\n${snapshot.error}',
+                CustomerPresentation.error(
+                  snapshot.error,
+                  fallback: 'We could not load your alerts. Please try again.',
+                ),
                 textAlign: TextAlign.center,
+                style: TextStyle(color: theme.colorScheme.onSurface),
               ),
             );
           }
 
           if (!snapshot.hasData) {
-            return const Center(
-              child: CircularProgressIndicator(
-                color: Color(0xFF2563EB),
-              ),
-            );
+            return const Center(child: TrexvenLoading());
           }
 
           final events = snapshot.data ?? [];
@@ -109,7 +119,7 @@ class _CameraAlertsScreenState
               .toList();
 
           if (alerts.isEmpty) {
-            return const Center(
+            return Center(
               child: Padding(
                 padding: EdgeInsets.all(30),
                 child: Column(
@@ -118,23 +128,22 @@ class _CameraAlertsScreenState
                     Icon(
                       Icons.verified_user_outlined,
                       size: 55,
-                      color: Colors.green,
+                      color: theme.trexvenColors.success!,
                     ),
-                    SizedBox(height: 15),
+                    SizedBox(height: TrexvenSpacing.fieldGap),
                     Text(
                       'No active alerts',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: TrexvenFontSize.section,
                         fontWeight: FontWeight.w800,
+                        color: theme.colorScheme.onSurface,
                       ),
                     ),
                     SizedBox(height: 6),
                     Text(
                       'Important camera intelligence alerts will appear here.',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xFF64748B),
-                      ),
+                      style: TextStyle(color: muted),
                     ),
                   ],
                 ),
@@ -143,10 +152,10 @@ class _CameraAlertsScreenState
           }
 
           return ListView.builder(
-            padding: const EdgeInsets.all(18),
+            padding: EdgeInsets.all(18),
             itemCount: alerts.length,
             itemBuilder: (context, index) {
-              return _alertCard(alerts[index]);
+              return _alertCard(theme, alerts[index]);
             },
           );
         },
@@ -154,28 +163,26 @@ class _CameraAlertsScreenState
     );
   }
 
-  Widget _alertCard(CameraEvent alert) {
+  Widget _alertCard(ThemeData theme, CameraEvent alert) {
     final severity = alert.severity.toLowerCase();
+    final brandBlue = theme.colorScheme.primary;
 
-    final title =
-        alert.title ?? alert.eventType;
+    final title = alert.title ?? alert.eventType;
 
-    final description = alert.description ??
-        'Potentially important activity detected.';
+    final description =
+        alert.description ?? 'Potentially important activity detected.';
 
     final critical = severity == 'critical';
+    final warningColor = theme.trexvenColors.warning!;
+    final errorColor = theme.trexvenColors.error!;
+
+    final severityColor = critical ? errorColor : warningColor;
 
     return Card(
-      elevation: 0,
-      margin: const EdgeInsets.only(bottom: 12),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(18),
-        side: BorderSide(
-          color: critical ? Colors.red.shade200 : Colors.orange.shade200,
-        ),
-      ),
+      margin: EdgeInsets.only(bottom: 12),
+      color: theme.trexvenColors.cardBackground,
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: TrexvenSpacing.cardPadding,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -183,46 +190,47 @@ class _CameraAlertsScreenState
               width: 45,
               height: 45,
               decoration: BoxDecoration(
-                color: critical ? Colors.red.shade50 : Colors.orange.shade50,
-                borderRadius: BorderRadius.circular(13),
+                color: severityColor.withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(TrexvenRadii.card),
               ),
               child: Icon(
                 critical ? Icons.warning_rounded : Icons.warning_amber_rounded,
-                color: critical ? Colors.red : Colors.orange.shade800,
+                color: severityColor,
               ),
             ),
-            const SizedBox(width: 13),
+            SizedBox(width: 13),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     title,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.w800,
-                      fontSize: 15,
+                      fontSize: TrexvenFontSize.input,
+                      color: theme.colorScheme.onSurface,
                     ),
                   ),
-                  const SizedBox(height: 6),
+                  SizedBox(height: 6),
                   Text(
                     description,
-                    style: const TextStyle(
-                      color: Color(0xFF475569),
+                    style: TextStyle(
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                       height: 1.4,
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  SizedBox(height: 8),
                   Text(
                     severity.toUpperCase(),
                     style: TextStyle(
-                      fontSize: 10,
+                      fontSize: TrexvenFontSize.caption,
                       fontWeight: FontWeight.w900,
                       letterSpacing: .7,
-                      color: critical ? Colors.red : Colors.orange.shade800,
+                      color: severityColor,
                     ),
                   ),
                   if (alert.id != null) ...[
-                    const SizedBox(height: 10),
+                    SizedBox(height: 10),
                     Align(
                       alignment: Alignment.centerLeft,
                       child: OutlinedButton.icon(
@@ -230,27 +238,23 @@ class _CameraAlertsScreenState
                             ? null
                             : () => _askAi(alert),
                         icon: _analyzingEventId == alert.id
-                            ? const SizedBox(
+                            ? SizedBox(
                                 width: 14,
                                 height: 14,
-                                child: CircularProgressIndicator(strokeWidth: 2),
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  color: brandBlue,
+                                ),
                               )
-                            : const Icon(Icons.auto_awesome, size: 16),
+                            : Icon(Icons.auto_awesome, size: 16),
                         label: Text(
                           _analyzingEventId == alert.id
                               ? 'Analyzing…'
                               : 'Ask AI to explain',
                         ),
                         style: OutlinedButton.styleFrom(
-                          foregroundColor: const Color(0xFF2563EB),
-                          side: const BorderSide(color: Color(0xFF2563EB)),
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 6,
-                          ),
-                          minimumSize: Size.zero,
+                          foregroundColor: brandBlue,
                           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                          textStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700),
                         ),
                       ),
                     ),

@@ -1,0 +1,64 @@
+{
+  "project": "ufehcfrlygqvminfjumf",
+  "production_edge_writes": 0,
+  "edges": [
+    {
+      "name": "camera-ai",
+      "version": 7,
+      "verify_jwt": true,
+      "bundle_sha256": "745ec69f76f9ab97fdf1824cd007b712c25c13fdfce5dfe2893830624d6fa0c8",
+      "unchanged": true
+    },
+    {
+      "name": "camera-ingest",
+      "version": 3,
+      "verify_jwt": true,
+      "bundle_sha256": "7bcef717cb8cf75080eea0be0abb46ea4134a2c0179a36fb2a63ba170eac562d",
+      "unchanged": true
+    },
+    {
+      "name": "camera-worker-ingest",
+      "version": 3,
+      "verify_jwt": false,
+      "bundle_sha256": "798c2b75c21d5697f9df499e014fa91b4cc9b4139bf300db357830eaca02b075",
+      "unchanged": true
+    },
+    {
+      "name": "angel",
+      "version": 12,
+      "verify_jwt": true,
+      "bundle_sha256": "e45221a396b4fc1588d038221d1682183caaa3801d9c09a22d6f391cb4fc50f2",
+      "unchanged": true
+    },
+    {
+      "name": "employee-login",
+      "version": 6,
+      "verify_jwt": false,
+      "bundle_sha256": "3db48262e4d41ba90ccb200e0eef9751472a3cb83e26268058ff41e87930dbd5",
+      "unchanged": true
+    },
+    {
+      "name": "create-employee",
+      "version": 7,
+      "verify_jwt": true,
+      "bundle_sha256": "a3c7d1075fac093e24d7b4824a1c137ce687ca7373dee6c034e99d9798365ac3",
+      "unchanged": true
+    },
+    {
+      "name": "manage-employee",
+      "version": 4,
+      "verify_jwt": true,
+      "bundle_sha256": "21d06b9d1d01b73a7d81db175af0c71a55ec6113d3d7ca8599c7a5555fc8b97a",
+      "unchanged": true
+    },
+    {
+      "name": "delete-account",
+      "version": 3,
+      "verify_jwt": true,
+      "bundle_sha256": "ebb1e630db5a43703bfd2dbac3892ceef9f1f0a908c082d55f41c4709fd71923",
+      "unchanged": true
+    }
+  ],
+  "vision_server_accessed": false,
+  "android_builds_attempted": false
+}

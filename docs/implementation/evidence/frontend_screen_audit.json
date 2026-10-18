@@ -1,0 +1,1237 @@
+[
+  {
+    "app": "owner",
+    "path": "lib/screens/auth/forgot_password_screen.dart",
+    "screen_classes": [
+      "ForgotPasswordScreen",
+      "_ForgotPasswordScreenState"
+    ],
+    "route_references": [
+      "ForgotPasswordScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "49f84b17cb8876b97263ce438a7fd15a95eb260a26a2351985997f1a40166cad",
+    "data_access_sites": 0,
+    "loading_sites": 6,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/auth/login_screen.dart",
+    "screen_classes": [
+      "LoginScreen",
+      "_LoginScreenState"
+    ],
+    "route_references": [
+      "ForgotPasswordScreen",
+      "LoginScreen",
+      "RegisterScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "1c97573fbe2ffe0ffee4966b46ef05dc0348ebaa81b713904dc682c0d83d7c38",
+    "data_access_sites": 0,
+    "loading_sites": 11,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/auth/register_screen.dart",
+    "screen_classes": [
+      "RegisterScreen",
+      "_RegisterScreenState"
+    ],
+    "route_references": [
+      "LoginScreen",
+      "PrivacyPolicyScreen",
+      "RegisterScreen",
+      "TermsOfServiceScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "e88ad39dcb4741f405f19e40f787fe52c3c4849e33f82bd88d4b8d2a5304131c",
+    "data_access_sites": 0,
+    "loading_sites": 10,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/auth/reset_password_screen.dart",
+    "screen_classes": [
+      "ResetPasswordScreen",
+      "_ResetPasswordScreenState"
+    ],
+    "route_references": [
+      "ResetPasswordScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "4db49b3e920ea63b5a907b4c753fae72c69e6c0dc0c3e877eb5387ad3ffda407",
+    "data_access_sites": 0,
+    "loading_sites": 0,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/dashboard/angel_screen.dart",
+    "screen_classes": [
+      "AngelScreen",
+      "_AngelScreenState",
+      "_AngelMessage"
+    ],
+    "route_references": [
+      "AngelScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "1c02d681d712f330accc10634cf86af125c42c32e819a48ad10a905964ba83d9",
+    "data_access_sites": 3,
+    "loading_sites": 9,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/dashboard/dashboard_screen.dart",
+    "screen_classes": [
+      "DashboardScreen",
+      "_DashboardScreenState",
+      "DashedCirclePainter"
+    ],
+    "route_references": [
+      "AddProductScreen",
+      "DashboardScreen",
+      "EmploymentScreen",
+      "RecordSaleScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "e6bca48ccb8bb6c222d610b6120e60600cf122d32f03f453ad158d4f2f7a690c",
+    "data_access_sites": 0,
+    "loading_sites": 6,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/finance/finance_tab.dart",
+    "screen_classes": [
+      "FinanceTab",
+      "_FinanceTabState"
+    ],
+    "route_references": [
+      "FinanceTab",
+      "OperationalFinanceScreen",
+      "RecordSaleScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "0f6a813be43c9b43e745f2025238b3f26a9f1928a779973e8b5dbd9c72ab7f17",
+    "data_access_sites": 3,
+    "loading_sites": 2,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/finance/operational_finance_screen.dart",
+    "screen_classes": [
+      "OperationalFinanceScreen",
+      "_OperationalFinanceScreenState"
+    ],
+    "route_references": [
+      "CashShiftScreen",
+      "FinancialOperationsScreen",
+      "InventoryOperationsScreen",
+      "OperationalFinanceScreen",
+      "OperationalPermissionsScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "687f96502888e78fb25a21bb43413a7771a6faa3306dc7aefde0250dc848b3df",
+    "data_access_sites": 1,
+    "loading_sites": 1,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/finance/record_sale_screen.dart",
+    "screen_classes": [
+      "RecordSaleScreen",
+      "_RecordSaleScreenState",
+      "_SaleQuantityDialog",
+      "_SaleQuantityDialogState",
+      "_ProductSelector",
+      "_SelectedProductContent",
+      "_ProductSwatch",
+      "_QuantityButton",
+      "_SummaryRow",
+      "_EmptyProductsState",
+      "_ErrorState"
+    ],
+    "route_references": [
+      "RecordSaleScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "faae70f1b087aa0cb42db8e8c41793b8a9cafebeda1583cadea7c149e114243e",
+    "data_access_sites": 1,
+    "loading_sites": 22,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/add_camera_screen.dart",
+    "screen_classes": [
+      "AddCameraScreen",
+      "_AddCameraScreenState"
+    ],
+    "route_references": [
+      "AddCameraScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "051d21c3b2a4082ac5be2b5f887fad495869ed36c4756ca892bb225fb2c6ad8c",
+    "data_access_sites": 0,
+    "loading_sites": 2,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/alerts_screen.dart",
+    "screen_classes": [
+      "AlertsScreen",
+      "_AlertsScreenState"
+    ],
+    "route_references": [
+      "AlertsScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "597b70d133ed03f70f1716014457cd52121e6bb4a8969aeb8d42c09bcd5cc52a",
+    "data_access_sites": 0,
+    "loading_sites": 2,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/camera_alert_screen.dart",
+    "screen_classes": [
+      "CameraAlertsScreen",
+      "_CameraAlertsScreenState"
+    ],
+    "route_references": [
+      "CameraAlertsScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "0bd5fa2f2996de43cc62ce15cbe349ce9f70ce29d2242c659d4b005ce11c1db6",
+    "data_access_sites": 1,
+    "loading_sites": 2,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/camera_detail_screen.dart",
+    "screen_classes": [
+      "CameraDetailScreen",
+      "_CameraDetailScreenState"
+    ],
+    "route_references": [
+      "CameraAlertsScreen",
+      "CameraDetailScreen",
+      "CameraEventsScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "3b6fb50d6eee36f32d832386cc2efccde96ec18a512319c8e5c6b9db1bafb3d3",
+    "data_access_sites": 0,
+    "loading_sites": 5,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/camera_event_screen.dart",
+    "screen_classes": [
+      "CameraEventsScreen"
+    ],
+    "route_references": [
+      "CameraEventsScreen",
+      "EventsScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "076d285abb905ce0b34fc315727f2e481d386b45d9b34b3be1dc9acdcde0ecb1",
+    "data_access_sites": 0,
+    "loading_sites": 0,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/camera_intelligence_screen.dart",
+    "screen_classes": [
+      "CameraIntelligenceScreen",
+      "_CameraIntelligenceScreenState"
+    ],
+    "route_references": [
+      "CameraIntelligenceScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "8d244888f39b8a6848bc5a94ed04b94b1c43d626b5a00592be0530cabc1b36f6",
+    "data_access_sites": 0,
+    "loading_sites": 6,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/camera_screen.dart",
+    "screen_classes": [
+      "CamerasScreen",
+      "_CamerasScreenState"
+    ],
+    "route_references": [
+      "AddCameraScreen",
+      "CamerasScreen",
+      "LiveFeedScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "9d0ae614e47a5bddeed54fa86dbc037603af76cd2e0a00005fceb8c914283795",
+    "data_access_sites": 0,
+    "loading_sites": 6,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/event_detail_screen.dart",
+    "screen_classes": [
+      "EventDetailScreen",
+      "_EventDetailScreenState"
+    ],
+    "route_references": [
+      "EventDetailScreen",
+      "RecordSaleScreen",
+      "RecordingPlaybackScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "f9c6e3e4d2789171641c8e96d7b8f0b8bc2d36508deda100c6b4c1c6b97d5237",
+    "data_access_sites": 4,
+    "loading_sites": 1,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/events_screen.dart",
+    "screen_classes": [
+      "EventsScreen",
+      "_EventsScreenState"
+    ],
+    "route_references": [
+      "EventDetailScreen",
+      "EventsScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "2400984dedf6d112848a85f53824b24170c468d33243fd71e18023c7c69509fb",
+    "data_access_sites": 3,
+    "loading_sites": 1,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/intelligence_tab.dart",
+    "screen_classes": [
+      "IntelligenceTab",
+      "_IntelligenceTabState"
+    ],
+    "route_references": [
+      "AddCameraScreen",
+      "EventsScreen",
+      "IntelligenceTab",
+      "LiveFeedScreen",
+      "RecordingsScreen",
+      "VisionServerScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "4901100bab522caa56e67a58253b4de41034d9225a32ecc2a4f4ca6f239af0cc",
+    "data_access_sites": 1,
+    "loading_sites": 6,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/live_feed_screen.dart",
+    "screen_classes": [
+      "LiveFeedScreen",
+      "_LiveFeedScreenState"
+    ],
+    "route_references": [
+      "LiveFeedScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "88ecabf75ce314d8fefa0ea59278b57fa319f041ed1623840673ce7a33109af9",
+    "data_access_sites": 6,
+    "loading_sites": 1,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/recording_playback_screen.dart",
+    "screen_classes": [
+      "RecordingPlaybackScreen",
+      "_RecordingPlaybackScreenState"
+    ],
+    "route_references": [
+      "RecordingPlaybackScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "0e6da64f895cc4cf01ef3351d35954483cc46668c09c3cf2a50ca7784f732186",
+    "data_access_sites": 0,
+    "loading_sites": 1,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/recordings_screen.dart",
+    "screen_classes": [
+      "RecordingsScreen",
+      "_RecordingsScreenState"
+    ],
+    "route_references": [
+      "RecordingPlaybackScreen",
+      "RecordingsScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "c469ece2e67fcb0720501bb027ce7a1bca2b4a406c1b40d8059066e9bb65a56b",
+    "data_access_sites": 0,
+    "loading_sites": 6,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/vision_server_screen.dart",
+    "screen_classes": [
+      "VisionServerScreen",
+      "_VisionServerScreenState"
+    ],
+    "route_references": [
+      "AddCameraScreen",
+      "LiveFeedScreen",
+      "VisionServerScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "5b12552f85f81f075811608ff4d0abc7e0873f62808550c2bf1619e164f33ca9",
+    "data_access_sites": 1,
+    "loading_sites": 1,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/inventory/add_product_screen.dart",
+    "screen_classes": [
+      "AddProductScreen",
+      "_AddProductScreenState",
+      "_ModeSelector",
+      "_ModeOption",
+      "_FieldLabel",
+      "_TrexvenField",
+      "_ProductPreview",
+      "_ProductDropdown",
+      "_StockPreview",
+      "_StockRow",
+      "_PrimaryButton"
+    ],
+    "route_references": [
+      "AddProductScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "0c92d7bc7998ef74733fec4ca5e3e0ca4aaa06001830f993c9a5637b3e92b95f",
+    "data_access_sites": 1,
+    "loading_sites": 15,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/inventory/catalog_editor_screen.dart",
+    "screen_classes": [
+      "CatalogEditorScreen",
+      "_CatalogEditorScreenState"
+    ],
+    "route_references": [
+      "CatalogEditorScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "066364e597142b2aec7896a8620f1719e8c0305328c10b97b485f9e8db837693",
+    "data_access_sites": 0,
+    "loading_sites": 0,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/inventory/catalog_import_screen.dart",
+    "screen_classes": [
+      "CatalogImportScreen",
+      "_CatalogImportScreenState"
+    ],
+    "route_references": [
+      "CatalogImportScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "c5bb9b9a6b68bc8f3fe9f2e0e9d8a9dfdc76f92834cb91ffcd10ab0d3f1bd7dd",
+    "data_access_sites": 1,
+    "loading_sites": 0,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/inventory/inventory_tab.dart",
+    "screen_classes": [
+      "InventoryTab",
+      "_InventoryTabState"
+    ],
+    "route_references": [
+      "CatalogEditorScreen",
+      "CatalogImportScreen",
+      "InventoryTab"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "bfec97f8c6196607b90d4120105c21b91dd5a5a181c3076b4df19d99d444c859",
+    "data_access_sites": 1,
+    "loading_sites": 2,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/main_screen.dart",
+    "screen_classes": [
+      "MainScreen",
+      "_MainScreenState"
+    ],
+    "route_references": [
+      "AlertsScreen",
+      "AngelScreen",
+      "DashboardScreen",
+      "FinanceTab",
+      "IntelligenceTab",
+      "InventoryTab",
+      "MainScreen",
+      "MeTab"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "7944384fe4bde42a7b832eda37d587ba97894283f03ef23680da545e5309f402",
+    "data_access_sites": 0,
+    "loading_sites": 0,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/about_screen.dart",
+    "screen_classes": [
+      "AboutScreen",
+      "_AboutScreenState"
+    ],
+    "route_references": [
+      "AboutScreen",
+      "PrivacyPolicyScreen",
+      "TermsOfServiceScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "23dcb5157198cdf5e8513cd7220cbfb1dc588d1edbdfb6a55fcb3d79ac380a68",
+    "data_access_sites": 1,
+    "loading_sites": 1,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/add_employee_screen.dart",
+    "screen_classes": [
+      "AddEmployeeScreen",
+      "_AddEmployeeScreenState"
+    ],
+    "route_references": [
+      "AddEmployeeScreen",
+      "EmployeeConfirmationScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "67a0036e8ef1fd720b3861f2efc863e4839e30933c2e02471e3e97ae0f32f1d1",
+    "data_access_sites": 0,
+    "loading_sites": 4,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/appearance_screen.dart",
+    "screen_classes": [
+      "AppearanceScreen"
+    ],
+    "route_references": [
+      "AppearanceScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "dced07a3205897e00b2d0b83e4cc3aab34db6ef51afa31a9312d672429ac16d7",
+    "data_access_sites": 0,
+    "loading_sites": 0,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/billing_screen.dart",
+    "screen_classes": [
+      "BillingScreen",
+      "_BillingScreenState"
+    ],
+    "route_references": [
+      "AccountOperationsScreen",
+      "BillingScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "67ddfe562c98cf3d0ac13a59e902d4b432e6a1976031fef4d0bf8f2c440d76ed",
+    "data_access_sites": 4,
+    "loading_sites": 6,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/business_profile_screen.dart",
+    "screen_classes": [
+      "BusinessProfileScreen",
+      "_BusinessProfileScreenState"
+    ],
+    "route_references": [
+      "BusinessProfileScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "57465e1dcf498bc23d103011f85f804603a182781e8f31c9addb5af16d32e5ee",
+    "data_access_sites": 0,
+    "loading_sites": 7,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/data_backup_screen.dart",
+    "screen_classes": [
+      "DataBackupScreen",
+      "_DataBackupScreenState"
+    ],
+    "route_references": [
+      "DataBackupScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "11593cc57444587f0c8381da1e6213e8836912b898eb40f4d332e40b5f5b4ecc",
+    "data_access_sites": 0,
+    "loading_sites": 1,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/edit_employee_screen.dart",
+    "screen_classes": [
+      "EditEmployeeScreen",
+      "_EditEmployeeScreenState"
+    ],
+    "route_references": [
+      "EditEmployeeScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "a08730ee7f342607792243ebcb0b2bdee873f08a46fcb826cc382d7d305a9f30",
+    "data_access_sites": 0,
+    "loading_sites": 6,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/employee_confirmation_screen.dart",
+    "screen_classes": [
+      "EmployeeConfirmationScreen"
+    ],
+    "route_references": [
+      "EmployeeConfirmationScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "356a1ab12f3dd587129e0f4ebbda880fe28f18518e7194cd6d1e5587bd229455",
+    "data_access_sites": 0,
+    "loading_sites": 0,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/employee_details_screen.dart",
+    "screen_classes": [
+      "EmployeeDetailsScreen",
+      "_EmployeeDetailsScreenState"
+    ],
+    "route_references": [
+      "EditEmployeeScreen",
+      "EmployeeDetailsScreen",
+      "PermissionsScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "02d7b050224e403c428dd00e5e24c61ffd0e637e101f6252f956f010e25ad741",
+    "data_access_sites": 0,
+    "loading_sites": 8,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/employment_screen.dart",
+    "screen_classes": [
+      "EmploymentScreen",
+      "_EmploymentScreenState"
+    ],
+    "route_references": [
+      "AddEmployeeScreen",
+      "EmployeeDetailsScreen",
+      "EmploymentScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "dfc6fea1604fc6d424ecd6314807adea8a69868b7a58c72b5ea817d1d0a04b6b",
+    "data_access_sites": 2,
+    "loading_sites": 2,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/help_support_screen.dart",
+    "screen_classes": [
+      "HelpSupportScreen"
+    ],
+    "route_references": [
+      "HelpSupportScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "206650e952643fd5d080165e2fbe6db14f6ffe963a74614ba2bbae0a1416e49e",
+    "data_access_sites": 0,
+    "loading_sites": 0,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/me_tab.dart",
+    "screen_classes": [
+      "MeTab",
+      "_SubscriptionSettings",
+      "_SubscriptionSettingsState"
+    ],
+    "route_references": [
+      "AboutScreen",
+      "AppearanceScreen",
+      "BillingScreen",
+      "BusinessProfileScreen",
+      "DataBackupScreen",
+      "EmploymentScreen",
+      "HelpSupportScreen",
+      "MeTab",
+      "NotificationsSettingsScreen",
+      "PermissionsScreen",
+      "ProfileScreen",
+      "SecurityScreen",
+      "VisionServerScreen",
+      "WelcomeScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "1c39bda304b55475adc1d9c0672d1bdd80636d21a4e8bb6ee381fde0f7379406",
+    "data_access_sites": 1,
+    "loading_sites": 0,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/notifications_settings_screen.dart",
+    "screen_classes": [
+      "NotificationsSettingsScreen",
+      "_NotificationsSettingsScreenState"
+    ],
+    "route_references": [
+      "AlertsScreen",
+      "EmploymentScreen",
+      "InventoryTab",
+      "NotificationCenterScreen",
+      "NotificationsSettingsScreen",
+      "OperationalFinanceScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "7726c186905e9f568a2d96aa2d9add9e1b949542f2484128a781036de4d09014",
+    "data_access_sites": 0,
+    "loading_sites": 7,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/permissions_screen.dart",
+    "screen_classes": [
+      "PermissionsScreen",
+      "_PermissionsScreenState"
+    ],
+    "route_references": [
+      "EmployeeAccessScreen",
+      "PermissionsScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "4193c18e7b243c589ebf4c53415faf5ac076384c445491cd3ba15138d9b12e8d",
+    "data_access_sites": 1,
+    "loading_sites": 1,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/privacy_policy_screen.dart",
+    "screen_classes": [
+      "PrivacyPolicyScreen"
+    ],
+    "route_references": [
+      "PrivacyPolicyScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "af854b11a87eb5db3de4358c2ada74da5d80bacc17ddeddc2f896c797f874db5",
+    "data_access_sites": 0,
+    "loading_sites": 0,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/profile_screen.dart",
+    "screen_classes": [
+      "ProfileScreen",
+      "_ProfileScreenState"
+    ],
+    "route_references": [
+      "ProfileScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "281308d246638c3ddf0bf71e28c3b587f93bd5eed8d15a72f0bf3e7b68fa3b00",
+    "data_access_sites": 0,
+    "loading_sites": 0,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/security_screen.dart",
+    "screen_classes": [
+      "SecurityScreen",
+      "_SecurityScreenState"
+    ],
+    "route_references": [
+      "AccountOperationsScreen",
+      "SecurityScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "c4ce46025e290b26982daa36026f35e798d1554ec1f7f99488608a5c45241ec6",
+    "data_access_sites": 0,
+    "loading_sites": 6,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/terms_of_service_screen.dart",
+    "screen_classes": [
+      "TermsOfServiceScreen"
+    ],
+    "route_references": [
+      "TermsOfServiceScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "be54f1a14d8f8687fc90c56e3cab51de3c7dd0dd208cce2f64378481d1b8b1a6",
+    "data_access_sites": 0,
+    "loading_sites": 0,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/setup/business_setup_screen.dart",
+    "screen_classes": [
+      "BusinessSetupScreen",
+      "_BusinessSetupScreenState"
+    ],
+    "route_references": [
+      "BusinessSetupScreen",
+      "SetupCompleteScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "4f5b7cd2a6dab67528b4159b757a193599d987047d4ca69314a8eba2fa61a5a0",
+    "data_access_sites": 1,
+    "loading_sites": 11,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/setup/setup_complete_screen.dart",
+    "screen_classes": [
+      "SetupCompleteScreen"
+    ],
+    "route_references": [
+      "MainScreen",
+      "SetupCompleteScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "5e73209986a0babb120e14e7a0fa797bf00e6301c02f3139bd1b83fc397846c9",
+    "data_access_sites": 0,
+    "loading_sites": 0,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/splash_screen.dart",
+    "screen_classes": [
+      "SplashScreen",
+      "_SplashScreenState"
+    ],
+    "route_references": [
+      "SplashScreen",
+      "WelcomeScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "8d4c38f94838ab66ec3ba243531bebe0afdbd74d06c2e0413b5bdb4987ca8b79",
+    "data_access_sites": 0,
+    "loading_sites": 0,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/welcome_screen.dart",
+    "screen_classes": [
+      "WelcomeScreen"
+    ],
+    "route_references": [
+      "LoginScreen",
+      "RegisterScreen",
+      "WelcomeScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "b7506334c868efdddc232fd3ce8571ab462c6e1c2eb74d196aa7f84e0eb89493",
+    "data_access_sites": 0,
+    "loading_sites": 0,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/account_operations_screen.dart",
+    "screen_classes": [
+      "AccountOperationsScreen",
+      "_AccountOperationsScreenState"
+    ],
+    "route_references": [
+      "AccountOperationsScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "9bf5744f6fcc576d83d4343f27a675ff24353edda8c10b17cce2c311ae41aa41",
+    "data_access_sites": 5,
+    "loading_sites": 2,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/cash_shift_screen.dart",
+    "screen_classes": [
+      "CashShiftScreen",
+      "_CashShiftScreenState"
+    ],
+    "route_references": [
+      "CashShiftScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "5e51f997c5281da81218e6f3f8f0da99884016eb3b93c733cfea20614dc2c072",
+    "data_access_sites": 3,
+    "loading_sites": 2,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/employee_access_screen.dart",
+    "screen_classes": [
+      "EmployeeAccessScreen",
+      "_EmployeeAccessScreenState",
+      "_PermissionOverrides",
+      "_PermissionOverridesState"
+    ],
+    "route_references": [
+      "EmployeeAccessScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "261a4e816d8537acea7d89324fbcd7f6854e084cebe86beb89ec314f723344c3",
+    "data_access_sites": 5,
+    "loading_sites": 2,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/financial_operations_screen.dart",
+    "screen_classes": [
+      "FinancialOperationsScreen",
+      "_FinancialOperationsScreenState"
+    ],
+    "route_references": [
+      "FinancialOperationsScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "0658c0ef0ea1265a03ccfc36c6c3e485cdf1ca88ca2b185c4b3bcafd4600eb42",
+    "data_access_sites": 16,
+    "loading_sites": 3,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/inventory_operations_screen.dart",
+    "screen_classes": [
+      "InventoryOperationsScreen",
+      "_InventoryOperationsScreenState"
+    ],
+    "route_references": [
+      "InventoryOperationsScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "ff088a82789f0c9b25ae2f4d978fda83a5c35919c711005e2579489ff8a9a4ff",
+    "data_access_sites": 2,
+    "loading_sites": 2,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/notification_center_screen.dart",
+    "screen_classes": [
+      "NotificationCenterScreen",
+      "_NotificationCenterScreenState"
+    ],
+    "route_references": [
+      "NotificationCenterScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "963f387386ecedb86eb3022dc00f84828a1e92989f6a63b871ff6470fcb64b1e",
+    "data_access_sites": 4,
+    "loading_sites": 2,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/operational_permissions_screen.dart",
+    "screen_classes": [
+      "OperationalPermissionsScreen",
+      "_OperationalPermissionsScreenState"
+    ],
+    "route_references": [
+      "OperationalPermissionsScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "85737b8ef55da947d38dcfe9f1e617a9ba6711ab530cc609d08422e9ca6b8e87",
+    "data_access_sites": 2,
+    "loading_sites": 1,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/auth/business_selection_screen.dart",
+    "screen_classes": [
+      "BusinessSelectionScreen",
+      "_BusinessCard",
+      "_BusinessLogo",
+      "_EmptyBusinessState"
+    ],
+    "route_references": [
+      "BusinessSelectionScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "940388eba1b62b16c1764981812b4267caea87203728ab93719d29608b42ae80",
+    "data_access_sites": 0,
+    "loading_sites": 1,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/auth/login_screen.dart",
+    "screen_classes": [
+      "LoginScreen",
+      "_LoginScreenState"
+    ],
+    "route_references": [
+      "LoginScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "e09600a7fffb3c6c2ee8c3c67bcd36a03379650eafbb414a701ddc94f04c51ab",
+    "data_access_sites": 1,
+    "loading_sites": 1,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/inventory/catalog_edit_screen.dart",
+    "screen_classes": [
+      "CatalogEditScreen",
+      "_CatalogEditScreenState"
+    ],
+    "route_references": [
+      "CatalogEditScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "0762f153949ef4e577c035a06b684681e45e2c8ddb10af6f7fb203aee6008b17",
+    "data_access_sites": 1,
+    "loading_sites": 0,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/inventory/product_detail_screen.dart",
+    "screen_classes": [
+      "ProductDetailScreen"
+    ],
+    "route_references": [
+      "CatalogEditScreen",
+      "ProductDetailScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "61bcfab325bede5976ee565e65c70700692673b77e04608a421903340b6759fd",
+    "data_access_sites": 3,
+    "loading_sites": 2,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/inventory/product_search_screen.dart",
+    "screen_classes": [
+      "ProductSearchScreen",
+      "_ProductSearchScreenState"
+    ],
+    "route_references": [
+      "ProductDetailScreen",
+      "ProductSearchScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "ce0ef0ba0f0fc82657d7ebfa8e1883cab948da53aed6849b4e1524a29d5f7af5",
+    "data_access_sites": 1,
+    "loading_sites": 1,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/inventory/quick_add_screen.dart",
+    "screen_classes": [
+      "QuickAddScreen",
+      "_QuickAddScreenState"
+    ],
+    "route_references": [
+      "QuickAddScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "85fc94a232caf98ba11ad33e836ca66a4dfc3336d0bc7a3b4ded171c1c8b1109",
+    "data_access_sites": 1,
+    "loading_sites": 1,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/inventory/scanner_screen.dart",
+    "screen_classes": [
+      "ScannerScreen",
+      "_ScannerScreenState",
+      "_GlassButton",
+      "_ScannerOverlay",
+      "_ScannerPainter"
+    ],
+    "route_references": [
+      "QuickAddScreen",
+      "ScannerScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "6ff5e3df70b1c52706bc16b2f31546d8b2e87db8b22a8cea0f8e5d454a42ab52",
+    "data_access_sites": 0,
+    "loading_sites": 1,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/pos/checkout_screen.dart",
+    "screen_classes": [
+      "CheckoutScreen",
+      "_CheckoutScreenState"
+    ],
+    "route_references": [
+      "CheckoutScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "6ee7e38949aa148018e7be9062be4165e348616c75b620e6ce9662cb35bb1707",
+    "data_access_sites": 3,
+    "loading_sites": 1,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/pos/dashboard_screen.dart",
+    "screen_classes": [
+      "DashboardScreen",
+      "_DashboardHeader",
+      "_SectionHeader",
+      "_PrimaryAction",
+      "_ActionCard",
+      "_QuickAddAction",
+      "_CheckoutBar"
+    ],
+    "route_references": [
+      "CheckoutScreen",
+      "DashboardScreen",
+      "PosOperationsScreen",
+      "ProductDetailScreen",
+      "ProductSearchScreen",
+      "QuickAddScreen",
+      "RecentSalesScreen",
+      "ScannerScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "7d665764be44ac0cfbe68a109ec95e99aba35d927fa51d4fd90e7616f7bd737c",
+    "data_access_sites": 5,
+    "loading_sites": 0,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/pos/employee_settings_screen.dart",
+    "screen_classes": [
+      "PosTheme",
+      "EmployeeSettingsScreen",
+      "_ChangePassword",
+      "_ChangePasswordState",
+      "_DeviceAlerts",
+      "_DeviceAlertsState"
+    ],
+    "route_references": [
+      "EmployeeSettingsScreen",
+      "OfflineCashScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "21923946d053c1558d1ab2c2df9774ac24decf4f1a307cca6142759ca8bf8864",
+    "data_access_sites": 4,
+    "loading_sites": 1,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/pos/offline_cash_screen.dart",
+    "screen_classes": [
+      "OfflineCashScreen",
+      "_OfflineCashScreenState"
+    ],
+    "route_references": [
+      "CheckoutScreen",
+      "OfflineCashScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "af8eb908812e5487fb2be7e6cfc9e6a8c03b967cf60319d2f7f1d430f2365bdf",
+    "data_access_sites": 9,
+    "loading_sites": 3,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/pos/operations_screen.dart",
+    "screen_classes": [
+      "PosOperationsScreen"
+    ],
+    "route_references": [
+      "CashShiftScreen",
+      "FinancialOperationsScreen",
+      "InventoryOperationsScreen",
+      "OfflineCashScreen",
+      "PosOperationsScreen",
+      "ScannerScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "af28fb452f0ccbd0b17f2e183fb3fc37e1549da1b00e9fa9e4636f2fb9dd2ce9",
+    "data_access_sites": 4,
+    "loading_sites": 1,
+    "remaining_raw_error_interpolations": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/pos/recent_sales_screen.dart",
+    "screen_classes": [
+      "RecentSalesScreen"
+    ],
+    "route_references": [
+      "RecentSalesScreen"
+    ],
+    "scope": "source inspection; physical device verification pending",
+    "sha256": "6a1c0009f99d23beeb448b1524cf62fcd9d8da2d2f33cc25d484c661307c6f31",
+    "data_access_sites": 2,
+    "loading_sites": 1,
+    "remaining_raw_error_interpolations": []
+  }
+]

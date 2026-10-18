@@ -1,0 +1,34 @@
+{
+  "project": "ufehcfrlygqvminfjumf",
+  "checked_utc": "2026-10-09T21:36:36.874989+00:00",
+  "deployment_cli_exit": 0,
+  "delete_account_version": 4,
+  "delete_account_active": true,
+  "jwt_verification_enabled": true,
+  "reviewed_source_matches": true,
+  "normalized_source_sha256": "922e775c1d3dc0c207a85cf7da6775ce2f33beca4ebd61619a6f51bdc9347ce3",
+  "camera_ai_version": 7,
+  "camera_ai_bundle_sha256": "745ec69f76f9ab97fdf1824cd007b712c25c13fdfce5dfe2893830624d6fa0c8",
+  "other_edge_metadata_unchanged": true,
+  "denial_only_http_checks": [
+    {
+      "check": "delete-account rejects missing JWT",
+      "http_status": 401,
+      "passed": true
+    },
+    {
+      "check": "delete-account rejects malformed JWT",
+      "http_status": 401,
+      "passed": true
+    }
+  ],
+  "database_checks": {
+    "provider_disabled": true,
+    "subscriptions_unenrolled": true,
+    "no_lifecycle_request_created": true
+  },
+  "production_test_users_created": 0,
+  "production_customer_records_logged": false,
+  "odt_vision_accessed": false,
+  "passed": true
+}

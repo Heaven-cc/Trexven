@@ -1,0 +1,161 @@
+{
+  "groups": [
+    {
+      "group": "structure.tables",
+      "match": true,
+      "source_count": 34,
+      "staging_count": 34
+    },
+    {
+      "group": "structure.columns",
+      "match": true,
+      "source_count": 339,
+      "staging_count": 339
+    },
+    {
+      "group": "structure.constraints",
+      "match": true,
+      "source_count": 131,
+      "staging_count": 131
+    },
+    {
+      "group": "structure.indexes",
+      "match": true,
+      "source_count": 108,
+      "staging_count": 108
+    },
+    {
+      "group": "structure.types",
+      "match": true
+    },
+    {
+      "group": "structure.inheritance",
+      "match": true
+    },
+    {
+      "group": "security.rules",
+      "match": true
+    },
+    {
+      "group": "security.policies",
+      "match": true,
+      "source_count": 121,
+      "staging_count": 121
+    },
+    {
+      "group": "security.triggers",
+      "match": true,
+      "source_count": 15,
+      "staging_count": 15
+    },
+    {
+      "group": "security.publications",
+      "match": true,
+      "source_count": 7,
+      "staging_count": 7
+    },
+    {
+      "group": "security.event_triggers",
+      "match": true
+    },
+    {
+      "group": "acl.tables",
+      "match": true,
+      "source_count": 34,
+      "staging_count": 34
+    },
+    {
+      "group": "acl.columns",
+      "match": true
+    },
+    {
+      "group": "acl.schemas",
+      "match": true,
+      "source_count": 2,
+      "staging_count": 2
+    },
+    {
+      "group": "acl.defaults",
+      "match": true,
+      "source_count": 6,
+      "staging_count": 6
+    },
+    {
+      "group": "acl.functions",
+      "match": true,
+      "source_count": 43,
+      "staging_count": 43
+    },
+    {
+      "group": "dependencies.custom_casts",
+      "match": true
+    },
+    {
+      "group": "dependencies.custom_operators",
+      "match": true
+    },
+    {
+      "group": "dependencies.custom_aggregates",
+      "match": true
+    },
+    {
+      "group": "dependencies.custom_collations",
+      "match": true
+    },
+    {
+      "group": "dependencies.external_constraints",
+      "match": true,
+      "source_count": 8,
+      "staging_count": 8
+    },
+    {
+      "group": "dependencies.publication_settings",
+      "match": true,
+      "source_count": 1,
+      "staging_count": 1
+    },
+    {
+      "group": "dependencies.external_object_dependencies",
+      "match": true,
+      "source_count": 102,
+      "staging_count": 102
+    },
+    {
+      "group": "extras.statistics_objects",
+      "match": true
+    },
+    {
+      "group": "extras.object_descriptions",
+      "match": true
+    },
+    {
+      "group": "extras.extension_dependencies",
+      "match": true
+    },
+    {
+      "group": "extras.managed_auth_references",
+      "match": true,
+      "source_count": 7,
+      "staging_count": 7
+    },
+    {
+      "group": "extras.unusual_column_metadata",
+      "match": true
+    },
+    {
+      "group": "extras.managed_schema_functions",
+      "match": true,
+      "source_count": 6,
+      "staging_count": 6
+    },
+    {
+      "group": "functions.body_contract_owner_settings",
+      "match": true,
+      "source_count": 43,
+      "staging_count": 43
+    }
+  ],
+  "semantic_match": true,
+  "target_project_ref": "qysspzlfiysekvxnlzsh",
+  "normalization": "Same normalization as Checkpoint A; no privilege differences ignored"
+}

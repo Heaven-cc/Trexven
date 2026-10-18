@@ -1,0 +1,2232 @@
+[
+  {
+    "protection_snapshot": {
+      "fk_rules": [
+        {
+          "table": "auth.scim_users",
+          "constraint": "scim_users_user_id_fkey",
+          "delete_rule": "n"
+        },
+        {
+          "table": "auth.identities",
+          "constraint": "identities_user_id_fkey",
+          "delete_rule": "c"
+        },
+        {
+          "table": "auth.sessions",
+          "constraint": "sessions_user_id_fkey",
+          "delete_rule": "c"
+        },
+        {
+          "table": "auth.mfa_factors",
+          "constraint": "mfa_factors_user_id_fkey",
+          "delete_rule": "c"
+        },
+        {
+          "table": "private.angel_request_windows",
+          "constraint": "angel_request_windows_user_id_fkey",
+          "delete_rule": "c"
+        },
+        {
+          "table": "auth.one_time_tokens",
+          "constraint": "one_time_tokens_user_id_fkey",
+          "delete_rule": "c"
+        },
+        {
+          "table": "auth.oauth_authorizations",
+          "constraint": "oauth_authorizations_user_id_fkey",
+          "delete_rule": "c"
+        },
+        {
+          "table": "auth.oauth_consents",
+          "constraint": "oauth_consents_user_id_fkey",
+          "delete_rule": "c"
+        },
+        {
+          "table": "auth.webauthn_credentials",
+          "constraint": "webauthn_credentials_user_id_fkey",
+          "delete_rule": "c"
+        },
+        {
+          "table": "auth.webauthn_challenges",
+          "constraint": "webauthn_challenges_user_id_fkey",
+          "delete_rule": "c"
+        },
+        {
+          "table": "businesses",
+          "constraint": "businesses_owner_id_fkey",
+          "delete_rule": "c"
+        },
+        {
+          "table": "business_members",
+          "constraint": "business_members_user_id_fkey",
+          "delete_rule": "c"
+        },
+        {
+          "table": "angel_conversations",
+          "constraint": "angel_conversations_user_id_fkey",
+          "delete_rule": "n"
+        },
+        {
+          "table": "auth.mfa_recovery_code_sets",
+          "constraint": "mfa_recovery_code_sets_user_id_fkey",
+          "delete_rule": "c"
+        },
+        {
+          "table": "private.camera_explanation_request_windows",
+          "constraint": "camera_explanation_request_windows_user_id_fkey",
+          "delete_rule": "c"
+        },
+        {
+          "table": "private.operation_cancellations",
+          "constraint": "operation_cancellations_actor_id_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "employees",
+          "constraint": "employees_user_id_fkey",
+          "delete_rule": "n"
+        },
+        {
+          "table": "sale_payments",
+          "constraint": "sale_payments_actor_id_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "credit_approvals",
+          "constraint": "credit_approvals_requested_by_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "credit_approvals",
+          "constraint": "credit_approvals_approved_by_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "credit_entries",
+          "constraint": "credit_entries_actor_id_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "private.sale_requests",
+          "constraint": "sale_requests_user_id_fkey",
+          "delete_rule": "c"
+        },
+        {
+          "table": "sale_returns",
+          "constraint": "sale_returns_requested_by_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "sale_returns",
+          "constraint": "sale_returns_inspected_by_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "sale_returns",
+          "constraint": "sale_returns_approved_by_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "audit_logs",
+          "constraint": "audit_logs_actor_id_fkey",
+          "delete_rule": "n"
+        },
+        {
+          "table": "private.offline_cash_leases",
+          "constraint": "offline_cash_leases_user_id_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "offline_sale_reconciliations",
+          "constraint": "offline_sale_reconciliations_actor_id_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "offline_sale_reconciliations",
+          "constraint": "offline_sale_reconciliations_reviewed_by_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "stocktake_sessions",
+          "constraint": "stocktake_sessions_created_by_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "stocktake_sessions",
+          "constraint": "stocktake_sessions_approved_by_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "stocktake_counts",
+          "constraint": "stocktake_counts_counted_by_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "stock_condition_entries",
+          "constraint": "stock_condition_entries_actor_id_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "inventory_reconciliation_reviews",
+          "constraint": "inventory_reconciliation_reviews_reviewed_by_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "supplier_stock_returns",
+          "constraint": "supplier_stock_returns_created_by_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "supplier_stock_returns",
+          "constraint": "supplier_stock_returns_reviewed_by_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "private.catalog_requests",
+          "constraint": "catalog_requests_actor_id_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "cash_shifts",
+          "constraint": "cash_shifts_opened_by_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "cash_shifts",
+          "constraint": "cash_shifts_closed_by_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "cash_shifts",
+          "constraint": "cash_shifts_reviewed_by_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "cash_events",
+          "constraint": "cash_events_actor_id_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "cash_handovers",
+          "constraint": "cash_handovers_requested_by_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "cash_handovers",
+          "constraint": "cash_handovers_confirmed_by_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "stock_transfers",
+          "constraint": "stock_transfers_dispatched_by_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "stock_transfers",
+          "constraint": "stock_transfers_received_by_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "subscription_events",
+          "constraint": "subscription_events_actor_id_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "subscription_change_requests",
+          "constraint": "subscription_change_requests_requested_by_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "account_lifecycle_requests",
+          "constraint": "account_lifecycle_requests_requested_by_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "application_error_events",
+          "constraint": "application_error_events_actor_id_fkey",
+          "delete_rule": "a"
+        },
+        {
+          "table": "trexven_notification_reads",
+          "constraint": "trexven_notification_reads_user_id_fkey",
+          "delete_rule": "a"
+        }
+      ],
+      "api_entry_cast": "user_owns_business",
+      "policy_conflicts": 0,
+      "storage_role_member": false,
+      "existing_policy_snapshot": [
+        {
+          "name": "Owners can view their own business",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "businesses",
+          "using": "(auth.uid() = owner_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Owners can create their own business",
+          "check": "(auth.uid() = owner_id)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "businesses",
+          "using": null,
+          "schema": "public",
+          "command": "INSERT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Owners can update their own business",
+          "check": "(auth.uid() = owner_id)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "businesses",
+          "using": "(auth.uid() = owner_id)",
+          "schema": "public",
+          "command": "UPDATE",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Owners can delete their own business",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "businesses",
+          "using": "(auth.uid() = owner_id)",
+          "schema": "public",
+          "command": "DELETE",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "business members can view business",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "businesses",
+          "using": "is_business_member(id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can view business members",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "business_members",
+          "using": "is_business_member(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can view products",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "products",
+          "using": "is_business_member(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can create products",
+          "check": "is_business_member(business_id)",
+          "roles": [
+            "public"
+          ],
+          "table": "products",
+          "using": null,
+          "schema": "public",
+          "command": "INSERT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can update products",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "products",
+          "using": "is_business_member(business_id)",
+          "schema": "public",
+          "command": "UPDATE",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can delete products",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "products",
+          "using": "is_business_member(business_id)",
+          "schema": "public",
+          "command": "DELETE",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can view inventory",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "inventory",
+          "using": "is_business_member(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can modify inventory",
+          "check": "is_business_member(business_id)",
+          "roles": [
+            "public"
+          ],
+          "table": "inventory",
+          "using": "is_business_member(business_id)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can view inventory movements",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "inventory_movements",
+          "using": "is_business_member(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can create inventory movements",
+          "check": "is_business_member(business_id)",
+          "roles": [
+            "public"
+          ],
+          "table": "inventory_movements",
+          "using": null,
+          "schema": "public",
+          "command": "INSERT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can view sales",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "sales",
+          "using": "is_business_member(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can create sales",
+          "check": "is_business_member(business_id)",
+          "roles": [
+            "public"
+          ],
+          "table": "sales",
+          "using": null,
+          "schema": "public",
+          "command": "INSERT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can update sales",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "sales",
+          "using": "is_business_member(business_id)",
+          "schema": "public",
+          "command": "UPDATE",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can view sale items",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "sale_items",
+          "using": "(EXISTS ( SELECT 1\n   FROM sales s\n  WHERE ((s.id = sale_items.sale_id) AND is_business_member(s.business_id))))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can create sale items",
+          "check": "(EXISTS ( SELECT 1\n   FROM sales s\n  WHERE ((s.id = sale_items.sale_id) AND is_business_member(s.business_id))))",
+          "roles": [
+            "public"
+          ],
+          "table": "sale_items",
+          "using": null,
+          "schema": "public",
+          "command": "INSERT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can view expenses",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "expenses",
+          "using": "is_business_member(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can create expenses",
+          "check": "is_business_member(business_id)",
+          "roles": [
+            "public"
+          ],
+          "table": "expenses",
+          "using": null,
+          "schema": "public",
+          "command": "INSERT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can view cash transactions",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "cash_transactions",
+          "using": "is_business_member(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can create cash transactions",
+          "check": "is_business_member(business_id)",
+          "roles": [
+            "public"
+          ],
+          "table": "cash_transactions",
+          "using": null,
+          "schema": "public",
+          "command": "INSERT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can view business activity",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "business_activity",
+          "using": "is_business_member(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can create business activity",
+          "check": "is_business_member(business_id)",
+          "roles": [
+            "public"
+          ],
+          "table": "business_activity",
+          "using": null,
+          "schema": "public",
+          "command": "INSERT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can view cameras",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "cameras",
+          "using": "is_business_member(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can manage cameras",
+          "check": "is_business_member(business_id)",
+          "roles": [
+            "public"
+          ],
+          "table": "cameras",
+          "using": "is_business_member(business_id)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can view camera events",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "camera_events",
+          "using": "is_business_member(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can create camera events",
+          "check": "is_business_member(business_id)",
+          "roles": [
+            "public"
+          ],
+          "table": "camera_events",
+          "using": null,
+          "schema": "public",
+          "command": "INSERT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can view Angel conversations",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "angel_conversations",
+          "using": "is_business_member(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can create Angel conversations",
+          "check": "is_business_member(business_id)",
+          "roles": [
+            "public"
+          ],
+          "table": "angel_conversations",
+          "using": null,
+          "schema": "public",
+          "command": "INSERT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can view Angel messages",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "angel_messages",
+          "using": "(EXISTS ( SELECT 1\n   FROM angel_conversations c\n  WHERE ((c.id = angel_messages.conversation_id) AND is_business_member(c.business_id))))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can create Angel messages",
+          "check": "(EXISTS ( SELECT 1\n   FROM angel_conversations c\n  WHERE ((c.id = angel_messages.conversation_id) AND is_business_member(c.business_id))))",
+          "roles": [
+            "public"
+          ],
+          "table": "angel_messages",
+          "using": null,
+          "schema": "public",
+          "command": "INSERT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can view alerts",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "alerts",
+          "using": "is_business_member(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can update alerts",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "alerts",
+          "using": "is_business_member(business_id)",
+          "schema": "public",
+          "command": "UPDATE",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can view business settings",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "business_settings",
+          "using": "is_business_member(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can update business settings",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "business_settings",
+          "using": "is_business_member(business_id)",
+          "schema": "public",
+          "command": "UPDATE",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Camera read permission",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "cameras",
+          "using": "private.has_business_permission(business_id, 'view_camera_events'::text)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Camera owner write boundary",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "cameras",
+          "using": null,
+          "schema": "public",
+          "command": "INSERT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "business owners can view businesses",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "businesses",
+          "using": "(owner_id = auth.uid())",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "business owners can insert businesses",
+          "check": "(owner_id = auth.uid())",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "businesses",
+          "using": null,
+          "schema": "public",
+          "command": "INSERT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "business owners can update businesses",
+          "check": "(owner_id = auth.uid())",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "businesses",
+          "using": "(owner_id = auth.uid())",
+          "schema": "public",
+          "command": "UPDATE",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "owners manage employees",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "employees",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "owners manage products",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "products",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "owners manage inventory movements",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "inventory_movements",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "owners manage sales",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "sales",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "owners manage financial transactions",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "financial_transactions",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "owners manage cameras",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "cameras",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "owners manage camera events",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "camera_events",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "owners manage employee activity",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "employee_activity",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "owners manage angel conversations",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "angel_conversations",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "owners manage angel insights",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "angel_insights",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "owners manage angel messages",
+          "check": "(EXISTS ( SELECT 1\n   FROM angel_conversations c\n  WHERE ((c.id = angel_messages.conversation_id) AND user_owns_business(c.business_id))))",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "angel_messages",
+          "using": "(EXISTS ( SELECT 1\n   FROM angel_conversations c\n  WHERE ((c.id = angel_messages.conversation_id) AND user_owns_business(c.business_id))))",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can view camera zones",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "camera_zones",
+          "using": "is_business_member(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "owners manage camera zones",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "public"
+          ],
+          "table": "camera_zones",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can view camera detections",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "camera_detections",
+          "using": "is_business_member(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "owners manage camera detections",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "public"
+          ],
+          "table": "camera_detections",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can view camera links",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "camera_event_links",
+          "using": "is_business_member(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "owners manage camera links",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "public"
+          ],
+          "table": "camera_event_links",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can view camera jobs",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "camera_ai_jobs",
+          "using": "is_business_member(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "owners manage camera jobs",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "public"
+          ],
+          "table": "camera_ai_jobs",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "members can view camera health",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "camera_health_logs",
+          "using": "is_business_member(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "owners manage camera health",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "public"
+          ],
+          "table": "camera_health_logs",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Business owner can manage recordings",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "recordings",
+          "using": "(business_id IN ( SELECT businesses.id\n   FROM businesses\n  WHERE (businesses.owner_id = auth.uid())))",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Product edit permission",
+          "check": "private.has_business_permission(business_id, 'edit_products'::text)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "products",
+          "using": "private.has_business_permission(business_id, 'edit_products'::text)",
+          "schema": "public",
+          "command": "UPDATE",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Owners and managers can view business employees",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "employees",
+          "using": "((EXISTS ( SELECT 1\n   FROM business_members\n  WHERE ((business_members.business_id = employees.business_id) AND (business_members.user_id = auth.uid()) AND (business_members.role = ANY (ARRAY['owner'::text, 'manager'::text]))))) OR (user_id = auth.uid()))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Owners and managers can insert employees",
+          "check": "(EXISTS ( SELECT 1\n   FROM business_members\n  WHERE ((business_members.business_id = employees.business_id) AND (business_members.user_id = auth.uid()) AND (business_members.role = ANY (ARRAY['owner'::text, 'manager'::text])))))",
+          "roles": [
+            "public"
+          ],
+          "table": "employees",
+          "using": null,
+          "schema": "public",
+          "command": "INSERT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Owners and managers can update employees",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "employees",
+          "using": "(EXISTS ( SELECT 1\n   FROM business_members\n  WHERE ((business_members.business_id = employees.business_id) AND (business_members.user_id = auth.uid()) AND (business_members.role = ANY (ARRAY['owner'::text, 'manager'::text])))))",
+          "schema": "public",
+          "command": "UPDATE",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Owners and managers can view audit logs",
+          "check": null,
+          "roles": [
+            "public"
+          ],
+          "table": "audit_logs",
+          "using": "(EXISTS ( SELECT 1\n   FROM business_members\n  WHERE ((business_members.business_id = audit_logs.business_id) AND (business_members.user_id = auth.uid()) AND (business_members.role = ANY (ARRAY['owner'::text, 'manager'::text])))))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Users can read their own membership status",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "business_members",
+          "using": "(user_id = auth.uid())",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Authenticated users can read permission definitions",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "permissions",
+          "using": "true",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Owners read their recording objects",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "objects",
+          "using": "((bucket_id = 'recordings'::text) AND (EXISTS ( SELECT 1\n   FROM recordings r\n  WHERE ((r.storage_path = objects.name) AND user_owns_business(r.business_id)))))",
+          "schema": "storage",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Owners and employees can read assigned permissions",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "employee_permissions",
+          "using": "(EXISTS ( SELECT 1\n   FROM employees e\n  WHERE ((e.id = employee_permissions.employee_id) AND (user_owns_business(e.business_id) OR (e.user_id = auth.uid())))))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Product read permission",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "products",
+          "using": "(private.has_business_permission(business_id, 'view_inventory'::text) OR private.has_business_permission(business_id, 'pos_access'::text))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Product create permission",
+          "check": "private.has_business_permission(business_id, 'add_products'::text)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "products",
+          "using": null,
+          "schema": "public",
+          "command": "INSERT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Product delete permission",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "products",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "DELETE",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Camera owner update boundary",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "cameras",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "UPDATE",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Camera owner delete boundary",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "cameras",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "DELETE",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Camera read permission",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "camera_events",
+          "using": "private.has_business_permission(business_id, 'view_camera_events'::text)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Camera owner write boundary",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "camera_events",
+          "using": null,
+          "schema": "public",
+          "command": "INSERT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Camera owner update boundary",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "camera_events",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "UPDATE",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Camera owner delete boundary",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "camera_events",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "DELETE",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Camera read permission",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "camera_detections",
+          "using": "private.has_business_permission(business_id, 'view_camera_events'::text)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Camera owner write boundary",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "camera_detections",
+          "using": null,
+          "schema": "public",
+          "command": "INSERT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Camera owner update boundary",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "camera_detections",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "UPDATE",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Camera owner delete boundary",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "camera_detections",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "DELETE",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Camera read permission",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "camera_zones",
+          "using": "private.has_business_permission(business_id, 'view_camera_events'::text)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Camera owner write boundary",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "camera_zones",
+          "using": null,
+          "schema": "public",
+          "command": "INSERT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Camera owner update boundary",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "camera_zones",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "UPDATE",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Camera owner delete boundary",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "camera_zones",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "DELETE",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Camera read permission",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "recordings",
+          "using": "private.has_business_permission(business_id, 'view_camera_events'::text)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Camera owner write boundary",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "recordings",
+          "using": null,
+          "schema": "public",
+          "command": "INSERT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Camera owner update boundary",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "recordings",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "UPDATE",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Camera owner delete boundary",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "recordings",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "DELETE",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Authorized staff read recordings",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "recordings",
+          "using": "private.has_business_permission(business_id, 'view_camera_events'::text)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Authorized staff read recording objects",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "objects",
+          "using": "((bucket_id = 'recordings'::text) AND (EXISTS ( SELECT 1\n   FROM recordings r\n  WHERE ((r.storage_path = objects.name) AND private.has_business_permission(r.business_id, 'view_camera_events'::text)))))",
+          "schema": "storage",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Inventory evidence permission",
+          "check": "private.has_business_permission(business_id, 'edit_products'::text)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "inventory_movements",
+          "using": "private.has_business_permission(business_id, 'view_inventory'::text)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Finance permission boundary",
+          "check": "private.has_business_permission(business_id, 'view_finance'::text)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "expenses",
+          "using": "private.has_business_permission(business_id, 'view_finance'::text)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Finance permission boundary",
+          "check": "private.has_business_permission(business_id, 'view_finance'::text)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "cash_transactions",
+          "using": "private.has_business_permission(business_id, 'view_finance'::text)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Finance permission boundary",
+          "check": "private.has_business_permission(business_id, 'view_finance'::text)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "financial_transactions",
+          "using": "private.has_business_permission(business_id, 'view_finance'::text)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Camera evidence boundary",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "camera_ai_jobs",
+          "using": "private.has_business_permission(business_id, 'view_camera_events'::text)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Camera evidence boundary",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "camera_event_links",
+          "using": "private.has_business_permission(business_id, 'view_camera_events'::text)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Camera evidence boundary",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "camera_health_logs",
+          "using": "private.has_business_permission(business_id, 'view_camera_events'::text)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Inventory read boundary",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "inventory",
+          "using": "private.has_business_permission(business_id, 'view_inventory'::text)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Alert permission boundary",
+          "check": "(user_owns_business(business_id) OR ((alert_type ~~ '%stock%'::text) AND private.has_business_permission(business_id, 'view_inventory'::text)) OR ((alert_type !~~ '%stock%'::text) AND private.has_business_permission(business_id, 'view_camera_events'::text)))",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "alerts",
+          "using": "(user_owns_business(business_id) OR ((alert_type ~~ '%stock%'::text) AND private.has_business_permission(business_id, 'view_inventory'::text)) OR ((alert_type !~~ '%stock%'::text) AND private.has_business_permission(business_id, 'view_camera_events'::text)))",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Angel author boundary",
+          "check": "((user_id = auth.uid()) AND user_owns_business(business_id))",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "angel_conversations",
+          "using": "((user_id = auth.uid()) AND user_owns_business(business_id))",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Financial business day boundary",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "sales",
+          "using": "private.sales_history_access(business_id, COALESCE(sold_at, created_at))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Angel message author boundary",
+          "check": "(EXISTS ( SELECT 1\n   FROM angel_conversations c\n  WHERE ((c.id = angel_messages.conversation_id) AND (c.user_id = auth.uid()) AND user_owns_business(c.business_id))))",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "angel_messages",
+          "using": "(EXISTS ( SELECT 1\n   FROM angel_conversations c\n  WHERE ((c.id = angel_messages.conversation_id) AND (c.user_id = auth.uid()) AND user_owns_business(c.business_id))))",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Owner insight boundary",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "angel_insights",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Branch authorized read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "branches",
+          "using": "(user_owns_business(business_id) OR private.has_branch_access(business_id, id))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Assignment authorized read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "employee_branch_assignments",
+          "using": "(user_owns_business(business_id) OR (EXISTS ( SELECT 1\n   FROM employees e\n  WHERE ((e.id = employee_branch_assignments.employee_id) AND (e.user_id = ( SELECT auth.uid() AS uid))))))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Sales branch boundary",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "sales",
+          "using": "private.branch_record_access(business_id, branch_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Inventory branch boundary",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "inventory",
+          "using": "private.branch_record_access(business_id, branch_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Movement branch boundary",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "inventory_movements",
+          "using": "private.branch_record_access(business_id, branch_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Staff read scope",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "employees",
+          "using": "private.can_read_staff(business_id, id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Owner settings boundary",
+          "check": "user_owns_business(business_id)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "business_settings",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Legacy finance branch boundary",
+          "check": "private.branch_record_access(business_id, NULL::uuid)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "expenses",
+          "using": "private.branch_record_access(business_id, NULL::uuid)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Legacy finance branch boundary",
+          "check": "private.branch_record_access(business_id, NULL::uuid)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "cash_transactions",
+          "using": "private.branch_record_access(business_id, NULL::uuid)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Legacy finance branch boundary",
+          "check": "private.branch_record_access(business_id, NULL::uuid)",
+          "roles": [
+            "authenticated"
+          ],
+          "table": "financial_transactions",
+          "using": "private.branch_record_access(business_id, NULL::uuid)",
+          "schema": "public",
+          "command": "ALL",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Sales read permission",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "sales",
+          "using": "private.sales_history_access(business_id, created_at)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Sale item scoped read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "sale_items",
+          "using": "(EXISTS ( SELECT 1\n   FROM sales s\n  WHERE (s.id = sale_items.sale_id)))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Membership read scope",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "business_members",
+          "using": "private.can_read_membership(business_id, user_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Deferred purchase cost audit boundary",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "audit_logs",
+          "using": "(NOT (jsonb_path_exists(COALESCE(metadata, '{}'::jsonb), '$.**.\"cost_price\"'::jsonpath) OR jsonb_path_exists(COALESCE(metadata, '{}'::jsonb), '$.**.\"purchase_cost\"'::jsonpath) OR jsonb_path_exists(COALESCE(metadata, '{}'::jsonb), '$.**.\"purchase_price\"'::jsonpath)))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Catalog group read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "product_groups",
+          "using": "(private.has_business_permission(business_id, 'view_inventory'::text) OR user_owns_business(business_id))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Payment authorized read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "sale_payments",
+          "using": "(EXISTS ( SELECT 1\n   FROM sales s\n  WHERE (s.id = sale_payments.sale_id)))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Credit approval scoped read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "credit_approvals",
+          "using": "(user_owns_business(business_id) OR (requested_by = auth.uid()) OR private.has_business_permission(business_id, 'approve_credit'::text))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Credit limit owner read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "credit_limits",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Credit account scoped read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "credit_accounts",
+          "using": "(user_owns_business(business_id) OR private.has_business_permission(business_id, 'view_finance'::text) OR private.has_business_permission(business_id, 'record_credit_repayment'::text))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Credit entry scoped read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "credit_entries",
+          "using": "(EXISTS ( SELECT 1\n   FROM credit_accounts a\n  WHERE (a.sale_id = credit_entries.sale_id)))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Return scoped read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "sale_returns",
+          "using": "(user_owns_business(business_id) OR (requested_by = auth.uid()) OR private.has_business_permission(business_id, 'inspect_returns'::text) OR private.has_business_permission(business_id, 'approve_refund'::text))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Return item scoped read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "return_items",
+          "using": "(EXISTS ( SELECT 1\n   FROM sale_returns r\n  WHERE (r.id = return_items.return_id)))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Credit approval membership boundary",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "credit_approvals",
+          "using": "(user_owns_business(business_id) OR (is_business_member(business_id) AND ((branch_id IS NULL) OR private.has_branch_access(business_id, branch_id))))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Credit account branch boundary",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "credit_accounts",
+          "using": "(user_owns_business(business_id) OR (is_business_member(business_id) AND ((branch_id IS NULL) OR private.has_branch_access(business_id, branch_id))))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Return membership boundary",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "sale_returns",
+          "using": "(user_owns_business(business_id) OR (is_business_member(business_id) AND ((branch_id IS NULL) OR private.has_branch_access(business_id, branch_id))))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Offline reconciliation scoped read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "offline_sale_reconciliations",
+          "using": "(user_owns_business(business_id) OR (is_business_member(business_id) AND ((actor_id = auth.uid()) OR private.has_business_permission(business_id, 'view_finance'::text))))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Stocktake read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "stocktake_sessions",
+          "using": "(private.has_business_permission(business_id, 'view_inventory'::text) AND ((branch_id IS NULL) OR private.has_branch_access(business_id, branch_id)))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Count read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "stocktake_counts",
+          "using": "(EXISTS ( SELECT 1\n   FROM stocktake_sessions s\n  WHERE (s.id = stocktake_counts.session_id)))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Condition ledger read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "stock_condition_entries",
+          "using": "private.has_business_permission(business_id, 'view_inventory'::text)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Inventory review read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "inventory_reconciliation_reviews",
+          "using": "private.has_business_permission(business_id, 'view_inventory'::text)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Supplier return read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "supplier_stock_returns",
+          "using": "private.has_business_permission(business_id, 'view_inventory'::text)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Cash business read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "cash_registers",
+          "using": "(user_owns_business(business_id) OR private.has_business_permission(business_id, 'cash_shifts'::text) OR private.has_business_permission(business_id, 'review_cash_shifts'::text))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Cash business read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "cash_shifts",
+          "using": "(user_owns_business(business_id) OR private.has_business_permission(business_id, 'cash_shifts'::text) OR private.has_business_permission(business_id, 'review_cash_shifts'::text))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Cash business read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "cash_events",
+          "using": "(user_owns_business(business_id) OR private.has_business_permission(business_id, 'cash_shifts'::text) OR private.has_business_permission(business_id, 'review_cash_shifts'::text))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Cash business read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "cash_handovers",
+          "using": "(user_owns_business(business_id) OR private.has_business_permission(business_id, 'cash_shifts'::text) OR private.has_business_permission(business_id, 'review_cash_shifts'::text))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Register assignment read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "cash_register_assignments",
+          "using": "(EXISTS ( SELECT 1\n   FROM cash_registers r\n  WHERE (r.id = cash_register_assignments.register_id)))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Shift member read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "cash_shift_members",
+          "using": "(EXISTS ( SELECT 1\n   FROM cash_shifts s\n  WHERE (s.id = cash_shift_members.shift_id)))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Assigned register boundary",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "cash_registers",
+          "using": "private.can_read_cash_register(id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Assigned shift boundary",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "cash_shifts",
+          "using": "private.can_read_cash_register(register_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Event shift boundary",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "cash_events",
+          "using": "(EXISTS ( SELECT 1\n   FROM cash_shifts\n  WHERE (cash_shifts.id = cash_events.shift_id)))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Handover shift boundary",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "cash_handovers",
+          "using": "(EXISTS ( SELECT 1\n   FROM cash_shifts\n  WHERE (cash_shifts.id = cash_handovers.shift_id)))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Transfer assigned read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "stock_transfers",
+          "using": "(private.has_business_permission(business_id, 'view_inventory'::text) AND private.has_branch_access(business_id, source_branch) AND private.has_branch_access(business_id, destination_branch))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Plan catalog read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "subscription_plans",
+          "using": "active",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Subscription member read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "business_subscriptions",
+          "using": "is_business_member(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Owner billing read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "subscription_events",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Owner billing read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "billing_customers",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Owner billing read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "billing_sessions",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Owner billing read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "billing_payments",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Owner billing read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "billing_invoices",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Owner billing read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "subscription_change_requests",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Owner operations read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "account_lifecycle_requests",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Owner operations read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "operational_backup_status",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Owner operations read",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "application_error_events",
+          "using": "user_owns_business(business_id)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        },
+        {
+          "name": "Subscription detailed log boundary",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "audit_logs",
+          "using": "private.subscription_read_feature(business_id, 'detailed_activity_logs'::text)",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "RESTRICTIVE"
+        },
+        {
+          "name": "Own current business notification acknowledgements",
+          "check": null,
+          "roles": [
+            "authenticated"
+          ],
+          "table": "trexven_notification_reads",
+          "using": "((user_id = ( SELECT auth.uid() AS uid)) AND is_business_member(business_id))",
+          "schema": "public",
+          "command": "SELECT",
+          "permissive": "PERMISSIVE"
+        }
+      ],
+      "authenticator_admin_member": true
+    }
+  }
+]

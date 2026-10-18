@@ -1,0 +1,21 @@
+{
+  "project": "ufehcfrlygqvminfjumf",
+  "checked_at_utc": "2026-10-09T06:46:18.316431+00:00",
+  "reviewed_functions_checked": 39,
+  "function_body_security_mismatches": [],
+  "security": {
+    "policies": 121,
+    "triggers": 19,
+    "invalid_indexes": 0,
+    "application_tables": 37,
+    "no_authenticated_maintain": true,
+    "all_application_tables_rls": true,
+    "branch_tables_not_writable": true,
+    "catalog_tables_not_writable": true,
+    "purchase_cost_select_denied": true,
+    "private_catalog_not_readable": true
+  },
+  "original_data_preserved": true,
+  "permission_reference_additions_expected": true,
+  "read_only": true
+}

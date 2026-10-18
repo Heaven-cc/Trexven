@@ -1,0 +1,905 @@
+--- before/lib/main.dart
++++ after/lib/main.dart
+@@ -84,7 +84,8 @@
+         if (state.event == AuthChangeEvent.passwordRecovery) {
+           destination = ResetPasswordScreen();
+         } else if (state.event == AuthChangeEvent.signedOut) {
+-          destination = WelcomeScreen();
++          // A deleted account may still need its durable completion receipt.
++          destination = AccountGate();
+         } else if (state.event == AuthChangeEvent.signedIn &&
+             nextId != _userId) {
+           destination = AccountGate();
+--- before/supabase/config.toml
++++ after/supabase/config.toml
+@@ -37,7 +37,13 @@
+ verify_jwt = true
+ entrypoint = "./functions/manage-employee/index.ts"
+ 
+-# Compatibility route now records a reviewed owner request; it never deletes Auth.
++# Explicit authenticated deletion; legacy calls still record reviewed requests.
+ [functions.delete-account]
+ verify_jwt = true
+ entrypoint = "./functions/delete-account/index.ts"
++
++# Auth sessions disappear during deletion. This route accepts only the secure
++# recovery capability of an already accepted request; it cannot choose a user.
++[functions.account-deletion-recovery]
++verify_jwt = false
++entrypoint = "./functions/account-deletion-recovery/index.ts"
+--- before/lib/screens/auth/account_gate.dart
++++ after/lib/screens/auth/account_gate.dart
+@@ -2,13 +2,16 @@
+ import 'package:flutter/material.dart';
+ import 'package:supabase_flutter/supabase_flutter.dart';
+ import '../../services/database_service.dart';
++import '../../services/account_deletion_service.dart';
++import 'account_deletion_recovery_screen.dart';
+ import '../main_screen.dart';
+ import '../welcome_screen.dart';
+ import '../setup/business_setup_screen.dart';
+ 
+ /// Shared destination for email, Google, and restored sessions.
+ class AccountGate extends StatefulWidget {
+-  const AccountGate({super.key});
++  const AccountGate({super.key, this.skipDeletionRecovery = false});
++  final bool skipDeletionRecovery;
+   @override
+   State<AccountGate> createState() => _AccountGateState();
+ }
+@@ -22,6 +25,17 @@
+   }
+ 
+   Future<Widget> _resolve() async {
++    if (!widget.skipDeletionRecovery) {
++      final deletion = AccountDeletionService();
++      final pending = await deletion.pending();
++      if (pending != null) {
++        if (pending['confirmed_deleted'] == true) {
++          await deletion.recover();
++        } else {
++          return const AccountDeletionRecoveryScreen();
++        }
++      }
++    }
+     final auth = Supabase.instance.client.auth;
+     if (auth.currentSession == null) {
+       return WelcomeScreen();
+--- before/lib/screens/me/security_screen.dart
++++ after/lib/screens/me/security_screen.dart
+@@ -2,7 +2,8 @@
+ import 'package:flutter/material.dart';
+ import 'package:supabase_flutter/supabase_flutter.dart';
+ import 'package:trexven_operations/trexven_operations.dart';
+-import '../../services/database_service.dart';
++import '../../services/account_deletion_service.dart';
++import '../auth/account_gate.dart';
+ 
+ class SecurityScreen extends StatefulWidget {
+   const SecurityScreen({super.key});
+@@ -31,6 +32,7 @@
+   }
+ 
+   Future<void> _changePassword() async {
++    if (_isSigningOut) return;
+     if (!_formKey.currentState!.validate()) return;
+ 
+     setState(() => _isLoading = true);
+@@ -61,19 +63,20 @@
+   }
+ 
+   Future<void> _deleteAccount() async {
++    if (_isSigningOut || _isLoading) return;
+     final confirm = await showDialog<bool>(
+       context: context,
+       builder: (ctx) => AlertDialog(
+         scrollable: true,
+         title: Text(
+-          'Request account deletion?',
++          'Delete your account?',
+           style: TextStyle(
+             fontWeight: FontWeight.w800,
+             color: Theme.of(context).colorScheme.error,
+           ),
+         ),
+         content: Text(
+-          'This starts an owner-verified review. Business data, financial history, authentication and pending transactions are retained. No records are deleted by this request.',
++          'This permanently removes your login and personal account access. Business and financial history are retained. Recover pending transactions, close cash shifts and complete any required business handover first. You may need to sign in again to confirm your identity.',
+         ),
+         actions: [
+           TextButton(
+@@ -86,7 +89,7 @@
+               backgroundColor: Theme.of(context).colorScheme.error,
+               foregroundColor: Theme.of(context).colorScheme.onError,
+             ),
+-            child: Text('Continue to request'),
++            child: Text('Delete account'),
+           ),
+         ],
+       ),
+@@ -96,25 +99,21 @@
+ 
+     setState(() => _isSigningOut = true);
+     try {
+-      final business = await DatabaseService().getCurrentBusinessId();
+-      if (business == null)
+-        throw StateError('Verified owner business required.');
++      await AccountDeletionService().deleteConfirmed();
+       if (!mounted) return;
+-      await Navigator.push(
+-        context,
+-        MaterialPageRoute(
+-          builder: (_) => AccountOperationsScreen(
+-            api: OperationsClient(Supabase.instance.client, business),
+-          ),
+-        ),
++      Navigator.of(context).pushAndRemoveUntil(
++        MaterialPageRoute(builder: (_) => const AccountGate()),
++        (_) => false,
+       );
+     } catch (e) {
+       _showMsg(
+-        CustomerPresentation.error(
+-          e,
+-          fallback:
+-              'We could not confirm your deletion request. Please try again.',
+-        ),
++        e is AccountDeletionError
++            ? e.message
++            : CustomerPresentation.error(
++                e,
++                fallback:
++                    'Account deletion was not confirmed. Recover the original request before starting another.',
++              ),
+         isError: true,
+       );
+     } finally {
+@@ -336,7 +335,7 @@
+             SizedBox(height: 12),
+ 
+             TrexvenTapCard(
+-              onTap: _isSigningOut ? null : _deleteAccount,
++              onTap: _isSigningOut || _isLoading ? null : _deleteAccount,
+               padding: EdgeInsets.all(18),
+               backgroundColor: errorColor.withValues(alpha: 0.05),
+               child: Row(
+@@ -359,7 +358,7 @@
+                       crossAxisAlignment: CrossAxisAlignment.start,
+                       children: [
+                         Text(
+-                          'Request account deletion',
++                          'Delete account',
+                           style: TextStyle(
+                             fontSize: TrexvenFontSize.input,
+                             fontWeight: FontWeight.w800,
+@@ -368,7 +367,7 @@
+                         ),
+                         SizedBox(height: 4),
+                         Text(
+-                          'Start a reviewed request and retain financial history.',
++                          'Remove your login; business and financial history are retained.',
+                           style: TextStyle(
+                             fontSize: TrexvenFontSize.caption,
+                             color: muted,
+--- before/supabase/functions/delete-account/index.ts
++++ after/supabase/functions/delete-account/index.ts
+@@ -1,6 +1,7 @@
+ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
+ import { createClient } from "npm:@supabase/supabase-js@2.117.2";
+-// Compatibility endpoint: deletion now starts a reviewed owner request only.
++import { deletionAdmin, deletionFailure, deletionHash, deletionJson, hasRecentDeletionAuthentication, resumeDeletion, validDeletionIdentity } from "../_shared/account-deletion.ts";
++// Explicit deletion is opt-in. Existing review-request clients stay compatible.
+ const cors = {"Access-Control-Allow-Origin":"*","Access-Control-Allow-Headers":"authorization, x-client-info, apikey, content-type","Access-Control-Allow-Methods":"POST, OPTIONS"};
+ const json=(body:unknown,status=200)=>new Response(JSON.stringify(body),{status,headers:{...cors,"Content-Type":"application/json"}});
+ Deno.serve(async(req:Request)=>{
+@@ -15,6 +16,15 @@
+   const {data:user,error:authenticationError}=await client.auth.getUser();
+   if(authenticationError||!user.user)return json({success:false,error:"Invalid authentication."},401);
+   const body=await req.json().catch(()=>null);
++  if(body?.action==="delete"){
++   if(body.confirmation!=="DELETE" || !validDeletionIdentity(body))return deletionJson({success:false,deleted_user:false,accepted:false,code:"ACCOUNT_DELETION_INVALID_CONFIRMATION",error:"Explicit deletion confirmation and a durable request are required."},400);
++   const token=authorization.substring(7);
++   if(!hasRecentDeletionAuthentication(token,user.user.id))return deletionJson({success:false,deleted_user:false,accepted:false,code:"ACCOUNT_DELETION_REAUTHENTICATE",error:"Sign out and sign back in, then confirm account deletion within 15 minutes."},403);
++   const admin=deletionAdmin(),hash=await deletionHash(body.recovery_token);
++   const {error:prepareError}=await admin.rpc("begin_trexven_account_deletion",{p_user_id:user.user.id,p_request_id:body.request_id,p_recovery_hash:hash});
++   if(prepareError)return deletionFailure(prepareError);
++   return await resumeDeletion(admin,body.request_id,hash);
++  }
+   if(!body||typeof body.business_id!=="string"||typeof body.request_id!=="string"||typeof body.reason!=="string"){
+    return json({success:false,deleted_user:false,error:"Owner review and a durable request are required. No account or financial records were deleted."},409);
+   }
+--- /dev/null
++++ after/lib/services/account_deletion_service.dart
+@@ -0,0 +1,261 @@
++import 'dart:convert';
++import 'dart:math';
++import 'package:flutter_secure_storage/flutter_secure_storage.dart';
++import 'package:supabase_flutter/supabase_flutter.dart';
++import 'package:uuid/uuid.dart';
++import 'database_service.dart';
++
++class AccountDeletionError implements Exception {
++  final String message;
++  AccountDeletionError(this.message);
++  @override
++  String toString() => message;
++}
++
++/// A deletion capability is stored only in device secure storage. Financial
++/// journals and their encryption keys are never removed by account cleanup.
++class AccountDeletionService {
++  static const _key = 'trexven_account_deletion_v1';
++  static Future<void> _storageQueue = Future<void>.value();
++  final SupabaseClient client;
++  final FlutterSecureStorage storage;
++  AccountDeletionService({
++    SupabaseClient? client,
++    FlutterSecureStorage? storage,
++  }) : client = client ?? Supabase.instance.client,
++       storage = storage ?? const FlutterSecureStorage();
++
++  Future<T> _editStorage<T>(Future<T> Function() change) {
++    final operation = _storageQueue.then<T>((_) => change());
++    _storageQueue = operation.then<void>(
++      (_) {},
++      onError: (Object _, StackTrace __) {},
++    );
++    return operation;
++  }
++
++  bool _sameIntent(Map<String, dynamic> a, Map<String, dynamic> b) =>
++      a['user_id'] == b['user_id'] &&
++      a['request_id'] == b['request_id'] &&
++      a['recovery_token'] == b['recovery_token'];
++
++  Future<void> _removeIntent(
++    Map<String, dynamic> intent,
++  ) => _editStorage<void>(() async {
++    final remaining = await pending();
++    if (remaining == null) return;
++    if (!_sameIntent(remaining, intent)) {
++      throw AccountDeletionError(
++        'Deletion recovery context changed. The new record has been preserved.',
++      );
++    }
++    await storage.delete(key: _key).timeout(const Duration(seconds: 10));
++  });
++
++  Future<Map<String, dynamic>?> pending() async {
++    final encoded = await storage
++        .read(key: _key)
++        .timeout(const Duration(seconds: 10));
++    if (encoded == null) return null;
++    final value = Map<String, dynamic>.from(jsonDecode(encoded) as Map);
++    if (value['user_id'] is! String ||
++        value['request_id'] is! String ||
++        value['recovery_token'] is! String ||
++        !RegExp(
++          r'^[0-9a-f]{64}$',
++        ).hasMatch(value['recovery_token'] as String)) {
++      throw AccountDeletionError(
++        'The original deletion recovery record could not be read. Preserve device storage and contact support.',
++      );
++    }
++    return value;
++  }
++
++  Future<void> deleteConfirmed() async {
++    final user = client.auth.currentUser?.id;
++    if (user == null)
++      throw AccountDeletionError('Sign in before confirming account deletion.');
++    final original = await pending();
++    if (original != null) {
++      if (original['user_id'] != user) {
++        throw AccountDeletionError(
++          'Finish the previously confirmed deletion before starting another account deletion.',
++        );
++      }
++      return recover();
++    }
++    if (await DatabaseService(client: client).hasUnresolvedOperation()) {
++      throw AccountDeletionError(
++        'Recover your interrupted financial operation before deleting your account.',
++      );
++    }
++    if (client.auth.currentUser?.id != user)
++      throw AccountDeletionError(
++        'Account changed. Confirm deletion from the original account.',
++      );
++    final random = Random.secure();
++    final intent = <String, dynamic>{
++      'user_id': user,
++      'request_id': const Uuid().v4(),
++      'recovery_token': List.generate(
++        32,
++        (_) => random.nextInt(256).toRadixString(16).padLeft(2, '0'),
++      ).join(),
++    };
++    await _editStorage<void>(() async {
++      if (await pending() != null || client.auth.currentUser?.id != user) {
++        throw AccountDeletionError(
++          'Account or deletion recovery context changed. Recover the original request.',
++        );
++      }
++      await storage
++          .write(key: _key, value: jsonEncode(intent))
++          .timeout(const Duration(seconds: 10));
++    });
++    await _begin(intent);
++  }
++
++  Future<void> recover() async {
++    final intent = await pending();
++    if (intent == null)
++      throw AccountDeletionError('No interrupted account deletion remains.');
++    if (intent['confirmed_deleted'] == true) return _cleanDevice(intent);
++    Map<String, dynamic> data;
++    try {
++      data = await _invoke('account-deletion-recovery', {
++        'request_id': intent['request_id'],
++        'recovery_token': intent['recovery_token'],
++      });
++    } on AccountDeletionResponseError catch (error) {
++      if (error.data['code'] == 'ACCOUNT_DELETION_NOT_FOUND') {
++        // The original request may never have reached the server. Resubmit only
++        // that same confirmed identity, under its original authenticated account.
++        return _begin(intent);
++      }
++      rethrow;
++    }
++    await _complete(intent, data);
++  }
++
++  Future<void> _begin(Map<String, dynamic> intent) async {
++    final session = client.auth.currentSession;
++    if (session == null || session.user.id != intent['user_id']) {
++      throw AccountDeletionError(
++        'Sign in to the original account to finish this deletion request.',
++      );
++    }
++    try {
++      final data = await _invoke('delete-account', {
++        'action': 'delete',
++        'confirmation': 'DELETE',
++        'request_id': intent['request_id'],
++        'recovery_token': intent['recovery_token'],
++      }, accessToken: session.accessToken);
++      await _complete(intent, data);
++    } on AccountDeletionResponseError catch (error) {
++      // These responses explicitly establish that no deletion was accepted.
++      // Transport failures and uncertain responses always retain recovery data.
++      if (error.data['accepted'] == false) {
++        await _removeIntent(intent);
++      }
++      rethrow;
++    }
++  }
++
++  Future<Map<String, dynamic>> _invoke(
++    String function,
++    Map<String, dynamic> body, {
++    String? accessToken,
++  }) async {
++    try {
++      final result = await client.functions
++          .invoke(
++            function,
++            body: body,
++            headers: accessToken == null
++                ? null
++                : {'Authorization': 'Bearer $accessToken'},
++          )
++          .timeout(const Duration(seconds: 60));
++      final data = result.data;
++      if (data is! Map)
++        throw AccountDeletionError(
++          'Account deletion was not confirmed. Recover the original request.',
++        );
++      final parsed = Map<String, dynamic>.from(data);
++      if (parsed['success'] != true || parsed['deleted_user'] != true) {
++        throw AccountDeletionResponseError(parsed);
++      }
++      return parsed;
++    } on FunctionException catch (error) {
++      if (error.details is Map)
++        throw AccountDeletionResponseError(
++          Map<String, dynamic>.from(error.details as Map),
++        );
++      throw AccountDeletionError(
++        'Account deletion was not confirmed. Keep the original request and recover it.',
++      );
++    }
++  }
++
++  Future<void> _complete(
++    Map<String, dynamic> intent,
++    Map<String, dynamic> data,
++  ) async {
++    if (data['request_id'] != intent['request_id'] ||
++        data['financial_records_preserved'] != true) {
++      throw AccountDeletionError(
++        'The deletion receipt did not match your original request. Keep it for recovery.',
++      );
++    }
++    await _editStorage<void>(() async {
++      final remaining = await pending();
++      if (remaining == null) return;
++      if (!_sameIntent(remaining, intent))
++        throw AccountDeletionError(
++          'Deletion context changed. Preserve the original receipt.',
++        );
++      await storage
++          .write(
++            key: _key,
++            value: jsonEncode({...intent, 'confirmed_deleted': true}),
++          )
++          .timeout(const Duration(seconds: 10));
++    });
++    await _cleanDevice(intent);
++  }
++
++  Future<void> _cleanDevice(Map<String, dynamic> intent) async {
++    if (client.auth.currentUser?.id == intent['user_id']) {
++      DatabaseService(client: client).clearBusinessSelection();
++      try {
++        await client.auth
++            .signOut(scope: SignOutScope.local)
++            .timeout(const Duration(seconds: 10));
++      } catch (_) {
++        if (client.auth.currentSession != null) {
++          throw AccountDeletionError(
++            'Your account is deleted. Recover once more to clear the remaining device session.',
++          );
++        }
++      }
++      if (client.auth.currentSession != null) {
++        throw AccountDeletionError(
++          'Your account is deleted. Device sign-out is still pending; recover this request.',
++        );
++      }
++    }
++    // A different currently signed-in account is never signed out or deleted.
++    await _removeIntent(intent);
++  }
++}
++
++class AccountDeletionResponseError extends AccountDeletionError {
++  final Map<String, dynamic> data;
++  AccountDeletionResponseError(this.data)
++    : super(
++        data['error'] is String
++            ? data['error'] as String
++            : 'Account deletion is not confirmed. Recover the original request.',
++      );
++}
+--- /dev/null
++++ after/lib/screens/auth/account_deletion_recovery_screen.dart
+@@ -0,0 +1,88 @@
++import 'package:flutter/material.dart';
++import '../../services/account_deletion_service.dart';
++import 'account_gate.dart';
++
++/// Available even after Auth removes the old session. Its secure credential can
++/// only complete the previously confirmed deletion, never select another user.
++class AccountDeletionRecoveryScreen extends StatefulWidget {
++  const AccountDeletionRecoveryScreen({super.key});
++  @override
++  State<AccountDeletionRecoveryScreen> createState() =>
++      _AccountDeletionRecoveryScreenState();
++}
++
++class _AccountDeletionRecoveryScreenState
++    extends State<AccountDeletionRecoveryScreen> {
++  bool busy = false;
++  String? error;
++  Future<void> resume() async {
++    if (busy) return;
++    setState(() {
++      busy = true;
++      error = null;
++    });
++    try {
++      await AccountDeletionService().recover();
++      if (!mounted) return;
++      Navigator.of(context).pushAndRemoveUntil(
++        MaterialPageRoute(builder: (_) => const AccountGate()),
++        (_) => false,
++      );
++    } catch (failure) {
++      if (mounted)
++        setState(
++          () => error = failure is AccountDeletionError
++              ? failure.message
++              : 'Deletion could not be confirmed. Keep the original recovery record and try again.',
++        );
++    } finally {
++      if (mounted) setState(() => busy = false);
++    }
++  }
++
++  @override
++  Widget build(BuildContext context) => Scaffold(
++    appBar: AppBar(title: const Text('Account deletion')),
++    body: SafeArea(
++      child: ListView(
++        padding: const EdgeInsets.all(24),
++        children: [
++          const Text(
++            'Finish your confirmed deletion',
++            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
++          ),
++          const SizedBox(height: 16),
++          const Text(
++            'An account deletion was interrupted. Recover its original outcome before starting another request. Business and financial history are retained.',
++          ),
++          if (error != null) ...[
++            const SizedBox(height: 16),
++            Text(
++              error!,
++              style: TextStyle(color: Theme.of(context).colorScheme.error),
++            ),
++          ],
++          const SizedBox(height: 24),
++          FilledButton(
++            onPressed: busy ? null : resume,
++            child: Text(
++              busy ? 'Recovering deletion…' : 'Recover account deletion',
++            ),
++          ),
++          TextButton(
++            onPressed: busy
++                ? null
++                : () => Navigator.of(context).pushAndRemoveUntil(
++                    MaterialPageRoute(
++                      builder: (_) =>
++                          const AccountGate(skipDeletionRecovery: true),
++                    ),
++                    (_) => false,
++                  ),
++            child: const Text('Return to app'),
++          ),
++        ],
++      ),
++    ),
++  );
++}
+--- /dev/null
++++ after/supabase/functions/_shared/account-deletion.ts
+@@ -0,0 +1,82 @@
++import { createClient } from "npm:@supabase/supabase-js@2.117.2";
++
++export const deletionCors = {
++  "Access-Control-Allow-Origin": "*",
++  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
++  "Access-Control-Allow-Methods": "POST, OPTIONS",
++};
++export const deletionJson = (body: unknown, status = 200) => new Response(JSON.stringify(body), {
++  status, headers: { ...deletionCors, "Content-Type": "application/json", "Cache-Control": "no-store" },
++});
++const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
++export function validDeletionIdentity(body: Record<string, unknown>): boolean {
++  return typeof body.request_id === "string" && uuid.test(body.request_id) &&
++    typeof body.recovery_token === "string" && /^[0-9a-f]{64}$/.test(body.recovery_token);
++}
++export async function deletionHash(secret: string): Promise<string> {
++  const bytes = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(secret));
++  return Array.from(new Uint8Array(bytes), (b) => b.toString(16).padStart(2, "0")).join("");
++}
++export function deletionAdmin() {
++  const url = Deno.env.get("SUPABASE_URL"), key = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
++  if (!url || !key) throw new Error("ACCOUNT_DELETION_UNAVAILABLE");
++  return createClient(url, key, {
++    auth: { persistSession: false, autoRefreshToken: false },
++    global: { fetch: (input, init) => fetch(input, { ...init, signal: AbortSignal.timeout(15000) }) },
++  });
++}
++export type DeletionAdmin = ReturnType<typeof deletionAdmin>;
++
++// getUser must have verified this exact bearer token before inspecting claims.
++// A refreshed token's iat is deliberately not accepted as reauthentication.
++export function hasRecentDeletionAuthentication(token: string, userId: string): boolean {
++  try {
++    const encoded = token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
++    const claims = JSON.parse(atob(encoded.padEnd(Math.ceil(encoded.length / 4) * 4, "=")));
++    const now = Math.floor(Date.now() / 1000);
++    return claims.sub === userId && typeof claims.session_id === "string" &&
++      Array.isArray(claims.amr) && claims.amr.some((entry: { method?: string; timestamp?: number }) =>
++        ["password", "oauth", "otp", "totp", "webauthn"].includes(entry.method ?? "") &&
++        typeof entry.timestamp === "number" && entry.timestamp <= now + 30 && entry.timestamp >= now - 900);
++  } catch { return false; }
++}
++
++export function deletionFailure(error: { code?: string; message?: string }): Response {
++  const blockers: Record<string, string> = {
++    ACCOUNT_DELETION_ACTIVE_USERS: "Remove or transfer other active business users before deleting your account.",
++    ACCOUNT_DELETION_OPEN_SHIFT: "Close and reconcile your business cash shifts before deleting your account.",
++    ACCOUNT_DELETION_PENDING_REVIEW: "Complete pending credit, customer/supplier returns, stocktake, inventory and handover reviews before deleting your account.",
++    ACCOUNT_DELETION_OUTSTANDING_CREDIT: "Settle outstanding customer credit or transfer business ownership before deleting your account.",
++    ACCOUNT_DELETION_CONFLICT: "Recover the original account deletion request instead of starting another.",
++  };
++  const reason = Object.keys(blockers).find((key) => error.message === key);
++  if (reason) return deletionJson({ success: false, deleted_user: false, accepted: false, code: reason, error: blockers[reason] }, 409);
++  if (error.message === "ACCOUNT_DELETION_NOT_FOUND") {
++    return deletionJson({ success: false, deleted_user: false, code: "ACCOUNT_DELETION_NOT_FOUND", error: "No matching accepted deletion request was found." }, 404);
++  }
++  return deletionJson({ success: false, deleted_user: false, code: "ACCOUNT_DELETION_UNCONFIRMED", error: "Account deletion could not be confirmed. Keep the original request and recover its status." }, 503);
++}
++
++export async function resumeDeletion(admin: DeletionAdmin, requestId: string, recoveryHash: string): Promise<Response> {
++  const lease = crypto.randomUUID();
++  const { data: state, error: claimError } = await admin.rpc("claim_trexven_account_deletion", {
++    p_request_id: requestId, p_recovery_hash: recoveryHash, p_lease: lease,
++  });
++  if (claimError) return deletionFailure(claimError);
++  if (state?.status === "deleted") return deletionJson({ success: true, deleted_user: true, request_id: requestId, financial_records_preserved: true });
++  if (state?.status === "processing") return deletionJson({ success: false, deleted_user: false, accepted: true, code: "ACCOUNT_DELETION_PROCESSING", error: "Deletion is still processing. Recover this same request shortly." }, 202);
++  if (state?.status !== "prepared" || typeof state.user_id !== "string") return deletionFailure({});
++
++  // Never hard-delete the Auth row: financial actor/owner UUID references remain.
++  // Auth soft deletion removes credentials/identities, MFA and refresh sessions.
++  const { error: authError } = await admin.auth.admin.deleteUser(state.user_id, true);
++  if (authError) {
++    await admin.rpc("release_trexven_account_deletion", { p_request_id: requestId, p_lease: lease });
++    return deletionFailure({});
++  }
++  const { data: result, error: finishError } = await admin.rpc("finish_trexven_account_deletion", {
++    p_request_id: requestId, p_lease: lease,
++  });
++  if (finishError || result?.status !== "deleted") return deletionFailure(finishError ?? {});
++  return deletionJson({ success: true, deleted_user: true, request_id: requestId, financial_records_preserved: true });
++}
+--- /dev/null
++++ after/supabase/functions/account-deletion-recovery/index.ts
+@@ -0,0 +1,18 @@
++import "jsr:@supabase/functions-js/edge-runtime.d.ts";
++import { deletionAdmin, deletionCors, deletionFailure, deletionHash, deletionJson, resumeDeletion, validDeletionIdentity } from "../_shared/account-deletion.ts";
++
++// The gateway does not require an Auth session here: deletion revokes sessions.
++// This route requires the 256-bit recovery credential of an ALREADY accepted
++// deletion. It cannot create a request or choose a user/business to delete.
++Deno.serve(async (req: Request) => {
++  if (req.method === "OPTIONS") return new Response("ok", { headers: deletionCors });
++  if (req.method !== "POST") return deletionJson({ success: false, error: "Only POST requests are allowed." }, 405);
++  try {
++    const body = await req.json().catch(() => null);
++    if (!body || !validDeletionIdentity(body)) return deletionJson({ success: false, error: "Valid original recovery credentials are required." }, 400);
++    return await resumeDeletion(deletionAdmin(), body.request_id, await deletionHash(body.recovery_token));
++  } catch {
++    console.error("ACCOUNT_DELETION_RECOVERY_UNCONFIRMED");
++    return deletionFailure({});
++  }
++});
+--- /dev/null
++++ after/supabase/migrations/20261013042954_account_deletion_with_history_preservation.sql
+@@ -0,0 +1,231 @@
++-- Source only. Do not apply to a shared environment without deployment approval.
++-- No existing account is changed by installing this migration.
++begin;
++
++create table private.account_deletion_state (
++  user_id uuid primary key,
++  request_id uuid not null unique,
++  recovery_hash text not null check (recovery_hash ~ '^[0-9a-f]{64}$'),
++  status text not null default 'prepared' check (status in ('prepared','deleted')),
++  lease_id uuid,
++  lease_until timestamptz,
++  prepared_at timestamptz not null default now(),
++  deleted_at timestamptz
++);
++alter table private.account_deletion_state enable row level security;
++revoke all on private.account_deletion_state from public,anon,authenticated,service_role;
++
++create function public.trexven_account_access_allowed()
++returns boolean language sql stable security definer set search_path='' as $$
++ select auth.uid() is null or (
++   not exists(select 1 from private.account_deletion_state d where d.user_id=auth.uid())
++   and not exists(select 1 from auth.users u where u.id=auth.uid() and u.deleted_at is not null)
++ )
++$$;
++revoke all on function public.trexven_account_access_allowed() from public;
++grant execute on function public.trexven_account_access_allowed() to anon,authenticated,service_role;
++
++-- Preserve the complete existing permission bodies; wrap rather than substitute
++-- role defaults, branch checks or owner/employee grants.
++do $guard_helpers$
++declare signature text; original text; clone_name text; original_name text;
++begin
++ foreach signature in array array[
++   'public.user_owns_business(uuid)',
++   'public.is_business_member(uuid)',
++   'private.has_business_permission(uuid,text)'
++ ] loop
++   select pg_get_functiondef(signature::regprocedure) into original;
++   original_name:=split_part(signature,'(',1);
++   clone_name:='private.account_deletion_previous_'||split_part(original_name,'.',2);
++   if position('CREATE OR REPLACE FUNCTION '||original_name||'(' in original)<>1 then
++     raise exception 'Account deletion helper signature drift: %',signature;
++   end if;
++   execute replace(original,'CREATE OR REPLACE FUNCTION '||original_name||'(',
++                   'CREATE OR REPLACE FUNCTION '||clone_name||'(');
++ end loop;
++end
++$guard_helpers$;
++revoke all on function private.account_deletion_previous_user_owns_business(uuid),
++ private.account_deletion_previous_is_business_member(uuid),
++ private.account_deletion_previous_has_business_permission(uuid,text)
++ from public,anon,authenticated,service_role;
++
++create or replace function public.user_owns_business(target_business_id uuid)
++returns boolean language sql stable security definer set search_path='' as $$
++ select public.trexven_account_access_allowed()
++ and private.account_deletion_previous_user_owns_business(target_business_id)
++$$;
++create or replace function public.is_business_member(target_business_id uuid)
++returns boolean language sql stable security definer set search_path='' as $$
++ select public.trexven_account_access_allowed()
++ and private.account_deletion_previous_is_business_member(target_business_id)
++$$;
++create or replace function private.has_business_permission(business uuid,permission text)
++returns boolean language sql stable security definer set search_path='' as $$
++ select public.trexven_account_access_allowed()
++ and private.account_deletion_previous_has_business_permission(business,permission)
++$$;
++
++-- Supplement existing policies without granting new access or disabling RLS.
++-- Direct table reads, Storage and Realtime cannot reuse the closed account JWT.
++do $restrict_tables$
++declare item record;
++begin
++ for item in select n.nspname,c.relname from pg_class c join pg_namespace n on n.oid=c.relnamespace
++   where n.nspname in ('public','storage') and c.relrowsecurity and c.relkind in ('r','p')
++ loop
++   execute format('create policy "TREXVEN closed account boundary" on %I.%I as restrictive for all to authenticated using ((select public.trexven_account_access_allowed())) with check ((select public.trexven_account_access_allowed()))',item.nspname,item.relname);
++ end loop;
++end
++$restrict_tables$;
++
++-- REST SECURITY DEFINER RPCs can bypass row policies. Guard their entry too,
++-- preserving any already configured pre-request hook in its original role.
++create table private.account_deletion_api_hook(previous_hook text);
++alter table private.account_deletion_api_hook enable row level security;
++revoke all on private.account_deletion_api_hook from public,anon,authenticated,service_role;
++create function public.trexven_previous_api_hook()
++returns text language sql stable security definer set search_path='' as $$
++ select previous_hook from private.account_deletion_api_hook limit 1
++$$;
++create function public.trexven_guard_account_access()
++returns void language plpgsql security invoker set search_path='' as $$
++declare previous text;
++begin
++ if auth.uid() is not null then
++   -- Hold admission until the entire REST transaction finishes. Preparation's
++   -- exclusive lock waits for admitted writes before checking business blockers.
++   perform pg_advisory_xact_lock_shared(hashtextextended(auth.uid()::text||':account-deletion',0));
++ end if;
++ if not public.trexven_account_access_allowed() then
++   raise exception 'This account has been deleted or is completing deletion.' using errcode='42501';
++ end if;
++ previous:=public.trexven_previous_api_hook();
++ if previous is not null and previous<>'' then
++   execute format('select %s()', (previous||'()')::regprocedure::regproc);
++ end if;
++end
++$$;
++revoke all on function public.trexven_previous_api_hook(),public.trexven_guard_account_access() from public;
++grant execute on function public.trexven_previous_api_hook(),public.trexven_guard_account_access() to anon,authenticated,service_role;
++do $configure_api$
++declare previous text;
++begin
++ select substr(setting,length('pgrst.db_pre_request=')+1) into previous
++ from pg_db_role_setting s cross join lateral unnest(s.setconfig) setting
++ where s.setrole=(select oid from pg_roles where rolname='authenticator')
++ and s.setdatabase in (0,(select oid from pg_database where datname=current_database()))
++ and setting like 'pgrst.db_pre_request=%'
++ order by s.setdatabase desc limit 1;
++ if previous='public.trexven_guard_account_access' then raise exception 'Account deletion hook already installed';end if;
++ if previous is not null and previous<>'' and to_regprocedure(previous||'()') is null then
++   raise exception 'Existing API hook cannot be preserved';
++ end if;
++ insert into private.account_deletion_api_hook values(previous);
++ execute format('alter role authenticator in database %I set pgrst.db_pre_request = %L',current_database(),'public.trexven_guard_account_access');
++end
++$configure_api$;
++
++-- Only the authenticated server handler receives these RPC grants. The caller
++-- cannot submit another user ID directly or inspect the recovery hashes.
++create function public.begin_trexven_account_deletion(p_user_id uuid,p_request_id uuid,p_recovery_hash text)
++returns void language plpgsql security definer set search_path='' as $$
++declare prior private.account_deletion_state%rowtype; businesses uuid[]; b uuid;
++begin
++ if p_user_id is null or p_request_id is null or p_recovery_hash is null
++ or p_recovery_hash!~'^[0-9a-f]{64}$' then raise exception 'ACCOUNT_DELETION_INVALID_INPUT';end if;
++ perform pg_advisory_xact_lock(hashtextextended(p_user_id::text||':account-deletion',0));
++ select * into prior from private.account_deletion_state where user_id=p_user_id for update;
++ if found then
++   if prior.request_id<>p_request_id or prior.recovery_hash<>p_recovery_hash then raise exception 'ACCOUNT_DELETION_CONFLICT';end if;
++   return;
++ end if;
++ if not exists(select 1 from auth.users where id=p_user_id and deleted_at is null) then
++   raise exception 'ACCOUNT_DELETION_INVALID_USER';
++ end if;
++ -- Serialize preparation with existing operations that take business locks.
++ perform id from public.businesses where owner_id=p_user_id order by id for update;
++ select coalesce(array_agg(id),'{}'::uuid[]) into businesses from public.businesses where owner_id=p_user_id;
++ if exists(select 1 from public.business_members where business_id=any(businesses) and user_id is distinct from p_user_id and status='active')
++ or exists(select 1 from public.employees where business_id=any(businesses) and user_id is distinct from p_user_id and status='active') then
++   raise exception 'ACCOUNT_DELETION_ACTIVE_USERS';
++ end if;
++ if exists(select 1 from public.cash_shifts where business_id=any(businesses) and (status='open' or review_status='pending'))
++ or exists(select 1 from public.cash_shifts s where s.status='open' and (s.opened_by=p_user_id or exists(
++   select 1 from public.cash_shift_members sm join public.business_members m on m.id=sm.member_id
++   where sm.shift_id=s.id and m.user_id=p_user_id))) then
++   raise exception 'ACCOUNT_DELETION_OPEN_SHIFT';
++ end if;
++ if exists(select 1 from public.credit_approvals where business_id=any(businesses) and status='pending')
++ or exists(select 1 from public.sale_returns where business_id=any(businesses) and status in ('requested','inspected'))
++ or exists(select 1 from public.stocktake_sessions where business_id=any(businesses) and status in ('open','review'))
++ or exists(select 1 from public.cash_handovers where (business_id=any(businesses) or requested_by=p_user_id) and status='pending')
++ or exists(select 1 from public.inventory_reconciliation_reviews where business_id=any(businesses) and status='pending')
++ or exists(select 1 from public.supplier_stock_returns where business_id=any(businesses) and status='dispatched') then
++   raise exception 'ACCOUNT_DELETION_PENDING_REVIEW';
++ end if;
++ if exists(select 1 from public.credit_accounts where business_id=any(businesses) and outstanding>0) then
++   raise exception 'ACCOUNT_DELETION_OUTSTANDING_CREDIT';
++ end if;
++ insert into private.account_deletion_state(user_id,request_id,recovery_hash) values(p_user_id,p_request_id,p_recovery_hash);
++ foreach b in array businesses loop
++   insert into public.audit_logs(business_id,actor_id,action,metadata)
++   values(b,p_user_id,'account_deletion_prepared',jsonb_build_object('request_id',p_request_id,'financial_records_preserved',true));
++ end loop;
++end
++$$;
++
++create function public.claim_trexven_account_deletion(p_request_id uuid,p_recovery_hash text,p_lease uuid)
++returns jsonb language plpgsql security definer set search_path='' as $$
++declare d private.account_deletion_state%rowtype;
++begin
++ if p_lease is null then raise exception 'ACCOUNT_DELETION_INVALID_INPUT';end if;
++ select * into d from private.account_deletion_state where request_id=p_request_id and recovery_hash=p_recovery_hash for update;
++ if not found then raise exception 'ACCOUNT_DELETION_NOT_FOUND';end if;
++ if d.status='deleted' then return jsonb_build_object('status','deleted');end if;
++ if d.lease_until>now() then return jsonb_build_object('status','processing');end if;
++ update private.account_deletion_state set lease_id=p_lease,lease_until=now()+interval '90 seconds' where user_id=d.user_id;
++ return jsonb_build_object('status','prepared','user_id',d.user_id);
++end
++$$;
++
++create function public.release_trexven_account_deletion(p_request_id uuid,p_lease uuid)
++returns void language sql security definer set search_path='' as $$
++ update private.account_deletion_state set lease_id=null,lease_until=null
++ where request_id=p_request_id and lease_id=p_lease and status='prepared'
++$$;
++
++create function public.finish_trexven_account_deletion(p_request_id uuid,p_lease uuid)
++returns jsonb language plpgsql security definer set search_path='' as $$
++declare d private.account_deletion_state%rowtype; b uuid;
++begin
++ select * into d from private.account_deletion_state where request_id=p_request_id for update;
++ if not found then raise exception 'ACCOUNT_DELETION_NOT_FOUND';end if;
++ if d.status='deleted' then return jsonb_build_object('status','deleted');end if;
++ if d.lease_id is distinct from p_lease or not exists(select 1 from auth.users where id=d.user_id and deleted_at is not null) then
++   raise exception 'ACCOUNT_DELETION_AUTH_UNCONFIRMED';
++ end if;
++ -- These are personal account fields/content, not financial transaction data.
++ update public.business_members set full_name='Deleted account',email=null,phone=null,status='inactive',updated_at=now() where user_id=d.user_id;
++ update public.employees set name='Deleted account',email=null,phone=null,status='inactive',updated_at=now() where user_id=d.user_id;
++ delete from public.angel_conversations where user_id=d.user_id;
++ for b in select id from public.businesses where owner_id=d.user_id loop
++   insert into public.audit_logs(business_id,actor_id,action,metadata)
++   values(b,d.user_id,'account_deleted',jsonb_build_object('request_id',p_request_id,'financial_records_preserved',true));
++ end loop;
++ update private.account_deletion_state set status='deleted',deleted_at=now(),lease_id=null,lease_until=null where user_id=d.user_id;
++ return jsonb_build_object('status','deleted');
++end
++$$;
++
++revoke all on function public.begin_trexven_account_deletion(uuid,uuid,text),
++ public.claim_trexven_account_deletion(uuid,text,uuid),public.release_trexven_account_deletion(uuid,uuid),
++ public.finish_trexven_account_deletion(uuid,uuid) from public,anon,authenticated;
++grant execute on function public.begin_trexven_account_deletion(uuid,uuid,text),
++ public.claim_trexven_account_deletion(uuid,text,uuid),public.release_trexven_account_deletion(uuid,uuid),
++ public.finish_trexven_account_deletion(uuid,uuid) to service_role;
++
++notify pgrst,'reload config';
++notify pgrst,'reload schema';
++commit;

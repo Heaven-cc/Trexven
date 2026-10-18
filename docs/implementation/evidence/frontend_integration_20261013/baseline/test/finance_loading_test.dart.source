@@ -1,0 +1,106 @@
+import 'package:trexven_design_system/trexven_design_system.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:odt/models/sale.dart';
+import 'package:odt/screens/finance/finance_tab.dart';
+import 'record_sale_flow_test.dart' show FakeDatabase;
+
+class FinanceDatabase extends FakeDatabase {
+  int salesRequests = 0;
+  int statsRequests = 0;
+  bool fail = false;
+  @override
+  Future<List<Sale>> getSalesWithProductNames({int? limit}) async {
+    salesRequests++;
+    if (fail) throw Exception('offline');
+    return List.generate(
+      50,
+      (i) => Sale(
+        productId: '$i',
+        productName: 'Product $i',
+        quantity: 1,
+        unitPrice: 10,
+        totalPrice: 10,
+        createdAt: DateTime.now().subtract(Duration(minutes: i)),
+      ),
+    );
+  }
+
+  @override
+  Future<Map<String, dynamic>> getTodayStats() async {
+    statsRequests++;
+    if (fail) throw Exception('offline');
+    return {'sales': 500.0};
+  }
+}
+
+void main() {
+  testWidgets('Finance retains requests on rebuild and refreshes explicitly', (
+    tester,
+  ) async {
+    final db = FinanceDatabase();
+    Future<void> show(Brightness brightness) => tester.pumpWidget(
+      MaterialApp(
+        theme: brightness == Brightness.light
+            ? TrexvenTheme.lightTheme
+            : TrexvenTheme.darkTheme,
+        home: FinanceTab(database: db),
+      ),
+    );
+    await show(Brightness.light);
+    await tester.pumpAndSettle();
+    expect(db.salesRequests, 1);
+    expect(db.statsRequests, 1);
+    expect(find.text('Product 49'), findsNothing);
+    await show(Brightness.dark);
+    await tester.pumpAndSettle();
+    expect(db.salesRequests, 1);
+    expect(db.statsRequests, 1);
+    final refreshing = tester
+        .state<RefreshIndicatorState>(find.byType(RefreshIndicator))
+        .show();
+    await tester.pumpAndSettle();
+    await refreshing;
+    expect(db.salesRequests, 2);
+    expect(db.statsRequests, 2);
+    await tester.scrollUntilVisible(
+      find.text('Product 7'),
+      400,
+      scrollable: find.byType(Scrollable).first,
+    );
+    expect(find.text('Product 7'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox());
+    await db.updates.close();
+  });
+
+  testWidgets('Finance failure is visible and retry recovers', (tester) async {
+    final db = FinanceDatabase()..fail = true;
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: TrexvenTheme.lightTheme,
+        home: FinanceTab(database: db),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('Unable to load revenue. Please retry.'), findsOneWidget);
+    expect(
+      find.text('Unable to load transactions. Please retry.'),
+      findsOneWidget,
+    );
+    db.fail = false;
+    await tester.tap(find.text('Retry').first);
+    await tester.pumpAndSettle();
+    expect(find.text('₦500.00'), findsOneWidget);
+    await tester.scrollUntilVisible(
+      find.text('Product 0'),
+      400,
+      scrollable: find.byType(Scrollable).first,
+    );
+    expect(find.text('Product 0'), findsOneWidget);
+    expect(db.salesRequests, 2);
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox());
+    await db.updates.close();
+  });
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "file": "batch_2_authorization_tests.sql",
+    "source_sha256": "277aa6d7f0464f7534a9501e0b721145ada8aa6b834282a9aba87d66391fb4f6",
+    "assertions": {
+      "assert_true": 16,
+      "denied": 5,
+      "fails": 0
+    },
+    "exit": 0
+  },
+  {
+    "file": "batch_2_branch_isolation_tests.sql",
+    "source_sha256": "7640506d6698e4e6a037c2eb2831b78d8e8d6c2396a36204a425080a1cd2278f",
+    "assertions": {
+      "assert_true": 12,
+      "denied": 3,
+      "fails": 2
+    },
+    "exit": 0
+  },
+  {
+    "file": "batch_2_checkout_compatibility_tests.sql",
+    "source_sha256": "a0e1b79db0e77c085667ef60e8f3a99dd8cdcd76c977b67a3aed51519f8b1cc7",
+    "assertions": {
+      "assert_true": 6,
+      "denied": 3,
+      "fails": 2
+    },
+    "exit": 0
+  },
+  {
+    "file": "batch_2_cost_contract_tests.sql",
+    "source_sha256": "9211d4e1be7f138d11cb9959e0c459a6a5408ce2801b8a00c380f87be7d1354b",
+    "assertions": {
+      "assert_true": 8,
+      "denied": 3,
+      "fails": 0
+    },
+    "exit": 0
+  },
+  {
+    "file": "batch_2_price_security_tests.sql",
+    "source_sha256": "941aa664d561b7f1fd83ca748e940d8aace4d477ae26f3915986fd6971caf207",
+    "assertions": {
+      "assert_true": 3,
+      "denied": 10,
+      "fails": 1
+    },
+    "exit": 0
+  },
+  {
+    "file": "batch_2_temporal_security_tests.sql",
+    "source_sha256": "4444a423c558b1df7e65e8154edf6b442e1965a0909857fe424fd72c9101c173",
+    "assertions": {
+      "assert_true": 8,
+      "denied": 2,
+      "fails": 0
+    },
+    "exit": 0
+  }
+]

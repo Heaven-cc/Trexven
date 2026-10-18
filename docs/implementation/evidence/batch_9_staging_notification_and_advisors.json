@@ -1,0 +1,29 @@
+{
+  "project": "qysspzlfiysekvxnlzsh",
+  "production_writes": 0,
+  "notification_suite_passed": true,
+  "fixture_guard": "Five known synthetic Auth users and two known synthetic businesses; no customer records or Storage objects",
+  "suite_rolled_back": true,
+  "advisors": [
+    {
+      "name": "rls_enabled_no_policy",
+      "level": "INFO",
+      "count": 9,
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy"
+    },
+    {
+      "name": "authenticated_security_definer_function_executable",
+      "level": "WARN",
+      "count": 67,
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0029_authenticated_security_definer_function_executable"
+    },
+    {
+      "name": "auth_leaked_password_protection",
+      "level": "WARN",
+      "count": 1,
+      "remediation": "https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection"
+    }
+  ],
+  "advisors_error_count": 0,
+  "platform_settings_changed": false
+}

@@ -1,0 +1,25 @@
+{
+  "changed_files": [
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\dashboard\\angel_screen.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\dashboard\\dashboard_screen.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\intelligence\\add_camera_screen.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\intelligence\\alerts_screen.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\intelligence\\camera_intelligence_screen.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\intelligence\\intelligence_tab.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\intelligence\\recordings_screen.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\inventory\\inventory_tab.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\me\\about_screen.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\me\\appearance_screen.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\me\\employee_confirmation_screen.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\me\\employee_details_screen.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\me\\employment_screen.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\me\\help_support_screen.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\me\\me_tab.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\me\\notifications_settings_screen.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\me\\security_screen.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\setup\\setup_complete_screen.dart",
+    "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\core\\app_theme.dart"
+  ],
+  "database_writes": 0,
+  "vision_services_modified": false
+}

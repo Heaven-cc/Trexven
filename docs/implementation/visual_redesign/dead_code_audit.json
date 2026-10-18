@@ -1,0 +1,50 @@
+{
+  "scanned_dart_files": 191,
+  "checks": [
+    {
+      "file": "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\widgets\\quick_action.dart",
+      "class": "QuickAction",
+      "external_source_or_test_references": [],
+      "is_entrypoint": false,
+      "backed_up": true
+    },
+    {
+      "file": "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\widgets\\stat_card.dart",
+      "class": "StatCard",
+      "external_source_or_test_references": [],
+      "is_entrypoint": false,
+      "backed_up": true
+    },
+    {
+      "file": "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\intelligence\\camera_screen.dart",
+      "class": "CamerasScreen",
+      "external_source_or_test_references": [],
+      "is_entrypoint": false,
+      "backed_up": true
+    },
+    {
+      "file": "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\intelligence\\camera_detail_screen.dart",
+      "class": "CameraDetailScreen",
+      "external_source_or_test_references": [],
+      "is_entrypoint": false,
+      "backed_up": true
+    },
+    {
+      "file": "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\lib\\screens\\intelligence\\camera_intelligence_screen.dart",
+      "class": "CameraIntelligenceScreen",
+      "external_source_or_test_references": [],
+      "is_entrypoint": false,
+      "backed_up": true
+    },
+    {
+      "file": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\lib\\src\\features\\auth\\business_selection_screen.dart",
+      "class": "BusinessSelectionScreen",
+      "external_source_or_test_references": [],
+      "is_entrypoint": false,
+      "backed_up": true
+    }
+  ],
+  "owner_entrypoint": "lib/main.dart -> MainScreen -> IntelligenceTab",
+  "pos_entrypoint": "lib/main.dart -> BusinessLoadingScreen / BranchGate -> PosShell",
+  "conditional_import_platform_files": "retained"
+}

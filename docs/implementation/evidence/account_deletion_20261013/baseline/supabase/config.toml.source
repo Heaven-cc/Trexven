@@ -1,0 +1,43 @@
+
+[functions.angel]
+enabled = true
+# Requires a valid Supabase session (the Flutter app is always authenticated
+# before it can reach the Angel screen). Keeps this from being an open,
+# unauthenticated proxy to a paid AI API.
+verify_jwt = true
+import_map = "./functions/angel/deno.json"
+# Uncomment to specify a custom file path to the entrypoint.
+# Supported file extensions are: .ts, .js, .mjs, .jsx, .tsx
+entrypoint = "./functions/angel/index.ts"
+# Specifies static files to be bundled with the function. Supports glob patterns.
+# For example, if you want to serve static HTML pages in your function:
+# static_files = [ "./functions/angel/*.html" ]
+
+[functions.camera-ai]
+enabled = true
+verify_jwt = true
+entrypoint = "./functions/camera-ai/index.ts"
+
+[functions.camera-ingest]
+enabled = true
+verify_jwt = true
+entrypoint = "./functions/camera-ingest/index.ts"
+
+# Employee login precedes an Auth session; its handler validates credentials,
+# status and server-side membership and enforces the tested rate limit.
+[functions.employee-login]
+verify_jwt = false
+entrypoint = "./functions/employee-login/index.ts"
+
+[functions.create-employee]
+verify_jwt = true
+entrypoint = "./functions/create-employee/index.ts"
+
+[functions.manage-employee]
+verify_jwt = true
+entrypoint = "./functions/manage-employee/index.ts"
+
+# Compatibility route now records a reviewed owner request; it never deletes Auth.
+[functions.delete-account]
+verify_jwt = true
+entrypoint = "./functions/delete-account/index.ts"

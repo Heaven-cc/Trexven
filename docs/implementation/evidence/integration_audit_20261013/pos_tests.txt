@@ -1,0 +1,47 @@
+00:00 +0: loading C:/Users/USER/AndroidStudioProjects/trexvenpos/test/sale_submission_test.dart
+00:00 +0: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/sale_submission_test.dart: Checkout maps Cash and returns the saved receipt on retries
+00:00 +1: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/sale_submission_test.dart: Checkout maps POS Terminal and returns the saved receipt on retries
+00:00 +2: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/sale_submission_test.dart: Checkout maps Transfer and returns the saved receipt on retries
+00:00 +3: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/sale_submission_test.dart: Cart retains retry identity until its contents change
+00:00 +4: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/sale_submission_test.dart: Fractional currency totals match database decimal arithmetic
+00:00 +5: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/sale_submission_test.dart: Checkout exposes actionable database errors
+00:00 +6: loading C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart
+00:07 +6: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Revoked POS permission also blocks sale completion
+00:07 +7: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Explicit owner denial overrides default sales permission
+00:07 +8: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Null selling price remains pending even with forged active flags
+00:07 +9: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Sales cannot gain price or staff administration from stale grants
+00:07 +10: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Owner-only Vision stays denied for explicitly granted managers
+00:07 +11: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Legacy sale JSON has no new branch key; branch receipts round-trip
+00:07 +12: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Branch sale uses distinct API and retains original retry context
+00:08 +13: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/batch_2_contract_test.dart: Business sales reader scopes business/branch and preserves other staff receipts
+00:08 +14: loading C:/Users/USER/AndroidStudioProjects/trexvenpos/test/permission_service_test.dart
+00:12 +14: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/permission_service_test.dart: Only an active owner has unrestricted access
+00:12 +15: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/permission_service_test.dart: Inventory staff can use the app and create products but cannot change prices
+00:12 +16: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/permission_service_test.dart: Managers need an explicit grant for privileged price and finance actions
+00:12 +17: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/permission_service_test.dart: Sales staff cannot create products without a grant
+00:12 +18: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/permission_service_test.dart: Unknown roles and inactive employees fail closed
+00:12 +19: loading C:/Users/USER/AndroidStudioProjects/trexvenpos/test/auth_session_test.dart
+00:16 +19: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/auth_session_test.dart: Restored session retrieves trusted context and ignores editable metadata
+00:17 +20: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/auth_session_test.dart: Revoked permissions replace previous defaults on revalidation
+00:17 +21: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/auth_session_test.dart: Rejects invalid context: unknown_role
+00:17 +22: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/auth_session_test.dart: Rejects invalid context: inactive
+00:17 +23: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/auth_session_test.dart: Rejects invalid context: wrong_user
+00:17 +24: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/auth_session_test.dart: Rejects invalid context: wrong_business
+00:17 +25: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/auth_session_test.dart: Rejects invalid context: false_owner
+00:17 +26: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/auth_session_test.dart: Rejects invalid context: empty_member
+00:17 +27: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/auth_session_test.dart: Requested business cannot be substituted by another response context
+00:17 +28: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/auth_session_test.dart: Owner sign-in requires explicit selection among owned businesses
+00:17 +29: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/auth_session_test.dart: Owner sign-in cannot accept an employee context or forge a choice
+00:17 +30: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/auth_session_test.dart: Late context response cannot restore a signed-out actor
+00:17 +31: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/auth_session_test.dart: Late password response cannot restore a session after sign-out
+00:17 +32: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/auth_session_test.dart: Transport failure permits only bounded cash context, then requires live restoration
+00:17 +33: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/auth_session_test.dart: Authoritative denied response cannot fall back to a cached lease
+00:17 +34: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/auth_session_test.dart: Authoritative revoked response cannot fall back to a cached lease
+00:17 +35: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/auth_session_test.dart: Authoritative invalid response cannot fall back to a cached lease
+00:17 +36: loading C:/Users/USER/AndroidStudioProjects/trexvenpos/test/branch_context_test.dart
+00:20 +36: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/branch_context_test.dart: No branch is selected automatically, even with one assignment
+00:20 +37: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/branch_context_test.dart: Multiple assignments allow explicit selection only within those assignments
+00:20 +38: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/branch_context_test.dart: Forged cross-business branch cannot become current context
+00:20 +39: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/branch_context_test.dart: Unfinished cart prevents switching and clearing its original branch
+00:20 +40: C:/Users/USER/AndroidStudioProjects/trexvenpos/test/branch_context_test.dart: Legacy business payload does not activate branches
+00:20 +41: All tests passed!

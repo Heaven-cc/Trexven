@@ -1,0 +1,132 @@
+ M analysis_options.yaml
+ M android/app/build.gradle.kts
+ M android/app/src/main/AndroidManifest.xml
+ M android/app/src/main/res/mipmap-hdpi/ic_launcher.png
+ M android/app/src/main/res/mipmap-mdpi/ic_launcher.png
+ M android/app/src/main/res/mipmap-xhdpi/ic_launcher.png
+ M android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
+ M android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
+ M android/build.gradle.kts
+ M android/gradle.properties
+ M android/gradle/wrapper/gradle-wrapper.properties
+ M android/settings.gradle.kts
+ M assets/images/trexven_logo.png
+ D lib/core/app_theme.dart
+A  lib/core/theme_provider.dart
+AM lib/core/user_provider.dart
+ M lib/main.dart
+ M lib/models/business.dart
+AM lib/models/employee.dart
+ M lib/models/product.dart
+ M lib/models/sale.dart
+AM lib/models/subscription_plan.dart
+ M lib/screens/auth/forgot_password_screen.dart
+ M lib/screens/auth/login_screen.dart
+ M lib/screens/auth/register_screen.dart
+ M lib/screens/dashboard/angel_screen.dart
+ M lib/screens/dashboard/dashboard_screen.dart
+ M lib/screens/finance/finance_tab.dart
+ M lib/screens/finance/record_sale_screen.dart
+D  lib/screens/home/home_tab.dart
+ M lib/screens/intelligence/add_camera_screen.dart
+ M lib/screens/intelligence/alerts_screen.dart
+ M lib/screens/intelligence/camera_alert_screen.dart
+ D lib/screens/intelligence/camera_detail_screen.dart
+ M lib/screens/intelligence/camera_event_screen.dart
+ D lib/screens/intelligence/camera_intelligence_screen.dart
+ D lib/screens/intelligence/camera_screen.dart
+ M lib/screens/intelligence/intelligence_tab.dart
+ M lib/screens/intelligence/live_feed_screen.dart
+ M lib/screens/intelligence/recordings_screen.dart
+ M lib/screens/inventory/add_product_screen.dart
+ M lib/screens/inventory/inventory_tab.dart
+A  lib/screens/inventory/scanner_screen.dart
+ M lib/screens/main_screen.dart
+AM lib/screens/me/about_screen.dart
+AM lib/screens/me/add_employee_screen.dart
+AM lib/screens/me/appearance_screen.dart
+AM lib/screens/me/billing_screen.dart
+AM lib/screens/me/business_profile_screen.dart
+AM lib/screens/me/data_backup_screen.dart
+AM lib/screens/me/edit_employee_screen.dart
+AM lib/screens/me/employee_confirmation_screen.dart
+AM lib/screens/me/employee_details_screen.dart
+AM lib/screens/me/employment_screen.dart
+AM lib/screens/me/help_support_screen.dart
+ M lib/screens/me/me_tab.dart
+AM lib/screens/me/notifications_settings_screen.dart
+AM lib/screens/me/permissions_screen.dart
+AM lib/screens/me/privacy_policy_screen.dart
+AM lib/screens/me/profile_screen.dart
+AM lib/screens/me/security_screen.dart
+AM lib/screens/me/terms_of_service_screen.dart
+ M lib/screens/setup/business_setup_screen.dart
+ M lib/screens/setup/setup_complete_screen.dart
+ M lib/screens/splash_screen.dart
+ M lib/screens/welcome_screen.dart
+ M lib/services/alert_service.dart
+ M lib/services/auth_service.dart
+ M lib/services/camera_ai_service.dart
+ M lib/services/camera_service.dart
+ M lib/services/database_service.dart
+AM lib/services/employee_service.dart
+ M lib/services/recording_service.dart
+ M lib/services/vision_service.dart
+ D lib/widgets/quick_action.dart
+ D lib/widgets/stat_card.dart
+A  lib/widgets/trexven_auth_design.dart
+ M lib/widgets/trexven_logo.dart
+AD lib/widgets/trexven_widgets.dart
+ M pubspec.lock
+ M pubspec.yaml
+ M test/widget_test.dart
+ M web/favicon.png
+ M web/icons/Icon-192.png
+ M web/icons/Icon-512.png
+ M web/icons/Icon-maskable-192.png
+ M web/icons/Icon-maskable-512.png
+ M web/manifest.json
+?? lib/screens/auth/account_gate.dart
+?? lib/screens/auth/reset_password_screen.dart
+?? lib/screens/finance/operational_finance_screen.dart
+?? lib/screens/intelligence/event_detail_screen.dart
+?? lib/screens/intelligence/events_screen.dart
+?? lib/screens/intelligence/recording_playback_screen.dart
+?? lib/screens/intelligence/vision_server_screen.dart
+?? lib/screens/inventory/catalog_editor_screen.dart
+?? lib/screens/inventory/catalog_import_screen.dart
+?? lib/services/alert_navigation.dart
+?? lib/services/catalog_import.dart
+?? lib/services/initial_load_timeout.dart
+?? lib/services/intelligence_events_service.dart
+?? lib/services/sale_errors.dart
+?? lib/widgets/angel_markdown.dart
+?? lib/widgets/build_error_fallback.dart
+?? lib/widgets/google_sign_in_button.dart
+?? packages/
+?? test/backend_service_test.dart
+?? test/billing_frontend_test.dart
+?? test/build_error_fallback_test.dart
+?? test/catalog_import_test.dart
+?? test/catalog_repository_test.dart
+?? test/confirmed_operation_recovery_test.dart
+?? test/dashboard_density_test.dart
+?? test/design_system_contract_test.dart
+?? test/design_system_screen_matrix_test.dart
+?? test/design_system_visual_test.dart
+?? test/employment_loading_test.dart
+?? test/finance_loading_test.dart
+?? test/frontend_refinement_test.dart
+?? test/initial_load_timeout_test.dart
+?? test/intelligence_experience_test.dart
+?? test/inventory_loading_test.dart
+?? test/notification_account_isolation_test.dart
+?? test/operation_journal_test.dart
+?? test/product_contract_test.dart
+?? test/record_sale_flow_test.dart
+?? test/restock_flow_test.dart
+?? test/sale_quantity_test.dart
+?? test/shared_vision_experience_test.dart
+?? test/ui_density_test.dart
+?? test/vision_service_test.dart
+?? test/visual_reference_matrix_test.dart

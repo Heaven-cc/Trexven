@@ -1,0 +1,504 @@
+00:00 +0: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart
+00:00 +0: Searchable cart merges, independently edits and removes products; requires confirmation
+
+Warning: A call to tap() with finder "Found 1 widget with text "Rice" (ignoring all but last): [
+  Text("Rice", dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),
+]" derived an Offset (Offset(381.0, 833.2)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+Indeed, Offset(381.0, 833.2) is outside the bounds of the root of the render tree, Size(800.0, 600.0).
+The finder corresponds to this RenderBox: RenderParagraph#9ad37 relayoutBoundary=up13
+The hit test result at that offset is: HitTestResult(HitTestEntry<HitTestTarget>#463df(_ReusableRenderView#af6a8), HitTestEntry<HitTestTarget>#2c0b5(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      choose (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:11:16)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:26:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with text "Search or select products": [
+  Text("Search or select products", inherit: true, color: Color(alpha: 1.0000, red: 0.4431, green: 0.5020, blue: 0.6039, colorSpace: ColorSpace.sRGB), dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery, _ScrollableScope]),
+]" derived an Offset (Offset(406.0, 66.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderParagraph#5608f relayoutBoundary=up26
+The hit test result at that offset is: HitTestResult(_RenderColoredBox#92360@Offset(406.0, 66.0), RenderConstrainedBox#d264b@Offset(406.0, 66.0), RenderMouseRegion#83127@Offset(406.0, 66.0), RenderSemanticsAnnotations#e5d8a@Offset(406.0, 66.0), _RenderSemanticsClipper#61f1e@Offset(406.0, 66.0), RenderPointerListener#60a3e@Offset(406.0, 66.0), RenderSemanticsGestureHandler#192aa@Offset(406.0, 66.0), RenderExcludeSemantics#2bd54@Offset(406.0, 66.0), RenderBlockSemantics#2624d@Offset(406.0, 66.0), RenderIgnorePointer#2f8f3@Offset(406.0, 66.0), RenderSemanticsAnnotations#0b9f4@Offset(406.0, 66.0), _RenderTheater#2a150@Offset(406.0, 66.0), RenderAbsorbPointer#b5dfe@Offset(406.0, 66.0), RenderPointerListener#103a8@Offset(406.0, 66.0), RenderSemanticsAnnotations#10bae@Offset(406.0, 66.0), RenderCustomPaint#e00c2@Offset(406.0, 66.0), RenderSemanticsAnnotations#0bfa9@Offset(406.0, 66.0), RenderSemanticsAnnotations#7aade@Offset(406.0, 66.0), RenderSemanticsAnnotations#67c96@Offset(406.0, 66.0), RenderTapRegionSurface#90622@Offset(406.0, 66.0), RenderSemanticsAnnotations#80754@Offset(406.0, 66.0), RenderSemanticsAnnotations#9cdb9@Offset(406.0, 66.0), HitTestEntry<HitTestTarget>#a9325(_ReusableRenderView#af6a8), HitTestEntry<HitTestTarget>#b4147(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      choose (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:10:16)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:26:34)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with text "Milk" (ignoring all but last): [
+  Text("Milk", dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),
+]" derived an Offset (Offset(381.0, 445.2)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderParagraph#4b1b3 relayoutBoundary=up13
+The hit test result at that offset is: HitTestResult(RenderDecoratedBox#85518@Offset(259.0, 42.2), RenderPointerListener#dd556@Offset(259.0, 42.2), RenderSemanticsAnnotations#40d78@Offset(259.0, 42.2), RenderMouseRegion#60690@Offset(259.0, 42.2), RenderSemanticsAnnotations#86339@Offset(259.0, 42.2), RenderRepaintBoundary#9ed62@Offset(259.0, 42.2), RenderIndexedSemantics#6bb94@Offset(259.0, 42.2), RenderSliverGrid@(mainAxis: 42.174999713897705, crossAxis: 259.0), RenderSliverPadding@(mainAxis: 42.174999713897705, crossAxis: 259.0), RenderShrinkWrappingViewport#0acf0@Offset(259.0, 42.2), RenderIgnorePointer#134a2@Offset(259.0, 42.2), RenderSemanticsAnnotations#721be@Offset(259.0, 42.2), RenderPointerListener#f163d@Offset(259.0, 42.2), RenderSemanticsGestureHandler#57860@Offset(259.0, 42.2), RenderPointerListener#ad6bf@Offset(259.0, 42.2), _RenderScrollSemantics#4345a@Offset(259.0, 42.2), RenderClipRect#66cc1@Offset(259.0, 42.2), RenderFlex#ff3e3@Offset(259.0, 70.2), RenderPadding#5e96a@Offset(275.0, 86.2), RenderDecoratedBox#851c7@Offset(275.0, 86.2), RenderConstrainedBox#2854c@Offset(275.0, 86.2), RenderFlex#8b0e2@Offset(275.0, 450.2), RenderPadding#45e59@Offset(291.0, 466.2), _RenderSingleChildViewport#24a15@Offset(291.0, 389.2), RenderIgnorePointer#57dbd@Offset(291.0, 389.2), RenderSemanticsAnnotations#7ca7b@Offset(291.0, 389.2), RenderPointerListener#37cd2@Offset(291.0, 389.2), RenderSemanticsGestureHandler#50b28@Offset(291.0, 389.2), RenderPointerListener#24e2a@Offset(291.0, 389.2), _RenderScrollSemantics#58254@Offset(291.0, 389.2), RenderClipRect#f5aab@Offset(291.0, 389.2), RenderConstrainedBox#20358@Offset(291.0, 389.2), RenderPositionedBox#56cae@Offset(381.0, 389.2), RenderPadding#9bef2@Offset(381.0, 389.2), RenderCustomMultiChildLayoutBox#67fb4@Offset(381.0, 445.2), _RenderInkFeatures#8a474@Offset(381.0, 445.2), RenderPhysicalModel#315f8@Offset(381.0, 445.2), RenderSemanticsAnnotations#268da@Offset(381.0, 445.2), RenderRepaintBoundary#2c193@Offset(381.0, 445.2), RenderIgnorePointer#50f9f@Offset(381.0, 445.2), RenderAnimatedOpacity#a99cf@Offset(381.0, 445.2), RenderAnimatedOpacity#4f58c@Offset(381.0, 445.2), _RenderColoredBox#dd811@Offset(381.0, 445.2), RenderAnimatedOpacity#c6824@Offset(381.0, 445.2), RenderIgnorePointer#1e34d@Offset(381.0, 445.2), RenderAnimatedOpacity#d4308@Offset(381.0, 445.2), RenderRepaintBoundary#f3a36@Offset(381.0, 445.2), RenderSemanticsAnnotations#c3cdb@Offset(381.0, 445.2), RenderOffstage#e8d2e@Offset(381.0, 445.2), RenderSemanticsAnnotations#dac29@Offset(381.0, 445.2), _RenderTheater#2a150@Offset(381.0, 445.2), RenderAbsorbPointer#b5dfe@Offset(381.0, 445.2), RenderPointerListener#103a8@Offset(381.0, 445.2), RenderSemanticsAnnotations#10bae@Offset(381.0, 445.2), RenderCustomPaint#e00c2@Offset(381.0, 445.2), RenderSemanticsAnnotations#0bfa9@Offset(381.0, 445.2), RenderSemanticsAnnotations#7aade@Offset(381.0, 445.2), RenderSemanticsAnnotations#67c96@Offset(381.0, 445.2), RenderTapRegionSurface#90622@Offset(381.0, 445.2), RenderSemanticsAnnotations#80754@Offset(381.0, 445.2), RenderSemanticsAnnotations#9cdb9@Offset(381.0, 445.2), HitTestEntry<HitTestTarget>#9f890(_ReusableRenderView#af6a8), HitTestEntry<HitTestTarget>#ac65a(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      choose (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:11:16)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:26:34)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with text "Rice" (ignoring all but last): [
+  Text("Rice", dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),
+]" derived an Offset (Offset(381.0, 833.2)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+Indeed, Offset(381.0, 833.2) is outside the bounds of the root of the render tree, Size(800.0, 600.0).
+The finder corresponds to this RenderBox: RenderParagraph#c85bc relayoutBoundary=up13
+The hit test result at that offset is: HitTestResult(HitTestEntry<HitTestTarget>#e8e4e(_ReusableRenderView#af6a8), HitTestEntry<HitTestTarget>#5998f(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      choose (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:11:16)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:26:63)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following assertion was thrown running a test:
+The finder "Found 0 widgets with key [<'quantity-rice'>]: []" (used in a call to "tap()") could not
+find any matching widgets.
+
+When the exception was thrown, this was the stack:
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2095:7)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:27:18)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  Searchable cart merges, independently edits and removes products; requires confirmation
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:07 +0 -1: Searchable cart merges, independently edits and removes products; requires confirmation [E]
+  Test failed. See exception logs above.
+  The test description was: Searchable cart merges, independently edits and removes products; requires confirmation
+  
+Warning: At least one test in this suite creates an HttpClient. When running a test suite that uses
+TestWidgetsFlutterBinding, all HTTP requests will return status code 400, and no network request
+will actually be made. Any test expecting a real network connection and status code will fail.
+To test code that needs an HttpClient, provide your own HttpClient implementation to the code under
+test, so that your test can consistently provide a testable response to the code under test.
+00:07 +0 -1: Terminal needs external reference and explicit user confirmation
+
+Warning: A call to tap() with finder "Found 1 widget with text "Widget" (ignoring all but last): [
+  Text("Widget", dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),
+]" derived an Offset (Offset(381.0, 833.2)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+Indeed, Offset(381.0, 833.2) is outside the bounds of the root of the render tree, Size(800.0, 600.0).
+The finder corresponds to this RenderBox: RenderParagraph#33026 relayoutBoundary=up13
+The hit test result at that offset is: HitTestResult(HitTestEntry<HitTestTarget>#1ec88(_ReusableRenderView#af6a8), HitTestEntry<HitTestTarget>#f8c19(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      choose (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:11:16)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:49:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with text "Terminal": [
+  Text("Terminal", inherit: true, color: Color(alpha: 1.0000, red: 0.0784, green: 0.1294, blue: 0.2392, colorSpace: ColorSpace.sRGB), dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery, _ScrollableScope]),
+]" derived an Offset (Offset(541.0, 380.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderParagraph#22424 relayoutBoundary=up1
+The hit test result at that offset is: HitTestResult(RenderParagraph#7cd43@Offset(445.0, 2.8), _RenderListTile#76697@Offset(445.0, 42.0), RenderPadding#95aa0@Offset(461.0, 46.0), RenderPadding#f04b0@Offset(461.0, 46.0), RenderSemanticsAnnotations#471ae@Offset(461.0, 46.0), RenderPointerListener#71f4f@Offset(461.0, 46.0), RenderSemanticsAnnotations#65c86@Offset(461.0, 46.0), RenderMouseRegion#f5a41@Offset(461.0, 46.0), RenderSemanticsAnnotations#d6fa9@Offset(461.0, 46.0), RenderRepaintBoundary#a5e9b@Offset(461.0, 46.0), RenderIndexedSemantics#2bed3@Offset(461.0, 46.0), RenderSliverList@(mainAxis: 46.0, crossAxis: 461.0), RenderSliverPadding@(mainAxis: 46.0, crossAxis: 461.0), RenderViewport#01d29@Offset(461.0, 46.0), RenderIgnorePointer#549cd@Offset(461.0, 46.0), RenderSemanticsAnnotations#3b5c6@Offset(461.0, 46.0), RenderPointerListener#e4454@Offset(461.0, 46.0), RenderSemanticsGestureHandler#59673@Offset(461.0, 46.0), RenderPointerListener#572ba@Offset(461.0, 46.0), _RenderScrollSemantics#812a5@Offset(461.0, 46.0), RenderClipRect#2f36a@Offset(461.0, 46.0), RenderFlex#e5e6d@Offset(461.0, 200.0), RenderConstrainedBox#d4be2@Offset(461.0, 200.0), RenderPadding#842fe@Offset(461.0, 200.0), RenderPadding#dbcbd@Offset(461.0, 200.0), RenderPadding#7ef49@Offset(461.0, 248.0), RenderStack#0cf49@Offset(461.0, 248.0), _RenderInkFeatures#65e72@Offset(461.0, 248.0), RenderCustomPaint#25841@Offset(461.0, 248.0), RenderPhysicalShape#9d1db@Offset(461.0, 248.0), RenderConstrainedBox#c1f19@Offset(461.0, 248.0), RenderPositionedBox#d0f51@Offset(541.0, 248.0), RenderPointerListener#6be5f@Offset(541.0, 248.0), _RenderBottomSheetLayoutWithSizeListener#11bb6@Offset(541.0, 380.0), RenderClipRect#44f48@Offset(541.0, 380.0), RenderSemanticsAnnotations#afec8@Offset(541.0, 380.0), RenderPadding#b8394@Offset(541.0, 380.0), RenderSemanticsAnnotations#118d8@Offset(541.0, 380.0), RenderRepaintBoundary#0e0b7@Offset(541.0, 380.0), RenderIgnorePointer#b3370@Offset(541.0, 380.0), RenderRepaintBoundary#5ff6a@Offset(541.0, 380.0), RenderSemanticsAnnotations#7518b@Offset(541.0, 380.0), RenderOffstage#dcebf@Offset(541.0, 380.0), RenderSemanticsAnnotations#4b099@Offset(541.0, 380.0), _RenderTheater#1e1f3@Offset(541.0, 380.0), RenderAbsorbPointer#b7096@Offset(541.0, 380.0), RenderPointerListener#b19e9@Offset(541.0, 380.0), RenderSemanticsAnnotations#febfb@Offset(541.0, 380.0), RenderCustomPaint#3dd9c@Offset(541.0, 380.0), RenderSemanticsAnnotations#f9c4b@Offset(541.0, 380.0), RenderSemanticsAnnotations#f3a20@Offset(541.0, 380.0), RenderSemanticsAnnotations#8096e@Offset(541.0, 380.0), RenderTapRegionSurface#6a94f@Offset(541.0, 380.0), RenderSemanticsAnnotations#832cd@Offset(541.0, 380.0), RenderSemanticsAnnotations#b84b4@Offset(541.0, 380.0), HitTestEntry<HitTestTarget>#0bdec(_ReusableRenderView#af6a8), HitTestEntry<HitTestTarget>#df4ae(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:50:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'record-sale-submit'>]: [
+  FilledButton-[<'record-sale-submit'>](disabled, style: ButtonStyle#1550a(textStyle: WidgetStatePropertyAll(null), backgroundColor: WidgetStateMapper<Color?>({WidgetState.disabled: null, WidgetState.any: Color(alpha: 1.0000, red: 0.1569, green: 0.3922, blue: 0.9412, colorSpace: ColorSpace.sRGB)}), foregroundColor: WidgetStateMapper<Color?>({WidgetState.disabled: null, WidgetState.any: Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)}), overlayColor: WidgetStateMapper<Color?>({WidgetState.pressed: Color(alpha: 0.1020, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), WidgetState.hovered: Color(alpha: 0.0784, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), WidgetState.focused: Color(alpha: 0.1020, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)}), shape: WidgetStatePropertyAll(RoundedRectangleBorder(BorderSide(width: 0.0, style: none), BorderRadius.circular(14.0))), mouseCursor: WidgetStateMapper<MouseCursor?>({WidgetState.disabled: null, WidgetState.any: null})), dependencies: [IconTheme, InheritedCupertinoTheme, MediaQuery, _InheritedTheme, _LocalizationsScope-[GlobalKey#bc95c], _ScrollableScope], state: _ButtonStyleState#985a3),
+]" derived an Offset (Offset(400.0, 541.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#ad4c8
+The hit test result at that offset is: HitTestResult(RenderPointerListener#b19e9@Offset(400.0, 541.0), RenderSemanticsAnnotations#febfb@Offset(400.0, 541.0), RenderCustomPaint#3dd9c@Offset(400.0, 541.0), RenderSemanticsAnnotations#f9c4b@Offset(400.0, 541.0), RenderSemanticsAnnotations#f3a20@Offset(400.0, 541.0), RenderSemanticsAnnotations#8096e@Offset(400.0, 541.0), RenderTapRegionSurface#6a94f@Offset(400.0, 541.0), RenderSemanticsAnnotations#832cd@Offset(400.0, 541.0), RenderSemanticsAnnotations#b84b4@Offset(400.0, 541.0), HitTestEntry<HitTestTarget>#925ad(_ReusableRenderView#af6a8), HitTestEntry<HitTestTarget>#90755(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:52:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following StateError was thrown running a test:
+Bad state: No element
+
+When the exception was thrown, this was the stack:
+#0      Iterable.last (dart:core/iterable.dart:679:7)
+#1      _LastFinderMixin.filter (package:flutter_test/src/finders.dart:1410:28)
+#3      Iterable.single (dart:core/iterable.dart:694:13)
+#4      WidgetController.element (package:flutter_test/src/controller.dart:888:30)
+#5      WidgetController.ensureVisible (package:flutter_test/src/controller.dart:2389:32)
+#6      confirm (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:16:16)
+#7      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:53:13)
+<asynchronous suspension>
+#8      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#9      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided 2 frames from dart:async-patch and package:stack_trace)
+
+The test description was:
+  Terminal needs external reference and explicit user confirmation
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:08 +0 -2: Terminal needs external reference and explicit user confirmation [E]
+  Test failed. See exception logs above.
+  The test description was: Terminal needs external reference and explicit user confirmation
+  
+00:08 +0 -2: Transfer needs external reference and explicit user confirmation
+
+Warning: A call to tap() with finder "Found 1 widget with text "Widget" (ignoring all but last): [
+  Text("Widget", dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),
+]" derived an Offset (Offset(381.0, 833.2)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+Indeed, Offset(381.0, 833.2) is outside the bounds of the root of the render tree, Size(800.0, 600.0).
+The finder corresponds to this RenderBox: RenderParagraph#153aa relayoutBoundary=up13
+The hit test result at that offset is: HitTestResult(HitTestEntry<HitTestTarget>#0ac45(_ReusableRenderView#af6a8), HitTestEntry<HitTestTarget>#8af2f(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      choose (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:11:16)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:49:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with text "Transfer": [
+  Text("Transfer", inherit: true, color: Color(alpha: 1.0000, red: 0.0784, green: 0.1294, blue: 0.2392, colorSpace: ColorSpace.sRGB), dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery, _ScrollableScope]),
+]" derived an Offset (Offset(259.0, 458.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderParagraph#2affd relayoutBoundary=up1
+The hit test result at that offset is: HitTestResult(RenderPointerListener#8a7f7@Offset(179.0, 124.0), RenderSemanticsGestureHandler#d46e2@Offset(179.0, 124.0), RenderPointerListener#67114@Offset(179.0, 124.0), _RenderScrollSemantics#c0837@Offset(179.0, 124.0), RenderClipRect#674a8@Offset(179.0, 124.0), RenderFlex#d4533@Offset(179.0, 278.0), RenderConstrainedBox#47334@Offset(179.0, 278.0), RenderPadding#76146@Offset(179.0, 278.0), RenderPadding#9214c@Offset(179.0, 278.0), RenderPadding#315e5@Offset(179.0, 326.0), RenderStack#22d1b@Offset(179.0, 326.0), _RenderInkFeatures#313b8@Offset(179.0, 326.0), RenderCustomPaint#aa2ca@Offset(179.0, 326.0), RenderPhysicalShape#0fe8e@Offset(179.0, 326.0), RenderConstrainedBox#4a141@Offset(179.0, 326.0), RenderPositionedBox#21684@Offset(259.0, 326.0), RenderPointerListener#16b4b@Offset(259.0, 326.0), _RenderBottomSheetLayoutWithSizeListener#5a7da@Offset(259.0, 458.0), RenderClipRect#d1313@Offset(259.0, 458.0), RenderSemanticsAnnotations#7fcc9@Offset(259.0, 458.0), RenderPadding#c3177@Offset(259.0, 458.0), RenderSemanticsAnnotations#b32db@Offset(259.0, 458.0), RenderRepaintBoundary#3ad52@Offset(259.0, 458.0), RenderIgnorePointer#5b068@Offset(259.0, 458.0), RenderRepaintBoundary#fdc01@Offset(259.0, 458.0), RenderSemanticsAnnotations#47bba@Offset(259.0, 458.0), RenderOffstage#c4f31@Offset(259.0, 458.0), RenderSemanticsAnnotations#84bb9@Offset(259.0, 458.0), _RenderTheater#c462b@Offset(259.0, 458.0), RenderAbsorbPointer#51e20@Offset(259.0, 458.0), RenderPointerListener#ef615@Offset(259.0, 458.0), RenderSemanticsAnnotations#cdff9@Offset(259.0, 458.0), RenderCustomPaint#138bd@Offset(259.0, 458.0), RenderSemanticsAnnotations#5c622@Offset(259.0, 458.0), RenderSemanticsAnnotations#00c62@Offset(259.0, 458.0), RenderSemanticsAnnotations#e22d0@Offset(259.0, 458.0), RenderTapRegionSurface#47705@Offset(259.0, 458.0), RenderSemanticsAnnotations#2b761@Offset(259.0, 458.0), RenderSemanticsAnnotations#0c5e4@Offset(259.0, 458.0), HitTestEntry<HitTestTarget>#a3487(_ReusableRenderView#af6a8), HitTestEntry<HitTestTarget>#0ea81(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:50:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'record-sale-submit'>]: [
+  FilledButton-[<'record-sale-submit'>](disabled, style: ButtonStyle#1550a(textStyle: WidgetStatePropertyAll(null), backgroundColor: WidgetStateMapper<Color?>({WidgetState.disabled: null, WidgetState.any: Color(alpha: 1.0000, red: 0.1569, green: 0.3922, blue: 0.9412, colorSpace: ColorSpace.sRGB)}), foregroundColor: WidgetStateMapper<Color?>({WidgetState.disabled: null, WidgetState.any: Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)}), overlayColor: WidgetStateMapper<Color?>({WidgetState.pressed: Color(alpha: 0.1020, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), WidgetState.hovered: Color(alpha: 0.0784, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), WidgetState.focused: Color(alpha: 0.1020, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)}), shape: WidgetStatePropertyAll(RoundedRectangleBorder(BorderSide(width: 0.0, style: none), BorderRadius.circular(14.0))), mouseCursor: WidgetStateMapper<MouseCursor?>({WidgetState.disabled: null, WidgetState.any: null})), dependencies: [IconTheme, InheritedCupertinoTheme, MediaQuery, _InheritedTheme, _LocalizationsScope-[GlobalKey#4a252], _ScrollableScope], state: _ButtonStyleState#4dce7),
+]" derived an Offset (Offset(400.0, 541.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#4ad8f
+The hit test result at that offset is: HitTestResult(RenderPointerListener#8a7f7@Offset(320.0, 207.0), RenderSemanticsGestureHandler#d46e2@Offset(320.0, 207.0), RenderPointerListener#67114@Offset(320.0, 207.0), _RenderScrollSemantics#c0837@Offset(320.0, 207.0), RenderClipRect#674a8@Offset(320.0, 207.0), RenderFlex#d4533@Offset(320.0, 361.0), RenderConstrainedBox#47334@Offset(320.0, 361.0), RenderPadding#76146@Offset(320.0, 361.0), RenderPadding#9214c@Offset(320.0, 361.0), RenderPadding#315e5@Offset(320.0, 409.0), RenderStack#22d1b@Offset(320.0, 409.0), _RenderInkFeatures#313b8@Offset(320.0, 409.0), RenderCustomPaint#aa2ca@Offset(320.0, 409.0), RenderPhysicalShape#0fe8e@Offset(320.0, 409.0), RenderConstrainedBox#4a141@Offset(320.0, 409.0), RenderPositionedBox#21684@Offset(400.0, 409.0), RenderPointerListener#16b4b@Offset(400.0, 409.0), _RenderBottomSheetLayoutWithSizeListener#5a7da@Offset(400.0, 541.0), RenderClipRect#d1313@Offset(400.0, 541.0), RenderSemanticsAnnotations#7fcc9@Offset(400.0, 541.0), RenderPadding#c3177@Offset(400.0, 541.0), RenderSemanticsAnnotations#b32db@Offset(400.0, 541.0), RenderRepaintBoundary#3ad52@Offset(400.0, 541.0), RenderIgnorePointer#5b068@Offset(400.0, 541.0), RenderRepaintBoundary#fdc01@Offset(400.0, 541.0), RenderSemanticsAnnotations#47bba@Offset(400.0, 541.0), RenderOffstage#c4f31@Offset(400.0, 541.0), RenderSemanticsAnnotations#84bb9@Offset(400.0, 541.0), _RenderTheater#c462b@Offset(400.0, 541.0), RenderAbsorbPointer#51e20@Offset(400.0, 541.0), RenderPointerListener#ef615@Offset(400.0, 541.0), RenderSemanticsAnnotations#cdff9@Offset(400.0, 541.0), RenderCustomPaint#138bd@Offset(400.0, 541.0), RenderSemanticsAnnotations#5c622@Offset(400.0, 541.0), RenderSemanticsAnnotations#00c62@Offset(400.0, 541.0), RenderSemanticsAnnotations#e22d0@Offset(400.0, 541.0), RenderTapRegionSurface#47705@Offset(400.0, 541.0), RenderSemanticsAnnotations#2b761@Offset(400.0, 541.0), RenderSemanticsAnnotations#0c5e4@Offset(400.0, 541.0), HitTestEntry<HitTestTarget>#709e1(_ReusableRenderView#af6a8), HitTestEntry<HitTestTarget>#824bb(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:52:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following StateError was thrown running a test:
+Bad state: No element
+
+When the exception was thrown, this was the stack:
+#0      Iterable.last (dart:core/iterable.dart:679:7)
+#1      _LastFinderMixin.filter (package:flutter_test/src/finders.dart:1410:28)
+#3      Iterable.single (dart:core/iterable.dart:694:13)
+#4      WidgetController.element (package:flutter_test/src/controller.dart:888:30)
+#5      WidgetController.ensureVisible (package:flutter_test/src/controller.dart:2389:32)
+#6      confirm (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:16:16)
+#7      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:53:13)
+<asynchronous suspension>
+#8      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#9      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided 2 frames from dart:async-patch and package:stack_trace)
+
+The test description was:
+  Transfer needs external reference and explicit user confirmation
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:08 +0 -3: Transfer needs external reference and explicit user confirmation [E]
+  Test failed. See exception logs above.
+  The test description was: Transfer needs external reference and explicit user confirmation
+  
+00:08 +0 -3: Full credit collects debtor details and requires an explicit exact-cart approval
+
+Warning: A call to tap() with finder "Found 1 widget with text "Widget" (ignoring all but last): [
+  Text("Widget", dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),
+]" derived an Offset (Offset(381.0, 833.2)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+Indeed, Offset(381.0, 833.2) is outside the bounds of the root of the render tree, Size(800.0, 600.0).
+The finder corresponds to this RenderBox: RenderParagraph#9e94d relayoutBoundary=up13
+The hit test result at that offset is: HitTestResult(HitTestEntry<HitTestTarget>#1573f(_ReusableRenderView#af6a8), HitTestEntry<HitTestTarget>#16ebd(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      choose (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:11:16)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:70:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with text "Credit": [
+  Text("Credit", inherit: true, color: Color(alpha: 1.0000, red: 0.0784, green: 0.1294, blue: 0.2392, colorSpace: ColorSpace.sRGB), dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery, _ScrollableScope]),
+]" derived an Offset (Offset(541.0, 458.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderParagraph#d79a6 relayoutBoundary=up1
+The hit test result at that offset is: HitTestResult(RenderPointerListener#b9ef9@Offset(461.0, 124.0), RenderSemanticsGestureHandler#c3cfe@Offset(461.0, 124.0), RenderPointerListener#642b8@Offset(461.0, 124.0), _RenderScrollSemantics#4d22b@Offset(461.0, 124.0), RenderClipRect#569c8@Offset(461.0, 124.0), RenderFlex#4efb6@Offset(461.0, 278.0), RenderConstrainedBox#660e3@Offset(461.0, 278.0), RenderPadding#bf3eb@Offset(461.0, 278.0), RenderPadding#3eaa3@Offset(461.0, 278.0), RenderPadding#45f74@Offset(461.0, 326.0), RenderStack#dab37@Offset(461.0, 326.0), _RenderInkFeatures#71378@Offset(461.0, 326.0), RenderCustomPaint#16d00@Offset(461.0, 326.0), RenderPhysicalShape#6f161@Offset(461.0, 326.0), RenderConstrainedBox#a139a@Offset(461.0, 326.0), RenderPositionedBox#46997@Offset(541.0, 326.0), RenderPointerListener#d1a84@Offset(541.0, 326.0), _RenderBottomSheetLayoutWithSizeListener#d056a@Offset(541.0, 458.0), RenderClipRect#3fb34@Offset(541.0, 458.0), RenderSemanticsAnnotations#3899e@Offset(541.0, 458.0), RenderPadding#a6f3f@Offset(541.0, 458.0), RenderSemanticsAnnotations#f1c73@Offset(541.0, 458.0), RenderRepaintBoundary#3582a@Offset(541.0, 458.0), RenderIgnorePointer#1d736@Offset(541.0, 458.0), RenderRepaintBoundary#8c669@Offset(541.0, 458.0), RenderSemanticsAnnotations#56c5d@Offset(541.0, 458.0), RenderOffstage#2c20b@Offset(541.0, 458.0), RenderSemanticsAnnotations#9f872@Offset(541.0, 458.0), _RenderTheater#335f2@Offset(541.0, 458.0), RenderAbsorbPointer#8ce07@Offset(541.0, 458.0), RenderPointerListener#11099@Offset(541.0, 458.0), RenderSemanticsAnnotations#fa385@Offset(541.0, 458.0), RenderCustomPaint#931fe@Offset(541.0, 458.0), RenderSemanticsAnnotations#7ea3f@Offset(541.0, 458.0), RenderSemanticsAnnotations#01950@Offset(541.0, 458.0), RenderSemanticsAnnotations#85479@Offset(541.0, 458.0), RenderTapRegionSurface#032d9@Offset(541.0, 458.0), RenderSemanticsAnnotations#7e7f8@Offset(541.0, 458.0), RenderSemanticsAnnotations#8a109@Offset(541.0, 458.0), HitTestEntry<HitTestTarget>#f3c94(_ReusableRenderView#af6a8), HitTestEntry<HitTestTarget>#0806a(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:71:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'record-sale-submit'>]: [
+  FilledButton-[<'record-sale-submit'>](disabled, style: ButtonStyle#1550a(textStyle: WidgetStatePropertyAll(null), backgroundColor: WidgetStateMapper<Color?>({WidgetState.disabled: null, WidgetState.any: Color(alpha: 1.0000, red: 0.1569, green: 0.3922, blue: 0.9412, colorSpace: ColorSpace.sRGB)}), foregroundColor: WidgetStateMapper<Color?>({WidgetState.disabled: null, WidgetState.any: Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)}), overlayColor: WidgetStateMapper<Color?>({WidgetState.pressed: Color(alpha: 0.1020, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), WidgetState.hovered: Color(alpha: 0.0784, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), WidgetState.focused: Color(alpha: 0.1020, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)}), shape: WidgetStatePropertyAll(RoundedRectangleBorder(BorderSide(width: 0.0, style: none), BorderRadius.circular(14.0))), mouseCursor: WidgetStateMapper<MouseCursor?>({WidgetState.disabled: null, WidgetState.any: null})), dependencies: [IconTheme, InheritedCupertinoTheme, MediaQuery, _InheritedTheme, _LocalizationsScope-[GlobalKey#e1c37], _ScrollableScope], state: _ButtonStyleState#b49e1),
+]" derived an Offset (Offset(400.0, 541.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#41f67
+The hit test result at that offset is: HitTestResult(RenderPointerListener#b9ef9@Offset(320.0, 207.0), RenderSemanticsGestureHandler#c3cfe@Offset(320.0, 207.0), RenderPointerListener#642b8@Offset(320.0, 207.0), _RenderScrollSemantics#4d22b@Offset(320.0, 207.0), RenderClipRect#569c8@Offset(320.0, 207.0), RenderFlex#4efb6@Offset(320.0, 361.0), RenderConstrainedBox#660e3@Offset(320.0, 361.0), RenderPadding#bf3eb@Offset(320.0, 361.0), RenderPadding#3eaa3@Offset(320.0, 361.0), RenderPadding#45f74@Offset(320.0, 409.0), RenderStack#dab37@Offset(320.0, 409.0), _RenderInkFeatures#71378@Offset(320.0, 409.0), RenderCustomPaint#16d00@Offset(320.0, 409.0), RenderPhysicalShape#6f161@Offset(320.0, 409.0), RenderConstrainedBox#a139a@Offset(320.0, 409.0), RenderPositionedBox#46997@Offset(400.0, 409.0), RenderPointerListener#d1a84@Offset(400.0, 409.0), _RenderBottomSheetLayoutWithSizeListener#d056a@Offset(400.0, 541.0), RenderClipRect#3fb34@Offset(400.0, 541.0), RenderSemanticsAnnotations#3899e@Offset(400.0, 541.0), RenderPadding#a6f3f@Offset(400.0, 541.0), RenderSemanticsAnnotations#f1c73@Offset(400.0, 541.0), RenderRepaintBoundary#3582a@Offset(400.0, 541.0), RenderIgnorePointer#1d736@Offset(400.0, 541.0), RenderRepaintBoundary#8c669@Offset(400.0, 541.0), RenderSemanticsAnnotations#56c5d@Offset(400.0, 541.0), RenderOffstage#2c20b@Offset(400.0, 541.0), RenderSemanticsAnnotations#9f872@Offset(400.0, 541.0), _RenderTheater#335f2@Offset(400.0, 541.0), RenderAbsorbPointer#8ce07@Offset(400.0, 541.0), RenderPointerListener#11099@Offset(400.0, 541.0), RenderSemanticsAnnotations#fa385@Offset(400.0, 541.0), RenderCustomPaint#931fe@Offset(400.0, 541.0), RenderSemanticsAnnotations#7ea3f@Offset(400.0, 541.0), RenderSemanticsAnnotations#01950@Offset(400.0, 541.0), RenderSemanticsAnnotations#85479@Offset(400.0, 541.0), RenderTapRegionSurface#032d9@Offset(400.0, 541.0), RenderSemanticsAnnotations#7e7f8@Offset(400.0, 541.0), RenderSemanticsAnnotations#8a109@Offset(400.0, 541.0), HitTestEntry<HitTestTarget>#e0192(_ReusableRenderView#af6a8), HitTestEntry<HitTestTarget>#e2cb4(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:73:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following StateError was thrown running a test:
+Bad state: No element
+
+When the exception was thrown, this was the stack:
+#0      Iterable.single (dart:core/iterable.dart:694:25)
+#1      WidgetController.element (package:flutter_test/src/controller.dart:888:30)
+#2      WidgetController.ensureVisible (package:flutter_test/src/controller.dart:2389:32)
+#3      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:75:22)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  Full credit collects debtor details and requires an explicit exact-cart approval
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:09 +0 -4: Full credit collects debtor details and requires an explicit exact-cart approval [E]
+  Test failed. See exception logs above.
+  The test description was: Full credit collects debtor details and requires an explicit exact-cart approval
+  
+00:09 +0 -4: Partial credit collects debtor details and requires an explicit exact-cart approval
+
+Warning: A call to tap() with finder "Found 1 widget with text "Widget" (ignoring all but last): [
+  Text("Widget", dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),
+]" derived an Offset (Offset(381.0, 833.2)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+Indeed, Offset(381.0, 833.2) is outside the bounds of the root of the render tree, Size(800.0, 600.0).
+The finder corresponds to this RenderBox: RenderParagraph#655a6 relayoutBoundary=up13
+The hit test result at that offset is: HitTestResult(HitTestEntry<HitTestTarget>#848da(_ReusableRenderView#af6a8), HitTestEntry<HitTestTarget>#f35f3(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      choose (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:11:16)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:70:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with text "Credit": [
+  Text("Credit", inherit: true, color: Color(alpha: 1.0000, red: 0.0784, green: 0.1294, blue: 0.2392, colorSpace: ColorSpace.sRGB), dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery, _ScrollableScope]),
+]" derived an Offset (Offset(541.0, 458.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderParagraph#6b5d5 relayoutBoundary=up1
+The hit test result at that offset is: HitTestResult(RenderPointerListener#5feaf@Offset(461.0, 124.0), RenderSemanticsGestureHandler#1c4c1@Offset(461.0, 124.0), RenderPointerListener#f3544@Offset(461.0, 124.0), _RenderScrollSemantics#64861@Offset(461.0, 124.0), RenderClipRect#eae9f@Offset(461.0, 124.0), RenderFlex#e6023@Offset(461.0, 278.0), RenderConstrainedBox#7a500@Offset(461.0, 278.0), RenderPadding#6f201@Offset(461.0, 278.0), RenderPadding#21954@Offset(461.0, 278.0), RenderPadding#df595@Offset(461.0, 326.0), RenderStack#b6cfd@Offset(461.0, 326.0), _RenderInkFeatures#ccbdf@Offset(461.0, 326.0), RenderCustomPaint#f86cb@Offset(461.0, 326.0), RenderPhysicalShape#d41a7@Offset(461.0, 326.0), RenderConstrainedBox#8c46f@Offset(461.0, 326.0), RenderPositionedBox#32744@Offset(541.0, 326.0), RenderPointerListener#9d6a4@Offset(541.0, 326.0), _RenderBottomSheetLayoutWithSizeListener#54012@Offset(541.0, 458.0), RenderClipRect#0875d@Offset(541.0, 458.0), RenderSemanticsAnnotations#3eeef@Offset(541.0, 458.0), RenderPadding#a7bbc@Offset(541.0, 458.0), RenderSemanticsAnnotations#9e5c4@Offset(541.0, 458.0), RenderRepaintBoundary#f3d00@Offset(541.0, 458.0), RenderIgnorePointer#d3479@Offset(541.0, 458.0), RenderRepaintBoundary#dc2d1@Offset(541.0, 458.0), RenderSemanticsAnnotations#8f347@Offset(541.0, 458.0), RenderOffstage#a784d@Offset(541.0, 458.0), RenderSemanticsAnnotations#91ae1@Offset(541.0, 458.0), _RenderTheater#93dfd@Offset(541.0, 458.0), RenderAbsorbPointer#366e4@Offset(541.0, 458.0), RenderPointerListener#03120@Offset(541.0, 458.0), RenderSemanticsAnnotations#58ac2@Offset(541.0, 458.0), RenderCustomPaint#1cacc@Offset(541.0, 458.0), RenderSemanticsAnnotations#545d2@Offset(541.0, 458.0), RenderSemanticsAnnotations#ef4e2@Offset(541.0, 458.0), RenderSemanticsAnnotations#091ec@Offset(541.0, 458.0), RenderTapRegionSurface#975a4@Offset(541.0, 458.0), RenderSemanticsAnnotations#a9d0a@Offset(541.0, 458.0), RenderSemanticsAnnotations#ca90d@Offset(541.0, 458.0), HitTestEntry<HitTestTarget>#5686b(_ReusableRenderView#af6a8), HitTestEntry<HitTestTarget>#a9d85(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:71:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'record-sale-submit'>]: [
+  FilledButton-[<'record-sale-submit'>](disabled, style: ButtonStyle#1550a(textStyle: WidgetStatePropertyAll(null), backgroundColor: WidgetStateMapper<Color?>({WidgetState.disabled: null, WidgetState.any: Color(alpha: 1.0000, red: 0.1569, green: 0.3922, blue: 0.9412, colorSpace: ColorSpace.sRGB)}), foregroundColor: WidgetStateMapper<Color?>({WidgetState.disabled: null, WidgetState.any: Color(alpha: 1.0000, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)}), overlayColor: WidgetStateMapper<Color?>({WidgetState.pressed: Color(alpha: 0.1020, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), WidgetState.hovered: Color(alpha: 0.0784, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB), WidgetState.focused: Color(alpha: 0.1020, red: 1.0000, green: 1.0000, blue: 1.0000, colorSpace: ColorSpace.sRGB)}), shape: WidgetStatePropertyAll(RoundedRectangleBorder(BorderSide(width: 0.0, style: none), BorderRadius.circular(14.0))), mouseCursor: WidgetStateMapper<MouseCursor?>({WidgetState.disabled: null, WidgetState.any: null})), dependencies: [IconTheme, InheritedCupertinoTheme, MediaQuery, _InheritedTheme, _LocalizationsScope-[GlobalKey#798a9], _ScrollableScope], state: _ButtonStyleState#b438f),
+]" derived an Offset (Offset(400.0, 541.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#9f317
+The hit test result at that offset is: HitTestResult(RenderPointerListener#5feaf@Offset(320.0, 207.0), RenderSemanticsGestureHandler#1c4c1@Offset(320.0, 207.0), RenderPointerListener#f3544@Offset(320.0, 207.0), _RenderScrollSemantics#64861@Offset(320.0, 207.0), RenderClipRect#eae9f@Offset(320.0, 207.0), RenderFlex#e6023@Offset(320.0, 361.0), RenderConstrainedBox#7a500@Offset(320.0, 361.0), RenderPadding#6f201@Offset(320.0, 361.0), RenderPadding#21954@Offset(320.0, 361.0), RenderPadding#df595@Offset(320.0, 409.0), RenderStack#b6cfd@Offset(320.0, 409.0), _RenderInkFeatures#ccbdf@Offset(320.0, 409.0), RenderCustomPaint#f86cb@Offset(320.0, 409.0), RenderPhysicalShape#d41a7@Offset(320.0, 409.0), RenderConstrainedBox#8c46f@Offset(320.0, 409.0), RenderPositionedBox#32744@Offset(400.0, 409.0), RenderPointerListener#9d6a4@Offset(400.0, 409.0), _RenderBottomSheetLayoutWithSizeListener#54012@Offset(400.0, 541.0), RenderClipRect#0875d@Offset(400.0, 541.0), RenderSemanticsAnnotations#3eeef@Offset(400.0, 541.0), RenderPadding#a7bbc@Offset(400.0, 541.0), RenderSemanticsAnnotations#9e5c4@Offset(400.0, 541.0), RenderRepaintBoundary#f3d00@Offset(400.0, 541.0), RenderIgnorePointer#d3479@Offset(400.0, 541.0), RenderRepaintBoundary#dc2d1@Offset(400.0, 541.0), RenderSemanticsAnnotations#8f347@Offset(400.0, 541.0), RenderOffstage#a784d@Offset(400.0, 541.0), RenderSemanticsAnnotations#91ae1@Offset(400.0, 541.0), _RenderTheater#93dfd@Offset(400.0, 541.0), RenderAbsorbPointer#366e4@Offset(400.0, 541.0), RenderPointerListener#03120@Offset(400.0, 541.0), RenderSemanticsAnnotations#58ac2@Offset(400.0, 541.0), RenderCustomPaint#1cacc@Offset(400.0, 541.0), RenderSemanticsAnnotations#545d2@Offset(400.0, 541.0), RenderSemanticsAnnotations#ef4e2@Offset(400.0, 541.0), RenderSemanticsAnnotations#091ec@Offset(400.0, 541.0), RenderTapRegionSurface#975a4@Offset(400.0, 541.0), RenderSemanticsAnnotations#a9d0a@Offset(400.0, 541.0), RenderSemanticsAnnotations#ca90d@Offset(400.0, 541.0), HitTestEntry<HitTestTarget>#ce161(_ReusableRenderView#af6a8), HitTestEntry<HitTestTarget>#8377a(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:73:20)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following StateError was thrown running a test:
+Bad state: No element
+
+When the exception was thrown, this was the stack:
+#0      Iterable.single (dart:core/iterable.dart:694:25)
+#1      WidgetController.element (package:flutter_test/src/controller.dart:888:30)
+#2      WidgetController.ensureVisible (package:flutter_test/src/controller.dart:2389:32)
+#3      main.<anonymous closure> (file:///C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart:75:22)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  Partial credit collects debtor details and requires an explicit exact-cart approval
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:10 +0 -5: Partial credit collects debtor details and requires an explicit exact-cart approval [E]
+  Test failed. See exception logs above.
+  The test description was: Partial credit collects debtor details and requires an explicit exact-cart approval
+  
+00:10 +0 -5: Some tests failed.
+
+Failing tests:
+  C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart: Full credit collects debtor details and requires an explicit exact-cart approval
+  C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart: Partial credit collects debtor details and requires an explicit exact-cart approval
+  C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart: Searchable cart merges, independently edits and removes products; requires confirmation
+  C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart: Terminal needs external reference and explicit user confirmation
+  C:/Users/USER/AndroidStudioProjects/Trexven/test/record_sale_payments_test.dart: Transfer needs external reference and explicit user confirmation

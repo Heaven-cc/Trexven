@@ -1,0 +1,19 @@
+{
+  "id": "19b7c189-314e-4bda-b3ee-6ba6024ae38b",
+  "slug": "delete-account",
+  "name": "delete-account",
+  "status": "ACTIVE",
+  "version": 4,
+  "created_at": 1787796460658,
+  "updated_at": 1791581712152,
+  "verify_jwt": true,
+  "import_map": false,
+  "entrypoint_path": "/tmp/user_fn_ufehcfrlygqvminfjumf_19b7c189-314e-4bda-b3ee-6ba6024ae38b_4/source/supabase/functions/delete-account/index.ts",
+  "ezbr_sha256": "a4cec1540ccac07691b410aade1b50498d8dfaa29b82519a0d77237f1117b61a",
+  "files": [
+    {
+      "name": "delete-account/index.ts",
+      "content": "import \"jsr:@supabase/functions-js/edge-runtime.d.ts\";\r\nimport { createClient } from \"npm:@supabase/supabase-js@2.117.2\";\r\n// Compatibility endpoint: deletion now starts a reviewed owner request only.\r\nconst cors = {\"Access-Control-Allow-Origin\":\"*\",\"Access-Control-Allow-Headers\":\"authorization, x-client-info, apikey, content-type\",\"Access-Control-Allow-Methods\":\"POST, OPTIONS\"};\r\nconst json=(body:unknown,status=200)=>new Response(JSON.stringify(body),{status,headers:{...cors,\"Content-Type\":\"application/json\"}});\r\nDeno.serve(async(req:Request)=>{\r\n if(req.method===\"OPTIONS\")return new Response(\"ok\",{headers:cors});\r\n if(req.method!==\"POST\")return json({success:false,error:\"Only POST requests are allowed.\"},405);\r\n const authorization=req.headers.get(\"Authorization\");\r\n if(!authorization?.startsWith(\"Bearer \"))return json({success:false,error:\"Authentication required.\"},401);\r\n try{\r\n  const url=Deno.env.get(\"SUPABASE_URL\"),key=Deno.env.get(\"SUPABASE_ANON_KEY\")??Deno.env.get(\"SUPABASE_PUBLISHABLE_KEY\");\r\n  if(!url||!key)return json({success:false,error:\"Lifecycle request service unavailable.\"},503);\r\n  const client=createClient(url,key,{global:{headers:{Authorization:authorization}},auth:{persistSession:false,autoRefreshToken:false}});\r\n  const {data:user,error:authenticationError}=await client.auth.getUser();\r\n  if(authenticationError||!user.user)return json({success:false,error:\"Invalid authentication.\"},401);\r\n  const body=await req.json().catch(()=>null);\r\n  if(!body||typeof body.business_id!==\"string\"||typeof body.request_id!==\"string\"||typeof body.reason!==\"string\"){\r\n   return json({success:false,deleted_user:false,error:\"Owner review and a durable request are required. No account or financial records were deleted.\"},409);\r\n  }\r\n  const {data,error}=await client.rpc(\"request_trexven_account_lifecycle\",{p_business_id:body.business_id,p_request_id:body.request_id,p_kind:\"deletion\",p_reason:body.reason});\r\n  if(error)return json({success:false,deleted_user:false,error:\"Deletion request not confirmed.\"},error.code===\"42501\"?403:503);\r\n  if(!data || typeof data.id!==\"string\" || data.status!==\"requested\" || data.financial_records_preserved!==true){\r\n   return json({success:false,deleted_user:false,error:\"Deletion request not confirmed.\"},503);\r\n  }\r\n  return json({success:true,requested:true,deleted_user:false,result:data},202);\r\n }catch{\r\n  console.error(\"ACCOUNT_LIFECYCLE_REQUEST_FAILED\");\r\n  return json({success:false,deleted_user:false,error:\"Lifecycle request unavailable.\"},503);\r\n }\r\n});\r\n"
+    }
+  ]
+}

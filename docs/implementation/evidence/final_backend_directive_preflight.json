@@ -1,0 +1,21 @@
+{
+  "project": "ufehcfrlygqvminfjumf",
+  "checked_utc": "2026-10-09T21:27:13.150548+00:00",
+  "production_writes": 0,
+  "tls": "verify-full",
+  "pgpassfile_used": true,
+  "manifest_sha256": "9d7ed348a6b31a02200e9fe3ff6e93a11dcb14125d7c2b6fb6f22de31f8ea328",
+  "expected_existing_history_verified": true,
+  "history_entries": 16,
+  "lifecycle_rpc_exists": false,
+  "subscription_foundation_exists": false,
+  "camera_subscription_trigger_exists": false,
+  "protected_archive_integrity": true,
+  "prior_isolated_restore_verified": true,
+  "schema_drift_groups": [],
+  "tables_checked": 84,
+  "changed_table_count": 0,
+  "backup_still_matches": true,
+  "credentials_printed": false,
+  "customer_records_logged": false
+}

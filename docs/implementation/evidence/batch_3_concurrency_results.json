@@ -1,0 +1,8 @@
+{
+  "distinct_concurrent_adjustments": 12,
+  "same_request_concurrent_retries": 6,
+  "final_quantity": "113",
+  "new_movement_count": 13,
+  "passed": true,
+  "target": "disposable loopback only"
+}

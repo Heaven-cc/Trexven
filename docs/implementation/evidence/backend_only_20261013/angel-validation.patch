@@ -1,0 +1,20 @@
+--- deployed/angel/index.ts
++++ review/angel/index.ts
+@@ -242,7 +242,16 @@
+     if (rateError) throw rateError;
+     if (!allowed) return json({ success: false, error: "Too many messages. Try again in a minute." }, 429);
+ 
+-    const body = (await req.json()) as AngelRequest;
++    let body: AngelRequest;
++    try {
++      const parsed = await req.json();
++      if (parsed === null || typeof parsed !== "object" || Array.isArray(parsed)) {
++        return json({ success: false, error: "A JSON object is required." }, 400);
++      }
++      body = parsed as AngelRequest;
++    } catch (_error) {
++      return json({ success: false, error: "A valid JSON object is required." }, 400);
++    }
+     const message = typeof body.message === "string" ? body.message.trim() : "";
+     if (!message) return json({ success: false, error: "Please provide a message." }, 400);
+     if (message.length > 5000) return json({ success: false, error: "Message is too long." }, 400);

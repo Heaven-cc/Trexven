@@ -1,3 +1,4 @@
+import 'database_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../models/camera.dart';
 import '../models/camera_event.dart';
@@ -9,21 +10,7 @@ class CameraService {
   // BUSINESS
   // ============================================================
 
-  Future<String?> getCurrentBusinessId() async {
-    final user = _supabase.auth.currentUser;
-
-    if (user == null) {
-      return null;
-    }
-
-    final business = await _supabase
-        .from('businesses')
-        .select('id')
-        .eq('owner_id', user.id)
-        .maybeSingle();
-
-    return business?['id']?.toString();
-  }
+  Future<String?> getCurrentBusinessId() => DatabaseService().getCurrentBusinessId();
 
   // ============================================================
   // CAMERAS
@@ -241,9 +228,8 @@ class CameraService {
       yield* stream.map(
           (list) => list.map((map) => CameraEvent.fromMap(map)).toList());
     } else {
-      yield* stream
-          .eq('camera_id', cameraId)
-          .map((list) => list.map((map) => CameraEvent.fromMap(map)).toList());
+      yield* stream.map((list) => list.where((row) => row['camera_id'] == cameraId)
+          .map((row) => CameraEvent.fromMap(row)).toList());
     }
   }
 

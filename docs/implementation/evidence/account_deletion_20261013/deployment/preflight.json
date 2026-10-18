@@ -1,0 +1,93 @@
+[
+  {
+    "preflight": {
+      "role": "postgres",
+      "tables": [
+        {
+          "name": "public.businesses",
+          "exists": true
+        },
+        {
+          "name": "public.business_members",
+          "exists": true
+        },
+        {
+          "name": "public.employees",
+          "exists": true
+        },
+        {
+          "name": "public.cash_shifts",
+          "exists": true
+        },
+        {
+          "name": "public.cash_shift_members",
+          "exists": true
+        },
+        {
+          "name": "public.credit_approvals",
+          "exists": true
+        },
+        {
+          "name": "public.sale_returns",
+          "exists": true
+        },
+        {
+          "name": "public.stocktake_sessions",
+          "exists": true
+        },
+        {
+          "name": "public.cash_handovers",
+          "exists": true
+        },
+        {
+          "name": "public.inventory_reconciliation_reviews",
+          "exists": true
+        },
+        {
+          "name": "public.supplier_stock_returns",
+          "exists": true
+        },
+        {
+          "name": "public.credit_accounts",
+          "exists": true
+        },
+        {
+          "name": "public.audit_logs",
+          "exists": true
+        },
+        {
+          "name": "public.angel_conversations",
+          "exists": true
+        }
+      ],
+      "helpers": [
+        {
+          "signature": "is_business_member(uuid)",
+          "definition": "CREATE OR REPLACE FUNCTION public.is_business_member(target_business_id uuid)\n RETURNS boolean\n LANGUAGE sql\n STABLE SECURITY DEFINER\n SET search_path TO ''\nAS $function$\n select auth.uid() is not null and (public.user_owns_business(target_business_id)\n or exists(select 1 from public.business_members m join public.employees e\n on e.business_id=m.business_id and e.user_id=m.user_id\n where m.business_id=target_business_id and m.user_id=auth.uid()\n and m.status='active' and e.status='active'\n and e.role in ('manager','sales_employee','inventory_employee','employee')))\n$function$\n"
+        },
+        {
+          "signature": "user_owns_business(uuid)",
+          "definition": "CREATE OR REPLACE FUNCTION public.user_owns_business(target_business_id uuid)\n RETURNS boolean\n LANGUAGE sql\n STABLE SECURITY DEFINER\n SET search_path TO 'public', 'pg_temp'\nAS $function$\r\n    select exists (\r\n        select 1\r\n        from public.businesses\r\n        where id = target_business_id\r\n        and owner_id = auth.uid()\r\n    );\r\n$function$\n"
+        },
+        {
+          "signature": "private.has_business_permission(uuid,text)",
+          "definition": "CREATE OR REPLACE FUNCTION private.has_business_permission(business uuid, permission text)\n RETURNS boolean\n LANGUAGE sql\n STABLE SECURITY DEFINER\n SET search_path TO ''\nAS $function$\r\n select auth.uid() is not null and permission is not null and permission <> 'view_profit' and (\r\n public.user_owns_business(business) or exists(\r\n select 1 from public.employees e join public.business_members m\r\n on m.business_id=e.business_id and m.user_id=e.user_id\r\n where e.business_id=business and e.user_id=auth.uid()\r\n and e.status='active' and m.status='active'\r\n and e.role in ('manager','sales_employee','inventory_employee','employee')\r\n -- Owner-only services and role/permission administration are never delegable.\r\n and permission not in ('view_camera_events','manage_permissions','assign_roles','owner_app')\r\n and (permission not in ('override_price','edit_prices','change_prices','manage_prices','set_prices','branch_price_override')\r\n      or e.role='manager')\r\n and (permission<>'apply_discount' or e.role<>'inventory_employee')\r\n and (permission<>'manage_employees' or e.role='manager')\r\n and (permission not in ('view_finance') or e.role='manager')\r\n and not exists(select 1 from public.employee_permissions denied where denied.employee_id=e.id\r\n                and denied.permission_id=permission and not denied.granted)\r\n and (exists(select 1 from public.employee_permissions p join public.permissions d on d.id=p.permission_id\r\n             where p.employee_id=e.id and p.permission_id=permission and p.granted)\r\n or (e.role='manager' and permission in ('pos_access','complete_sales','view_inventory','add_products','edit_products','manage_employees','adjust_stock'))\r\n or (e.role='sales_employee' and permission in ('pos_access','complete_sales','view_inventory'))\r\n or (e.role='inventory_employee' and permission in ('view_inventory','add_products','edit_products')))))\r\n$function$\n"
+        }
+      ],
+      "database": "postgres",
+      "role_settings": [
+        {
+          "role": "authenticator",
+          "settings": [
+            "session_preload_libraries=supautils, safeupdate",
+            "statement_timeout=8s",
+            "lock_timeout=8s"
+          ],
+          "database_oid": "0"
+        }
+      ],
+      "existing_state": null,
+      "auth_deleted_column": true
+    }
+  }
+]

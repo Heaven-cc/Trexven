@@ -1,0 +1,116 @@
+{
+  "result": {
+    "lints": [
+      {
+        "name": "rls_enabled_no_policy",
+        "title": "RLS Enabled No Policy",
+        "level": "INFO",
+        "facing": "EXTERNAL",
+        "categories": [
+          "SECURITY"
+        ],
+        "description": "Detects cases where row level security (RLS) has been enabled on a table but no RLS policies have been created.",
+        "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy",
+        "count": 3,
+        "findings": [
+          {
+            "detail": "Table \\`private.angel_request_windows\\` has RLS enabled, but no policies exist",
+            "metadata": {
+              "name": "angel_request_windows",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-07T23:55:49.489Z"
+          },
+          {
+            "detail": "Table \\`private.camera_explanation_request_windows\\` has RLS enabled, but no policies exist",
+            "metadata": {
+              "name": "camera_explanation_request_windows",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-07T23:55:49.489Z"
+          },
+          {
+            "detail": "Table \\`private.sale_requests\\` has RLS enabled, but no policies exist",
+            "metadata": {
+              "name": "sale_requests",
+              "type": "table",
+              "schema": "private"
+            },
+            "observed_at": "2026-10-07T23:55:49.489Z"
+          }
+        ]
+      },
+      {
+        "name": "authenticated_security_definer_function_executable",
+        "title": "Signed-In Users Can Execute SECURITY DEFINER Function",
+        "level": "WARN",
+        "facing": "EXTERNAL",
+        "categories": [
+          "SECURITY"
+        ],
+        "description": "Detects `SECURITY DEFINER` functions that are callable by signed-in users. Revoke `EXECUTE`, switch the function to `SECURITY INVOKER`, or move it out of your exposed API schema if signed-in users should not call it.",
+        "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0029_authenticated_security_definer_function_executable",
+        "count": 5,
+        "findings": [
+          {
+            "detail": "Function `public.complete_trexven_onboarding(p_business_name text, p_business_type text, p_country text, p_currency text, p_address text, p_phone text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/complete_trexven_onboarding`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+            "metadata": {
+              "name": "complete_trexven_onboarding",
+              "schema": "public",
+              "language": "plpgsql",
+              "arguments": "p_business_name text, p_business_type text, p_country text, p_currency text, p_address text, p_phone text",
+              "security_definer": true
+            },
+            "observed_at": "2026-10-07T23:55:49.489Z"
+          },
+          {
+            "detail": "Function `public.is_business_member(target_business_id uuid)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/is_business_member`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+            "metadata": {
+              "name": "is_business_member",
+              "schema": "public",
+              "language": "sql",
+              "arguments": "target_business_id uuid",
+              "security_definer": true
+            },
+            "observed_at": "2026-10-07T23:55:49.489Z"
+          },
+          {
+            "detail": "Function `public.set_trexven_employee_status(p_employee_id uuid, p_status text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/set_trexven_employee_status`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+            "metadata": {
+              "name": "set_trexven_employee_status",
+              "schema": "public",
+              "language": "plpgsql",
+              "arguments": "p_employee_id uuid, p_status text",
+              "security_definer": true
+            },
+            "observed_at": "2026-10-07T23:55:49.489Z"
+          },
+          {
+            "detail": "Function `public.update_trexven_employee(p_employee_id uuid, p_name text, p_phone text, p_email text, p_role text, p_status text)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/update_trexven_employee`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+            "metadata": {
+              "name": "update_trexven_employee",
+              "schema": "public",
+              "language": "plpgsql",
+              "arguments": "p_employee_id uuid, p_name text, p_phone text, p_email text, p_role text, p_status text",
+              "security_definer": true
+            },
+            "observed_at": "2026-10-07T23:55:49.489Z"
+          },
+          {
+            "detail": "Function `public.user_owns_business(target_business_id uuid)` can be executed by the `authenticated` role as a `SECURITY DEFINER` function via `/rest/v1/rpc/user_owns_business`. Revoke `EXECUTE` or switch it to `SECURITY INVOKER` if that is not intentional.",
+            "metadata": {
+              "name": "user_owns_business",
+              "schema": "public",
+              "language": "sql",
+              "arguments": "target_business_id uuid",
+              "security_definer": true
+            },
+            "observed_at": "2026-10-07T23:55:49.489Z"
+          }
+        ]
+      }
+    ]
+  }
+}

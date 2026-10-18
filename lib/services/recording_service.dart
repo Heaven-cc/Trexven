@@ -1,19 +1,11 @@
+import 'database_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 /// CRUD for recordings stored in Supabase.
 class RecordingService {
   final SupabaseClient _supabase = Supabase.instance.client;
 
-  Future<String?> _businessId() async {
-    final user = _supabase.auth.currentUser;
-    if (user == null) return null;
-    final row = await _supabase
-        .from('businesses')
-        .select('id')
-        .eq('owner_id', user.id)
-        .maybeSingle();
-    return row?['id']?.toString();
-  }
+  Future<String?> _businessId() => DatabaseService().getCurrentBusinessId();
 
   Future<List<Map<String, dynamic>>> getRecordings({
     String? cameraId,
@@ -32,7 +24,21 @@ class RecordingService {
     return List<Map<String, dynamic>>.from(data);
   }
 
+  Future<String> getPlaybackUrl(String recordingId) async {
+    final businessId = await DatabaseService().requireBusinessId();
+    final row = await _supabase.from('recordings').select('storage_path, playback_url')
+        .eq('id', recordingId).eq('business_id', businessId).single();
+    final path = row['storage_path']?.toString();
+    if (path != null && path.isNotEmpty) {
+      return _supabase.storage.from('recordings').createSignedUrl(path, 300);
+    }
+    final url = row['playback_url']?.toString();
+    if (url == null || url.isEmpty) throw StateError('Recording is not ready for playback.');
+    return url;
+  }
+
   Future<void> deleteRecording(String recordingId) async {
-    await _supabase.from('recordings').delete().eq('id', recordingId);
+    final businessId = await DatabaseService().requireBusinessId();
+    await _supabase.from('recordings').delete().eq('id', recordingId).eq('business_id', businessId).select('id').single();
   }
 }

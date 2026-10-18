@@ -1,0 +1,14 @@
+[
+  {
+    "root": "C:\\Users\\USER\\AndroidStudioProjects\\Trexven",
+    "changed_since_baseline": [
+      "lib\\main.dart",
+      "lib\\screens\\auth\\login_screen.dart",
+      "lib\\screens\\auth\\register_screen.dart"
+    ]
+  },
+  {
+    "root": "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos",
+    "changed_since_baseline": []
+  }
+]

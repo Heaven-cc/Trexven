@@ -1,0 +1,27 @@
+00:00 +0: loading C:/Users/USER/AndroidStudioProjects/Trexven/test/restock_flow_test.dart
+00:00 +0: C:/Users/USER/AndroidStudioProjects/Trexven/test/restock_flow_test.dart: Restock validates and saves only the edited selling price before stock
+00:07 +1: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/false
+00:08 +2: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/false
+00:10 +3: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/false
+00:13 +4: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/false
+00:14 +5: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/false
+00:14 +6: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/false
+00:15 +7: C:/Users/USER/AndroidStudioProjects/Trexven/test/restock_flow_test.dart: Failed stock update restores controls and repeated taps write once
+00:16 +8: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.0/true
+00:17 +9: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.3/false
+00:19 +10: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/1.3/true
+00:21 +11: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/2.0/false
+00:22 +12: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 320.0/2.0/true
+00:23 +13: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 340.0/1.0/false
+00:24 +14: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 340.0/1.0/true
+00:25 +15: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 340.0/1.3/false
+00:26 +16: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 340.0/1.3/true
+00:26 +17: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 340.0/2.0/false
+00:27 +18: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 340.0/2.0/true
+00:28 +19: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 390.0/1.0/false
+00:28 +20: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 390.0/1.0/true
+00:29 +21: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 390.0/1.3/false
+00:30 +22: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 390.0/1.3/true
+00:31 +23: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 390.0/2.0/false
+00:32 +24: C:/Users/USER/AndroidStudioProjects/Trexven/test/design_system_screen_matrix_test.dart: Owner priority forms 390.0/2.0/true
+00:33 +25: All tests passed!

@@ -1,0 +1,9 @@
+{
+  "statements": 1610,
+  "top_level_inserts": 0,
+  "jwt_found": false,
+  "auth_user_inserts": false,
+  "production_reference_found": false,
+  "not_valid_clauses": 7,
+  "sha256": "020aee18499cc5d392f023ae86d23377aa1a1649684068bf40903c996b5bdb46"
+}

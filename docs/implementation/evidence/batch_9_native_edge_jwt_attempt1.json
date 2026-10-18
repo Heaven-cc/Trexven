@@ -1,0 +1,197 @@
+{
+  "target": "http://127.0.0.1:54401",
+  "kind": "real Auth JWT and actual handler/RPC/RLS; no Edge gateway",
+  "checks": [
+    {
+      "name": "create synthetic Auth owner",
+      "passed": true
+    },
+    {
+      "name": "genuine Auth session owner",
+      "passed": true
+    },
+    {
+      "name": "create synthetic Auth other_owner",
+      "passed": true
+    },
+    {
+      "name": "genuine Auth session other_owner",
+      "passed": true
+    },
+    {
+      "name": "create synthetic Auth manager",
+      "passed": true
+    },
+    {
+      "name": "genuine Auth session manager",
+      "passed": true
+    },
+    {
+      "name": "create synthetic Auth sales",
+      "passed": true
+    },
+    {
+      "name": "genuine Auth session sales",
+      "passed": true
+    },
+    {
+      "name": "create synthetic Auth inventory",
+      "passed": true
+    },
+    {
+      "name": "genuine Auth session inventory",
+      "passed": true
+    },
+    {
+      "name": "synthetic business owner",
+      "passed": true
+    },
+    {
+      "name": "synthetic business other_owner",
+      "passed": true
+    },
+    {
+      "name": "trusted employee membership manager",
+      "passed": true
+    },
+    {
+      "name": "trusted employee membership sales",
+      "passed": true
+    },
+    {
+      "name": "trusted employee membership inventory",
+      "passed": true
+    },
+    {
+      "name": "lifecycle rejects missing JWT",
+      "passed": true,
+      "status": 401
+    },
+    {
+      "name": "camera rejects missing JWT",
+      "passed": true,
+      "status": 401
+    },
+    {
+      "name": "lifecycle rejects malformed JWT",
+      "passed": true,
+      "status": 401
+    },
+    {
+      "name": "camera rejects malformed JWT",
+      "passed": true,
+      "status": 401
+    },
+    {
+      "name": "lifecycle rejects tampered JWT",
+      "passed": true,
+      "status": 401
+    },
+    {
+      "name": "camera rejects tampered JWT",
+      "passed": true,
+      "status": 401
+    },
+    {
+      "name": "lifecycle rejects anon API key",
+      "passed": true,
+      "status": 401
+    },
+    {
+      "name": "camera rejects anon API key",
+      "passed": true,
+      "status": 401
+    },
+    {
+      "name": "lifecycle real JWT denies manager",
+      "passed": true,
+      "status": 403
+    },
+    {
+      "name": "lifecycle real JWT denies sales",
+      "passed": true,
+      "status": 403
+    },
+    {
+      "name": "lifecycle real JWT denies inventory",
+      "passed": true,
+      "status": 403
+    },
+    {
+      "name": "lifecycle real JWT denies other_owner",
+      "passed": true,
+      "status": 403
+    },
+    {
+      "name": "owner forged-business lifecycle denied",
+      "passed": true,
+      "status": 403
+    },
+    {
+      "name": "owner lifecycle request acknowledged without deletion",
+      "passed": true,
+      "status": 202
+    },
+    {
+      "name": "lifecycle durable request idempotency preserved",
+      "passed": true,
+      "status": 202
+    },
+    {
+      "name": "lifecycle leaves Auth identity intact",
+      "passed": true
+    },
+    {
+      "name": "lifecycle leaves existing business intact",
+      "passed": true
+    },
+    {
+      "name": "only authorized single lifecycle record exists",
+      "passed": true
+    },
+    {
+      "name": "synthetic camera created under owner RLS",
+      "passed": true
+    },
+    {
+      "name": "synthetic camera event created under owner RLS",
+      "passed": true
+    },
+    {
+      "name": "owner scoped camera evidence succeeds with real JWT",
+      "passed": true,
+      "status": 200
+    },
+    {
+      "name": "camera real JWT isolates other_owner",
+      "passed": true,
+      "status": 404
+    },
+    {
+      "name": "camera real JWT isolates manager",
+      "passed": true,
+      "status": 404
+    },
+    {
+      "name": "camera real JWT isolates sales",
+      "passed": true,
+      "status": 404
+    },
+    {
+      "name": "camera real JWT isolates inventory",
+      "passed": true,
+      "status": 404
+    },
+    {
+      "name": "camera forged pairing cannot disclose event",
+      "passed": true,
+      "status": 404
+    },
+    {
+      "name": "owner explicitly grants manager Vision",
+      "passed": false
+    }
+  ],
+  "passed": false,
+  "production_writes": 0
+}

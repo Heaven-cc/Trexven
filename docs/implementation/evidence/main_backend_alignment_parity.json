@@ -1,0 +1,26 @@
+{
+  "sections": {
+    "structure": true,
+    "functions": true,
+    "security": true,
+    "acl": true,
+    "dependencies": true,
+    "extras": true
+  },
+  "tables": 32,
+  "functions": 22,
+  "existing_history_versions": [
+    "20260819180000",
+    "20260823100000",
+    "20261002014604",
+    "20261002015419",
+    "20261002123039",
+    "20261002124738",
+    "20261003224001",
+    "20261004025120",
+    "20261005004045"
+  ],
+  "no_history_repair_required": true,
+  "production_preflight_passed": true,
+  "production_writes": 0
+}

@@ -1,0 +1,38 @@
+{
+  "employee-login": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"id\":\"ca9c0f31-eb19-417d-96bc-7e21374d3d36\",\"slug\":\"employee-login\",\"name\":\"employee-login\",\"status\":\"ACTIVE\",\"version\":2,\"created_at\":1791420929527,\"updated_at\":1791426427107,\"verify_jwt\":false,\"import_map\":false,\"entrypoint_path\":\"file:///tmp/user_fn_qysspzlfiysekvxnlzsh_ca9c0f31-eb19-417d-96bc-7e21374d3d36_2/source/employee-login/index.ts\",\"ezbr_sha256\":\"ada78e17bf947d7e7f4a7670c20ae1c5fb675f39b327fe5e9cba35a5645712eb\"}"
+      }
+    ],
+    "isError": false
+  },
+  "create-employee": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"id\":\"7aba5634-3098-4efe-ae1d-13232c0999f4\",\"slug\":\"create-employee\",\"name\":\"create-employee\",\"status\":\"ACTIVE\",\"version\":2,\"created_at\":1791420934825,\"updated_at\":1791426431802,\"verify_jwt\":false,\"import_map\":false,\"entrypoint_path\":\"file:///tmp/user_fn_qysspzlfiysekvxnlzsh_7aba5634-3098-4efe-ae1d-13232c0999f4_2/source/create-employee/index.ts\",\"ezbr_sha256\":\"8e2046bfe1598e7548f8d5488ca0e424c1091e57cd1fdadb5417a68b43843e81\"}"
+      }
+    ],
+    "isError": false
+  },
+  "manage-employee": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"id\":\"9e6f112d-b422-4f28-940d-cd55e53a6edb\",\"slug\":\"manage-employee\",\"name\":\"manage-employee\",\"status\":\"ACTIVE\",\"version\":2,\"created_at\":1791420939391,\"updated_at\":1791426436742,\"verify_jwt\":false,\"import_map\":false,\"entrypoint_path\":\"file:///tmp/user_fn_qysspzlfiysekvxnlzsh_9e6f112d-b422-4f28-940d-cd55e53a6edb_2/source/manage-employee/index.ts\",\"ezbr_sha256\":\"5fe9748e171487768b45ff79d6fd54107b28159a5ac2adec3525f1970aa1017c\"}"
+      }
+    ],
+    "isError": false
+  },
+  "angel": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"id\":\"b43af214-d3d2-4143-af22-0700ea5940b9\",\"slug\":\"angel\",\"name\":\"angel\",\"status\":\"ACTIVE\",\"version\":2,\"created_at\":1791420947302,\"updated_at\":1791426442793,\"verify_jwt\":false,\"import_map\":false,\"entrypoint_path\":\"file:///tmp/user_fn_qysspzlfiysekvxnlzsh_b43af214-d3d2-4143-af22-0700ea5940b9_2/source/angel/index.ts\",\"ezbr_sha256\":\"5e3efa10ecd998ff59af3755ee0fa3ffd7820671c3e44aa1033c54082d6c046e\"}"
+      }
+    ],
+    "isError": false
+  }
+}

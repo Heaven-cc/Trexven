@@ -1,3 +1,5 @@
+import 'package:trexven_design_system/trexven_design_system.dart';
+import 'package:trexven_operations/trexven_operations.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -63,16 +65,13 @@ class _BusinessSetupScreenState extends State<BusinessSetupScreen> {
   ];
 
   Future<void> _continue() async {
+    if (_loading) return;
     if (!_formKey.currentState!.validate()) {
       return;
     }
 
-    if (_businessType == null ||
-        _country == null ||
-        _currency == null) {
-      _showError(
-        'Please complete all business setup selections.',
-      );
+    if (_businessType == null || _country == null || _currency == null) {
+      _showError('Please complete all business setup selections.');
       return;
     }
 
@@ -80,9 +79,7 @@ class _BusinessSetupScreenState extends State<BusinessSetupScreen> {
     final user = supabase.auth.currentUser;
 
     if (user == null) {
-      _showError(
-        'Your session has expired. Please sign in again.',
-      );
+      _showError('Your session has expired. Please sign in again.');
       return;
     }
 
@@ -91,103 +88,25 @@ class _BusinessSetupScreenState extends State<BusinessSetupScreen> {
     });
 
     try {
-      final businessName =
-      _businessNameController.text.trim();
+      final businessName = _businessNameController.text.trim();
 
-      final address =
-      _addressController.text.trim();
+      final address = _addressController.text.trim();
 
-      final phone =
-      _phoneController.text.trim();
+      final phone = _phoneController.text.trim();
 
-      /*
-       * ---------------------------------------------------------
-       * 1. CHECK IF THIS USER ALREADY HAS A BUSINESS
-       * ---------------------------------------------------------
-       */
-
-      final existingMembership = await supabase
-          .from('business_members')
-          .select('business_id')
-          .eq('user_id', user.id)
-          .eq('role', 'owner')
-          .maybeSingle();
-
-      String businessId;
-
-      /*
-       * ---------------------------------------------------------
-       * 2. CREATE OR UPDATE BUSINESS
-       * ---------------------------------------------------------
-       */
-
-      if (existingMembership != null) {
-        businessId =
-        existingMembership['business_id'] as String;
-
-        await supabase
-            .from('businesses')
-            .update({
-          'business_name': businessName,
-          'business_type': _businessType,
-          'address':
-          address.isEmpty ? null : address,
-          'phone':
-          phone.isEmpty ? null : phone,
-          'country': _country,
-          'currency': _currency,
-          'updated_at':
-          DateTime.now().toIso8601String(),
-        })
-            .eq('id', businessId);
-      } else {
-        /*
-         * -------------------------------------------------------
-         * CREATE NEW BUSINESS
-         * -------------------------------------------------------
-         */
-
-        final business =
-        await supabase
-            .from('businesses')
-            .insert({
-          'business_name': businessName,
-          'business_type': _businessType,
-          'address':
-          address.isEmpty ? null : address,
-          'phone':
-          phone.isEmpty ? null : phone,
-          'country': _country,
-          'currency': _currency,
-          'owner_id': user.id,
-          'created_by': user.id,
-        })
-            .select('id')
-            .single();
-
-        businessId = business['id'] as String;
-
-        /*
-         * -------------------------------------------------------
-         * CREATE OWNER MEMBERSHIP
-         * -------------------------------------------------------
-         */
-
-        await supabase
-            .from('business_members')
-            .insert({
-          'business_id': businessId,
-          'user_id': user.id,
-          'role': 'owner',
-          'status': 'active',
-        });
-      }
-
-      /*
-       * ---------------------------------------------------------
-       * SUCCESS
-       * ---------------------------------------------------------
-       */
+      await supabase
+          .rpc(
+            'complete_trexven_onboarding',
+            params: {
+              'p_business_name': businessName,
+              'p_business_type': _businessType,
+              'p_country': _country,
+              'p_currency': _currency,
+              'p_address': address.isEmpty ? null : address,
+              'p_phone': phone.isEmpty ? null : phone,
+            },
+          )
+          .timeout(Duration(seconds: 20));
 
       if (!mounted) return;
 
@@ -213,7 +132,10 @@ class _BusinessSetupScreenState extends State<BusinessSetupScreen> {
       });
 
       _showError(
-        'Could not save your business: ${error.message}',
+        CustomerPresentation.error(
+          error,
+          fallback: 'We could not save your business. Please try again.',
+        ),
       );
     } catch (error) {
       if (!mounted) return;
@@ -222,18 +144,13 @@ class _BusinessSetupScreenState extends State<BusinessSetupScreen> {
         _loading = false;
       });
 
-      _showError(
-        'Something went wrong. Please try again.',
-      );
+      _showError('Something went wrong. Please try again.');
     }
   }
 
   void _showError(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        behavior: SnackBarBehavior.floating,
-      ),
+      SnackBar(content: Text(message), behavior: SnackBarBehavior.floating),
     );
   }
 
@@ -247,86 +164,83 @@ class _BusinessSetupScreenState extends State<BusinessSetupScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final muted = theme.trexvenColors.muted!;
+    final brandBlue = theme.colorScheme.primary;
+
     return Scaffold(
-      backgroundColor: const Color(0xFFF8FAFC),
+      backgroundColor: theme.scaffoldBackgroundColor,
 
       appBar: AppBar(
-        backgroundColor: const Color(0xFFF8FAFC),
+        backgroundColor: Colors.transparent,
         elevation: 0,
         surfaceTintColor: Colors.transparent,
         centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: theme.colorScheme.onSurface),
+          onPressed: () => Navigator.pop(context),
+        ),
 
-        title: const Text(
+        title: Text(
           'TREXVEN',
           style: TextStyle(
-            fontSize: 15,
+            fontSize: TrexvenFontSize.input,
             fontWeight: FontWeight.w900,
             letterSpacing: 1.2,
-            color: Color(0xFF0F172A),
+            color: theme.colorScheme.onSurface,
           ),
         ),
       ),
 
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(
-            24,
-            10,
-            24,
-            35,
-          ),
+          padding: EdgeInsets.fromLTRB(16, 10, 16, 35),
           child: Form(
             key: _formKey,
             child: Column(
-              crossAxisAlignment:
-              CrossAxisAlignment.stretch,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Text(
+                Text(
                   'Set up your business',
                   style: TextStyle(
-                    fontSize: 29,
+                    fontSize: TrexvenFontSize.display,
                     fontWeight: FontWeight.w800,
-                    color: Color(0xFF0F172A),
+                    color: theme.colorScheme.onSurface,
                   ),
                 ),
 
-                const SizedBox(height: 7),
+                SizedBox(height: 7),
 
-                const Text(
+                Text(
                   'Create your business workspace. You can add employees and additional users later.',
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: TrexvenFontSize.body,
                     height: 1.45,
-                    color: Color(0xFF64748B),
+                    color: muted,
                   ),
                 ),
 
-                const SizedBox(height: 28),
+                SizedBox(height: TrexvenSpacing.sectionGap),
 
                 _field(
-                  controller:
-                  _businessNameController,
+                  controller: _businessNameController,
                   hint: 'Business / Store Name',
-                  icon:
-                  Icons.storefront_outlined,
+                  icon: Icons.storefront_outlined,
+                  theme: theme,
                   validator: (value) {
-                    if (value == null ||
-                        value.trim().isEmpty) {
+                    if (value == null || value.trim().isEmpty) {
                       return 'Please enter your business name.';
                     }
-
                     return null;
                   },
                 ),
 
-                const SizedBox(height: 16),
-
                 _dropdown(
                   value: _businessType,
                   hint: 'Select business type',
-                  icon:
-                  Icons.business_outlined,
+                  icon: Icons.business_outlined,
                   items: _businessTypes,
+                  theme: theme,
                   onChanged: (value) {
                     setState(() {
                       _businessType = value;
@@ -334,36 +248,25 @@ class _BusinessSetupScreenState extends State<BusinessSetupScreen> {
                   },
                 ),
 
-                const SizedBox(height: 16),
-
                 _field(
-                  controller:
-                  _addressController,
+                  controller: _addressController,
                   hint: 'Business Address',
-                  icon:
-                  Icons.location_on_outlined,
+                  icon: Icons.location_on_outlined,
+                  theme: theme,
                 ),
-
-                const SizedBox(height: 16),
-
                 _field(
-                  controller:
-                  _phoneController,
+                  controller: _phoneController,
                   hint: 'Business Phone Number',
-                  icon:
-                  Icons.phone_outlined,
-                  keyboardType:
-                  TextInputType.phone,
+                  icon: Icons.phone_outlined,
+                  theme: theme,
+                  keyboardType: TextInputType.phone,
                 ),
-
-                const SizedBox(height: 16),
-
                 _dropdown(
                   value: _country,
                   hint: 'Select country',
-                  icon:
-                  Icons.public_outlined,
+                  icon: Icons.public_outlined,
                   items: _countries,
+                  theme: theme,
                   onChanged: (value) {
                     setState(() {
                       _country = value;
@@ -371,14 +274,12 @@ class _BusinessSetupScreenState extends State<BusinessSetupScreen> {
                   },
                 ),
 
-                const SizedBox(height: 16),
-
                 _dropdown(
                   value: _currency,
                   hint: 'Select currency',
-                  icon:
-                  Icons.payments_outlined,
+                  icon: Icons.payments_outlined,
                   items: _currencies,
+                  theme: theme,
                   onChanged: (value) {
                     setState(() {
                       _currency = value;
@@ -386,38 +287,28 @@ class _BusinessSetupScreenState extends State<BusinessSetupScreen> {
                   },
                 ),
 
-                const SizedBox(height: 28),
+                SizedBox(height: TrexvenSpacing.sectionGap),
 
                 Container(
-                  padding:
-                  const EdgeInsets.all(16),
+                  padding: TrexvenSpacing.cardPadding,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFEFF6FF),
-                    borderRadius:
-                    BorderRadius.circular(16),
-                    border: Border.all(
-                      color:
-                      const Color(0xFFDBEAFE),
-                    ),
+                    color: brandBlue.withValues(alpha: 0.08),
+                    borderRadius: BorderRadius.circular(TrexvenRadii.card),
                   ),
-                  child: const Row(
-                    crossAxisAlignment:
-                    CrossAxisAlignment.start,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Icon(
-                        Icons.info_outline_rounded,
-                        color:
-                        Color(0xFF2563EB),
-                      ),
+                      Icon(Icons.info_outline_rounded, color: brandBlue),
                       SizedBox(width: 12),
                       Expanded(
                         child: Text(
                           'You will become the owner of this business workspace. Employees, managers and other team members can be added later.',
                           style: TextStyle(
-                            fontSize: 12,
+                            fontSize: TrexvenFontSize.caption,
                             height: 1.5,
-                            color:
-                            Color(0xFF334155),
+                            color: theme.colorScheme.onSurface.withValues(
+                              alpha: 0.8,
+                            ),
                           ),
                         ),
                       ),
@@ -425,69 +316,46 @@ class _BusinessSetupScreenState extends State<BusinessSetupScreen> {
                   ),
                 ),
 
-                const SizedBox(height: 25),
+                SizedBox(height: 25),
 
                 SizedBox(
-                  height: 54,
+                  width: double.infinity,
                   child: ElevatedButton(
-                    onPressed:
-                    _loading
-                        ? null
-                        : _continue,
-                    style:
-                    ElevatedButton.styleFrom(
-                      backgroundColor:
-                      const Color(
-                          0xFF2563EB),
-                      foregroundColor:
-                      Colors.white,
-                      elevation: 0,
-                      shape:
-                      RoundedRectangleBorder(
-                        borderRadius:
-                        BorderRadius.circular(
-                          15,
-                        ),
-                      ),
+                    onPressed: _loading ? null : _continue,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: brandBlue,
+                      foregroundColor: Theme.of(context).colorScheme.onPrimary,
                     ),
                     child: _loading
-                        ? const Row(
-                      mainAxisAlignment:
-                      MainAxisAlignment
-                          .center,
-                      children: [
-                        SizedBox(
-                          width: 19,
-                          height: 19,
-                          child:
-                          CircularProgressIndicator(
-                            strokeWidth: 2,
-                            color:
-                            Colors.white,
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                width: 19,
+                                height: 19,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onPrimary,
+                                ),
+                              ),
+                              SizedBox(width: 12),
+                              Flexible(
+                                child: Text(
+                                  'Creating workspace...',
+                                  style: TextStyle(fontWeight: FontWeight.w700),
+                                ),
+                              ),
+                            ],
+                          )
+                        : Text(
+                            'Create Business',
+                            style: TextStyle(
+                              fontSize: TrexvenFontSize.input,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        Text(
-                          'Creating workspace...',
-                          style:
-                          TextStyle(
-                            fontWeight:
-                            FontWeight
-                                .w700,
-                          ),
-                        ),
-                      ],
-                    )
-                        : const Text(
-                      'Create Business',
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight:
-                        FontWeight.w700,
-                      ),
-                    ),
                   ),
                 ),
               ],
@@ -502,66 +370,20 @@ class _BusinessSetupScreenState extends State<BusinessSetupScreen> {
     required TextEditingController controller,
     required String hint,
     required IconData icon,
+    required ThemeData theme,
     TextInputType? keyboardType,
     String? Function(String?)? validator,
   }) {
-    return TextFormField(
+    final muted = theme.trexvenColors.muted!;
+
+    return TrexvenTextFormField(
+      enabled: !_loading,
       controller: controller,
       keyboardType: keyboardType,
       validator: validator,
-
-      decoration: InputDecoration(
+      decoration: TrexvenInputDecoration(
         hintText: hint,
-
-        prefixIcon: Icon(
-          icon,
-          color: const Color(0xFF64748B),
-        ),
-
-        filled: true,
-        fillColor: Colors.white,
-
-        border: OutlineInputBorder(
-          borderRadius:
-          BorderRadius.circular(14),
-          borderSide: const BorderSide(
-            color: Color(0xFFE2E8F0),
-          ),
-        ),
-
-        enabledBorder:
-        OutlineInputBorder(
-          borderRadius:
-          BorderRadius.circular(14),
-          borderSide: const BorderSide(
-            color: Color(0xFFE2E8F0),
-          ),
-        ),
-
-        focusedBorder:
-        OutlineInputBorder(
-          borderRadius:
-          BorderRadius.circular(14),
-          borderSide: const BorderSide(
-            color: Color(0xFF2563EB),
-            width: 1.5,
-          ),
-        ),
-
-        errorBorder:
-        OutlineInputBorder(
-          borderRadius:
-          BorderRadius.circular(14),
-          borderSide: const BorderSide(
-            color: Colors.redAccent,
-          ),
-        ),
-
-        contentPadding:
-        const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 17,
-        ),
+        prefixIcon: Icon(icon, color: muted),
       ),
     );
   }
@@ -571,62 +393,23 @@ class _BusinessSetupScreenState extends State<BusinessSetupScreen> {
     required String hint,
     required IconData icon,
     required List<String> items,
+    required ThemeData theme,
     required void Function(String?) onChanged,
   }) {
-    return DropdownButtonFormField<String>(
+    final muted = theme.trexvenColors.muted!;
+
+    return TrexvenDropdown<String>(
+      label: hint,
       initialValue: value,
-
-      decoration: InputDecoration(
-        prefixIcon: Icon(
-          icon,
-          color: const Color(0xFF64748B),
-        ),
-
-        filled: true,
-        fillColor: Colors.white,
-
-        border: OutlineInputBorder(
-          borderRadius:
-          BorderRadius.circular(14),
-          borderSide: const BorderSide(
-            color: Color(0xFFE2E8F0),
-          ),
-        ),
-
-        enabledBorder:
-        OutlineInputBorder(
-          borderRadius:
-          BorderRadius.circular(14),
-          borderSide: const BorderSide(
-            color: Color(0xFFE2E8F0),
-          ),
-        ),
-
-        focusedBorder:
-        OutlineInputBorder(
-          borderRadius:
-          BorderRadius.circular(14),
-          borderSide: const BorderSide(
-            color: Color(0xFF2563EB),
-            width: 1.5,
-          ),
-        ),
-      ),
-
-      hint: Text(hint),
-
+      decoration: TrexvenInputDecoration(prefixIcon: Icon(icon, color: muted)),
+      hint: Text(hint, style: TextStyle(color: muted)),
       items: items.map((item) {
         return DropdownMenuItem<String>(
           value: item,
-          child: Text(
-            item,
-            overflow:
-            TextOverflow.ellipsis,
-          ),
+          child: Text(item, overflow: TextOverflow.ellipsis),
         );
       }).toList(),
-
-      onChanged: onChanged,
+      onChanged: _loading ? null : onChanged,
     );
   }
 }

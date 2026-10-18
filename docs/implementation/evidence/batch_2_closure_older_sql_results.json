@@ -1,0 +1,14 @@
+[
+  {
+    "suite": "readiness_access_tests.sql",
+    "exit": 0
+  },
+  {
+    "suite": "sale_submission_tests.sql",
+    "exit": 0
+  },
+  {
+    "suite": "native_camera_limit_tests.sql",
+    "exit": 0
+  }
+]

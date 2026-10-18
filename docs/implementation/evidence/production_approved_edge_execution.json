@@ -1,0 +1,58 @@
+{
+  "project": "ufehcfrlygqvminfjumf",
+  "status": "DEPLOYED",
+  "functions": [
+    {
+      "name": "employee-login",
+      "version": 6,
+      "verify_jwt": false,
+      "status": "ACTIVE",
+      "ezbr_sha256": "3db48262e4d41ba90ccb200e0eef9751472a3cb83e26268058ff41e87930dbd5",
+      "retrieved_source_files": [
+        "employee-login/index.ts",
+        "_shared/login-permissions.ts",
+        "employee-login/deno.json"
+      ],
+      "frozen_source_match": true
+    },
+    {
+      "name": "create-employee",
+      "version": 7,
+      "verify_jwt": true,
+      "status": "ACTIVE",
+      "ezbr_sha256": "a3c7d1075fac093e24d7b4824a1c137ce687ca7373dee6c034e99d9798365ac3",
+      "retrieved_source_files": [
+        "create-employee/index.ts",
+        "_shared/employee-access.ts"
+      ],
+      "frozen_source_match": true
+    },
+    {
+      "name": "manage-employee",
+      "version": 4,
+      "verify_jwt": true,
+      "status": "ACTIVE",
+      "ezbr_sha256": "21d06b9d1d01b73a7d81db175af0c71a55ec6113d3d7ca8599c7a5555fc8b97a",
+      "retrieved_source_files": [
+        "manage-employee/index.ts",
+        "_shared/employee-access.ts"
+      ],
+      "frozen_source_match": true
+    },
+    {
+      "name": "angel",
+      "version": 12,
+      "verify_jwt": true,
+      "status": "ACTIVE",
+      "ezbr_sha256": "e45221a396b4fc1588d038221d1682183caaa3801d9c09a22d6f391cb4fc50f2",
+      "retrieved_source_files": [
+        "angel/index.ts",
+        "angel/deno.json"
+      ],
+      "frozen_source_match": true
+    }
+  ],
+  "all_retrieved_sources_match": true,
+  "unrelated_functions_unchanged": true,
+  "production_auth_or_transaction_fixtures_created": false
+}

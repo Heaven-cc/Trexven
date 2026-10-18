@@ -82,8 +82,8 @@ class SupabaseVisionClient:
     def upload_event_snapshot(self, camera_id: str, image_bytes: bytes) -> str | None:
         """Upload a JPEG snapshot for a high/critical event and return a signed URL.
 
-        Used so the camera-ai edge function can hand Claude an actual image of
-        the moment an event fired, instead of only structured detection JSON.
+        Preserves reviewable visual evidence from the moment an event fired.
+        Snapshot capture does not invoke a reasoning/model provider.
         Best-effort: returns None on any failure rather than raising, so a
         storage hiccup never blocks event persistence.
         """

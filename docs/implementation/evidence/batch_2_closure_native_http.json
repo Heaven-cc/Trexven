@@ -1,0 +1,153 @@
+[
+  {
+    "name": "owner REST purchase cost unavailable",
+    "pass": true
+  },
+  {
+    "name": "manager REST purchase cost unavailable",
+    "pass": true
+  },
+  {
+    "name": "sales REST purchase cost unavailable",
+    "pass": true
+  },
+  {
+    "name": "inventory REST purchase cost unavailable",
+    "pass": true
+  },
+  {
+    "name": "wildcard product read fails closed",
+    "pass": true
+  },
+  {
+    "name": "safe product projection works",
+    "pass": true
+  },
+  {
+    "name": "owner deferred purchase-cost insert denied",
+    "pass": true
+  },
+  {
+    "name": "inventory deferred purchase-cost insert denied",
+    "pass": true
+  },
+  {
+    "name": "purchase-cost PATCH denied",
+    "pass": true
+  },
+  {
+    "name": "actual RPC/REST controlled clock minute before local midnight",
+    "pass": false,
+    "error": "ERROR:  invalid input syntax for type uuid: \"undefined\"\r\nLINE 1: ... at time zone 'America/New_York' end where id in ('undefined...\r\n                                                             ^\r\n"
+  },
+  {
+    "name": "actual RPC/REST controlled clock exact local midnight",
+    "pass": false,
+    "error": "ERROR:  invalid input syntax for type uuid: \"undefined\"\r\nLINE 1: ... at time zone 'America/New_York' end where id in ('undefined...\r\n                                                             ^\r\n"
+  },
+  {
+    "name": "actual RPC/REST controlled clock minute after local midnight",
+    "pass": false,
+    "error": "ERROR:  invalid input syntax for type uuid: \"undefined\"\r\nLINE 1: ... at time zone 'America/New_York' end where id in ('undefined...\r\n                                                             ^\r\n"
+  },
+  {
+    "name": "actual RPC/REST controlled clock spring before jump",
+    "pass": false,
+    "error": "ERROR:  invalid input syntax for type uuid: \"undefined\"\r\nLINE 1: ... at time zone 'America/New_York' end where id in ('undefined...\r\n                                                             ^\r\n"
+  },
+  {
+    "name": "actual RPC/REST controlled clock spring after jump",
+    "pass": false,
+    "error": "ERROR:  invalid input syntax for type uuid: \"undefined\"\r\nLINE 1: ... at time zone 'America/New_York' end where id in ('undefined...\r\n                                                             ^\r\n"
+  },
+  {
+    "name": "actual RPC/REST controlled clock fall first 01:30",
+    "pass": false,
+    "error": "ERROR:  invalid input syntax for type uuid: \"undefined\"\r\nLINE 1: ... at time zone 'America/New_York' end where id in ('undefined...\r\n                                                             ^\r\n"
+  },
+  {
+    "name": "actual RPC/REST controlled clock fall second 01:30",
+    "pass": false,
+    "error": "ERROR:  invalid input syntax for type uuid: \"undefined\"\r\nLINE 1: ... at time zone 'America/New_York' end where id in ('undefined...\r\n                                                             ^\r\n"
+  },
+  {
+    "name": "forged business day RPC denied",
+    "pass": true
+  },
+  {
+    "name": "missing timezone fails closed",
+    "pass": true
+  },
+  {
+    "name": "owner REST purchase cost unavailable",
+    "pass": true
+  },
+  {
+    "name": "manager REST purchase cost unavailable",
+    "pass": true
+  },
+  {
+    "name": "sales REST purchase cost unavailable",
+    "pass": true
+  },
+  {
+    "name": "inventory REST purchase cost unavailable",
+    "pass": true
+  },
+  {
+    "name": "wildcard product read fails closed",
+    "pass": true
+  },
+  {
+    "name": "safe product projection works",
+    "pass": true
+  },
+  {
+    "name": "owner deferred purchase-cost insert denied",
+    "pass": true
+  },
+  {
+    "name": "inventory deferred purchase-cost insert denied",
+    "pass": true
+  },
+  {
+    "name": "purchase-cost PATCH denied",
+    "pass": true
+  },
+  {
+    "name": "actual RPC/REST controlled clock minute before local midnight",
+    "pass": true
+  },
+  {
+    "name": "actual RPC/REST controlled clock exact local midnight",
+    "pass": true
+  },
+  {
+    "name": "actual RPC/REST controlled clock minute after local midnight",
+    "pass": true
+  },
+  {
+    "name": "actual RPC/REST controlled clock spring before jump",
+    "pass": true
+  },
+  {
+    "name": "actual RPC/REST controlled clock spring after jump",
+    "pass": true
+  },
+  {
+    "name": "actual RPC/REST controlled clock fall first 01:30",
+    "pass": true
+  },
+  {
+    "name": "actual RPC/REST controlled clock fall second 01:30",
+    "pass": true
+  },
+  {
+    "name": "forged business day RPC denied",
+    "pass": true
+  },
+  {
+    "name": "missing timezone fails closed",
+    "pass": true
+  }
+]

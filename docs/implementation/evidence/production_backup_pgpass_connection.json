@@ -1,0 +1,29 @@
+{
+  "project": "ufehcfrlygqvminfjumf",
+  "credential_source": "C:\\Users\\USER\\AppData\\Roaming\\TREXVEN\\secrets\\pgpass.conf",
+  "contents_inspected_or_printed": false,
+  "pgpassfile_used": true,
+  "tls_mode": "verify-full",
+  "connection_exit": 0,
+  "production_writes": 0,
+  "verified": true,
+  "client_tls_verified": true,
+  "pooler_backend_tls": false,
+  "identity": {
+    "database": "postgres",
+    "user": "postgres",
+    "version": "17.6",
+    "read_only": "on",
+    "history": [
+      "20260819180000",
+      "20260823100000",
+      "20261002014604",
+      "20261002015419",
+      "20261002123039",
+      "20261002124738",
+      "20261003224001",
+      "20261004025120",
+      "20261005004045"
+    ]
+  }
+}

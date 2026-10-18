@@ -1,3 +1,5 @@
+import 'package:trexven_design_system/trexven_design_system.dart';
+import '../../services/auth_service.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/trexven_logo.dart';
 
@@ -15,14 +17,28 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   bool _success = false;
 
   Future<void> _sendResetLink() async {
-    if (!_formKey.currentState!.validate()) return;
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
     setState(() => _loading = true);
-    await Future.delayed(const Duration(seconds: 2));
-    if (!mounted) return;
-    setState(() {
-      _loading = false;
-      _success = true;
-    });
+    try {
+      await AuthService().resetPassword(_emailController.text);
+      if (mounted) {
+        setState(() => _success = true);
+      }
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Unable to send a reset link. Please try again.'),
+          ),
+        );
+      }
+    } finally {
+      if (mounted) {
+        setState(() => _loading = false);
+      }
+    }
   }
 
   @override
@@ -33,64 +49,92 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Color(0xFF0F172A)),
+          icon: Icon(Icons.arrow_back, color: theme.colorScheme.onSurface),
           onPressed: () => Navigator.pop(context),
         ),
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: _success ? _successView() : _formView(),
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: _success ? _successView(theme) : _formView(theme),
         ),
       ),
     );
   }
 
-  Widget _formView() {
+  Widget _formView(ThemeData theme) {
+    final muted = theme.trexvenColors.muted!;
+
     return SingleChildScrollView(
       child: Form(
         key: _formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 25),
-            const Center(child: TrexvenLogo(size: 62)),
-            const SizedBox(height: 28),
-            const Text('Reset your password', style: TextStyle(fontSize: 28, fontWeight: FontWeight.w800, color: Color(0xFF0F172A))),
-            const SizedBox(height: 8),
-            const Text("Enter the email associated with your account and we'll send you a secure reset link.", style: TextStyle(color: Color(0xFF64748B), fontSize: 14, height: 1.5)),
-            const SizedBox(height: 30),
-            TextFormField(
+            SizedBox(height: 25),
+            Center(child: TrexvenLogo(size: 62)),
+            SizedBox(height: TrexvenSpacing.sectionGap),
+            Text(
+              'Reset your password',
+              style: TextStyle(
+                fontSize: TrexvenFontSize.display,
+                fontWeight: FontWeight.w800,
+                color: theme.colorScheme.onSurface,
+              ),
+            ),
+            SizedBox(height: 8),
+            Text(
+              "Enter the email associated with your account and we'll send you a secure reset link.",
+              style: TextStyle(
+                color: muted,
+                fontSize: TrexvenFontSize.body,
+                height: 1.5,
+              ),
+            ),
+            SizedBox(height: TrexvenSpacing.sectionGap),
+            TrexvenTextFormField(
               controller: _emailController,
               keyboardType: TextInputType.emailAddress,
-              decoration: const InputDecoration(
+              decoration: TrexvenInputDecoration(
                 hintText: 'Email Address',
-                prefixIcon: Icon(Icons.mail_outline, color: Color(0xFF64748B)),
+                prefixIcon: Icon(Icons.mail_outline, color: muted),
               ),
               validator: (value) {
-                if (value == null || value.trim().isEmpty) return 'Please enter your email address.';
-                if (!RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$').hasMatch(value.trim())) return 'Please enter a valid email address.';
+                if (value == null || value.trim().isEmpty)
+                  return 'Please enter your email address.';
+                if (!RegExp(
+                  r'^[^@\s]+@[^@\s]+\.[^@\s]+$',
+                ).hasMatch(value.trim()))
+                  return 'Please enter a valid email address.';
                 return null;
               },
             ),
-            const SizedBox(height: 22),
             ElevatedButton(
               onPressed: _loading ? null : _sendResetLink,
               child: _loading
-                  ? const Row(
+                  ? Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(width: 19, height: 19, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white)),
+                        SizedBox(
+                          width: 19,
+                          height: 19,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),
+                        ),
                         SizedBox(width: 12),
                         Text('Sending reset link...'),
                       ],
                     )
-                  : const Text('Send Reset Link'),
+                  : Text('Send Reset Link'),
             ),
           ],
         ),
@@ -98,21 +142,51 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     );
   }
 
-  Widget _successView() {
+  Widget _successView(ThemeData theme) {
+    final successColor = theme.trexvenColors.success!;
+    final muted = theme.trexvenColors.muted!;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          width: 80, height: 80,
-          decoration: const BoxDecoration(color: Color(0xFFDCFCE7), shape: BoxShape.circle),
-          child: const Icon(Icons.mark_email_read_outlined, color: Color(0xFF16A34A), size: 42),
+          width: 80,
+          height: 80,
+          decoration: BoxDecoration(
+            color: successColor.withValues(alpha: 0.1),
+            shape: BoxShape.circle,
+          ),
+          child: Icon(
+            Icons.mark_email_read_outlined,
+            color: successColor,
+            size: 42,
+          ),
         ),
-        const SizedBox(height: 25),
-        const Text('Check your email', textAlign: TextAlign.center, style: TextStyle(fontSize: 28, fontWeight: FontWeight.w800, color: Color(0xFF0F172A))),
-        const SizedBox(height: 10),
-        const Text('Password reset instructions have been sent to your email address.', textAlign: TextAlign.center, style: TextStyle(color: Color(0xFF64748B), fontSize: 14, height: 1.5)),
-        const SizedBox(height: 30),
-        ElevatedButton(onPressed: () => Navigator.pop(context), child: const Text('Back to Sign In')),
+        SizedBox(height: 25),
+        Text(
+          'Check your email',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: TrexvenFontSize.display,
+            fontWeight: FontWeight.w800,
+            color: theme.colorScheme.onSurface,
+          ),
+        ),
+        SizedBox(height: 10),
+        Text(
+          'Password reset instructions have been sent to your email address.',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: muted,
+            fontSize: TrexvenFontSize.body,
+            height: 1.5,
+          ),
+        ),
+        SizedBox(height: TrexvenSpacing.sectionGap),
+        ElevatedButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text('Back to Sign In'),
+        ),
       ],
     );
   }

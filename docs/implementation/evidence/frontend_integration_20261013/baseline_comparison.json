@@ -1,0 +1,368 @@
+{
+  "baseline_failures": [
+    [
+      "design_system_contract_test.dart",
+      "Owner login 320.0/1.0/dark fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 320.0/1.0/light fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 320.0/1.3/dark fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 320.0/1.3/light fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 320.0/2.0/dark fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 320.0/2.0/light fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 340.0/1.0/dark fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 340.0/1.0/light fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 340.0/1.3/dark fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 340.0/1.3/light fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 340.0/2.0/dark fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 340.0/2.0/light fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 390.0/1.0/dark fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 390.0/1.0/light fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 390.0/1.3/dark fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 390.0/1.3/light fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 390.0/2.0/dark fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 390.0/2.0/light fits with keyboard"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 320.0/1.0/false"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 320.0/1.0/true"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 320.0/1.3/false"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 320.0/1.3/true"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 320.0/2.0/false"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 320.0/2.0/true"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 340.0/1.0/false"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 340.0/1.0/true"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 340.0/1.3/false"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 340.0/1.3/true"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 340.0/2.0/false"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 340.0/2.0/true"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 390.0/1.0/false"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 390.0/1.0/true"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 390.0/1.3/false"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 390.0/1.3/true"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 390.0/2.0/false"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 390.0/2.0/true"
+    ],
+    [
+      "design_system_visual_test.dart",
+      "Owner login visual dark"
+    ],
+    [
+      "design_system_visual_test.dart",
+      "Owner login visual light"
+    ],
+    [
+      "frontend_refinement_test.dart",
+      "Markdown, plan and Profile fit 320.0 in dark mode with large text"
+    ],
+    [
+      "frontend_refinement_test.dart",
+      "Markdown, plan and Profile fit 320.0 in light mode with large text"
+    ],
+    [
+      "frontend_refinement_test.dart",
+      "Markdown, plan and Profile fit 412.0 in dark mode with large text"
+    ],
+    [
+      "frontend_refinement_test.dart",
+      "Markdown, plan and Profile fit 412.0 in light mode with large text"
+    ],
+    [
+      "visual_reference_matrix_test.dart",
+      "Reference pages 320.0/2.0/false preserve layout and filters"
+    ],
+    [
+      "visual_reference_matrix_test.dart",
+      "Reference pages 320.0/2.0/true preserve layout and filters"
+    ],
+    [
+      "widget_test.dart",
+      "Signed-out app boots and navigates to welcome"
+    ]
+  ],
+  "final_failures": [
+    [
+      "design_system_contract_test.dart",
+      "Owner login 320.0/1.0/dark fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 320.0/1.0/light fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 320.0/1.3/dark fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 320.0/1.3/light fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 320.0/2.0/dark fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 320.0/2.0/light fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 340.0/1.0/dark fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 340.0/1.0/light fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 340.0/1.3/dark fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 340.0/1.3/light fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 340.0/2.0/dark fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 340.0/2.0/light fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 390.0/1.0/dark fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 390.0/1.0/light fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 390.0/1.3/dark fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 390.0/1.3/light fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 390.0/2.0/dark fits with keyboard"
+    ],
+    [
+      "design_system_contract_test.dart",
+      "Owner login 390.0/2.0/light fits with keyboard"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 320.0/1.0/false"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 320.0/1.0/true"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 320.0/1.3/false"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 320.0/1.3/true"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 320.0/2.0/false"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 320.0/2.0/true"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 340.0/1.0/false"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 340.0/1.0/true"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 340.0/1.3/false"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 340.0/1.3/true"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 340.0/2.0/false"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 340.0/2.0/true"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 390.0/1.0/false"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 390.0/1.0/true"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 390.0/1.3/false"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 390.0/1.3/true"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 390.0/2.0/false"
+    ],
+    [
+      "design_system_screen_matrix_test.dart",
+      "Owner priority forms 390.0/2.0/true"
+    ],
+    [
+      "design_system_visual_test.dart",
+      "Owner login visual dark"
+    ],
+    [
+      "design_system_visual_test.dart",
+      "Owner login visual light"
+    ],
+    [
+      "frontend_refinement_test.dart",
+      "Markdown, plan and Profile fit 320.0 in dark mode with large text"
+    ],
+    [
+      "frontend_refinement_test.dart",
+      "Markdown, plan and Profile fit 320.0 in light mode with large text"
+    ],
+    [
+      "frontend_refinement_test.dart",
+      "Markdown, plan and Profile fit 412.0 in dark mode with large text"
+    ],
+    [
+      "frontend_refinement_test.dart",
+      "Markdown, plan and Profile fit 412.0 in light mode with large text"
+    ],
+    [
+      "visual_reference_matrix_test.dart",
+      "Reference pages 320.0/2.0/false preserve layout and filters"
+    ],
+    [
+      "visual_reference_matrix_test.dart",
+      "Reference pages 320.0/2.0/true preserve layout and filters"
+    ],
+    [
+      "widget_test.dart",
+      "Signed-out app boots and navigates to welcome"
+    ]
+  ],
+  "new_failures": [],
+  "resolved_failures": []
+}

@@ -1,0 +1,63 @@
+{
+  "owner": {
+    "tests_passed": 75,
+    "tests_skipped": 0,
+    "test_exit": 0,
+    "analysis_exit": 1,
+    "analysis_findings": {
+      "error": 0,
+      "warning": 0,
+      "info": 208
+    }
+  },
+  "pos": {
+    "tests_passed": 45,
+    "tests_skipped": 1,
+    "test_exit": 0,
+    "analysis_exit": 1,
+    "analysis_findings": {
+      "error": 0,
+      "warning": 0,
+      "info": 4
+    }
+  },
+  "sql": {
+    "assertions": 105,
+    "suites": [
+      {
+        "suite": "batch_3_catalog_inventory_tests",
+        "exit": 0,
+        "assertion_calls": 42
+      },
+      {
+        "suite": "batch_2_authorization_tests",
+        "exit": 0,
+        "assertion_calls": 21
+      },
+      {
+        "suite": "batch_2_branch_isolation_tests",
+        "exit": 0,
+        "assertion_calls": 17
+      },
+      {
+        "suite": "batch_2_price_security_tests",
+        "exit": 0,
+        "assertion_calls": 14
+      },
+      {
+        "suite": "batch_2_checkout_compatibility_tests",
+        "exit": 0,
+        "assertion_calls": 11
+      }
+    ]
+  },
+  "http": {
+    "checks": 27,
+    "passed": true
+  },
+  "local_stack_cleanup": {
+    "all_four_owned_stacks_stopped": true,
+    "synthetic_local_data_retained_by_supported_stop": true,
+    "hosted_project_writes": 0
+  }
+}

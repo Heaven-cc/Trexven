@@ -1,0 +1,2268 @@
+[
+  {
+    "app": "owner",
+    "path": "lib/core/app_sizing.dart",
+    "sha256": "4a41544c3fca7b7b4982c296e21f4517ccd67ec9888fba32943cbae76795aa40",
+    "lines": 16,
+    "screen": false,
+    "classes": [
+      "AppSizing"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/core/app_theme.dart",
+    "sha256": "351918f8ad659a5aacb3b1b107155c00b709ed412a8cb0ded0065110033087b1",
+    "lines": 211,
+    "screen": false,
+    "classes": [
+      "TrexvenColors",
+      "AppTheme"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/core/theme_provider.dart",
+    "sha256": "2729b9eae4a6c380ee8696bf943563cd2a532225e91cb90b4040aa6bb8d553d5",
+    "lines": 31,
+    "screen": false,
+    "classes": [
+      "ThemeProvider"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/core/user_provider.dart",
+    "sha256": "8b8737beb71ebd3368ee01c7c707730fdc71a2e7a2592bd69bedb49e1615e49b",
+    "lines": 96,
+    "screen": false,
+    "classes": [
+      "UserProvider"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/main.dart",
+    "sha256": "fbf429a0df3abfa45442a297af08b48a5498af7ae3258933d70fc239c6328001",
+    "lines": 146,
+    "screen": false,
+    "classes": [
+      "TrexvenApp",
+      "_TrexvenAppState"
+    ],
+    "routes": [
+      "ResetPasswordScreen",
+      "SplashScreen",
+      "WelcomeScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/models/business.dart",
+    "sha256": "424c8e5ac7116ecd4b0d646d14c98e8358cec7dcb9a7cbed9fecda43a7041981",
+    "lines": 63,
+    "screen": false,
+    "classes": [
+      "Business"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/models/camera.dart",
+    "sha256": "6709d0fcbeb1b895c523b42d34d64be5b3486272dc769369ef3737957de36116",
+    "lines": 125,
+    "screen": false,
+    "classes": [
+      "Camera"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/models/camera_event.dart",
+    "sha256": "be5d0d55886c74bbb13035074030c5a90ed6083757d8a6db9669bef18df5cea1",
+    "lines": 190,
+    "screen": false,
+    "classes": [
+      "CameraEvent"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/models/employee.dart",
+    "sha256": "97e14f2381d569a37ad04676efc59cec66b27812c7e9cd922dc454a2cdcb44f3",
+    "lines": 77,
+    "screen": false,
+    "classes": [
+      "Employee"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/models/product.dart",
+    "sha256": "b7e041c080c7fa5681e5e5885cae4a82ec72d51605b2be1e852e1a578e35417c",
+    "lines": 100,
+    "screen": false,
+    "classes": [
+      "Product"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/models/sale.dart",
+    "sha256": "075079261f76854e6c6e01c6d1840492bb62c8ac62c7549e1026864b0c353106",
+    "lines": 62,
+    "screen": false,
+    "classes": [
+      "Sale"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/models/subscription_plan.dart",
+    "sha256": "2632e640e151bdecdafef2d84ae700124e18323e130d127d28c8a64baa680fb9",
+    "lines": 44,
+    "screen": false,
+    "classes": [
+      "SubscriptionPlan"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/auth/account_gate.dart",
+    "sha256": "cb571187a79bc3ccb28788fa3db91262c432b755e8750fb9e6a68445d43d3b96",
+    "lines": 110,
+    "screen": false,
+    "classes": [
+      "AccountGate",
+      "_AccountGateState"
+    ],
+    "routes": [
+      "BusinessSetupScreen",
+      "MainScreen",
+      "WelcomeScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": [
+      83,
+      88
+    ]
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/auth/forgot_password_screen.dart",
+    "sha256": "49f84b17cb8876b97263ce438a7fd15a95eb260a26a2351985997f1a40166cad",
+    "lines": 186,
+    "screen": true,
+    "classes": [
+      "ForgotPasswordScreen",
+      "_ForgotPasswordScreenState"
+    ],
+    "routes": [
+      "ForgotPasswordScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/auth/login_screen.dart",
+    "sha256": "e7560f1a26e2afb167fdc35d40c7106d03d31ae22ac2d66182f75c9f01188648",
+    "lines": 365,
+    "screen": true,
+    "classes": [
+      "LoginScreen",
+      "_LoginScreenState"
+    ],
+    "routes": [
+      "ForgotPasswordScreen",
+      "LoginScreen",
+      "RegisterScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/auth/register_screen.dart",
+    "sha256": "6802572c5d438d99d3c723cc0d491e9f770406f5714fb91f075555956ff67a37",
+    "lines": 492,
+    "screen": true,
+    "classes": [
+      "RegisterScreen",
+      "_RegisterScreenState"
+    ],
+    "routes": [
+      "LoginScreen",
+      "PrivacyPolicyScreen",
+      "RegisterScreen",
+      "TermsOfServiceScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/auth/reset_password_screen.dart",
+    "sha256": "4db49b3e920ea63b5a907b4c753fae72c69e6c0dc0c3e877eb5387ad3ffda407",
+    "lines": 40,
+    "screen": true,
+    "classes": [
+      "ResetPasswordScreen",
+      "_ResetPasswordScreenState"
+    ],
+    "routes": [
+      "ResetPasswordScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/dashboard/angel_screen.dart",
+    "sha256": "504fd246aa9e8785d8f6bd0d40313207cbce868b8241b9a41c77eae75df4027c",
+    "lines": 558,
+    "screen": true,
+    "classes": [
+      "AngelScreen",
+      "_AngelScreenState",
+      "_AngelMessage"
+    ],
+    "routes": [
+      "AngelScreen"
+    ],
+    "border_count": 4,
+    "raw_exception_sites": [
+      182
+    ]
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/dashboard/dashboard_screen.dart",
+    "sha256": "6e262e67444aabf6ba3e1e6761cf9940858240f1e4dde29ce792e7713a8f5ce0",
+    "lines": 1616,
+    "screen": true,
+    "classes": [
+      "DashboardScreen",
+      "_DashboardScreenState",
+      "DashedCirclePainter"
+    ],
+    "routes": [
+      "AddProductScreen",
+      "DashboardScreen",
+      "EmploymentScreen",
+      "RecordSaleScreen"
+    ],
+    "border_count": 3,
+    "raw_exception_sites": [
+      114
+    ]
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/finance/finance_tab.dart",
+    "sha256": "0f6a813be43c9b43e745f2025238b3f26a9f1928a779973e8b5dbd9c72ab7f17",
+    "lines": 230,
+    "screen": true,
+    "classes": [
+      "FinanceTab",
+      "_FinanceTabState"
+    ],
+    "routes": [
+      "FinanceTab",
+      "OperationalFinanceScreen",
+      "RecordSaleScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/finance/operational_finance_screen.dart",
+    "sha256": "687f96502888e78fb25a21bb43413a7771a6faa3306dc7aefde0250dc848b3df",
+    "lines": 73,
+    "screen": true,
+    "classes": [
+      "OperationalFinanceScreen",
+      "_OperationalFinanceScreenState"
+    ],
+    "routes": [
+      "CashShiftScreen",
+      "FinancialOperationsScreen",
+      "InventoryOperationsScreen",
+      "OperationalFinanceScreen",
+      "OperationalPermissionsScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/finance/record_sale_screen.dart",
+    "sha256": "eab1333aaf121d9b68dcac28b0cc826b84f7cc2b03c7691c4e9b2d910d4df1c1",
+    "lines": 1119,
+    "screen": true,
+    "classes": [
+      "RecordSaleScreen",
+      "_RecordSaleScreenState",
+      "_SaleQuantityDialog",
+      "_SaleQuantityDialogState",
+      "_ProductSelector",
+      "_SelectedProductContent",
+      "_ProductSwatch",
+      "_QuantityButton",
+      "_SummaryRow",
+      "_EmptyProductsState",
+      "_ErrorState"
+    ],
+    "routes": [
+      "RecordSaleScreen"
+    ],
+    "border_count": 2,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/add_camera_screen.dart",
+    "sha256": "3100e9a837544204fc50dafdcd213792e6e6b5677589185b1909008120bf52da",
+    "lines": 383,
+    "screen": true,
+    "classes": [
+      "AddCameraScreen",
+      "_AddCameraScreenState"
+    ],
+    "routes": [
+      "AddCameraScreen"
+    ],
+    "border_count": 1,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/alerts_screen.dart",
+    "sha256": "d4b33cb334f6daee9aa3d0bd7987f9afdffa3c3ab2bf1bf8264885b959c5cac7",
+    "lines": 255,
+    "screen": true,
+    "classes": [
+      "AlertsScreen",
+      "_AlertsScreenState"
+    ],
+    "routes": [
+      "AlertsScreen"
+    ],
+    "border_count": 2,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/camera_alert_screen.dart",
+    "sha256": "0a63e8d3df48444057eb803454ab41ccd404ab7d34f55d68c658f4952e365026",
+    "lines": 281,
+    "screen": true,
+    "classes": [
+      "CameraAlertsScreen",
+      "_CameraAlertsScreenState"
+    ],
+    "routes": [
+      "CameraAlertsScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": [
+      62,
+      94
+    ]
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/camera_detail_screen.dart",
+    "sha256": "bdea10c64807afb429a05dd015b3237eb69832ac80f2f92222c001f364bbcb54",
+    "lines": 333,
+    "screen": true,
+    "classes": [
+      "CameraDetailScreen",
+      "_CameraDetailScreenState"
+    ],
+    "routes": [
+      "CameraAlertsScreen",
+      "CameraDetailScreen",
+      "CameraEventsScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": [
+      71,
+      111
+    ]
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/camera_event_screen.dart",
+    "sha256": "076d285abb905ce0b34fc315727f2e481d386b45d9b34b3be1dc9acdcde0ecb1",
+    "lines": 11,
+    "screen": true,
+    "classes": [
+      "CameraEventsScreen"
+    ],
+    "routes": [
+      "CameraEventsScreen",
+      "EventsScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/camera_intelligence_screen.dart",
+    "sha256": "aea6fd6363c07ff6f2d0189e5feef477b45639d75fa64757a858506d84313d9a",
+    "lines": 452,
+    "screen": true,
+    "classes": [
+      "CameraIntelligenceScreen",
+      "_CameraIntelligenceScreenState"
+    ],
+    "routes": [
+      "CameraIntelligenceScreen"
+    ],
+    "border_count": 4,
+    "raw_exception_sites": [
+      85
+    ]
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/camera_screen.dart",
+    "sha256": "de8b91be3238ef3be3ffb4f8288b6b447e089203ee1c946ea74a2485e1437d9b",
+    "lines": 324,
+    "screen": true,
+    "classes": [
+      "CamerasScreen",
+      "_CamerasScreenState"
+    ],
+    "routes": [
+      "AddCameraScreen",
+      "CamerasScreen",
+      "LiveFeedScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/event_detail_screen.dart",
+    "sha256": "24ab5d6e52edb156806214f665bedbc643b3f6b83f6cbbe6703375472b5db798",
+    "lines": 231,
+    "screen": true,
+    "classes": [
+      "EventDetailScreen",
+      "_EventDetailScreenState"
+    ],
+    "routes": [
+      "EventDetailScreen",
+      "RecordSaleScreen",
+      "RecordingPlaybackScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/events_screen.dart",
+    "sha256": "2400984dedf6d112848a85f53824b24170c468d33243fd71e18023c7c69509fb",
+    "lines": 165,
+    "screen": true,
+    "classes": [
+      "EventsScreen",
+      "_EventsScreenState"
+    ],
+    "routes": [
+      "EventDetailScreen",
+      "EventsScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/intelligence_tab.dart",
+    "sha256": "708decbea8b31b6d816a9af5e344498b2b38be25c381ecd91f6f82638d37f600",
+    "lines": 479,
+    "screen": true,
+    "classes": [
+      "IntelligenceTab",
+      "_IntelligenceTabState"
+    ],
+    "routes": [
+      "AddCameraScreen",
+      "EventsScreen",
+      "IntelligenceTab",
+      "LiveFeedScreen",
+      "RecordingsScreen",
+      "VisionServerScreen"
+    ],
+    "border_count": 2,
+    "raw_exception_sites": [
+      56
+    ]
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/live_feed_screen.dart",
+    "sha256": "88ecabf75ce314d8fefa0ea59278b57fa319f041ed1623840673ce7a33109af9",
+    "lines": 568,
+    "screen": true,
+    "classes": [
+      "LiveFeedScreen",
+      "_LiveFeedScreenState"
+    ],
+    "routes": [
+      "LiveFeedScreen"
+    ],
+    "border_count": 1,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/recording_playback_screen.dart",
+    "sha256": "0e6da64f895cc4cf01ef3351d35954483cc46668c09c3cf2a50ca7784f732186",
+    "lines": 103,
+    "screen": true,
+    "classes": [
+      "RecordingPlaybackScreen",
+      "_RecordingPlaybackScreenState"
+    ],
+    "routes": [
+      "RecordingPlaybackScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/recordings_screen.dart",
+    "sha256": "01b5171c5d3ffe23f82daa16d34c99e685b8a6f42e7abc3ca62119da3a8c1ba2",
+    "lines": 285,
+    "screen": true,
+    "classes": [
+      "RecordingsScreen",
+      "_RecordingsScreenState"
+    ],
+    "routes": [
+      "RecordingPlaybackScreen",
+      "RecordingsScreen"
+    ],
+    "border_count": 2,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/vision_server_screen.dart",
+    "sha256": "5b12552f85f81f075811608ff4d0abc7e0873f62808550c2bf1619e164f33ca9",
+    "lines": 296,
+    "screen": true,
+    "classes": [
+      "VisionServerScreen",
+      "_VisionServerScreenState"
+    ],
+    "routes": [
+      "AddCameraScreen",
+      "LiveFeedScreen",
+      "VisionServerScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/inventory/add_product_screen.dart",
+    "sha256": "3dd0406d5853b3510f90289652946a986d4fe83dd461196c5c8b273614c9771b",
+    "lines": 993,
+    "screen": true,
+    "classes": [
+      "AddProductScreen",
+      "_AddProductScreenState",
+      "_ModeSelector",
+      "_ModeOption",
+      "_FieldLabel",
+      "_TrexvenField",
+      "_ProductPreview",
+      "_ProductDropdown",
+      "_StockPreview",
+      "_StockRow",
+      "_PrimaryButton"
+    ],
+    "routes": [
+      "AddProductScreen"
+    ],
+    "border_count": 2,
+    "raw_exception_sites": [
+      122,
+      169
+    ]
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/inventory/catalog_editor_screen.dart",
+    "sha256": "e42a1bd7983f45f934ea5014a14efc9f76ab3bc70dcb0ac2f37fe224c186d310",
+    "lines": 411,
+    "screen": true,
+    "classes": [
+      "CatalogEditorScreen",
+      "_CatalogEditorScreenState"
+    ],
+    "routes": [
+      "CatalogEditorScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": [
+      122,
+      148,
+      184,
+      221
+    ]
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/inventory/catalog_import_screen.dart",
+    "sha256": "f292d551cab3a38106264a671c51b795ef0806e08f138876ebcf5d32eeba0f81",
+    "lines": 203,
+    "screen": true,
+    "classes": [
+      "CatalogImportScreen",
+      "_CatalogImportScreenState"
+    ],
+    "routes": [
+      "CatalogImportScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": [
+      116,
+      131
+    ]
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/inventory/inventory_tab.dart",
+    "sha256": "055d74261a8b5d2e1bbdb58c1c6fb149846373e87dbfc626a0a33413937d6919",
+    "lines": 326,
+    "screen": true,
+    "classes": [
+      "InventoryTab",
+      "_InventoryTabState"
+    ],
+    "routes": [
+      "CatalogEditorScreen",
+      "CatalogImportScreen",
+      "InventoryTab"
+    ],
+    "border_count": 1,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/main_screen.dart",
+    "sha256": "24d47a2488e41cca5856be559d8de122efa74a58714c1bdaadc325c54534302c",
+    "lines": 329,
+    "screen": true,
+    "classes": [
+      "MainScreen",
+      "_MainScreenState"
+    ],
+    "routes": [
+      "AlertsScreen",
+      "AngelScreen",
+      "DashboardScreen",
+      "FinanceTab",
+      "IntelligenceTab",
+      "InventoryTab",
+      "MainScreen",
+      "MeTab"
+    ],
+    "border_count": 2,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/about_screen.dart",
+    "sha256": "9fcd91d854dcb7bcd117458e33e74ccc6cf7f56b4547632160c152f801141699",
+    "lines": 384,
+    "screen": true,
+    "classes": [
+      "AboutScreen",
+      "_AboutScreenState"
+    ],
+    "routes": [
+      "AboutScreen",
+      "PrivacyPolicyScreen",
+      "TermsOfServiceScreen"
+    ],
+    "border_count": 1,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/add_employee_screen.dart",
+    "sha256": "ecdf31f3a7d8ec5694f86db653fed5deec2db0dd73e53df584cda6093e10d1cf",
+    "lines": 282,
+    "screen": true,
+    "classes": [
+      "AddEmployeeScreen",
+      "_AddEmployeeScreenState"
+    ],
+    "routes": [
+      "AddEmployeeScreen",
+      "EmployeeConfirmationScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/appearance_screen.dart",
+    "sha256": "af7ab759eca41326786abf4b9455181d73b50885082972a6df394f192b670c15",
+    "lines": 242,
+    "screen": true,
+    "classes": [
+      "AppearanceScreen"
+    ],
+    "routes": [
+      "AppearanceScreen"
+    ],
+    "border_count": 2,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/billing_screen.dart",
+    "sha256": "b776d6f038a7b56d268a04b40d9205e96c38d774939b122440fa9376cec8ec60",
+    "lines": 394,
+    "screen": true,
+    "classes": [
+      "BillingScreen",
+      "_BillingScreenState"
+    ],
+    "routes": [
+      "AccountOperationsScreen",
+      "BillingScreen"
+    ],
+    "border_count": 1,
+    "raw_exception_sites": [
+      84
+    ]
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/business_profile_screen.dart",
+    "sha256": "fca6ae932aa37bf3e9e0ee168c29047f591d5bfc07fc537f86cd77d4a0f886cb",
+    "lines": 432,
+    "screen": true,
+    "classes": [
+      "BusinessProfileScreen",
+      "_BusinessProfileScreenState"
+    ],
+    "routes": [
+      "BusinessProfileScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": [
+      132
+    ]
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/data_backup_screen.dart",
+    "sha256": "21326cd1e0b67bfffa3e4e558b30dc33a9510bea34f9197042d9ed24d69ffd62",
+    "lines": 217,
+    "screen": true,
+    "classes": [
+      "DataBackupScreen",
+      "_DataBackupScreenState"
+    ],
+    "routes": [
+      "DataBackupScreen"
+    ],
+    "border_count": 2,
+    "raw_exception_sites": [
+      55
+    ]
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/edit_employee_screen.dart",
+    "sha256": "eee14e539abf6f111384515d7688e706182d97be117d4e3a578b6ec306c53ae9",
+    "lines": 174,
+    "screen": true,
+    "classes": [
+      "EditEmployeeScreen",
+      "_EditEmployeeScreenState"
+    ],
+    "routes": [
+      "EditEmployeeScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": [
+      63
+    ]
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/employee_confirmation_screen.dart",
+    "sha256": "1fdd666838888c681276ed632b994494b09869ca69bd7794daf41654d1884035",
+    "lines": 124,
+    "screen": true,
+    "classes": [
+      "EmployeeConfirmationScreen"
+    ],
+    "routes": [
+      "EmployeeConfirmationScreen"
+    ],
+    "border_count": 1,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/employee_details_screen.dart",
+    "sha256": "0e6cd44b8ba05bcc3cb0b3cb929db7215e772409ac8996938e1dfb33211997b8",
+    "lines": 363,
+    "screen": true,
+    "classes": [
+      "EmployeeDetailsScreen",
+      "_EmployeeDetailsScreenState"
+    ],
+    "routes": [
+      "EditEmployeeScreen",
+      "EmployeeDetailsScreen",
+      "PermissionsScreen"
+    ],
+    "border_count": 1,
+    "raw_exception_sites": [
+      58,
+      126
+    ]
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/employment_screen.dart",
+    "sha256": "88597aac3ceb33acf2c2aace2e9e3b659e1324d94534afdeeb7c0a85bfddcf58",
+    "lines": 359,
+    "screen": true,
+    "classes": [
+      "EmploymentScreen",
+      "_EmploymentScreenState"
+    ],
+    "routes": [
+      "AddEmployeeScreen",
+      "EmployeeDetailsScreen",
+      "EmploymentScreen"
+    ],
+    "border_count": 1,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/help_support_screen.dart",
+    "sha256": "643958b32e52a85ae4d6ee4282b25012ce447926557ba8931df31dc94c989936",
+    "lines": 388,
+    "screen": true,
+    "classes": [
+      "HelpSupportScreen"
+    ],
+    "routes": [
+      "HelpSupportScreen"
+    ],
+    "border_count": 2,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/me_tab.dart",
+    "sha256": "74d5bd22fd1fc54a804ef38babad44d6b056e00c86d09e955d470f7b60e176d2",
+    "lines": 341,
+    "screen": true,
+    "classes": [
+      "MeTab",
+      "_SubscriptionSettings",
+      "_SubscriptionSettingsState"
+    ],
+    "routes": [
+      "AboutScreen",
+      "AppearanceScreen",
+      "BillingScreen",
+      "BusinessProfileScreen",
+      "DataBackupScreen",
+      "EmploymentScreen",
+      "HelpSupportScreen",
+      "MeTab",
+      "NotificationsSettingsScreen",
+      "PermissionsScreen",
+      "ProfileScreen",
+      "SecurityScreen",
+      "VisionServerScreen",
+      "WelcomeScreen"
+    ],
+    "border_count": 1,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/notifications_settings_screen.dart",
+    "sha256": "26630bdb16423cc2cb87007d11cd8af235e2a3ea04d290fc3bc6fee1dc59b70f",
+    "lines": 514,
+    "screen": true,
+    "classes": [
+      "NotificationsSettingsScreen",
+      "_NotificationsSettingsScreenState"
+    ],
+    "routes": [
+      "AlertsScreen",
+      "EmploymentScreen",
+      "InventoryTab",
+      "NotificationCenterScreen",
+      "NotificationsSettingsScreen",
+      "OperationalFinanceScreen"
+    ],
+    "border_count": 2,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/permissions_screen.dart",
+    "sha256": "4193c18e7b243c589ebf4c53415faf5ac076384c445491cd3ba15138d9b12e8d",
+    "lines": 36,
+    "screen": true,
+    "classes": [
+      "PermissionsScreen",
+      "_PermissionsScreenState"
+    ],
+    "routes": [
+      "EmployeeAccessScreen",
+      "PermissionsScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/privacy_policy_screen.dart",
+    "sha256": "af854b11a87eb5db3de4358c2ada74da5d80bacc17ddeddc2f896c797f874db5",
+    "lines": 580,
+    "screen": true,
+    "classes": [
+      "PrivacyPolicyScreen"
+    ],
+    "routes": [
+      "PrivacyPolicyScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/profile_screen.dart",
+    "sha256": "248120c4c4733a3b46cd052fc3356489e432993ee8a0251da55cf8a4f1e194c3",
+    "lines": 281,
+    "screen": true,
+    "classes": [
+      "ProfileScreen",
+      "_ProfileScreenState"
+    ],
+    "routes": [
+      "BillingScreen",
+      "ProfileScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": [
+      72
+    ]
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/security_screen.dart",
+    "sha256": "db2fdaa22e094472d3bf817b0c89be8ff0ca420a01b5a0621f6f73c67d3e9ed9",
+    "lines": 466,
+    "screen": true,
+    "classes": [
+      "SecurityScreen",
+      "_SecurityScreenState"
+    ],
+    "routes": [
+      "AccountOperationsScreen",
+      "SecurityScreen"
+    ],
+    "border_count": 1,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/terms_of_service_screen.dart",
+    "sha256": "be54f1a14d8f8687fc90c56e3cab51de3c7dd0dd208cce2f64378481d1b8b1a6",
+    "lines": 708,
+    "screen": true,
+    "classes": [
+      "TermsOfServiceScreen"
+    ],
+    "routes": [
+      "TermsOfServiceScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/setup/business_setup_screen.dart",
+    "sha256": "31b3b43ea94fb927a580c6d8cf93832afa5ac009cbd1ea61a5cb98b15cf86ddb",
+    "lines": 469,
+    "screen": true,
+    "classes": [
+      "BusinessSetupScreen",
+      "_BusinessSetupScreenState"
+    ],
+    "routes": [
+      "BusinessSetupScreen",
+      "SetupCompleteScreen"
+    ],
+    "border_count": 1,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/setup/setup_complete_screen.dart",
+    "sha256": "433a475a61543d70da99f015d5d1ee63b2677f0bdbf03e4850fd62de1972f685",
+    "lines": 131,
+    "screen": true,
+    "classes": [
+      "SetupCompleteScreen"
+    ],
+    "routes": [
+      "MainScreen",
+      "SetupCompleteScreen"
+    ],
+    "border_count": 1,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/splash_screen.dart",
+    "sha256": "8d4c38f94838ab66ec3ba243531bebe0afdbd74d06c2e0413b5bdb4987ca8b79",
+    "lines": 109,
+    "screen": true,
+    "classes": [
+      "SplashScreen",
+      "_SplashScreenState"
+    ],
+    "routes": [
+      "SplashScreen",
+      "WelcomeScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/welcome_screen.dart",
+    "sha256": "b7506334c868efdddc232fd3ce8571ab462c6e1c2eb74d196aa7f84e0eb89493",
+    "lines": 103,
+    "screen": true,
+    "classes": [
+      "WelcomeScreen"
+    ],
+    "routes": [
+      "LoginScreen",
+      "RegisterScreen",
+      "WelcomeScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/services/alert_navigation.dart",
+    "sha256": "195a4ae8e680d203f32890b9585de7956c3d34a605b241616926820a50350d12",
+    "lines": 54,
+    "screen": false,
+    "classes": [],
+    "routes": [
+      "EventDetailScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/services/alert_service.dart",
+    "sha256": "b838e8b4a5687cb3ec67dfab9117cf2f703c0ad4ff4e60c8efe86c9deea133bf",
+    "lines": 379,
+    "screen": false,
+    "classes": [
+      "AlertService"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/services/auth_service.dart",
+    "sha256": "a1c1d34384d105b081274ee04709eeec07a9634bfb5eae1fd02ec6d12e8598aa",
+    "lines": 39,
+    "screen": false,
+    "classes": [
+      "AuthService"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/services/camera_ai_service.dart",
+    "sha256": "995208e7aff5d8865d3211cfa13fee874151170026987d99357b43d220660f3b",
+    "lines": 81,
+    "screen": false,
+    "classes": [
+      "CameraAiService"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/services/camera_intelligence_service.dart",
+    "sha256": "1ec201d2ba01b822458b200e7ef476148dc83ecdea7f09fd334d1c785af7b4fb",
+    "lines": 188,
+    "screen": false,
+    "classes": [
+      "CameraIntelligenceService"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/services/camera_service.dart",
+    "sha256": "42e24880f77e3587a4de0020bd637d72156c51c5296ed5448a355257bce2ce6c",
+    "lines": 465,
+    "screen": false,
+    "classes": [
+      "CameraService"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/services/catalog_import.dart",
+    "sha256": "3ea575a24f60cf6d677a288723ad9e9492a534744efcd93ecc62549bc55742c3",
+    "lines": 186,
+    "screen": false,
+    "classes": [
+      "CatalogImport"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/services/database_service.dart",
+    "sha256": "0ceee393e04b490583d9698c41b9e5ce14893cb8a51b8b79067646606957ae8a",
+    "lines": 687,
+    "screen": false,
+    "classes": [
+      "OwnerAppAccessDenied",
+      "OwnerBusinessSelectionRequired",
+      "OwnerOperationRecoveryRequired",
+      "DatabaseService"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/services/employee_service.dart",
+    "sha256": "b5e617053c1c7744d10a14b5a45c2cd027ee1177985b3ae2f2c9d55fde1d6ed4",
+    "lines": 91,
+    "screen": false,
+    "classes": [
+      "EmployeeService"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/services/initial_load_timeout.dart",
+    "sha256": "d8e38923e29def8cb4e503228a55a48d49dd3e54d09f94446ed31de8fb6976e3",
+    "lines": 38,
+    "screen": false,
+    "classes": [],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/services/intelligence_events_service.dart",
+    "sha256": "97a6f4c1e749a8f950afafe47dd3f9dccd7c037d110dae50de765aa901f8cc15",
+    "lines": 150,
+    "screen": false,
+    "classes": [
+      "IntelligenceEventsService"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/services/recording_service.dart",
+    "sha256": "8114152688b13513e5a56dbf5e5df379e2da095a477eb8468010ce4a345ff914",
+    "lines": 44,
+    "screen": false,
+    "classes": [
+      "RecordingService"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/services/sale_errors.dart",
+    "sha256": "a68b6ad136a05f3a30a986eef35a6da930a468c510d73b1876f6ce0559db1e6b",
+    "lines": 27,
+    "screen": false,
+    "classes": [],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/services/vision_service.dart",
+    "sha256": "ad72b0ed38d89c62a039caf11714c090dbcfbde8cbb01012cc89c9f04f6514c2",
+    "lines": 363,
+    "screen": false,
+    "classes": [
+      "VisionService"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": [
+      164
+    ]
+  },
+  {
+    "app": "owner",
+    "path": "lib/widgets/build_error_fallback.dart",
+    "sha256": "b5a2d2ca71433e4b2d16e71a1cac83c553230360253dfc2e42a5aedd562bfad6",
+    "lines": 35,
+    "screen": false,
+    "classes": [
+      "BuildErrorFallback"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/widgets/google_sign_in_button.dart",
+    "sha256": "9e8e02cd9c674da17e570739b275ef7b5fd05f63e21c5c435d0681f5610959a2",
+    "lines": 37,
+    "screen": false,
+    "classes": [
+      "GoogleSignInButton",
+      "_GoogleSignInButtonState"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/widgets/quick_action.dart",
+    "sha256": "ea7e6eff5a07602b3f18af90550c68b5fabf932112716dee7693238f9aabb7f3",
+    "lines": 50,
+    "screen": false,
+    "classes": [
+      "QuickAction"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/widgets/stat_card.dart",
+    "sha256": "36c9ca12454cd456abdfbcffa9476dc5cbd810b045a867e47862801704ceb65b",
+    "lines": 54,
+    "screen": false,
+    "classes": [
+      "StatCard"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/widgets/trexven_logo.dart",
+    "sha256": "1fd68afa0031ba394d2cb3a5b41f3b4d1f2ae3c6026fa2cdbfb6a3f9e07ea86d",
+    "lines": 40,
+    "screen": false,
+    "classes": [
+      "TrexvenLogo"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "lib/widgets/trexven_widgets.dart",
+    "sha256": "c6d911124de26d4ed1a22d44e17c8c4e7e121254bbf80b7d496382299f6e9278",
+    "lines": 311,
+    "screen": false,
+    "classes": [
+      "TrexvenPressable",
+      "_TrexvenPressableState",
+      "TrexvenTapCard",
+      "TrexvenSettingsTile",
+      "TrexvenButton"
+    ],
+    "routes": [],
+    "border_count": 1,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/account_operations_screen.dart",
+    "sha256": "f6803e152c2afacb5c6c9524d4885f7868246f4226788ae40624b2dfd1fd42eb",
+    "lines": 130,
+    "screen": true,
+    "classes": [
+      "AccountOperationsScreen",
+      "_AccountOperationsScreenState"
+    ],
+    "routes": [
+      "AccountOperationsScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": [
+      79
+    ]
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/cash_shift_screen.dart",
+    "sha256": "42c73f47e7cde70d0465185cd5cfe144359ffbd467cf904bbb41661a5053c3ea",
+    "lines": 462,
+    "screen": true,
+    "classes": [
+      "CashShiftScreen",
+      "_CashShiftScreenState"
+    ],
+    "routes": [
+      "CashShiftScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": [
+      147,
+      176
+    ]
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/customer_presentation.dart",
+    "sha256": "863b23ea7a2ec21941e12d43ac07d89b5998aab8d6684bcd0256ac627da6b9c6",
+    "lines": 55,
+    "screen": false,
+    "classes": [
+      "CustomerPresentation"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/durable_state.dart",
+    "sha256": "36bdfe79a2febdbc6f56aaffc5bade4a2a2086c05010963ad332a5fa8df8f7eb",
+    "lines": 4,
+    "screen": false,
+    "classes": [
+      "DurableState"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/employee_access_screen.dart",
+    "sha256": "99c3091fabecf1671424292b3a47c990aab660cf0fc352c7b8f2ff569df9beaa",
+    "lines": 268,
+    "screen": true,
+    "classes": [
+      "EmployeeAccessScreen",
+      "_EmployeeAccessScreenState",
+      "_PermissionOverrides",
+      "_PermissionOverridesState"
+    ],
+    "routes": [
+      "EmployeeAccessScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/encrypted_state.dart",
+    "sha256": "0feda2fc62dc7cacf2f39148dcc9c6b644415f7ce63ac24e3505466b868eb037",
+    "lines": 2,
+    "screen": false,
+    "classes": [],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/encrypted_state_native.dart",
+    "sha256": "83ab0a56350e9fb0459e5971e7b548baa2976c20119846d2d87f6efbaf1d1e12",
+    "lines": 104,
+    "screen": false,
+    "classes": [
+      "EncryptedStateFile"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/encrypted_state_unsupported.dart",
+    "sha256": "a9fe8de21d5f55ea902ec1c73421c1817c996e5d315dfc7ae0991ce1a72a3874",
+    "lines": 6,
+    "screen": false,
+    "classes": [],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/entitlements.dart",
+    "sha256": "02190ce814f097c3325b4c6cca1ef1cb2b3b8a840f023e294194721d840d8783",
+    "lines": 35,
+    "screen": false,
+    "classes": [
+      "BusinessEntitlements"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/financial_operations_screen.dart",
+    "sha256": "02981e61f062dbff9c6eba8c38153d8c20c824d245ebccf64f0f4fcfbcfcf6b5",
+    "lines": 531,
+    "screen": true,
+    "classes": [
+      "FinancialOperationsScreen",
+      "_FinancialOperationsScreenState"
+    ],
+    "routes": [
+      "FinancialOperationsScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": [
+      72
+    ]
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/inventory_operations_screen.dart",
+    "sha256": "988b57ffbd11d80b30acf8cc302c60ee340c69b5dd43e0e5b95b808c341e5395",
+    "lines": 510,
+    "screen": true,
+    "classes": [
+      "InventoryOperationsScreen",
+      "_InventoryOperationsScreenState"
+    ],
+    "routes": [
+      "InventoryOperationsScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": [
+      91,
+      229,
+      270
+    ]
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/metric_content.dart",
+    "sha256": "64c57b16d73d19352e8bd4646bfb347eedde9052fe062cb5a20702dd390f68c6",
+    "lines": 70,
+    "screen": false,
+    "classes": [
+      "MetricContent"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/notification_center_screen.dart",
+    "sha256": "2d96319a72f294f2e7ecc7d0c4cde582997c9e2705366754f094e8b34f5187a7",
+    "lines": 178,
+    "screen": true,
+    "classes": [
+      "NotificationCenterScreen",
+      "_NotificationCenterScreenState"
+    ],
+    "routes": [
+      "NotificationCenterScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/operation_journal.dart",
+    "sha256": "8869ac3fcc837b7f69d31d4054c00c441817f8bccc842a786e98003a23d43377",
+    "lines": 58,
+    "screen": false,
+    "classes": [
+      "OperationJournal"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/operational_permissions_screen.dart",
+    "sha256": "163157ec30c3093540217dab454b196ec280a4426da696f920966730d36d2419",
+    "lines": 132,
+    "screen": true,
+    "classes": [
+      "OperationalPermissionsScreen",
+      "_OperationalPermissionsScreenState"
+    ],
+    "routes": [
+      "OperationalPermissionsScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": [
+      81
+    ]
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/operations_client.dart",
+    "sha256": "2b2a8b8139a1b0db6b410263e9e88904ae586f8be3041c56d00275cc4c058ec2",
+    "lines": 171,
+    "screen": false,
+    "classes": [
+      "OperationsClient"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/payment_confirmation_dialog.dart",
+    "sha256": "122cfe68322323c95df7cd9f9403b0cc37831f8e4fbd9c462ac46389a84ffa9c",
+    "lines": 209,
+    "screen": false,
+    "classes": [
+      "PaymentDraft"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/trexven_operations.dart",
+    "sha256": "b9d500d405b3cc2504da94739412205013cdf77aa52ed8524a2bc3bb603815b1",
+    "lines": 13,
+    "screen": false,
+    "classes": [],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/main.dart",
+    "sha256": "bb2ad4a8879427c533828020b8e4485dc3d0b6eb536c1ce7bd1ec4bee3607e88",
+    "lines": 260,
+    "screen": false,
+    "classes": [
+      "MyApp",
+      "BusinessLoadingScreen"
+    ],
+    "routes": [
+      "BusinessLoadingScreen",
+      "LoginScreen",
+      "OfflineCashScreen"
+    ],
+    "border_count": 1,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/core/constants.dart",
+    "sha256": "cac37ac640e2fe833f775e1165b9406bebe2e0e1d187f466d6108defb413b830",
+    "lines": 4,
+    "screen": false,
+    "classes": [
+      "SupabaseConstants"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/auth/auth_provider.dart",
+    "sha256": "d3dd2f28482dd049c7f3da03e9322665628852b24175189c1b955378aec58ebf",
+    "lines": 429,
+    "screen": false,
+    "classes": [
+      "AuthState",
+      "AuthNotifier"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/auth/branch_context.dart",
+    "sha256": "5c51dd55bdf7b0cec9956f450b95d935c32e31fdb6bfea39408204f9c9eeef3d",
+    "lines": 152,
+    "screen": false,
+    "classes": [
+      "AuthorizedBranch",
+      "BranchContext",
+      "BranchGate"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/auth/business_selection_screen.dart",
+    "sha256": "940388eba1b62b16c1764981812b4267caea87203728ab93719d29608b42ae80",
+    "lines": 233,
+    "screen": true,
+    "classes": [
+      "BusinessSelectionScreen",
+      "_BusinessCard",
+      "_BusinessLogo",
+      "_EmptyBusinessState"
+    ],
+    "routes": [
+      "BusinessSelectionScreen"
+    ],
+    "border_count": 1,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/auth/login_screen.dart",
+    "sha256": "e09600a7fffb3c6c2ee8c3c67bcd36a03379650eafbb414a701ddc94f04c51ab",
+    "lines": 171,
+    "screen": true,
+    "classes": [
+      "LoginScreen",
+      "_LoginScreenState"
+    ],
+    "routes": [
+      "LoginScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/auth/permission_service.dart",
+    "sha256": "de31f961ad651059d097f477bf501815a44f4fca3ca4c94df7619df2d128a51c",
+    "lines": 112,
+    "screen": false,
+    "classes": [
+      "PermissionService"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/inventory/catalog_edit_screen.dart",
+    "sha256": "19c19a4db6f5af0d0c6732277b37ad1b52876b543a46591f510dae89ead2ac84",
+    "lines": 393,
+    "screen": true,
+    "classes": [
+      "CatalogEditScreen",
+      "_CatalogEditScreenState"
+    ],
+    "routes": [
+      "CatalogEditScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": [
+      77,
+      140,
+      177,
+      255
+    ]
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/inventory/product_detail_screen.dart",
+    "sha256": "9caf5dd04dfff96bbe44f12773a9af48fc56c36937d10bc3f06fbe5b84d9e553",
+    "lines": 1008,
+    "screen": true,
+    "classes": [
+      "ProductDetailScreen"
+    ],
+    "routes": [
+      "CatalogEditScreen",
+      "ProductDetailScreen"
+    ],
+    "border_count": 4,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/inventory/product_provider.dart",
+    "sha256": "4ecd32ded57d9a4596659260a0e3739e5b35f289311722359f63811a1260fe8f",
+    "lines": 42,
+    "screen": false,
+    "classes": [
+      "ProductSearchNotifier"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/inventory/product_repository.dart",
+    "sha256": "0952568a35b8d2c058ae8a22339a2b39a0f1b0af3f379ecd1180be50663fb6a7",
+    "lines": 146,
+    "screen": false,
+    "classes": [
+      "DuplicateBarcode",
+      "ProductRepository"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/inventory/product_search_screen.dart",
+    "sha256": "bbd9cbc6770b828586509393e2dcec0922aead6ca35b9e28555fcd42e5aac397",
+    "lines": 496,
+    "screen": true,
+    "classes": [
+      "ProductSearchScreen",
+      "_ProductSearchScreenState"
+    ],
+    "routes": [
+      "ProductDetailScreen",
+      "ProductSearchScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/inventory/quick_add_screen.dart",
+    "sha256": "85fc94a232caf98ba11ad33e836ca66a4dfc3336d0bc7a3b4ded171c1c8b1109",
+    "lines": 948,
+    "screen": true,
+    "classes": [
+      "QuickAddScreen",
+      "_QuickAddScreenState"
+    ],
+    "routes": [
+      "QuickAddScreen"
+    ],
+    "border_count": 1,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/inventory/scanner_screen.dart",
+    "sha256": "6ff5e3df70b1c52706bc16b2f31546d8b2e87db8b22a8cea0f8e5d454a42ab52",
+    "lines": 794,
+    "screen": true,
+    "classes": [
+      "ScannerScreen",
+      "_ScannerScreenState",
+      "_GlassButton",
+      "_ScannerOverlay",
+      "_ScannerPainter"
+    ],
+    "routes": [
+      "QuickAddScreen",
+      "ScannerScreen"
+    ],
+    "border_count": 1,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/pos/cart_provider.dart",
+    "sha256": "9afbe86e9fbf916ee4ada15163a1de3548c940f77851443798251702b3fc93f4",
+    "lines": 216,
+    "screen": false,
+    "classes": [
+      "CartItem",
+      "CartNotifier"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/pos/checkout_screen.dart",
+    "sha256": "8d5a7768693cf307878a6599fc08571f512e0b1eaf483eaa570d0b9ac89ed4c5",
+    "lines": 1126,
+    "screen": true,
+    "classes": [
+      "CheckoutScreen",
+      "_CheckoutScreenState"
+    ],
+    "routes": [
+      "CheckoutScreen"
+    ],
+    "border_count": 2,
+    "raw_exception_sites": [
+      117,
+      162
+    ]
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/pos/dashboard_screen.dart",
+    "sha256": "45ff647cbbae01482823bc164ed1b5ddbc3819d20ffd5679686f8fbe75052100",
+    "lines": 714,
+    "screen": true,
+    "classes": [
+      "DashboardScreen",
+      "_DashboardHeader",
+      "_SectionHeader",
+      "_PrimaryAction",
+      "_ActionCard",
+      "_QuickAddAction",
+      "_CheckoutBar"
+    ],
+    "routes": [
+      "CheckoutScreen",
+      "DashboardScreen",
+      "PosOperationsScreen",
+      "ProductDetailScreen",
+      "ProductSearchScreen",
+      "QuickAddScreen",
+      "RecentSalesScreen",
+      "ScannerScreen"
+    ],
+    "border_count": 3,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/pos/employee_settings_screen.dart",
+    "sha256": "21923946d053c1558d1ab2c2df9774ac24decf4f1a307cca6142759ca8bf8864",
+    "lines": 393,
+    "screen": true,
+    "classes": [
+      "PosTheme",
+      "EmployeeSettingsScreen",
+      "_ChangePassword",
+      "_ChangePasswordState",
+      "_DeviceAlerts",
+      "_DeviceAlertsState"
+    ],
+    "routes": [
+      "EmployeeSettingsScreen",
+      "OfflineCashScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/pos/offline_cash_screen.dart",
+    "sha256": "4dc4cbf6acc5f5824e2255b1ebc6ddda61c985d190b3ad77c39f5c430b48f4e2",
+    "lines": 272,
+    "screen": true,
+    "classes": [
+      "OfflineCashScreen",
+      "_OfflineCashScreenState"
+    ],
+    "routes": [
+      "CheckoutScreen",
+      "OfflineCashScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": [
+      34,
+      148
+    ]
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/pos/operations_screen.dart",
+    "sha256": "af28fb452f0ccbd0b17f2e183fb3fc37e1549da1b00e9fa9e4636f2fb9dd2ce9",
+    "lines": 145,
+    "screen": true,
+    "classes": [
+      "PosOperationsScreen"
+    ],
+    "routes": [
+      "CashShiftScreen",
+      "FinancialOperationsScreen",
+      "InventoryOperationsScreen",
+      "OfflineCashScreen",
+      "PosOperationsScreen",
+      "ScannerScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/pos/payment_confirmation_dialog.dart",
+    "sha256": "fad3ffcb8562ac89201bc51a77f2d9cc1beae58bcde5ef37bb20c84f8f23fc8c",
+    "lines": 1,
+    "screen": false,
+    "classes": [],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/pos/pending_sale_provider.dart",
+    "sha256": "50242c364f4f98418a4245119ef5287e63d9f2daf615131baaedaefa1236837a",
+    "lines": 281,
+    "screen": false,
+    "classes": [
+      "PendingSaleGate",
+      "_PendingSaleGateState"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": [
+      79
+    ]
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/pos/pos_shell.dart",
+    "sha256": "b42dcc33c6b0d44a165aea0a42e9480dcd823eccc19596df2008be4ecf3fbabf",
+    "lines": 377,
+    "screen": false,
+    "classes": [
+      "PosShell",
+      "_PosShellState",
+      "_SalesLanding",
+      "_MoreScreen"
+    ],
+    "routes": [
+      "CheckoutScreen",
+      "DashboardScreen",
+      "EmployeeAccessScreen",
+      "EmployeeSettingsScreen",
+      "NotificationCenterScreen",
+      "PosOperationsScreen",
+      "ProductDetailScreen",
+      "ProductSearchScreen",
+      "RecentSalesScreen",
+      "ScannerScreen",
+      "_MoreScreen"
+    ],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/pos/recent_sales_screen.dart",
+    "sha256": "6a1c0009f99d23beeb448b1524cf62fcd9d8da2d2f33cc25d484c661307c6f31",
+    "lines": 900,
+    "screen": true,
+    "classes": [
+      "RecentSalesScreen"
+    ],
+    "routes": [
+      "RecentSalesScreen"
+    ],
+    "border_count": 3,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/pos/sales_provider.dart",
+    "sha256": "21016f852c09024a17f4cb3c7381036f62495295d1919708bc29963a6de4c766",
+    "lines": 30,
+    "screen": false,
+    "classes": [],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/pos/sales_repository.dart",
+    "sha256": "17aac5a2b7cdd6c6bfd3a9c974ecee0f6ae983a00fdf61c361f528486f72626e",
+    "lines": 229,
+    "screen": false,
+    "classes": [
+      "SalesRepository"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/models/business.dart",
+    "sha256": "b7092ef27970a5dc6b04f3bc59d13db4ac3ec2737b6754d36911db2b31ebf71e",
+    "lines": 131,
+    "screen": false,
+    "classes": [
+      "Business"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/models/employee.dart",
+    "sha256": "a39ba5c26d4f0185c2cd7f9ba12e43fb2a408bb850b9304941a050d82dbef5a0",
+    "lines": 231,
+    "screen": false,
+    "classes": [
+      "Employee"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/models/price_levels.dart",
+    "sha256": "d005c302ba23702c7296f14f6f3ca65b104a4b1217ea7ecce3f7fc121a125b69",
+    "lines": 147,
+    "screen": false,
+    "classes": [
+      "PriceLevels"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/models/product.dart",
+    "sha256": "4086c6d5d808388c8a5091808491001b16e7f27bfd1ed135bbfb7e376126cfad",
+    "lines": 157,
+    "screen": false,
+    "classes": [
+      "Product"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/models/sale.dart",
+    "sha256": "bb0c388c4fdc3ee058ddb024930b5b9900618b28b3587b6a0d035dadf8438cf2",
+    "lines": 244,
+    "screen": false,
+    "classes": [
+      "Sale",
+      "SaleItem"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/services/network_failure.dart",
+    "sha256": "3455533ae623a52be132c3226ddac948c77b369f61f61f254763e0a777bd9e61",
+    "lines": 1,
+    "screen": false,
+    "classes": [],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/services/network_failure_native.dart",
+    "sha256": "a87ef70762ae96374fb550f3294d1c4dbcabb8e0b913e1458489275da33d85e4",
+    "lines": 3,
+    "screen": false,
+    "classes": [],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/services/offline_cash_file.dart",
+    "sha256": "a577f86e7f03d8546436f99b6d85ca7a219a89d96a16fc82f42ac1270025453f",
+    "lines": 31,
+    "screen": false,
+    "classes": [
+      "EncryptedOfflineCashStore"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/services/offline_cash_queue.dart",
+    "sha256": "cc9259bfdafc24017df61e25e0fcd256f64da118d9b4ced5fab8d56da3845970",
+    "lines": 196,
+    "screen": false,
+    "classes": [
+      "OfflineCashEntry",
+      "OfflineCashStore",
+      "OfflineCashQueue"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/services/offline_cash_unsupported.dart",
+    "sha256": "c1b986dca3c1314c9223141879c15361b4174dce38032ad327b1def2f1cefb86",
+    "lines": 3,
+    "screen": false,
+    "classes": [],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/services/offline_session.dart",
+    "sha256": "2d9ca53f84a4a724cece953a91ba4585f840bb1f05b29de43ac1faab77a6693f",
+    "lines": 62,
+    "screen": false,
+    "classes": [],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/services/pending_sale.dart",
+    "sha256": "d6e681f2db1abf5529abdec1c41be2704123fe2f03e2db7bb6e0b8823b5ff015",
+    "lines": 101,
+    "screen": false,
+    "classes": [
+      "PendingSale",
+      "PendingSaleStore",
+      "LegacyPaymentUpgradeStore",
+      "PendingSaleSubmission"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/services/pending_sale_file.dart",
+    "sha256": "d70cb33acedcb92504500d97a2dc88ee3b9a58920083085df73e4a3b17bc6528",
+    "lines": 69,
+    "screen": false,
+    "classes": [
+      "FilePendingSaleStore"
+    ],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/services/pending_sale_unsupported.dart",
+    "sha256": "72f595db552597046d614eae75e52540268d95462f66dbdd4cf31fbb96e845b1",
+    "lines": 3,
+    "screen": false,
+    "classes": [],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/services/sale_errors.dart",
+    "sha256": "a68b6ad136a05f3a30a986eef35a6da930a468c510d73b1876f6ce0559db1e6b",
+    "lines": 27,
+    "screen": false,
+    "classes": [],
+    "routes": [],
+    "border_count": 0,
+    "raw_exception_sites": []
+  }
+]

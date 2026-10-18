@@ -1,0 +1,40 @@
+{
+  "backend_edge_tests": {
+    "pass": 38,
+    "fail": 0,
+    "mocked": true
+  },
+  "owner_selected_flutter_tests": {
+    "pass": 26,
+    "fail": 4,
+    "failure": "obsolete Record Sale widget finder before submission"
+  },
+  "pos_selected_flutter_tests": {
+    "pass": 41,
+    "fail": 0,
+    "mocked": true
+  },
+  "owner_analysis": {
+    "exit": 1,
+    "errors": 0,
+    "warnings": 13,
+    "infos": 93
+  },
+  "database_replay": {
+    "steps": 50,
+    "failed": 0,
+    "synthetic_only": true,
+    "owned_database_cleaned": true,
+    "local_postgres_returned_to_stopped": true
+  },
+  "frontend_edits_by_task": 0,
+  "frontend_deletions_by_task": 0,
+  "concurrent_owner_modified_paths": [
+    "lib/main.dart",
+    "lib/screens/auth/login_screen.dart",
+    "lib/screens/auth/register_screen.dart"
+  ],
+  "production_writes": 0,
+  "staging_writes": 0,
+  "deployments": 0
+}

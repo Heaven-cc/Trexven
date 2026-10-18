@@ -1,0 +1,87 @@
+[
+  {
+    "name": "manager password reset across unauthorized branch denied",
+    "pass": true
+  },
+  {
+    "name": "denied branch reset leaves old credential valid",
+    "pass": true
+  },
+  {
+    "name": "employee-login derives enabled business and ignores forged branch",
+    "pass": true
+  },
+  {
+    "name": "numeric six-character credential reset/login compatibility",
+    "pass": false,
+    "error": "HTTP 400"
+  },
+  {
+    "name": "business-local midnight HTTP includes current day only",
+    "pass": false,
+    "error": "HTTP 401"
+  },
+  {
+    "name": "owner historical and next-day receipts remain readable",
+    "pass": false,
+    "error": "HTTP 401"
+  },
+  {
+    "name": "invalid timezone rejected over REST",
+    "pass": true
+  },
+  {
+    "name": "missing timezone fails closed with existing employee JWT",
+    "pass": false,
+    "error": "HTTP 401"
+  },
+  {
+    "name": "timezone restoration takes effect without employee token refresh",
+    "pass": false,
+    "error": "HTTP 401"
+  },
+  {
+    "name": "deferred purchase cost REST projection denied",
+    "pass": true
+  },
+  {
+    "name": "manager password reset across unauthorized branch denied",
+    "pass": true
+  },
+  {
+    "name": "denied branch reset leaves old credential valid",
+    "pass": true
+  },
+  {
+    "name": "employee-login derives enabled business and ignores forged branch",
+    "pass": true
+  },
+  {
+    "name": "numeric six-character credential reset/login compatibility",
+    "pass": true
+  },
+  {
+    "name": "business-local midnight HTTP includes current day only",
+    "pass": true
+  },
+  {
+    "name": "owner historical and next-day receipts remain readable",
+    "pass": true
+  },
+  {
+    "name": "invalid timezone rejected over REST",
+    "pass": true
+  },
+  {
+    "name": "missing timezone fails closed with existing employee JWT",
+    "pass": true
+  },
+  {
+    "name": "timezone restoration takes effect without employee token refresh",
+    "pass": true
+  },
+  {
+    "name": "deferred purchase cost REST projection denied",
+    "pass": true
+  }
+]

@@ -1,0 +1,352 @@
+[
+  {
+    "app": "owner",
+    "path": "lib/core/app_sizing.dart",
+    "sha256": "4a41544c3fca7b7b4982c296e21f4517ccd67ec9888fba32943cbae76795aa40"
+  },
+  {
+    "app": "owner",
+    "path": "lib/core/app_theme.dart",
+    "sha256": "7cd6dd2cd8b7cb63734386220b4386610ef9ce37fbbdad05785242287461bdc3"
+  },
+  {
+    "app": "owner",
+    "path": "lib/models/subscription_plan.dart",
+    "sha256": "856e9c1b0a4d82355a147781d36751f033a4945e18f05fdff8eeb3484bde68b4"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/auth/login_screen.dart",
+    "sha256": "1c97573fbe2ffe0ffee4966b46ef05dc0348ebaa81b713904dc682c0d83d7c38"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/auth/register_screen.dart",
+    "sha256": "e88ad39dcb4741f405f19e40f787fe52c3c4849e33f82bd88d4b8d2a5304131c"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/dashboard/angel_screen.dart",
+    "sha256": "1c02d681d712f330accc10634cf86af125c42c32e819a48ad10a905964ba83d9"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/dashboard/dashboard_screen.dart",
+    "sha256": "e6bca48ccb8bb6c222d610b6120e60600cf122d32f03f453ad158d4f2f7a690c"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/finance/record_sale_screen.dart",
+    "sha256": "faae70f1b087aa0cb42db8e8c41793b8a9cafebeda1583cadea7c149e114243e"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/add_camera_screen.dart",
+    "sha256": "051d21c3b2a4082ac5be2b5f887fad495869ed36c4756ca892bb225fb2c6ad8c"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/alerts_screen.dart",
+    "sha256": "597b70d133ed03f70f1716014457cd52121e6bb4a8969aeb8d42c09bcd5cc52a"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/camera_alert_screen.dart",
+    "sha256": "0bd5fa2f2996de43cc62ce15cbe349ce9f70ce29d2242c659d4b005ce11c1db6"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/camera_detail_screen.dart",
+    "sha256": "3b6fb50d6eee36f32d832386cc2efccde96ec18a512319c8e5c6b9db1bafb3d3"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/camera_intelligence_screen.dart",
+    "sha256": "8d244888f39b8a6848bc5a94ed04b94b1c43d626b5a00592be0530cabc1b36f6"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/camera_screen.dart",
+    "sha256": "9d0ae614e47a5bddeed54fa86dbc037603af76cd2e0a00005fceb8c914283795"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/event_detail_screen.dart",
+    "sha256": "f9c6e3e4d2789171641c8e96d7b8f0b8bc2d36508deda100c6b4c1c6b97d5237"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/intelligence_tab.dart",
+    "sha256": "4901100bab522caa56e67a58253b4de41034d9225a32ecc2a4f4ca6f239af0cc"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/intelligence/recordings_screen.dart",
+    "sha256": "c469ece2e67fcb0720501bb027ce7a1bca2b4a406c1b40d8059066e9bb65a56b"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/inventory/add_product_screen.dart",
+    "sha256": "0c92d7bc7998ef74733fec4ca5e3e0ca4aaa06001830f993c9a5637b3e92b95f"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/inventory/catalog_editor_screen.dart",
+    "sha256": "066364e597142b2aec7896a8620f1719e8c0305328c10b97b485f9e8db837693"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/inventory/catalog_import_screen.dart",
+    "sha256": "c5bb9b9a6b68bc8f3fe9f2e0e9d8a9dfdc76f92834cb91ffcd10ab0d3f1bd7dd"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/inventory/inventory_tab.dart",
+    "sha256": "bfec97f8c6196607b90d4120105c21b91dd5a5a181c3076b4df19d99d444c859"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/main_screen.dart",
+    "sha256": "7944384fe4bde42a7b832eda37d587ba97894283f03ef23680da545e5309f402"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/about_screen.dart",
+    "sha256": "23dcb5157198cdf5e8513cd7220cbfb1dc588d1edbdfb6a55fcb3d79ac380a68"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/add_employee_screen.dart",
+    "sha256": "67a0036e8ef1fd720b3861f2efc863e4839e30933c2e02471e3e97ae0f32f1d1"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/appearance_screen.dart",
+    "sha256": "dced07a3205897e00b2d0b83e4cc3aab34db6ef51afa31a9312d672429ac16d7"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/billing_screen.dart",
+    "sha256": "67ddfe562c98cf3d0ac13a59e902d4b432e6a1976031fef4d0bf8f2c440d76ed"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/business_profile_screen.dart",
+    "sha256": "57465e1dcf498bc23d103011f85f804603a182781e8f31c9addb5af16d32e5ee"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/data_backup_screen.dart",
+    "sha256": "11593cc57444587f0c8381da1e6213e8836912b898eb40f4d332e40b5f5b4ecc"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/edit_employee_screen.dart",
+    "sha256": "a08730ee7f342607792243ebcb0b2bdee873f08a46fcb826cc382d7d305a9f30"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/employee_confirmation_screen.dart",
+    "sha256": "356a1ab12f3dd587129e0f4ebbda880fe28f18518e7194cd6d1e5587bd229455"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/employee_details_screen.dart",
+    "sha256": "02d7b050224e403c428dd00e5e24c61ffd0e637e101f6252f956f010e25ad741"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/employment_screen.dart",
+    "sha256": "dfc6fea1604fc6d424ecd6314807adea8a69868b7a58c72b5ea817d1d0a04b6b"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/help_support_screen.dart",
+    "sha256": "206650e952643fd5d080165e2fbe6db14f6ffe963a74614ba2bbae0a1416e49e"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/me_tab.dart",
+    "sha256": "1c39bda304b55475adc1d9c0672d1bdd80636d21a4e8bb6ee381fde0f7379406"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/notifications_settings_screen.dart",
+    "sha256": "7726c186905e9f568a2d96aa2d9add9e1b949542f2484128a781036de4d09014"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/profile_screen.dart",
+    "sha256": "281308d246638c3ddf0bf71e28c3b587f93bd5eed8d15a72f0bf3e7b68fa3b00"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/me/security_screen.dart",
+    "sha256": "c4ce46025e290b26982daa36026f35e798d1554ec1f7f99488608a5c45241ec6"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/setup/business_setup_screen.dart",
+    "sha256": "4f5b7cd2a6dab67528b4159b757a193599d987047d4ca69314a8eba2fa61a5a0"
+  },
+  {
+    "app": "owner",
+    "path": "lib/screens/setup/setup_complete_screen.dart",
+    "sha256": "5e73209986a0babb120e14e7a0fa797bf00e6301c02f3139bd1b83fc397846c9"
+  },
+  {
+    "app": "owner",
+    "path": "lib/services/catalog_import.dart",
+    "sha256": "76daab5a788b2856698ce84bc44ece15ad69e5a59cbd2eab11efb31ccd5b388d"
+  },
+  {
+    "app": "owner",
+    "path": "lib/services/database_service.dart",
+    "sha256": "86387e6bf3af1779eadbcc666413e979320ee6c4efc50ddd34e311662fcab862"
+  },
+  {
+    "app": "owner",
+    "path": "lib/services/sale_errors.dart",
+    "sha256": "48b13012bb0e062f9d1a57e245297657fc336c6390cdeed9f5f1d85ff836e432"
+  },
+  {
+    "app": "owner",
+    "path": "lib/widgets/angel_markdown.dart",
+    "sha256": "f7b870eaded03a226b6970e3aa089347d5a13b64b3f3b796b5d10029c75f541c"
+  },
+  {
+    "app": "owner",
+    "path": "lib/widgets/stat_card.dart",
+    "sha256": "36c9ca12454cd456abdfbcffa9476dc5cbd810b045a867e47862801704ceb65b"
+  },
+  {
+    "app": "owner",
+    "path": "lib/widgets/trexven_widgets.dart",
+    "sha256": "68065c247a6c521fbbd9c9aa29eb7653a14c56924cd9ba05b1bd1a754a07b181"
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/account_operations_screen.dart",
+    "sha256": "9bf5744f6fcc576d83d4343f27a675ff24353edda8c10b17cce2c311ae41aa41"
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/cash_shift_screen.dart",
+    "sha256": "5e51f997c5281da81218e6f3f8f0da99884016eb3b93c733cfea20614dc2c072"
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/customer_presentation.dart",
+    "sha256": "e148eee90c756dcaefed6d4f86719f5da1d2ac331366a9080ee241648f26700f"
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/employee_access_screen.dart",
+    "sha256": "261a4e816d8537acea7d89324fbcd7f6854e084cebe86beb89ec314f723344c3"
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/financial_operations_screen.dart",
+    "sha256": "0658c0ef0ea1265a03ccfc36c6c3e485cdf1ca88ca2b185c4b3bcafd4600eb42"
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/inventory_operations_screen.dart",
+    "sha256": "ff088a82789f0c9b25ae2f4d978fda83a5c35919c711005e2579489ff8a9a4ff"
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/notification_center_screen.dart",
+    "sha256": "963f387386ecedb86eb3022dc00f84828a1e92989f6a63b871ff6470fcb64b1e"
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/operational_permissions_screen.dart",
+    "sha256": "85737b8ef55da947d38dcfe9f1e617a9ba6711ab530cc609d08422e9ca6b8e87"
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/src/payment_confirmation_dialog.dart",
+    "sha256": "4bfce50093c9938210ba6e61818e2f0d64dc5544495198e37c8ff0528172e624"
+  },
+  {
+    "app": "owner",
+    "path": "packages/trexven_operations/lib/trexven_operations.dart",
+    "sha256": "b9d500d405b3cc2504da94739412205013cdf77aa52ed8524a2bc3bb603815b1"
+  },
+  {
+    "app": "owner",
+    "path": "test/billing_frontend_test.dart",
+    "sha256": "733c0f255b3b485da6987a766c8b5f6d543650f5eb0c83c69fd66347af18fd50"
+  },
+  {
+    "app": "owner",
+    "path": "test/catalog_import_test.dart",
+    "sha256": "1937a4e26b058a694c2f7f6f21e844357c029394b8fb7afce901b40f23967b23"
+  },
+  {
+    "app": "owner",
+    "path": "test/catalog_repository_test.dart",
+    "sha256": "c584ca78735917215ef09adbdf96530e4549fb18320fadf9933262c35d62f3ce"
+  },
+  {
+    "app": "owner",
+    "path": "test/frontend_refinement_test.dart",
+    "sha256": "329cf7d060e5601fed8ea45903d92a42a37762177030831b8f5fcbbbd580ed2e"
+  },
+  {
+    "app": "owner",
+    "path": "test/shared_vision_experience_test.dart",
+    "sha256": "700af27a47a6cae412813793291a37b5f9fe4608e88d07039b0dd8ecebf57dc9"
+  },
+  {
+    "app": "owner",
+    "path": "test/ui_density_test.dart",
+    "sha256": "5fa6d768e30c84c4c6eff040b3c60c458737b596ca569c9e51a2ad34666448fb"
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/inventory/catalog_edit_screen.dart",
+    "sha256": "0762f153949ef4e577c035a06b684681e45e2c8ddb10af6f7fb203aee6008b17"
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/inventory/product_detail_screen.dart",
+    "sha256": "61bcfab325bede5976ee565e65c70700692673b77e04608a421903340b6759fd"
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/inventory/product_search_screen.dart",
+    "sha256": "ce0ef0ba0f0fc82657d7ebfa8e1883cab948da53aed6849b4e1524a29d5f7af5"
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/pos/checkout_screen.dart",
+    "sha256": "6ee7e38949aa148018e7be9062be4165e348616c75b620e6ce9662cb35bb1707"
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/pos/dashboard_screen.dart",
+    "sha256": "7d665764be44ac0cfbe68a109ec95e99aba35d927fa51d4fd90e7616f7bd737c"
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/pos/offline_cash_screen.dart",
+    "sha256": "af8eb908812e5487fb2be7e6cfc9e6a8c03b967cf60319d2f7f1d430f2365bdf"
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/features/pos/pending_sale_provider.dart",
+    "sha256": "5f04d9585dcfc0d5420b7a948ab713ade9ce2926697453b7cac576ac7e14f0b6"
+  },
+  {
+    "app": "pos",
+    "path": "lib/src/services/sale_errors.dart",
+    "sha256": "48b13012bb0e062f9d1a57e245297657fc336c6390cdeed9f5f1d85ff836e432"
+  },
+  {
+    "app": "pos",
+    "path": "test/frontend_product_navigation_test.dart",
+    "sha256": "d47a5c59632782e529ce785a9a412dc4bcb9be9364af9d2d96a2b792a1a0223f"
+  }
+]

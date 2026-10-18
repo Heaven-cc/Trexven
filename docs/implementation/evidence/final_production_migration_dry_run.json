@@ -1,0 +1,20 @@
+{
+  "project": "ufehcfrlygqvminfjumf",
+  "cli_version": "2.120.0",
+  "read_only_connection_enforced": true,
+  "dry_run": true,
+  "exit": 0,
+  "listed_migrations": [
+    "20261007215736_batch_2_authorization_price_enforcement.sql",
+    "20261007215743_batch_2_branch_assignment_foundation.sql",
+    "20261007215831_batch_2_branch_checkout_compatibility.sql",
+    "20261008002119_batch_2_staging_security_recovery.sql",
+    "20261008020234_batch_2_purchase_cost_contract.sql",
+    "20261008021428_batch_2_business_day_contract.sql",
+    "20261009003200_batch_3_catalog_inventory_foundation.sql"
+  ],
+  "expected_migrations_match": true,
+  "production_writes": 0,
+  "tls": "verify-full",
+  "pgpassfile_used": true
+}

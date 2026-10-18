@@ -1,0 +1,136 @@
+{
+  "project": "qysspzlfiysekvxnlzsh",
+  "production_writes": 0,
+  "reviewed_edges": [
+    {
+      "name": "camera-ai",
+      "version": 1,
+      "verify_jwt": true,
+      "source_matches": true,
+      "normalized_source_sha256": "cdce1ef657836edf077aa7fbda59799cd280cc6e94239a264e10581b1c57246e"
+    },
+    {
+      "name": "delete-account",
+      "version": 1,
+      "verify_jwt": true,
+      "source_matches": true,
+      "normalized_source_sha256": "922e775c1d3dc0c207a85cf7da6775ce2f33beca4ebd61619a6f51bdc9347ce3"
+    }
+  ],
+  "staging_history": [
+    {
+      "version": "20261007235400",
+      "name": "trexven_pre_batch_2_baseline_checkpoint_a"
+    },
+    {
+      "version": "20261008001547",
+      "name": "batch_2_authorization_price_enforcement"
+    },
+    {
+      "version": "20261008001556",
+      "name": "batch_2_branch_assignment_foundation"
+    },
+    {
+      "version": "20261008001958",
+      "name": "batch_2_branch_checkout_compatibility"
+    },
+    {
+      "version": "20261008002214",
+      "name": "batch_2_staging_security_recovery"
+    },
+    {
+      "version": "20261008022607",
+      "name": "batch_2_purchase_cost_contract"
+    },
+    {
+      "version": "20261008022611",
+      "name": "batch_2_business_day_contract"
+    },
+    {
+      "version": "20261009135002",
+      "name": "batch_9_rehearsal_batch_3_catalog_inventory_foundation"
+    },
+    {
+      "version": "20261009135052",
+      "name": "batch_9_rehearsal_batch_4_financial_operations"
+    },
+    {
+      "version": "20261009135208",
+      "name": "batch_9_rehearsal_batch_4_offline_cash_reconciliation"
+    },
+    {
+      "version": "20261009135216",
+      "name": "batch_9_rehearsal_batch_4_recovery_and_history"
+    },
+    {
+      "version": "20261009135223",
+      "name": "batch_9_rehearsal_batch_5_inventory_operations"
+    },
+    {
+      "version": "20261009135233",
+      "name": "batch_9_rehearsal_batch_5_inventory_review_controls"
+    },
+    {
+      "version": "20261009135241",
+      "name": "batch_9_rehearsal_batch_6_shared_cash_drawers"
+    },
+    {
+      "version": "20261009135250",
+      "name": "batch_9_rehearsal_batch_6_handover_and_access"
+    },
+    {
+      "version": "20261009135259",
+      "name": "batch_9_rehearsal_batch_4_financial_audit_events"
+    },
+    {
+      "version": "20261009135308",
+      "name": "batch_9_rehearsal_batch_5_dormant_transfer_foundation"
+    },
+    {
+      "version": "20261009135316",
+      "name": "batch_9_rehearsal_batch_7_subscription_billing_foundation"
+    },
+    {
+      "version": "20261009135323",
+      "name": "batch_9_rehearsal_batch_7_enforcement_and_operations"
+    },
+    {
+      "version": "20261009135328",
+      "name": "batch_9_rehearsal_batch_7_verified_provider_and_entitlement_controls"
+    },
+    {
+      "version": "20261009135334",
+      "name": "batch_9_rehearsal_batch_7_final_access_controls"
+    },
+    {
+      "version": "20261009135339",
+      "name": "batch_9_rehearsal_batch_4_transaction_recovery_boundaries"
+    },
+    {
+      "version": "20261009141755",
+      "name": "batch_9_rehearsal_batch_8_owner_payment_and_session_integration"
+    },
+    {
+      "version": "20261009142740",
+      "name": "batch_9_rehearsal_owner_payment_variable_correction"
+    },
+    {
+      "version": "20261009180906",
+      "name": "batch_9_rehearsal_owner_numeric_quantity_compatibility"
+    },
+    {
+      "version": "20261009185723",
+      "name": "batch_9_role_scoped_in_app_alerts"
+    },
+    {
+      "version": "20261009190756",
+      "name": "batch_9_notifications_null_contract_fix"
+    }
+  ],
+  "history_differs_from_main_intentionally": true,
+  "rehearsal_only_corrections": [
+    "batch_9_rehearsal_owner_payment_variable_correction",
+    "batch_9_rehearsal_owner_numeric_quantity_compatibility",
+    "batch_9_notifications_null_contract_fix"
+  ]
+}

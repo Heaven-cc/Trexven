@@ -1,0 +1,26 @@
+const {PGlite}=require('../../.tool-cache/angel-tests/node_modules/@electric-sql/pglite');
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{randomUUID}=require('node:crypto');
+const db=new PGlite();
+(async()=>{
+  await db.exec(`create role authenticated;create schema auth;
+    create function auth.uid() returns uuid language sql stable as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;
+    create table public.credit_accounts(sale_id uuid primary key,business_id uuid not null,debtor_name text,original_amount numeric,outstanding numeric);
+    alter table public.credit_accounts enable row level security;
+    create policy scoped_accounts on public.credit_accounts for select to authenticated using(business_id=auth.uid());
+    grant usage on schema auth to authenticated;grant select on public.credit_accounts to authenticated;`);
+  const sale=randomUUID(),foreignSale=randomUUID(),business=randomUUID(),foreign=randomUUID();
+  await db.query("insert into public.credit_accounts values($1,$2,'Synthetic account',100,75),($3,$4,'Foreign account',200,150)",[sale,business,foreignSale,foreign]);
+  const before=(await db.query('select sale_id,original_amount,outstanding from public.credit_accounts order by sale_id')).rows;
+  await db.exec(fs.readFileSync(path.join(__dirname,'../migrations/20261015004140_credit_account_legacy_read_compatibility.sql'),'utf8'));
+  assert.deepEqual((await db.query('select sale_id,original_amount,outstanding from public.credit_accounts order by sale_id')).rows,before);
+  assert.equal((await db.query("select pg_get_constraintdef(oid) as key from pg_constraint where conrelid='public.credit_accounts'::regclass and contype='p'")).rows[0].key,'PRIMARY KEY (sale_id)');
+  await db.query("select set_config('request.jwt.claim.sub',$1,false)",[business]);await db.exec('set role authenticated');
+  const rows=(await db.query('select * from public.credit_accounts where business_id=$1 order by id limit 200 offset 0',[business])).rows;
+  assert.equal(rows.length,1);assert.equal(rows[0].id,sale);assert.equal(rows[0].sale_id,sale);assert.equal(rows[0].outstanding,'75');
+  assert.equal((await db.query('select * from public.credit_accounts where business_id=$1 order by id',[foreign])).rows.length,0);
+  await db.exec('reset role');
+  await assert.rejects(()=>db.query('update public.credit_accounts set id=$1 where sale_id=$2',[randomUUID(),sale]),e=>e.code==='428C9');
+  const next=randomUUID();await db.query("insert into public.credit_accounts(sale_id,business_id,original_amount,outstanding) values($1,$2,20,20)",[next,business]);
+  assert.equal((await db.query('select id from public.credit_accounts where sale_id=$1',[next])).rows[0].id,next);
+  console.log('PASS: credit alias preserves balances and sale_id primary key, legacy ordering loads, RLS remains scoped, alias cannot be overwritten, new accounts generate the alias.');
+})().catch(e=>{console.error(e);process.exitCode=1}).finally(()=>db.close());

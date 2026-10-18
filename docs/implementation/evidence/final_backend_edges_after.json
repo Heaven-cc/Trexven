@@ -1,0 +1,111 @@
+{
+  "functions": [
+    {
+      "id": "0dd736d0-c2c7-400a-b250-3487dae77bb1",
+      "slug": "angel",
+      "name": "angel",
+      "status": "ACTIVE",
+      "version": 12,
+      "created_at": 1786383870885,
+      "updated_at": 1791528429690,
+      "verify_jwt": true,
+      "import_map": true,
+      "entrypoint_path": "file:///tmp/user_fn_ufehcfrlygqvminfjumf_0dd736d0-c2c7-400a-b250-3487dae77bb1_12/source/angel/index.ts",
+      "import_map_path": "file:///tmp/user_fn_ufehcfrlygqvminfjumf_0dd736d0-c2c7-400a-b250-3487dae77bb1_12/source/angel/deno.json",
+      "ezbr_sha256": "e45221a396b4fc1588d038221d1682183caaa3801d9c09a22d6f391cb4fc50f2"
+    },
+    {
+      "id": "86e9d6a8-2687-460a-aab2-293637dfd75b",
+      "slug": "camera-ingest",
+      "name": "camera-ingest",
+      "status": "ACTIVE",
+      "version": 3,
+      "created_at": 1786413965122,
+      "updated_at": 1786413965122,
+      "verify_jwt": true,
+      "import_map": false,
+      "entrypoint_path": "file:///tmp/user_fn_ufehcfrlygqvminfjumf_86e9d6a8-2687-460a-aab2-293637dfd75b_1/source/index.ts",
+      "ezbr_sha256": "7bcef717cb8cf75080eea0be0abb46ea4134a2c0179a36fb2a63ba170eac562d"
+    },
+    {
+      "id": "c2f8fbc7-0741-4bfb-8c4f-df97919a9858",
+      "slug": "camera-worker-ingest",
+      "name": "camera-worker-ingest",
+      "status": "ACTIVE",
+      "version": 3,
+      "created_at": 1786419291407,
+      "updated_at": 1786419291407,
+      "verify_jwt": false,
+      "import_map": true,
+      "entrypoint_path": "file:///tmp/user_fn_ufehcfrlygqvminfjumf_c2f8fbc7-0741-4bfb-8c4f-df97919a9858_1/source/index.ts",
+      "import_map_path": "file:///tmp/user_fn_ufehcfrlygqvminfjumf_c2f8fbc7-0741-4bfb-8c4f-df97919a9858_1/source/deno.json",
+      "ezbr_sha256": "798c2b75c21d5697f9df499e014fa91b4cc9b4139bf300db357830eaca02b075"
+    },
+    {
+      "id": "fb73a378-9f37-4d0e-bd88-679a0ce5fbfa",
+      "slug": "camera-ai",
+      "name": "camera-ai",
+      "status": "ACTIVE",
+      "version": 7,
+      "created_at": 1786464243659,
+      "updated_at": 1791082291409,
+      "verify_jwt": true,
+      "import_map": false,
+      "entrypoint_path": "file:///tmp/user_fn_ufehcfrlygqvminfjumf_fb73a378-9f37-4d0e-bd88-679a0ce5fbfa_6/source/index.ts",
+      "ezbr_sha256": "745ec69f76f9ab97fdf1824cd007b712c25c13fdfce5dfe2893830624d6fa0c8"
+    },
+    {
+      "id": "b76960f2-2316-48ad-8c85-fb8899056f84",
+      "slug": "create-employee",
+      "name": "create-employee",
+      "status": "ACTIVE",
+      "version": 7,
+      "created_at": 1787542015441,
+      "updated_at": 1791528409709,
+      "verify_jwt": true,
+      "import_map": false,
+      "entrypoint_path": "file:///tmp/user_fn_ufehcfrlygqvminfjumf_b76960f2-2316-48ad-8c85-fb8899056f84_7/source/create-employee/index.ts",
+      "ezbr_sha256": "a3c7d1075fac093e24d7b4824a1c137ce687ca7373dee6c034e99d9798365ac3"
+    },
+    {
+      "id": "b62e7391-55c4-4101-bf69-f9190e6faaaa",
+      "slug": "manage-employee",
+      "name": "manage-employee",
+      "status": "ACTIVE",
+      "version": 4,
+      "created_at": 1787549889977,
+      "updated_at": 1791528418510,
+      "verify_jwt": true,
+      "import_map": false,
+      "entrypoint_path": "file:///tmp/user_fn_ufehcfrlygqvminfjumf_b62e7391-55c4-4101-bf69-f9190e6faaaa_4/source/manage-employee/index.ts",
+      "ezbr_sha256": "21d06b9d1d01b73a7d81db175af0c71a55ec6113d3d7ca8599c7a5555fc8b97a"
+    },
+    {
+      "id": "77d7d857-76b7-4920-a896-41e1e1134680",
+      "slug": "employee-login",
+      "name": "employee-login",
+      "status": "ACTIVE",
+      "version": 6,
+      "created_at": 1787552543646,
+      "updated_at": 1791528402168,
+      "verify_jwt": false,
+      "import_map": true,
+      "entrypoint_path": "file:///tmp/user_fn_ufehcfrlygqvminfjumf_77d7d857-76b7-4920-a896-41e1e1134680_6/source/employee-login/index.ts",
+      "import_map_path": "file:///tmp/user_fn_ufehcfrlygqvminfjumf_77d7d857-76b7-4920-a896-41e1e1134680_6/source/employee-login/deno.json",
+      "ezbr_sha256": "3db48262e4d41ba90ccb200e0eef9751472a3cb83e26268058ff41e87930dbd5"
+    },
+    {
+      "id": "19b7c189-314e-4bda-b3ee-6ba6024ae38b",
+      "slug": "delete-account",
+      "name": "delete-account",
+      "status": "ACTIVE",
+      "version": 4,
+      "created_at": 1787796460658,
+      "updated_at": 1791581712152,
+      "verify_jwt": true,
+      "import_map": false,
+      "entrypoint_path": "file:///tmp/user_fn_ufehcfrlygqvminfjumf_19b7c189-314e-4bda-b3ee-6ba6024ae38b_4/source/supabase/functions/delete-account/index.ts",
+      "ezbr_sha256": "a4cec1540ccac07691b410aade1b50498d8dfaa29b82519a0d77237f1117b61a"
+    }
+  ]
+}

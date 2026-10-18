@@ -22,3 +22,28 @@ entrypoint = "./functions/camera-ai/index.ts"
 enabled = true
 verify_jwt = true
 entrypoint = "./functions/camera-ingest/index.ts"
+
+# Employee login precedes an Auth session; its handler validates credentials,
+# status and server-side membership and enforces the tested rate limit.
+[functions.employee-login]
+verify_jwt = false
+entrypoint = "./functions/employee-login/index.ts"
+
+[functions.create-employee]
+verify_jwt = true
+entrypoint = "./functions/create-employee/index.ts"
+
+[functions.manage-employee]
+verify_jwt = true
+entrypoint = "./functions/manage-employee/index.ts"
+
+# Explicit authenticated deletion; legacy calls still record reviewed requests.
+[functions.delete-account]
+verify_jwt = true
+entrypoint = "./functions/delete-account/index.ts"
+
+# Auth sessions disappear during deletion. This route accepts only the secure
+# recovery capability of an already accepted request; it cannot choose a user.
+[functions.account-deletion-recovery]
+verify_jwt = false
+entrypoint = "./functions/account-deletion-recovery/index.ts"

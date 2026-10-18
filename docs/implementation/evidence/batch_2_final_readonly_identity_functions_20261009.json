@@ -1,0 +1,146 @@
+{
+  "checked_at": "2026-10-09",
+  "production_writes": false,
+  "production": {
+    "id": "ufehcfrlygqvminfjumf",
+    "ref": "ufehcfrlygqvminfjumf",
+    "organization_id": "vbzystwunxdbkzxrembw",
+    "organization_slug": "vbzystwunxdbkzxrembw",
+    "name": "Heaven-cc's Project",
+    "region": "eu-west-3",
+    "status": "ACTIVE_HEALTHY",
+    "database": {
+      "host": "db.ufehcfrlygqvminfjumf.supabase.co",
+      "version": "17.6.1.155",
+      "postgres_engine": "17",
+      "release_channel": "ga"
+    },
+    "created_at": "2026-08-08T14:49:51.843039Z"
+  },
+  "staging": {
+    "id": "qysspzlfiysekvxnlzsh",
+    "ref": "qysspzlfiysekvxnlzsh",
+    "organization_id": "vbzystwunxdbkzxrembw",
+    "organization_slug": "vbzystwunxdbkzxrembw",
+    "name": "Trexven-Staging",
+    "region": "eu-west-1",
+    "status": "ACTIVE_HEALTHY",
+    "database": {
+      "host": "db.qysspzlfiysekvxnlzsh.supabase.co",
+      "version": "17.11.0.003",
+      "postgres_engine": "17",
+      "release_channel": "ga"
+    },
+    "created_at": "2026-10-07T21:48:08.446574Z"
+  },
+  "production_functions": {
+    "functions": [
+      {
+        "id": "0dd736d0-c2c7-400a-b250-3487dae77bb1",
+        "slug": "angel",
+        "name": "angel",
+        "status": "ACTIVE",
+        "version": 10,
+        "created_at": 1786383870885,
+        "updated_at": 1790996499373,
+        "verify_jwt": true,
+        "import_map": false,
+        "entrypoint_path": "file:///tmp/user_fn_ufehcfrlygqvminfjumf_0dd736d0-c2c7-400a-b250-3487dae77bb1_10/source/index.ts",
+        "ezbr_sha256": "30f783cfec70df74a7135603278b89aa1630475b8147e9786e9fe289be919f96"
+      },
+      {
+        "id": "86e9d6a8-2687-460a-aab2-293637dfd75b",
+        "slug": "camera-ingest",
+        "name": "camera-ingest",
+        "status": "ACTIVE",
+        "version": 2,
+        "created_at": 1786413965122,
+        "updated_at": 1786413965122,
+        "verify_jwt": true,
+        "import_map": false,
+        "entrypoint_path": "file:///tmp/user_fn_ufehcfrlygqvminfjumf_86e9d6a8-2687-460a-aab2-293637dfd75b_1/source/index.ts",
+        "ezbr_sha256": "7bcef717cb8cf75080eea0be0abb46ea4134a2c0179a36fb2a63ba170eac562d"
+      },
+      {
+        "id": "c2f8fbc7-0741-4bfb-8c4f-df97919a9858",
+        "slug": "camera-worker-ingest",
+        "name": "camera-worker-ingest",
+        "status": "ACTIVE",
+        "version": 2,
+        "created_at": 1786419291407,
+        "updated_at": 1786419291407,
+        "verify_jwt": false,
+        "import_map": true,
+        "entrypoint_path": "file:///tmp/user_fn_ufehcfrlygqvminfjumf_c2f8fbc7-0741-4bfb-8c4f-df97919a9858_1/source/index.ts",
+        "import_map_path": "file:///tmp/user_fn_ufehcfrlygqvminfjumf_c2f8fbc7-0741-4bfb-8c4f-df97919a9858_1/source/deno.json",
+        "ezbr_sha256": "798c2b75c21d5697f9df499e014fa91b4cc9b4139bf300db357830eaca02b075"
+      },
+      {
+        "id": "fb73a378-9f37-4d0e-bd88-679a0ce5fbfa",
+        "slug": "camera-ai",
+        "name": "camera-ai",
+        "status": "ACTIVE",
+        "version": 6,
+        "created_at": 1786464243659,
+        "updated_at": 1791082291409,
+        "verify_jwt": true,
+        "import_map": false,
+        "entrypoint_path": "file:///tmp/user_fn_ufehcfrlygqvminfjumf_fb73a378-9f37-4d0e-bd88-679a0ce5fbfa_6/source/index.ts",
+        "ezbr_sha256": "745ec69f76f9ab97fdf1824cd007b712c25c13fdfce5dfe2893830624d6fa0c8"
+      },
+      {
+        "id": "b76960f2-2316-48ad-8c85-fb8899056f84",
+        "slug": "create-employee",
+        "name": "create-employee",
+        "status": "ACTIVE",
+        "version": 5,
+        "created_at": 1787542015441,
+        "updated_at": 1790905827081,
+        "verify_jwt": true,
+        "import_map": false,
+        "entrypoint_path": "file:///tmp/user_fn_ufehcfrlygqvminfjumf_b76960f2-2316-48ad-8c85-fb8899056f84_5/source/index.ts",
+        "ezbr_sha256": "1a6bb925564c6763c529b5b783c456d16da38a84ff029a1038c1beef9d630aa3"
+      },
+      {
+        "id": "b62e7391-55c4-4101-bf69-f9190e6faaaa",
+        "slug": "manage-employee",
+        "name": "manage-employee",
+        "status": "ACTIVE",
+        "version": 2,
+        "created_at": 1787549889977,
+        "updated_at": 1790905822288,
+        "verify_jwt": true,
+        "import_map": false,
+        "entrypoint_path": "file:///tmp/user_fn_ufehcfrlygqvminfjumf_b62e7391-55c4-4101-bf69-f9190e6faaaa_2/source/index.ts",
+        "ezbr_sha256": "833d9853b0171f37c63c37d0f2b6ac9344cc8d260d9a8acf6851f5932994ab9d"
+      },
+      {
+        "id": "77d7d857-76b7-4920-a896-41e1e1134680",
+        "slug": "employee-login",
+        "name": "employee-login",
+        "status": "ACTIVE",
+        "version": 4,
+        "created_at": 1787552543646,
+        "updated_at": 1791068665852,
+        "verify_jwt": false,
+        "import_map": true,
+        "entrypoint_path": "file:///tmp/user_fn_ufehcfrlygqvminfjumf_77d7d857-76b7-4920-a896-41e1e1134680_4/source/index.ts",
+        "import_map_path": "file:///tmp/user_fn_ufehcfrlygqvminfjumf_77d7d857-76b7-4920-a896-41e1e1134680_4/source/deno.json",
+        "ezbr_sha256": "a45c285a4797d206eb7e803126cfcae7a0e0140ede504b185202b8d33753817a"
+      },
+      {
+        "id": "19b7c189-314e-4bda-b3ee-6ba6024ae38b",
+        "slug": "delete-account",
+        "name": "delete-account",
+        "status": "ACTIVE",
+        "version": 2,
+        "created_at": 1787796460658,
+        "updated_at": 1790945432481,
+        "verify_jwt": true,
+        "import_map": false,
+        "entrypoint_path": "file:///tmp/user_fn_ufehcfrlygqvminfjumf_19b7c189-314e-4bda-b3ee-6ba6024ae38b_2/source/index.ts",
+        "ezbr_sha256": "ebb1e630db5a43703bfd2dbac3892ceef9f1f0a908c082d55f41c4709fd71923"
+      }
+    ]
+  }
+}

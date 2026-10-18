@@ -1,0 +1,101 @@
+﻿{
+    "matching_windows_credential_target_names":  [
+                                                     "    Target: LegacyGeneric:target=Supabase CLI:supabase"
+                                                 ],
+    "protected_pg_file_presence":  [
+                                       {
+                                           "exists":  false,
+                                           "path":  "C:\\Users\\USER\\AppData\\Roaming\\postgresql\\pgpass.conf"
+                                       },
+                                       {
+                                           "exists":  false,
+                                           "path":  "C:\\Users\\USER\\AppData\\Roaming\\postgresql\\.pg_service.conf"
+                                       },
+                                       {
+                                           "exists":  false,
+                                           "path":  "C:\\Users\\USER\\.pg_service.conf"
+                                       }
+                                   ],
+    "credential_values_inspected_or_exported":  false,
+    "secret_management_module_available":  false,
+    "artifacts":  [
+                      {
+                          "sha256":  "863088195bd151992a91d6996452a19e77045c3d3018a7f448dbd0c54c5ce18a",
+                          "bytes":  94953241,
+                          "package_metadata":  "package: name=\u0027com.ODT.odt\u0027 versionCode=\u00271\u0027 versionName=\u00271.0.0\u0027 platformBuildVersionName=\u002716\u0027 platformBuildVersionCode=\u002736\u0027 compileSdkVersion=\u002736\u0027 compileSdkVersionCodename=\u002716\u0027",
+                          "path":  "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+                          "mtime_utc":  "2026-10-05T05:23:38.8539753Z",
+                          "installed_or_distributed_confirmed":  false
+                      },
+                      {
+                          "sha256":  "863088195bd151992a91d6996452a19e77045c3d3018a7f448dbd0c54c5ce18a",
+                          "bytes":  94953241,
+                          "package_metadata":  "package: name=\u0027com.ODT.odt\u0027 versionCode=\u00271\u0027 versionName=\u00271.0.0\u0027 platformBuildVersionName=\u002716\u0027 platformBuildVersionCode=\u002736\u0027 compileSdkVersion=\u002736\u0027 compileSdkVersionCodename=\u002716\u0027",
+                          "path":  "C:\\Users\\USER\\AndroidStudioProjects\\Trexven\\build\\app\\outputs\\apk\\debug\\app-debug.apk",
+                          "mtime_utc":  "2026-10-05T05:23:37.5322939Z",
+                          "installed_or_distributed_confirmed":  false
+                      },
+                      {
+                          "sha256":  "a3569b64019a6d29c975aec0c44f8541845c9fa614078ad15cd4c561ba560282",
+                          "bytes":  121718677,
+                          "package_metadata":  "package: name=\u0027odtweb.com.trexvenpos\u0027 versionCode=\u00271\u0027 versionName=\u00271.0.0\u0027 platformBuildVersionName=\u002716\u0027 platformBuildVersionCode=\u002736\u0027 compileSdkVersion=\u002736\u0027 compileSdkVersionCodename=\u002716\u0027",
+                          "path":  "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+                          "mtime_utc":  "2026-10-05T03:08:41.4595794Z",
+                          "installed_or_distributed_confirmed":  false
+                      },
+                      {
+                          "sha256":  "a3569b64019a6d29c975aec0c44f8541845c9fa614078ad15cd4c561ba560282",
+                          "bytes":  121718677,
+                          "package_metadata":  "package: name=\u0027odtweb.com.trexvenpos\u0027 versionCode=\u00271\u0027 versionName=\u00271.0.0\u0027 platformBuildVersionName=\u002716\u0027 platformBuildVersionCode=\u002736\u0027 compileSdkVersion=\u002736\u0027 compileSdkVersionCodename=\u002716\u0027",
+                          "path":  "C:\\Users\\USER\\AndroidStudioProjects\\trexvenpos\\build\\app\\outputs\\apk\\debug\\app-debug.apk",
+                          "mtime_utc":  "2026-10-05T03:08:39.5780673Z",
+                          "installed_or_distributed_confirmed":  false
+                      }
+                  ],
+    "connected_device_count":  0,
+    "environment_variable_presence":  [
+                                          {
+                                              "User":  false,
+                                              "name":  "SUPABASE_DB_URL",
+                                              "Machine":  false,
+                                              "Process":  false
+                                          },
+                                          {
+                                              "User":  false,
+                                              "name":  "SUPABASE_DB_PASSWORD",
+                                              "Machine":  false,
+                                              "Process":  false
+                                          },
+                                          {
+                                              "User":  false,
+                                              "name":  "DATABASE_URL",
+                                              "Machine":  false,
+                                              "Process":  false
+                                          },
+                                          {
+                                              "User":  false,
+                                              "name":  "PGSERVICEFILE",
+                                              "Machine":  false,
+                                              "Process":  false
+                                          },
+                                          {
+                                              "User":  false,
+                                              "name":  "PGSERVICE",
+                                              "Machine":  false,
+                                              "Process":  false
+                                          },
+                                          {
+                                              "User":  false,
+                                              "name":  "PGPASSWORD",
+                                              "Machine":  false,
+                                              "Process":  false
+                                          },
+                                          {
+                                              "User":  false,
+                                              "name":  "PGPASSFILE",
+                                              "Machine":  false,
+                                              "Process":  false
+                                          }
+                                      ],
+    "date":  "2026-10-09"
+}

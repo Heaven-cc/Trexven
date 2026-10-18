@@ -1,0 +1,276 @@
+{
+  "aggregates": {
+    "roles": {
+      "manager": 1
+    },
+    "sales": 2,
+    "products": 2,
+    "countries": [
+      {
+        "country": "Nigeria",
+        "business_count": 1
+      }
+    ],
+    "employees": 1,
+    "auth_users": 2,
+    "businesses": 1,
+    "sale_items": 2,
+    "memberships": 2,
+    "snapshot_at": "2026-10-09T00:03:45.32538+00:00",
+    "cached_receipts": 2,
+    "products_zero_price": 1,
+    "products_invalid_price": 0,
+    "price_stock_fingerprint": "f18ab004bcbf85798bbed11a36f135fe",
+    "cross_business_sale_item": 0,
+    "duplicate_employee_codes": 0,
+    "products_invalid_quantity": 0,
+    "employee_member_mismatches": 0,
+    "inventory_invalid_quantity": 0,
+    "duplicate_business_barcodes": 0,
+    "cross_business_sale_employee": 0,
+    "receipt_identity_fingerprint": "547ebc98fa0ff0ce5124b3690923b675",
+    "cross_business_inventory_product": 0
+  },
+  "foreign_key_checks": [
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.businesses.businesses_owner_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.employees.employees_business_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.employees.employees_user_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.sales.sales_business_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.sales.sales_employee_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.business_members.business_members_business_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.business_members.business_members_user_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.products.products_business_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.inventory_movements.inventory_movements_business_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.inventory_movements.inventory_movements_employee_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.inventory_movements.inventory_movements_product_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.financial_transactions.financial_transactions_business_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.financial_transactions.financial_transactions_employee_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.employee_activity.employee_activity_business_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.employee_activity.employee_activity_camera_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.employee_activity.employee_activity_employee_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.inventory.inventory_business_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.inventory.inventory_product_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.sale_items.sale_items_product_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.sale_items.sale_items_sale_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.expenses.expenses_business_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.expenses.expenses_employee_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.cash_transactions.cash_transactions_business_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.cash_transactions.cash_transactions_employee_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.business_activity.business_activity_business_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.business_activity.business_activity_employee_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "private.angel_request_windows.angel_request_windows_user_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.business_settings.business_settings_business_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.angel_conversations.angel_conversations_business_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.angel_conversations.angel_conversations_user_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.angel_messages.angel_messages_conversation_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.angel_insights.angel_insights_business_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.alerts.alerts_business_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.audit_logs.audit_logs_actor_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.audit_logs.audit_logs_business_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.audit_logs.audit_logs_target_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.employee_permissions.employee_permissions_employee_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.employee_permissions.employee_permissions_permission_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "private.camera_explanation_request_windows.camera_explanation_request_windows_user_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.cameras.cameras_business_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.camera_zones.camera_zones_business_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.camera_zones.camera_zones_camera_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.camera_event_links.camera_event_links_business_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.camera_event_links.camera_event_links_camera_event_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.camera_ai_jobs.camera_ai_jobs_business_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.camera_ai_jobs.camera_ai_jobs_camera_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.camera_health_logs.camera_health_logs_business_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.camera_health_logs.camera_health_logs_camera_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.camera_events.camera_events_business_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.camera_events.camera_events_camera_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.camera_events.camera_events_employee_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.camera_detections.camera_detections_business_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.camera_detections.camera_detections_camera_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.camera_detections.camera_detections_employee_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.camera_detections.camera_detections_event_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.camera_detections.camera_detections_zone_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.recordings.recordings_business_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "public.recordings.recordings_camera_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "private.sale_requests.sale_requests_business_id_fkey"
+    },
+    {
+      "orphan_count": 0,
+      "constraint_name": "private.sale_requests.sale_requests_user_id_fkey"
+    }
+  ]
+}

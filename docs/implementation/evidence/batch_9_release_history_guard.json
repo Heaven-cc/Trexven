@@ -1,0 +1,11 @@
+{
+  "target": "owned API-unexposed loopback 54402",
+  "production_writes": 0,
+  "customer_data_used": false,
+  "passed": true,
+  "unexpected_history_denied": true,
+  "ddl_not_executed": true,
+  "history_not_changed": true,
+  "expected_rejection_exit_code": 3,
+  "isolated_cleanup_exit": 0
+}

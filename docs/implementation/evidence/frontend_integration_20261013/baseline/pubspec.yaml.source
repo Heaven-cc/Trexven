@@ -1,0 +1,61 @@
+name: odt
+description: "Trexven — AI-powered business management & security"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  trexven_design_system:
+    path: packages/trexven_design_system
+  trexven_operations:
+    path: packages/trexven_operations
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  supabase_flutter: ^2.17.1
+  uuid: ^4.5.1
+  video_player: 2.14.0
+  http: ^1.2.2
+  provider: ^6.1.2
+  intl: ^0.19.0
+  fl_chart: ^0.69.0
+  cached_network_image: ^3.4.1
+  flutter_local_notifications: ^17.2.4
+  shared_preferences: ^2.3.2
+  url_launcher: ^6.3.1
+  timeago: ^3.6.1
+  package_info_plus: ^8.0.0
+  csv: ^6.0.0
+  path_provider: ^2.1.3
+  share_plus: ^10.0.0
+  flutter_secure_storage: ^10.3.4
+  excel: 4.0.6
+  file_selector: 1.1.0
+  flutter_markdown_plus: 1.0.12
+  mobile_scanner: ^6.0.11
+  country_picker: ^2.0.28
+
+dev_dependencies:
+  cryptography: 2.9.0
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: "assets/images/trexven_logo.png"
+  web:
+    generate: true
+    image_path: "assets/images/trexven_logo.png"
+    background_color: "#000000"
+    theme_color: "#000000"
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/trexven_logo.png
+

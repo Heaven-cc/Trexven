@@ -1,0 +1,281 @@
+{
+  "queries": {
+    "aggregate": "begin read only;\nselect jsonb_build_object(\n 'employee_rows',(select count(*) from public.employees),\n 'duplicate_employee_code_groups',(select count(*) from (select employee_code from public.employees where employee_code is not null group by employee_code having count(*)>1) x),\n 'null_employee_codes',(select count(*) from public.employees where employee_code is null),\n 'duplicate_employee_identity_groups',(select count(*) from (select business_id,user_id from public.employees where user_id is not null group by business_id,user_id having count(*)>1) x),\n 'unlinked_employee_auth_ids',(select count(*) from public.employees where user_id is null),\n 'employee_missing_membership',(select count(*) from public.employees e where e.user_id is not null and not exists(select 1 from public.business_members m where m.business_id=e.business_id and m.user_id=e.user_id)),\n 'employee_membership_role_mismatch',(select count(*) from public.employees e join public.business_members m on m.business_id=e.business_id and m.user_id=e.user_id where m.role is distinct from case when e.role='manager' then 'manager' when e.role='owner' then 'owner' else 'employee' end),\n 'employee_roles',(select coalesce(jsonb_object_agg(role,n),'{}') from(select coalesce(role,'<NULL>') role,count(*) n from public.employees group by role) x),\n 'products',(select count(*) from public.products),\n 'null_selling_prices',(select count(*) from public.products where selling_price is null),\n 'zero_selling_prices',(select count(*) from public.products where selling_price=0),\n 'negative_selling_prices',(select count(*) from public.products where selling_price<0),\n 'nonfinite_selling_prices',(select count(*) from public.products where selling_price::text in ('NaN','Infinity','-Infinity')),\n 'inactive_products',(select count(*) from public.products where is_active is not true or active is false),\n 'inventory_product_business_mismatch',(select count(*) from public.inventory i join public.products p on p.id=i.product_id where i.business_id is distinct from p.business_id),\n 'movement_product_business_mismatch',(select count(*) from public.inventory_movements i join public.products p on p.id=i.product_id where i.business_id is distinct from p.business_id),\n 'sale_membership_business_mismatch',(select count(*) from public.sales s join public.business_members m on m.id=s.employee_id where s.business_id is distinct from m.business_id),\n 'sale_item_business_mismatch',(select count(*) from public.sale_items i join public.sales s on s.id=i.sale_id join public.products p on p.id=i.product_id where s.business_id is distinct from p.business_id),\n 'sales',(select count(*) from public.sales),\n 'sale_requests',(select count(*) from private.sale_requests),\n 'duplicate_request_groups',(select count(*) from(select business_id,user_id,request_id from private.sale_requests group by business_id,user_id,request_id having count(*)>1) x),\n 'malformed_saved_receipt_ids',(select count(*) from private.sale_requests where receipt->>'id' is null or receipt->>'id' !~* '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'),\n 'branch_columns',(select count(*) from information_schema.columns where table_schema in ('public','private') and column_name='branch_id'),\n 'timezone_column',(select count(*) from information_schema.columns where table_schema='public' and table_name='businesses' and column_name='timezone'),\n 'unvalidated_constraints',(select count(*) from pg_constraint c join pg_class t on t.oid=c.conrelid join pg_namespace n on n.oid=t.relnamespace where n.nspname in ('public','private') and not c.convalidated)\n ) as integrity_counts; commit;",
+    "foreign_keys": "begin read only; select jsonb_agg(x) as foreign_key_integrity from (select 'businesses_owner_id_fkey' as constraint_name,count(*) as orphan_count from public.businesses s where s.owner_id is not null and not exists(select 1 from auth.users t where s.owner_id=t.id) union all select 'business_members_business_id_fkey' as constraint_name,count(*) as orphan_count from public.business_members s where s.business_id is not null and not exists(select 1 from public.businesses t where s.business_id=t.id) union all select 'business_members_user_id_fkey' as constraint_name,count(*) as orphan_count from public.business_members s where s.user_id is not null and not exists(select 1 from auth.users t where s.user_id=t.id) union all select 'products_business_id_fkey' as constraint_name,count(*) as orphan_count from public.products s where s.business_id is not null and not exists(select 1 from public.businesses t where s.business_id=t.id) union all select 'inventory_business_id_fkey' as constraint_name,count(*) as orphan_count from public.inventory s where s.business_id is not null and not exists(select 1 from public.businesses t where s.business_id=t.id) union all select 'inventory_product_id_fkey' as constraint_name,count(*) as orphan_count from public.inventory s where s.product_id is not null and not exists(select 1 from public.products t where s.product_id=t.id) union all select 'inventory_movements_business_id_fkey' as constraint_name,count(*) as orphan_count from public.inventory_movements s where s.business_id is not null and not exists(select 1 from public.businesses t where s.business_id=t.id) union all select 'inventory_movements_employee_id_fkey' as constraint_name,count(*) as orphan_count from public.inventory_movements s where s.employee_id is not null and not exists(select 1 from public.business_members t where s.employee_id=t.id) union all select 'inventory_movements_product_id_fkey' as constraint_name,count(*) as orphan_count from public.inventory_movements s where s.product_id is not null and not exists(select 1 from public.products t where s.product_id=t.id) union all select 'sales_business_id_fkey' as constraint_name,count(*) as orphan_count from public.sales s where s.business_id is not null and not exists(select 1 from public.businesses t where s.business_id=t.id) union all select 'sales_employee_id_fkey' as constraint_name,count(*) as orphan_count from public.sales s where s.employee_id is not null and not exists(select 1 from public.business_members t where s.employee_id=t.id) union all select 'sale_items_product_id_fkey' as constraint_name,count(*) as orphan_count from public.sale_items s where s.product_id is not null and not exists(select 1 from public.products t where s.product_id=t.id) union all select 'sale_items_sale_id_fkey' as constraint_name,count(*) as orphan_count from public.sale_items s where s.sale_id is not null and not exists(select 1 from public.sales t where s.sale_id=t.id) union all select 'expenses_business_id_fkey' as constraint_name,count(*) as orphan_count from public.expenses s where s.business_id is not null and not exists(select 1 from public.businesses t where s.business_id=t.id) union all select 'expenses_employee_id_fkey' as constraint_name,count(*) as orphan_count from public.expenses s where s.employee_id is not null and not exists(select 1 from public.business_members t where s.employee_id=t.id) union all select 'cash_transactions_business_id_fkey' as constraint_name,count(*) as orphan_count from public.cash_transactions s where s.business_id is not null and not exists(select 1 from public.businesses t where s.business_id=t.id) union all select 'cash_transactions_employee_id_fkey' as constraint_name,count(*) as orphan_count from public.cash_transactions s where s.employee_id is not null and not exists(select 1 from public.business_members t where s.employee_id=t.id) union all select 'business_activity_business_id_fkey' as constraint_name,count(*) as orphan_count from public.business_activity s where s.business_id is not null and not exists(select 1 from public.businesses t where s.business_id=t.id) union all select 'business_activity_employee_id_fkey' as constraint_name,count(*) as orphan_count from public.business_activity s where s.employee_id is not null and not exists(select 1 from public.business_members t where s.employee_id=t.id) union all select 'cameras_business_id_fkey' as constraint_name,count(*) as orphan_count from public.cameras s where s.business_id is not null and not exists(select 1 from public.businesses t where s.business_id=t.id) union all select 'camera_events_business_id_fkey' as constraint_name,count(*) as orphan_count from public.camera_events s where s.business_id is not null and not exists(select 1 from public.businesses t where s.business_id=t.id) union all select 'camera_events_camera_id_fkey' as constraint_name,count(*) as orphan_count from public.camera_events s where s.camera_id is not null and not exists(select 1 from public.cameras t where s.camera_id=t.id) union all select 'camera_events_employee_id_fkey' as constraint_name,count(*) as orphan_count from public.camera_events s where s.employee_id is not null and not exists(select 1 from public.business_members t where s.employee_id=t.id) union all select 'angel_conversations_business_id_fkey' as constraint_name,count(*) as orphan_count from public.angel_conversations s where s.business_id is not null and not exists(select 1 from public.businesses t where s.business_id=t.id) union all select 'angel_conversations_user_id_fkey' as constraint_name,count(*) as orphan_count from public.angel_conversations s where s.user_id is not null and not exists(select 1 from auth.users t where s.user_id=t.id) union all select 'angel_messages_conversation_id_fkey' as constraint_name,count(*) as orphan_count from public.angel_messages s where s.conversation_id is not null and not exists(select 1 from public.angel_conversations t where s.conversation_id=t.id) union all select 'alerts_business_id_fkey' as constraint_name,count(*) as orphan_count from public.alerts s where s.business_id is not null and not exists(select 1 from public.businesses t where s.business_id=t.id) union all select 'business_settings_business_id_fkey' as constraint_name,count(*) as orphan_count from public.business_settings s where s.business_id is not null and not exists(select 1 from public.businesses t where s.business_id=t.id) union all select 'employees_business_id_fkey' as constraint_name,count(*) as orphan_count from public.employees s where s.business_id is not null and not exists(select 1 from public.businesses t where s.business_id=t.id) union all select 'employees_user_id_fkey' as constraint_name,count(*) as orphan_count from public.employees s where s.user_id is not null and not exists(select 1 from auth.users t where s.user_id=t.id) union all select 'financial_transactions_business_id_fkey' as constraint_name,count(*) as orphan_count from public.financial_transactions s where s.business_id is not null and not exists(select 1 from public.businesses t where s.business_id=t.id) union all select 'financial_transactions_employee_id_fkey' as constraint_name,count(*) as orphan_count from public.financial_transactions s where s.employee_id is not null and not exists(select 1 from public.employees t where s.employee_id=t.id) union all select 'employee_activity_business_id_fkey' as constraint_name,count(*) as orphan_count from public.employee_activity s where s.business_id is not null and not exists(select 1 from public.businesses t where s.business_id=t.id) union all select 'employee_activity_camera_id_fkey' as constraint_name,count(*) as orphan_count from public.employee_activity s where s.camera_id is not null and not exists(select 1 from public.cameras t where s.camera_id=t.id) union all select 'employee_activity_employee_id_fkey' as constraint_name,count(*) as orphan_count from public.employee_activity s where s.employee_id is not null and not exists(select 1 from public.employees t where s.employee_id=t.id) union all select 'angel_insights_business_id_fkey' as constraint_name,count(*) as orphan_count from public.angel_insights s where s.business_id is not null and not exists(select 1 from public.businesses t where s.business_id=t.id) union all select 'camera_zones_business_id_fkey' as constraint_name,count(*) as orphan_count from public.camera_zones s where s.business_id is not null and not exists(select 1 from public.businesses t where s.business_id=t.id) union all select 'camera_zones_camera_id_fkey' as constraint_name,count(*) as orphan_count from public.camera_zones s where s.camera_id is not null and not exists(select 1 from public.cameras t where s.camera_id=t.id) union all select 'camera_detections_business_id_fkey' as constraint_name,count(*) as orphan_count from public.camera_detections s where s.business_id is not null and not exists(select 1 from public.businesses t where s.business_id=t.id) union all select 'camera_detections_camera_id_fkey' as constraint_name,count(*) as orphan_count from public.camera_detections s where s.camera_id is not null and not exists(select 1 from public.cameras t where s.camera_id=t.id) union all select 'camera_detections_employee_id_fkey' as constraint_name,count(*) as orphan_count from public.camera_detections s where s.employee_id is not null and not exists(select 1 from public.employees t where s.employee_id=t.id) union all select 'camera_detections_event_id_fkey' as constraint_name,count(*) as orphan_count from public.camera_detections s where s.event_id is not null and not exists(select 1 from public.camera_events t where s.event_id=t.id) union all select 'camera_detections_zone_id_fkey' as constraint_name,count(*) as orphan_count from public.camera_detections s where s.zone_id is not null and not exists(select 1 from public.camera_zones t where s.zone_id=t.id) union all select 'camera_event_links_business_id_fkey' as constraint_name,count(*) as orphan_count from public.camera_event_links s where s.business_id is not null and not exists(select 1 from public.businesses t where s.business_id=t.id) union all select 'camera_event_links_camera_event_id_fkey' as constraint_name,count(*) as orphan_count from public.camera_event_links s where s.camera_event_id is not null and not exists(select 1 from public.camera_events t where s.camera_event_id=t.id) union all select 'camera_ai_jobs_business_id_fkey' as constraint_name,count(*) as orphan_count from public.camera_ai_jobs s where s.business_id is not null and not exists(select 1 from public.businesses t where s.business_id=t.id) union all select 'camera_ai_jobs_camera_id_fkey' as constraint_name,count(*) as orphan_count from public.camera_ai_jobs s where s.camera_id is not null and not exists(select 1 from public.cameras t where s.camera_id=t.id) union all select 'camera_health_logs_business_id_fkey' as constraint_name,count(*) as orphan_count from public.camera_health_logs s where s.business_id is not null and not exists(select 1 from public.businesses t where s.business_id=t.id) union all select 'camera_health_logs_camera_id_fkey' as constraint_name,count(*) as orphan_count from public.camera_health_logs s where s.camera_id is not null and not exists(select 1 from public.cameras t where s.camera_id=t.id) union all select 'recordings_business_id_fkey' as constraint_name,count(*) as orphan_count from public.recordings s where s.business_id is not null and not exists(select 1 from public.businesses t where s.business_id=t.id) union all select 'recordings_camera_id_fkey' as constraint_name,count(*) as orphan_count from public.recordings s where s.camera_id is not null and not exists(select 1 from public.cameras t where s.camera_id=t.id) union all select 'audit_logs_actor_id_fkey' as constraint_name,count(*) as orphan_count from public.audit_logs s where s.actor_id is not null and not exists(select 1 from auth.users t where s.actor_id=t.id) union all select 'audit_logs_business_id_fkey' as constraint_name,count(*) as orphan_count from public.audit_logs s where s.business_id is not null and not exists(select 1 from public.businesses t where s.business_id=t.id) union all select 'audit_logs_target_id_fkey' as constraint_name,count(*) as orphan_count from public.audit_logs s where s.target_id is not null and not exists(select 1 from public.employees t where s.target_id=t.id) union all select 'employee_permissions_employee_id_fkey' as constraint_name,count(*) as orphan_count from public.employee_permissions s where s.employee_id is not null and not exists(select 1 from public.employees t where s.employee_id=t.id) union all select 'employee_permissions_permission_id_fkey' as constraint_name,count(*) as orphan_count from public.employee_permissions s where s.permission_id is not null and not exists(select 1 from public.permissions t where s.permission_id=t.id) union all select 'angel_request_windows_user_id_fkey' as constraint_name,count(*) as orphan_count from private.angel_request_windows s where s.user_id is not null and not exists(select 1 from auth.users t where s.user_id=t.id) union all select 'camera_explanation_request_windows_user_id_fkey' as constraint_name,count(*) as orphan_count from private.camera_explanation_request_windows s where s.user_id is not null and not exists(select 1 from auth.users t where s.user_id=t.id) union all select 'sale_requests_business_id_fkey' as constraint_name,count(*) as orphan_count from private.sale_requests s where s.business_id is not null and not exists(select 1 from public.businesses t where s.business_id=t.id) union all select 'sale_requests_user_id_fkey' as constraint_name,count(*) as orphan_count from private.sale_requests s where s.user_id is not null and not exists(select 1 from auth.users t where s.user_id=t.id)) x; commit;"
+  },
+  "aggregate": {
+    "integrity_counts": {
+      "sales": 2,
+      "products": 2,
+      "employee_rows": 1,
+      "sale_requests": 2,
+      "branch_columns": 0,
+      "employee_roles": {
+        "manager": 1
+      },
+      "timezone_column": 0,
+      "inactive_products": 1,
+      "null_employee_codes": 0,
+      "null_selling_prices": 0,
+      "zero_selling_prices": 1,
+      "negative_selling_prices": 0,
+      "unvalidated_constraints": 0,
+      "duplicate_request_groups": 0,
+      "nonfinite_selling_prices": 0,
+      "unlinked_employee_auth_ids": 0,
+      "employee_missing_membership": 0,
+      "malformed_saved_receipt_ids": 0,
+      "sale_item_business_mismatch": 0,
+      "duplicate_employee_code_groups": 0,
+      "employee_membership_role_mismatch": 0,
+      "sale_membership_business_mismatch": 0,
+      "duplicate_employee_identity_groups": 0,
+      "movement_product_business_mismatch": 0,
+      "inventory_product_business_mismatch": 0
+    }
+  },
+  "foreign_keys": {
+    "foreign_key_integrity": [
+      {
+        "orphan_count": 0,
+        "constraint_name": "businesses_owner_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "business_members_business_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "business_members_user_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "products_business_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "inventory_business_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "inventory_product_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "inventory_movements_business_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "inventory_movements_employee_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "inventory_movements_product_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "sales_business_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "sales_employee_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "sale_items_product_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "sale_items_sale_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "expenses_business_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "expenses_employee_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "cash_transactions_business_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "cash_transactions_employee_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "business_activity_business_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "business_activity_employee_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "cameras_business_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "camera_events_business_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "camera_events_camera_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "camera_events_employee_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "angel_conversations_business_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "angel_conversations_user_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "angel_messages_conversation_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "alerts_business_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "business_settings_business_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "employees_business_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "employees_user_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "financial_transactions_business_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "financial_transactions_employee_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "employee_activity_business_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "employee_activity_camera_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "employee_activity_employee_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "angel_insights_business_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "camera_zones_business_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "camera_zones_camera_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "camera_detections_business_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "camera_detections_camera_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "camera_detections_employee_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "camera_detections_event_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "camera_detections_zone_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "camera_event_links_business_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "camera_event_links_camera_event_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "camera_ai_jobs_business_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "camera_ai_jobs_camera_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "camera_health_logs_business_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "camera_health_logs_camera_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "recordings_business_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "recordings_camera_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "audit_logs_actor_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "audit_logs_business_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "audit_logs_target_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "employee_permissions_employee_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "employee_permissions_permission_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "angel_request_windows_user_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "camera_explanation_request_windows_user_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "sale_requests_business_id_fkey"
+      },
+      {
+        "orphan_count": 0,
+        "constraint_name": "sale_requests_user_id_fkey"
+      }
+    ]
+  }
+}

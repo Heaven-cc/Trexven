@@ -1,0 +1,69 @@
+{
+  "production_writes": 0,
+  "customer_data_used_for_application_tests": false,
+  "owner_flutter_tests": {
+    "passed": 85,
+    "skipped": 0,
+    "exit_code": 0,
+    "log": ".batch3-tools/batch9_owner_final_regression.log",
+    "sha256": "6fa6d4eaeaa9812b23b5bf5af28269948ca0b2c87bb049543e5e6f27691e7391"
+  },
+  "pos_flutter_tests": {
+    "passed": 76,
+    "skipped": 1,
+    "exit_code": 0,
+    "log": ".batch3-tools/batch9_pos_final_regression_sequential.log",
+    "sha256": "0d0658eca05ea87e2b8789edc2c76a54201349ce66512ffe9f9891dcee5a215d"
+  },
+  "owner_analysis": {
+    "error": 0,
+    "warning": 0,
+    "info": 253,
+    "exit_code": 1,
+    "log": ".batch3-tools/batch9_owner_frozen_analysis.log",
+    "sha256": "9c72c592ddba07379f9767b40a5859f465e521d5ff1d2ced156dba2058c7567e"
+  },
+  "pos_analysis": {
+    "error": 0,
+    "warning": 0,
+    "info": 65,
+    "exit_code": 1,
+    "log": ".batch3-tools/batch9_pos_frozen_analysis.log",
+    "sha256": "b5d0dd36809a27de4ec1c84de6ea801802b9b36a3885f15801d2cc0abe8db6c4"
+  },
+  "node_edge_tests": {
+    "passed": 38,
+    "failed": 0,
+    "exit_code": 0
+  },
+  "deno_billing_helper_tests": {
+    "passed": 10,
+    "failed": 0,
+    "exit_code": 0
+  },
+  "pos_real_persisted_process_restart": {
+    "passed": true,
+    "distinct_process_ids": true,
+    "retry_dispatches": 1,
+    "stock_before": 5,
+    "stock_after": 4,
+    "before_test_passed": 1,
+    "after_test_passed": 1,
+    "android_update_verified": false
+  },
+  "final_pos_first_attempt": {
+    "passed": false,
+    "interrupted": true,
+    "reason": "OS error 112: insufficient disk space copying generated test kernel",
+    "log": ".batch3-tools/batch9_pos_final_regression.log",
+    "resolved_by": "Unused generated test cleanup and sequential full suite"
+  },
+  "android_build": {
+    "executed": false,
+    "blocked": "Insufficient safe C scratch space"
+  },
+  "android_device": {
+    "connected_devices": 0,
+    "verified": false
+  }
+}
