@@ -13,6 +13,8 @@ begin
  select * into r from public.sale_returns where id=p_return_id;
  if not found then raise exception 'Return not found' using errcode='42501';end if;
  perform private.operations_context(r.business_id,'approve_refund',r.branch_id,true);
+ if private.has_business_permission(r.business_id,'approve_refund') is distinct from true then
+  raise exception 'Explicit refund authority required' using errcode='42501'; end if;
  payload:=jsonb_build_object('operation','pos_return_approval','return',p_return_id,'method',p_method,'confirmed',p_confirmed,'evidence',p_evidence,'shift',p_shift_id,'restock',p_restock,'restock_reason',p_restock_reason);
  previous:=private.operation_replay(r.business_id,p_request_id,payload);if previous is not null then return previous;end if;
  if p_restock is null or p_confirmed is distinct from true or
@@ -99,7 +101,7 @@ begin
  select jsonb_build_object('version',1,'lease_id',leaseid,'business_id',p_business_id,'user_id',auth.uid(),'membership_id',member,'device_id',p_device_id,
  'issued_at',started,'expires_at',expiry,'branch_id',p_branch_id,'shift_id',p_shift_id,'products',coalesce(jsonb_agg(jsonb_build_object('id',p.id,'name',p.name,'unit',p.unit,'price',p.selling_price,'quantity',greatest(i.quantity-i.reserved_quantity,0),'barcode',p.barcode,'sku',p.sku) order by p.id),'[]'::jsonb)) into scope
  from public.products p join public.inventory i on i.product_id=p.id and i.business_id=p.business_id
- and i.branch_id=p_branch_id where p.business_id=p_business_id and p.selling_price is not null and p.active is true and p.is_active;
+ and i.branch_id=p_branch_id where p.business_id=p_business_id and private.valid_money(p.selling_price,true) and p.active is true and p.is_active;
  secret:=extensions.gen_random_bytes(32);
  signature:=encode(extensions.hmac(convert_to(scope::text,'UTF8'),secret,'sha256'),'hex');
  insert into private.offline_cash_leases values(leaseid,p_business_id,auth.uid(),member,p_device_id,scope,signature,secret,started,expiry);
@@ -147,7 +149,7 @@ begin
   if lower(coalesce(snapshot->>'unit','piece')) not in('kg','g','litre','ml','metre','cm') and qty<>trunc(qty) then raise exception 'Countable offline stock requires whole units';end if;
   select * into product from public.products where id=(x->>'product_id')::uuid and business_id=lease.business_id;
   if not found then raise exception 'Original offline product is missing; retain for reconciliation';end if;
-  select quantity,reserved_quantity into v_stock,v_reserved from public.inventory
+  select coalesce(quantity,0),coalesce(reserved_quantity,0) into v_stock,v_reserved from public.inventory
    where business_id=lease.business_id and product_id=product.id and branch_id=v_branch for update;
   if not found then raise exception 'Original branch stock mapping unavailable; retain for owner reconciliation'; end if;
   missing:=greatest(qty-greatest(v_stock-v_reserved,0),0);
