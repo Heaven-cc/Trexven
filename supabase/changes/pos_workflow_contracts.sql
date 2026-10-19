@@ -76,7 +76,7 @@ begin
  result:=jsonb_build_object('return_id',r.id,'value',v_value,'debt_reduction',reduction,'refund',refund,'restock',p_restock,'restock_reason',p_restock_reason);
  insert into public.audit_logs(business_id,actor_id,action,metadata) values(r.business_id,auth.uid(),'sale_return_approved',result);
  perform private.operation_save(r.business_id,p_request_id,payload,result);return result;
-end $function$
+end $function$;
 
 CREATE OR REPLACE FUNCTION public.issue_pos_branch_offline_scope(p_business_id uuid, p_device_id uuid, p_branch_id uuid, p_shift_id uuid DEFAULT NULL::uuid)
  RETURNS jsonb
@@ -106,7 +106,7 @@ begin
  signature:=encode(extensions.hmac(convert_to(scope::text,'UTF8'),secret,'sha256'),'hex');
  insert into private.offline_cash_leases values(leaseid,p_business_id,auth.uid(),member,p_device_id,scope,signature,secret,started,expiry);
  return jsonb_build_object('scope',scope,'signature',signature);
-end $function$
+end $function$;
 
 CREATE OR REPLACE FUNCTION public.sync_pos_branch_offline_cash(p_request_id uuid, p_ticket jsonb, p_items jsonb, p_total numeric, p_occurred_at timestamp with time zone)
  RETURNS jsonb
@@ -177,7 +177,7 @@ begin
  perform private.operation_save(lease.business_id,p_request_id,payload,receipt);
  perform set_config('trexven.catalog_operation','',true);perform set_config('trexven.catalog_request','',true);perform set_config('trexven.catalog_reason','',true);perform set_config('trexven.transaction_contract','',true);
  return receipt;
-end $function$
+end $function$;
 
 revoke all on function public.approve_pos_return(uuid,uuid,text,boolean,text,uuid,boolean,text) from public,anon;
 revoke all on function public.issue_pos_branch_offline_scope(uuid,uuid,uuid,uuid) from public,anon;
