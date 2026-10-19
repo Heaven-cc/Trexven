@@ -58,6 +58,9 @@ declare
 begin
  perform private.operations_context(p_business_id,'pos_access',p_branch_id);
  perform private.operations_context(p_business_id,'record_expenses',p_branch_id);
+ if private.has_business_permission(p_business_id,'pos_access') is distinct from true
+ or private.has_business_permission(p_business_id,'record_expenses') is distinct from true then
+  raise exception 'Explicit expense authority required' using errcode='42501'; end if;
  select m.id into v_member from public.business_members m
  where m.business_id=p_business_id and m.user_id=auth.uid() and m.status='active' for share;
  if v_member is null then raise exception 'Active business membership required' using errcode='42501'; end if;
@@ -119,6 +122,10 @@ begin
  else
   perform private.operations_context(p_business_id,'record_expenses',p_branch_id);
  end if;
+ if private.has_business_permission(p_business_id,'pos_access') is distinct from true
+ or private.has_business_permission(p_business_id,case when p_branch_history is true
+  then 'view_pos_expenses' else 'record_expenses' end) is distinct from true then
+  raise exception 'Explicit expense history authority required' using errcode='42501'; end if;
  select id into v_member from public.business_members
  where business_id=p_business_id and user_id=auth.uid() and status='active' for share;
  if v_member is null then raise exception 'Active business membership required' using errcode='42501'; end if;
