@@ -220,7 +220,7 @@ class _AccountOperationsScreenState
 
             if (busy) ...[
               const SizedBox(height: 12),
-              const LinearProgressIndicator(
+              LinearProgressIndicator(
                 color: _blue,
               ),
             ],
@@ -284,7 +284,7 @@ class _AccountOperationsScreenState
   }
 
   Widget _buildHeader() {
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
@@ -364,7 +364,7 @@ class _AccountOperationsScreenState
             ConnectionState.done &&
             !snapshot.hasData) {
           return _surfaceCard(
-            child: const Padding(
+            child: Padding(
               padding: EdgeInsets.symmetric(
                 vertical: 12,
               ),
@@ -395,7 +395,7 @@ class _AccountOperationsScreenState
 
         if (backup is! Map) {
           return _surfaceCard(
-            child: const Row(
+            child: Row(
               crossAxisAlignment:
               CrossAxisAlignment.start,
               children: [
@@ -577,7 +577,7 @@ class _AccountOperationsScreenState
             snapshot.connectionState !=
                 ConnectionState.done) {
           return _surfaceCard(
-            child: const Center(
+            child: Center(
               child: Padding(
                 padding: EdgeInsets.all(12),
                 child: CircularProgressIndicator(
@@ -605,7 +605,7 @@ class _AccountOperationsScreenState
 
         if (items.isEmpty) {
           return _surfaceCard(
-            child: const Column(
+            child: Column(
               children: [
                 Icon(
                   Icons.history_rounded,
@@ -643,7 +643,7 @@ class _AccountOperationsScreenState
               index++) ...[
                 _requestItem(items[index]),
                 if (index != items.length - 1)
-                  const Divider(
+                  Divider(
                     height: 22,
                     color: _border,
                   ),

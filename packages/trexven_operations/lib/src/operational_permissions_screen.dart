@@ -261,7 +261,7 @@ class _OperationalPermissionsScreenState
                         ],
                       ),
                     ),
-                    const Divider(
+                    Divider(
                       height: 1,
                       color: _border,
                     ),
@@ -277,7 +277,7 @@ class _OperationalPermissionsScreenState
                               borderRadius:
                               BorderRadius.circular(11),
                             ),
-                            child: const Row(
+                            child: Row(
                               crossAxisAlignment:
                               CrossAxisAlignment.start,
                               children: [
@@ -304,7 +304,7 @@ class _OperationalPermissionsScreenState
                           ),
                           if (busy) ...[
                             const SizedBox(height: 12),
-                            const LinearProgressIndicator(
+                            LinearProgressIndicator(
                               color: _blue,
                             ),
                           ],
@@ -341,7 +341,7 @@ class _OperationalPermissionsScreenState
                                   i < group.value.length;
                                   i++) ...[
                                     if (i > 0)
-                                      const Divider(
+                                      Divider(
                                         height: 1,
                                         indent: 12,
                                         endIndent: 12,
@@ -386,7 +386,7 @@ class _OperationalPermissionsScreenState
                         ],
                       ),
                     ),
-                    const Divider(
+                    Divider(
                       height: 1,
                       color: _border,
                     ),
@@ -533,7 +533,7 @@ class _OperationalPermissionsScreenState
                 const SizedBox(height: 22),
                 Row(
                   children: [
-                    const Expanded(
+                    Expanded(
                       child: Text(
                         'Employees',
                         style: TextStyle(
@@ -569,7 +569,7 @@ class _OperationalPermissionsScreenState
         color: _softBlue,
         borderRadius: BorderRadius.circular(12),
       ),
-      child: const Row(
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Icon(
@@ -723,7 +723,7 @@ class _OperationalPermissionsScreenState
         border: Border.all(color: _border),
         borderRadius: BorderRadius.circular(14),
       ),
-      child: const Column(
+      child: Column(
         children: [
           Icon(
             Icons.people_outline_rounded,

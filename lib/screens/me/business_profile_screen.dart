@@ -328,7 +328,7 @@ class _BusinessProfileScreenState
                         ),
                       ),
                       child: _isSaving
-                          ? const SizedBox(
+                          ? SizedBox(
                         width: 20,
                         height: 20,
                         child:
@@ -442,7 +442,7 @@ class _BusinessProfileScreenState
             focusedBorder: OutlineInputBorder(
               borderRadius:
               BorderRadius.circular(11),
-              borderSide: const BorderSide(
+              borderSide: BorderSide(
                 color: _blue,
                 width: 1.5,
               ),

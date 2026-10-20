@@ -654,7 +654,7 @@ class _AngelScreenState extends State<AngelScreen> {
                 children: [
                   Icon(Icons.auto_awesome_rounded, color: blue, size: 25),
                   const SizedBox(width: 10),
-                  const Expanded(
+                  Expanded(
                     child: Text(
                       'Angel',
                       style: TextStyle(
@@ -697,7 +697,7 @@ class _AngelScreenState extends State<AngelScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
                 children: [
-                  const Expanded(
+                  Expanded(
                     child: Text(
                       'Recent chats',
                       style: TextStyle(
@@ -723,7 +723,7 @@ class _AngelScreenState extends State<AngelScreen> {
               child: _loadingChats && _conversations.isEmpty
                   ? Center(child: CircularProgressIndicator(color: blue))
                   : _conversations.isEmpty
-                  ? const Center(
+                  ? Center(
                       child: Text(
                         'No saved conversations yet',
                         style: TextStyle(color: muted, fontSize: 12),
@@ -803,7 +803,7 @@ class _AngelScreenState extends State<AngelScreen> {
                     ),
             ),
             Divider(color: border),
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(18),
               child: Text(
                 'TREXVEN Business Assistant',
@@ -900,7 +900,7 @@ class _AngelScreenState extends State<AngelScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.only(bottom: 7),
                     child: Text(
                       'Angel',
@@ -945,7 +945,7 @@ class _AngelScreenState extends State<AngelScreen> {
   }
 
   Widget _thinkingBubble() {
-    return const Padding(
+    return Padding(
       padding: EdgeInsets.symmetric(vertical: 14),
       child: Row(
         children: [
@@ -1001,7 +1001,7 @@ class _AngelScreenState extends State<AngelScreen> {
               keyboardType: TextInputType.multiline,
               textCapitalization: TextCapitalization.sentences,
               style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: 14),
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 hintText: 'Message Angel...',
                 hintStyle: TextStyle(color: muted, fontSize: 14),
                 border: InputBorder.none,
@@ -1012,7 +1012,7 @@ class _AngelScreenState extends State<AngelScreen> {
             const SizedBox(height: 8),
             Row(
               children: [
-                const Expanded(
+                Expanded(
                   child: Text(
                     'TREXVEN Angel',
                     style: TextStyle(color: muted, fontSize: 11),

@@ -281,7 +281,7 @@ class _BillingScreenState extends State<BillingScreen> {
                   ),
                 ],
                 const SizedBox(height: 30),
-                const Center(
+                Center(
                   child: Text(
                     'Terms of Service     Privacy Policy',
                     style: TextStyle(
@@ -526,7 +526,7 @@ class _BillingScreenState extends State<BillingScreen> {
               ],
             ),
           ),
-          const Divider(
+          Divider(
             height: 1,
             color: border,
           ),
