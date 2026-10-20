@@ -466,7 +466,7 @@ class _FinanceTabState extends State<FinanceTab> {
                     'Unable to load financial history. Please retry.',
                   );
                 if (!snapshot.hasData)
-                  return const SizedBox(
+                  return SizedBox(
                     height: 160,
                     child: Center(
                       child: CircularProgressIndicator(color: _blue),
@@ -608,9 +608,9 @@ class _FinanceTabState extends State<FinanceTab> {
           children: [
             Row(
               children: [
-                const Icon(Icons.account_balance_wallet_outlined, color: _blue),
+                Icon(Icons.account_balance_wallet_outlined, color: _blue),
                 const SizedBox(width: 10),
-                const Expanded(
+                Expanded(
                   child: Text(
                     'Manage Financial Operations',
                     style: TextStyle(
@@ -620,7 +620,7 @@ class _FinanceTabState extends State<FinanceTab> {
                     ),
                   ),
                 ),
-                const Icon(Icons.chevron_right_rounded, color: _muted),
+                Icon(Icons.chevron_right_rounded, color: _muted),
               ],
             ),
             const SizedBox(height: 12),
