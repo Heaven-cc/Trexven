@@ -154,7 +154,7 @@ class _FinanceTabState extends State<FinanceTab> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Financial Breakdown',
             style: TextStyle(
               fontSize: 14,
@@ -167,19 +167,19 @@ class _FinanceTabState extends State<FinanceTab> {
             'Net Collected',
             _money(financialNumber(summary['net_collected'])),
           ),
-          const Divider(height: 16, color: Color(0xFFE8EDF5)),
+          Divider(height: 16, color: _borderColor.withValues(alpha: .55)),
           _breakdownRow('Refunds', _money(financialNumber(summary['refunds']))),
-          const Divider(height: 16, color: Color(0xFFE8EDF5)),
+          Divider(height: 16, color: _borderColor.withValues(alpha: .55)),
           _breakdownRow(
             'Sale Collections',
             _money(financialNumber(summary['sale_collections'])),
           ),
-          const Divider(height: 16, color: Color(0xFFE8EDF5)),
+          Divider(height: 16, color: _borderColor.withValues(alpha: .55)),
           _breakdownRow(
             'Repayments',
             _money(financialNumber(summary['repayment_collections'])),
           ),
-          const Divider(height: 16, color: Color(0xFFE8EDF5)),
+          Divider(height: 16, color: _borderColor.withValues(alpha: .55)),
           _breakdownRow(
             'Current Receivables (Balance)',
             _money(financialNumber(summary['receivables'])),
@@ -193,10 +193,10 @@ class _FinanceTabState extends State<FinanceTab> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(label, style: const TextStyle(color: _muted, fontSize: 13)),
+        Text(label, style: TextStyle(color: _muted, fontSize: 13)),
         Text(
           value,
-          style: const TextStyle(
+          style: TextStyle(
             color: _navy,
             fontSize: 13,
             fontWeight: FontWeight.w700,
@@ -210,7 +210,7 @@ class _FinanceTabState extends State<FinanceTab> {
     padding: const EdgeInsets.only(bottom: 12),
     child: Text(
       title,
-      style: const TextStyle(
+      style: TextStyle(
         fontSize: 17,
         fontWeight: FontWeight.w800,
         color: _navy,
@@ -224,11 +224,11 @@ class _FinanceTabState extends State<FinanceTab> {
         Text(
           message,
           textAlign: TextAlign.center,
-          style: const TextStyle(color: _muted),
+          style: TextStyle(color: _muted),
         ),
         TextButton(
           onPressed: () => setState(_load),
-          child: const Text('Retry'),
+          child: Text('Retry'),
         ),
       ],
     ),
@@ -250,7 +250,7 @@ class _FinanceTabState extends State<FinanceTab> {
                 label,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(color: _muted, fontSize: 12),
+                style: TextStyle(color: _muted, fontSize: 12),
               ),
             ),
             Icon(icon, color: _blue, size: 18),
@@ -262,7 +262,7 @@ class _FinanceTabState extends State<FinanceTab> {
           alignment: Alignment.centerLeft,
           child: Text(
             value,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w800,
               color: _navy,
@@ -271,7 +271,7 @@ class _FinanceTabState extends State<FinanceTab> {
         ),
         if (hint != null) ...[
           const SizedBox(height: 5),
-          Text(hint, style: const TextStyle(fontSize: 10, color: _muted)),
+          Text(hint, style: TextStyle(fontSize: 10, color: _muted)),
         ],
       ],
     ),
@@ -297,13 +297,13 @@ class _FinanceTabState extends State<FinanceTab> {
             width: double.infinity,
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: _navy,
+              color: const Color(0xFF111B35),
               borderRadius: BorderRadius.circular(19),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   'GROSS SALES',
                   style: TextStyle(
                     color: Color(0xFFB9C8E3),
@@ -318,7 +318,7 @@ class _FinanceTabState extends State<FinanceTab> {
                   alignment: Alignment.centerLeft,
                   child: Text(
                     revenueText,
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: Colors.white,
                       fontSize: 30,
                       fontWeight: FontWeight.w800,
@@ -328,7 +328,7 @@ class _FinanceTabState extends State<FinanceTab> {
                 const SizedBox(height: 8),
                 Text(
                   '$_periodLabel · before refunds',
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: Color(0xFFB9C8E3),
                     fontSize: 12,
                   ),
@@ -396,7 +396,7 @@ class _FinanceTabState extends State<FinanceTab> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Business Performance',
             style: TextStyle(
               color: Colors.white,
@@ -405,7 +405,7 @@ class _FinanceTabState extends State<FinanceTab> {
             ),
           ),
           const SizedBox(height: 4),
-          const Text(
+          Text(
             'A simple view of your financial activity',
             style: TextStyle(color: Color(0xFFA7B5D0), fontSize: 12),
           ),
@@ -466,7 +466,7 @@ class _FinanceTabState extends State<FinanceTab> {
                     'Unable to load financial history. Please retry.',
                   );
                 if (!snapshot.hasData)
-                  return const SizedBox(
+                  return SizedBox(
                     height: 160,
                     child: Center(
                       child: CircularProgressIndicator(color: _blue),
@@ -493,7 +493,7 @@ class _FinanceTabState extends State<FinanceTab> {
                   hourly: _period == 'today' || _period == 'yesterday',
                 );
                 if (points.isEmpty)
-                  return const Text(
+                  return Text(
                     'No activity in this period.',
                     style: TextStyle(color: Colors.white),
                   );
@@ -507,7 +507,7 @@ class _FinanceTabState extends State<FinanceTab> {
                       _metric == 'sales'
                           ? 'GROSS SALES ACTIVITY'
                           : 'RECORDED EXPENSES',
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: Color(0xFFA7B5D0),
                         fontSize: 11,
                       ),
@@ -540,14 +540,14 @@ class _FinanceTabState extends State<FinanceTab> {
                       children: [
                         Text(
                           _axisDate(points.first.key),
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: Color(0xFFA7B5D0),
                             fontSize: 11,
                           ),
                         ),
                         Text(
                           _axisDate(points.last.key),
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: Color(0xFFA7B5D0),
                             fontSize: 11,
                           ),
@@ -559,7 +559,7 @@ class _FinanceTabState extends State<FinanceTab> {
                         padding: const EdgeInsets.only(top: 10),
                         child: Text(
                           '${DateFormat('d MMM, h a').format(selected.key)}: ${_money(selected.value)}',
-                          style: const TextStyle(color: Colors.white),
+                          style: TextStyle(color: Colors.white),
                         ),
                       ),
                     const SizedBox(height: 12),
@@ -567,7 +567,7 @@ class _FinanceTabState extends State<FinanceTab> {
                       _metric == 'sales'
                           ? 'Complete period sales, before refunds. Tap the line for details.'
                           : 'Complete recorded expenses in this period. Tap the line for details.',
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: Color(0xFFA7B5D0),
                         fontSize: 11,
                       ),
@@ -596,7 +596,7 @@ class _FinanceTabState extends State<FinanceTab> {
   }
 
   Widget _operations() => Material(
-    color: Colors.white,
+    color: _cardBg,
     borderRadius: BorderRadius.circular(18),
     child: InkWell(
       onTap: _openOperations,
@@ -608,9 +608,9 @@ class _FinanceTabState extends State<FinanceTab> {
           children: [
             Row(
               children: [
-                const Icon(Icons.account_balance_wallet_outlined, color: _blue),
+                Icon(Icons.account_balance_wallet_outlined, color: _blue),
                 const SizedBox(width: 10),
-                const Expanded(
+                Expanded(
                   child: Text(
                     'Manage Financial Operations',
                     style: TextStyle(
@@ -620,11 +620,11 @@ class _FinanceTabState extends State<FinanceTab> {
                     ),
                   ),
                 ),
-                const Icon(Icons.chevron_right_rounded, color: _muted),
+                Icon(Icons.chevron_right_rounded, color: _muted),
               ],
             ),
             const SizedBox(height: 12),
-            const Text(
+            Text(
               'Expenses  •  Credit & Debts  •  Repayments  •  Returns',
               style: TextStyle(color: _muted, fontSize: 12),
             ),
@@ -646,7 +646,7 @@ class _FinanceTabState extends State<FinanceTab> {
         child: Column(
           children: [
             if (report.sales.isEmpty)
-              const Text('No transactions in this period.'),
+              Text('No transactions in this period.'),
             for (final row in report.sales.take(8))
               financialTransactionTile(row, report.period),
             TextButton(
@@ -659,7 +659,7 @@ class _FinanceTabState extends State<FinanceTab> {
                   ),
                 ),
               ),
-              child: const Text('View All'),
+              child: Text('View All'),
             ),
           ],
         ),
@@ -676,7 +676,7 @@ class _FinanceTabState extends State<FinanceTab> {
       child: ListView(
         padding: const EdgeInsets.fromLTRB(16, 22, 16, 32),
         children: [
-          const Text(
+          Text(
             'Finance',
             style: TextStyle(
               color: _navy,
@@ -685,14 +685,14 @@ class _FinanceTabState extends State<FinanceTab> {
             ),
           ),
           const SizedBox(height: 5),
-          const Text(
+          Text(
             'Your business financial overview',
             style: TextStyle(color: _muted, fontSize: 13),
           ),
           const SizedBox(height: 20),
           Row(
             children: [
-              const Text(
+              Text(
                 'Duration',
                 style: TextStyle(color: _navy, fontWeight: FontWeight.w700),
               ),
@@ -705,7 +705,7 @@ class _FinanceTabState extends State<FinanceTab> {
                   decoration: InputDecoration(
                     isDense: true,
                     filled: true,
-                    fillColor: Colors.white,
+                    fillColor: _cardBg,
                     contentPadding: const EdgeInsets.symmetric(
                       horizontal: 12,
                       vertical: 11,
@@ -744,7 +744,7 @@ class _FinanceTabState extends State<FinanceTab> {
               alignment: Alignment.centerRight,
               child: Text(
                 _periodLabel,
-                style: const TextStyle(color: _muted, fontSize: 12),
+                style: TextStyle(color: _muted, fontSize: 12),
               ),
             ),
           ],

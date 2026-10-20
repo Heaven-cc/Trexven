@@ -27,11 +27,12 @@ Future<PaymentDraft?> confirmPayment(
 }) async {
   final pos = TrexvenPresentation.isPos(context);
   var selectedMethod = 'cash';
-  const navy = Color(0xFF14213D);
-  const blue = Color(0xFF2864F0);
-  const muted = Color(0xFF71809A);
-  const background = Color(0xFFF5F7FC);
-  const border = Color(0xFFE5EAF2);
+  final palette = Theme.of(context).colorScheme;
+  final navy = palette.onSurface;
+  final blue = palette.primary;
+  final muted = palette.onSurfaceVariant;
+  final background = Theme.of(context).scaffoldBackgroundColor;
+  final border = palette.outlineVariant;
 
   final canonical = switch (method.toLowerCase()) {
     'transfer' || 'bank_transfer' => 'bank_transfer',
@@ -123,7 +124,7 @@ Future<PaymentDraft?> confirmPayment(
       inputFormatters: numeric
           ? [FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'))]
           : null,
-      style: const TextStyle(
+      style: TextStyle(
         color: navy,
         fontSize: 13,
         fontWeight: FontWeight.w600,
@@ -131,8 +132,8 @@ Future<PaymentDraft?> confirmPayment(
       decoration: InputDecoration(
         labelText: label,
         hintText: hint,
-        labelStyle: const TextStyle(color: muted, fontSize: 12),
-        hintStyle: const TextStyle(color: muted, fontSize: 12),
+        labelStyle: TextStyle(color: muted, fontSize: 12),
+        hintStyle: TextStyle(color: muted, fontSize: 12),
         filled: true,
         fillColor: background,
         contentPadding: const EdgeInsets.symmetric(
@@ -141,15 +142,15 @@ Future<PaymentDraft?> confirmPayment(
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(11),
-          borderSide: const BorderSide(color: border),
+          borderSide: BorderSide(color: border),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(11),
-          borderSide: const BorderSide(color: blue, width: 1.4),
+          borderSide: BorderSide(color: blue, width: 1.4),
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(11),
-          borderSide: const BorderSide(color: border),
+          borderSide: BorderSide(color: border),
         ),
       ),
     );
@@ -168,7 +169,7 @@ Future<PaymentDraft?> confirmPayment(
       margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.all(13),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: palette.surface,
         border: Border.all(color: border),
         borderRadius: BorderRadius.circular(13),
       ),
@@ -181,7 +182,7 @@ Future<PaymentDraft?> confirmPayment(
                 width: 32,
                 height: 32,
                 decoration: BoxDecoration(
-                  color: const Color(0xFFEAF0FF),
+                  color: blue.withValues(alpha: .10),
                   borderRadius: BorderRadius.circular(9),
                 ),
                 child: Icon(icon, color: blue, size: 18),
@@ -190,7 +191,7 @@ Future<PaymentDraft?> confirmPayment(
               Expanded(
                 child: Text(
                   title,
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: navy,
                     fontSize: 13,
                     fontWeight: FontWeight.w800,
@@ -502,7 +503,7 @@ context: context,
                       padding: const EdgeInsets.fromLTRB(18, 17, 12, 13),
                       child: Row(
                         children: [
-                          const Expanded(
+                          Expanded(
                             child: Text(
                               'Confirm Payment',
                               style: TextStyle(
@@ -515,7 +516,7 @@ context: context,
                           IconButton(
                             tooltip: 'Close',
                             onPressed: () => Navigator.pop(dialogContext),
-                            icon: const Icon(Icons.close_rounded, color: muted),
+                            icon: Icon(Icons.close_rounded, color: muted),
                           ),
                         ],
                       ),
@@ -638,7 +639,7 @@ context: context,
                                     'must be independently verified.',
                               ),
                             const SizedBox(height: 15),
-                            const Text(
+                            Text(
                               'Payment breakdown',
                               style: TextStyle(
                                 color: navy,
@@ -688,7 +689,7 @@ context: context,
                                             const EdgeInsets.symmetric(
                                               horizontal: 9,
                                             ),
-                                        title: const Text(
+                                        title: Text(
                                           'Request credit approval',
                                           style: TextStyle(
                                             color: navy,
@@ -696,7 +697,7 @@ context: context,
                                             fontWeight: FontWeight.w700,
                                           ),
                                         ),
-                                        subtitle: const Text(
+                                        subtitle: Text(
                                           'For an unpaid balance',
                                           style: TextStyle(
                                             color: muted,
@@ -736,7 +737,7 @@ context: context,
                                                 hint: '2026-12-31',
                                               ),
                                               const SizedBox(height: 9),
-                                              const Text(
+                                              Text(
                                                 'The original sale request '
                                                 'is retained while an owner '
                                                 'or authorized manager '
@@ -773,7 +774,7 @@ context: context,
                                     horizontal: 9,
                                     vertical: 4,
                                   ),
-                                  title: const Text(
+                                  title: Text(
                                     'I have verified the payment',
                                     style: TextStyle(
                                       color: navy,
@@ -781,7 +782,7 @@ context: context,
                                       fontWeight: FontWeight.w700,
                                     ),
                                   ),
-                                  subtitle: const Text(
+                                  subtitle: Text(
                                     'Cash was received or the bank/'
                                     'terminal transaction was confirmed. '
                                     'A screenshot alone is insufficient. '
@@ -817,7 +818,7 @@ context: context,
                     ),
                     Container(
                       padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         color: Colors.white,
                         border: Border(top: BorderSide(color: border)),
                       ),
@@ -829,7 +830,7 @@ context: context,
                               style: OutlinedButton.styleFrom(
                                 foregroundColor: navy,
                                 minimumSize: const Size(0, 46),
-                                side: const BorderSide(color: border),
+                                side: BorderSide(color: border),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(11),
                                 ),
@@ -895,7 +896,7 @@ class _PaymentNotice extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 9),
       padding: const EdgeInsets.all(11),
       decoration: BoxDecoration(
-        color: const Color(0xFFEAF0FF),
+        color: blue.withValues(alpha: .10),
         borderRadius: BorderRadius.circular(11),
       ),
       child: Row(

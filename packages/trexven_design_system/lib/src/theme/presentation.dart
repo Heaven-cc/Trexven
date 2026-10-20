@@ -28,7 +28,7 @@ class TrexvenPresentation extends InheritedWidget {
       isPos(context) && original.fontSize != null
           ? original.copyWith(fontSize: fontSize(context, original.fontSize!)) : original;
   static Color color(BuildContext context, Color original, String role) {
-    if (!isPos(context)) return original;
+    // Both Owner and POS must honor the selected app palette.
     final theme = Theme.of(context), c = theme.colorScheme;
     return switch (role) {
       'background' => theme.scaffoldBackgroundColor,

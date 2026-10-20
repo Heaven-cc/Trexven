@@ -306,9 +306,7 @@ class _CatalogImportScreenState
               16, 18, 16, 32,
             ),
             children: [
-              _buildHeading(),
-
-              const SizedBox(height: 18),
+              const SizedBox(height: 6),
 
               _buildFilePicker(),
 

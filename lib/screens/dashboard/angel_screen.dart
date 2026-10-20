@@ -19,12 +19,12 @@ class AngelScreen extends StatefulWidget {
 }
 
 class _AngelScreenState extends State<AngelScreen> {
-  static const Color bg = Color(0xFF101114);
-  static const Color surface = Color(0xFF202125);
-  static const Color inputBg = Color(0xFF242529);
-  static const Color border = Color(0xFF36383E);
-  static const Color blue = Color(0xFF5A8FFF);
-  static const Color muted = Color(0xFF999CA5);
+  Color get bg => Theme.of(context).scaffoldBackgroundColor;
+  Color get surface => Theme.of(context).colorScheme.surface;
+  Color get inputBg => Theme.of(context).colorScheme.surfaceContainerHighest;
+  Color get border => Theme.of(context).colorScheme.outlineVariant;
+  Color get blue => Theme.of(context).colorScheme.primary;
+  Color get muted => Theme.of(context).colorScheme.onSurfaceVariant;
 
   late final _supabase = widget.client ?? Supabase.instance.client;
   late final _db = widget.database ?? DatabaseService(client: _supabase);
@@ -462,11 +462,11 @@ class _AngelScreenState extends State<AngelScreen> {
       context: context,
       builder: (dialogContext) => AlertDialog(
         backgroundColor: surface,
-        title: const Text(
+        title: Text(
           'Delete conversation?',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
         ),
-        content: const Text(
+        content: Text(
           'This will permanently delete the conversation '
           'if permitted by your account.',
           style: TextStyle(color: muted),
@@ -474,11 +474,11 @@ class _AngelScreenState extends State<AngelScreen> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(dialogContext, false),
-            child: const Text('Cancel'),
+            child: Text('Cancel'),
           ),
           TextButton(
             onPressed: () => Navigator.pop(dialogContext, true),
-            child: const Text(
+            child: Text(
               'Delete',
               style: TextStyle(color: Color(0xFFFF7474)),
             ),
@@ -573,12 +573,7 @@ class _AngelScreenState extends State<AngelScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: bg,
-        colorScheme: const ColorScheme.dark(primary: blue, surface: surface),
-      ),
-      child: Scaffold(
+    return Scaffold(
         key: _scaffoldKey,
         backgroundColor: bg,
         drawer: _buildDrawer(),
@@ -587,7 +582,7 @@ class _AngelScreenState extends State<AngelScreen> {
           children: [
             Expanded(
               child: _loading && _messages.isEmpty
-                  ? const Center(child: CircularProgressIndicator(color: blue))
+                  ? Center(child: CircularProgressIndicator(color: blue))
                   : _error != null && _messages.isEmpty
                   ? _errorView()
                   : _messages.isEmpty
@@ -608,13 +603,12 @@ class _AngelScreenState extends State<AngelScreen> {
                 onPressed: _loading
                     ? null
                     : () => _openConversation(_conversationId!),
-                child: const Text('Refresh conversation'),
+                child: Text('Refresh conversation'),
               ),
             if (_failedMessage != null) _retryBar(),
             SafeArea(top: false, child: _inputArea()),
           ],
         ),
-      ),
     );
   }
 
@@ -626,12 +620,12 @@ class _AngelScreenState extends State<AngelScreen> {
       leading: IconButton(
         tooltip: 'Chat history',
         onPressed: () => _scaffoldKey.currentState?.openDrawer(),
-        icon: const Icon(Icons.menu_rounded, color: Colors.white, size: 26),
+        icon: Icon(Icons.menu_rounded, color: Theme.of(context).colorScheme.onSurface, size: 26),
       ),
-      title: const Text(
+      title: Text(
         'Angel',
         style: TextStyle(
-          color: Colors.white,
+          color: Theme.of(context).colorScheme.onSurface,
           fontSize: 17,
           fontWeight: FontWeight.w700,
         ),
@@ -640,7 +634,7 @@ class _AngelScreenState extends State<AngelScreen> {
         IconButton(
           tooltip: 'New chat',
           onPressed: _thinking ? null : _newChat,
-          icon: const Icon(Icons.edit_square, color: Colors.white, size: 23),
+          icon: Icon(Icons.edit_square, color: Theme.of(context).colorScheme.onSurface, size: 23),
         ),
         const SizedBox(width: 8),
       ],
@@ -658,13 +652,13 @@ class _AngelScreenState extends State<AngelScreen> {
               padding: const EdgeInsets.fromLTRB(18, 14, 12, 14),
               child: Row(
                 children: [
-                  const Icon(Icons.auto_awesome_rounded, color: blue, size: 25),
+                  Icon(Icons.auto_awesome_rounded, color: blue, size: 25),
                   const SizedBox(width: 10),
-                  const Expanded(
+                  Expanded(
                     child: Text(
                       'Angel',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.onSurface,
                         fontSize: 21,
                         fontWeight: FontWeight.w800,
                       ),
@@ -673,7 +667,7 @@ class _AngelScreenState extends State<AngelScreen> {
                   IconButton(
                     tooltip: 'Close menu',
                     onPressed: () => Navigator.pop(context),
-                    icon: const Icon(Icons.close_rounded, color: muted),
+                    icon: Icon(Icons.close_rounded, color: muted),
                   ),
                 ],
               ),
@@ -684,11 +678,11 @@ class _AngelScreenState extends State<AngelScreen> {
                 width: double.infinity,
                 child: OutlinedButton.icon(
                   onPressed: _thinking ? null : _newChat,
-                  icon: const Icon(Icons.add_rounded, size: 19),
-                  label: const Text('New chat'),
+                  icon: Icon(Icons.add_rounded, size: 19),
+                  label: Text('New chat'),
                   style: OutlinedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    side: const BorderSide(color: border),
+                    foregroundColor: Theme.of(context).colorScheme.onSurface,
+                    side: BorderSide(color: border),
                     minimumSize: const Size(0, 48),
                     alignment: Alignment.centerLeft,
                     shape: RoundedRectangleBorder(
@@ -703,7 +697,7 @@ class _AngelScreenState extends State<AngelScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
                 children: [
-                  const Expanded(
+                  Expanded(
                     child: Text(
                       'Recent chats',
                       style: TextStyle(
@@ -716,7 +710,7 @@ class _AngelScreenState extends State<AngelScreen> {
                   IconButton(
                     tooltip: 'Refresh history',
                     onPressed: _loadingChats ? null : _loadConversations,
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.refresh_rounded,
                       color: muted,
                       size: 19,
@@ -727,9 +721,9 @@ class _AngelScreenState extends State<AngelScreen> {
             ),
             Expanded(
               child: _loadingChats && _conversations.isEmpty
-                  ? const Center(child: CircularProgressIndicator(color: blue))
+                  ? Center(child: CircularProgressIndicator(color: blue))
                   : _conversations.isEmpty
-                  ? const Center(
+                  ? Center(
                       child: Text(
                         'No saved conversations yet',
                         style: TextStyle(color: muted, fontSize: 12),
@@ -744,7 +738,7 @@ class _AngelScreenState extends State<AngelScreen> {
                             onPressed: _loadingChats
                                 ? null
                                 : () => _loadConversations(more: true),
-                            child: const Text('Load older chats'),
+                            child: Text('Load older chats'),
                           );
                         final chat = _conversations[index];
                         final id = '${chat['id']}';
@@ -771,7 +765,7 @@ class _AngelScreenState extends State<AngelScreen> {
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
-                                color: active ? Colors.white : Colors.white70,
+                                color: active ? Theme.of(context).colorScheme.onSurface : Theme.of(context).colorScheme.onSurfaceVariant,
                                 fontSize: 13,
                                 fontWeight: active
                                     ? FontWeight.w700
@@ -780,7 +774,7 @@ class _AngelScreenState extends State<AngelScreen> {
                             ),
                             trailing: PopupMenuButton<String>(
                               tooltip: 'Chat options',
-                              icon: const Icon(
+                              icon: Icon(
                                 Icons.more_horiz_rounded,
                                 color: muted,
                                 size: 20,
@@ -808,8 +802,8 @@ class _AngelScreenState extends State<AngelScreen> {
                       },
                     ),
             ),
-            const Divider(color: border),
-            const Padding(
+            Divider(color: border),
+            Padding(
               padding: EdgeInsets.all(18),
               child: Text(
                 'TREXVEN Business Assistant',
@@ -836,25 +830,25 @@ class _AngelScreenState extends State<AngelScreen> {
                 color: blue.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(22),
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.auto_awesome_rounded,
                 color: blue,
                 size: 35,
               ),
             ),
             const SizedBox(height: 25),
-            const Text(
+            Text(
               "Hi! What's on your mind today?",
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.onSurface,
                 fontSize: 23,
                 fontWeight: FontWeight.w700,
                 height: 1.3,
               ),
             ),
             const SizedBox(height: 12),
-            const Text(
+            Text(
               'Ask Angel about your business.',
               textAlign: TextAlign.center,
               style: TextStyle(color: muted, fontSize: 13),
@@ -895,7 +889,7 @@ class _AngelScreenState extends State<AngelScreen> {
                 color: blue.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(9),
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.auto_awesome_rounded,
                 color: blue,
                 size: 17,
@@ -906,12 +900,12 @@ class _AngelScreenState extends State<AngelScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.only(bottom: 7),
                     child: Text(
                       'Angel',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.onSurface,
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
                       ),
@@ -940,8 +934,8 @@ class _AngelScreenState extends State<AngelScreen> {
         ),
         child: SelectableText(
           message.text,
-          style: const TextStyle(
-            color: Colors.white,
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onSurface,
             fontSize: 14,
             height: 1.5,
           ),
@@ -951,7 +945,7 @@ class _AngelScreenState extends State<AngelScreen> {
   }
 
   Widget _thinkingBubble() {
-    return const Padding(
+    return Padding(
       padding: EdgeInsets.symmetric(vertical: 14),
       child: Row(
         children: [
@@ -978,8 +972,8 @@ class _AngelScreenState extends State<AngelScreen> {
         children: [
           TextButton.icon(
             onPressed: _thinking ? null : _retryMessage,
-            icon: const Icon(Icons.refresh_rounded, size: 17),
-            label: const Text('Refresh history · send outcome unknown'),
+            icon: Icon(Icons.refresh_rounded, size: 17),
+            label: Text('Refresh history · send outcome unknown'),
           ),
         ],
       ),
@@ -1006,8 +1000,8 @@ class _AngelScreenState extends State<AngelScreen> {
               maxLines: 5,
               keyboardType: TextInputType.multiline,
               textCapitalization: TextCapitalization.sentences,
-              style: const TextStyle(color: Colors.white, fontSize: 14),
-              decoration: const InputDecoration(
+              style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: 14),
+              decoration: InputDecoration(
                 hintText: 'Message Angel...',
                 hintStyle: TextStyle(color: muted, fontSize: 14),
                 border: InputBorder.none,
@@ -1018,7 +1012,7 @@ class _AngelScreenState extends State<AngelScreen> {
             const SizedBox(height: 8),
             Row(
               children: [
-                const Expanded(
+                Expanded(
                   child: Text(
                     'TREXVEN Angel',
                     style: TextStyle(color: muted, fontSize: 11),
@@ -1034,10 +1028,10 @@ class _AngelScreenState extends State<AngelScreen> {
                         : () => _sendMessage(),
                     style: IconButton.styleFrom(
                       backgroundColor: blue,
-                      foregroundColor: Colors.white,
+                      foregroundColor: Theme.of(context).colorScheme.onSurface,
                       shape: const CircleBorder(),
                     ),
-                    icon: const Icon(Icons.arrow_upward_rounded, size: 21),
+                    icon: Icon(Icons.arrow_upward_rounded, size: 21),
                   ),
                 ),
               ],
@@ -1055,19 +1049,19 @@ class _AngelScreenState extends State<AngelScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.cloud_off_outlined, color: muted, size: 34),
+            Icon(Icons.cloud_off_outlined, color: muted, size: 34),
             const SizedBox(height: 12),
             Text(
               _error!,
               textAlign: TextAlign.center,
-              style: const TextStyle(color: Colors.white70, fontSize: 13),
+              style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 13),
             ),
             const SizedBox(height: 14),
             TextButton(
               onPressed: _conversationId == null
                   ? _initialize
                   : () => _openConversation(_conversationId!),
-              child: const Text('Try again'),
+              child: Text('Try again'),
             ),
           ],
         ),

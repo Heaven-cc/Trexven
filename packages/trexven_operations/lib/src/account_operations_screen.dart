@@ -27,14 +27,14 @@ class _AccountOperationsScreenState
   String? message;
   bool messageIsError = false;
 
-  static const Color _background = Color(0xFFF5F7FC);
-  static const Color _white = Colors.white;
-  static const Color _navy = Color(0xFF14213D);
-  static const Color _blue = Color(0xFF2864F0);
-  static const Color _muted = Color(0xFF71809A);
-  static const Color _softBlue = Color(0xFFE8EFFF);
-  static const Color _border = Color(0xFFE6EAF2);
-  static const Color _red = Color(0xFFD44B52);
+  Color get _background => Theme.of(context).scaffoldBackgroundColor;
+  Color get _white => Theme.of(context).colorScheme.surface;
+  Color get _navy => Theme.of(context).colorScheme.onSurface;
+  Color get _blue => Theme.of(context).colorScheme.primary;
+  Color get _muted => Theme.of(context).colorScheme.onSurfaceVariant;
+  Color get _softBlue => _blue.withValues(alpha: .10);
+  Color get _border => Theme.of(context).colorScheme.outlineVariant;
+  Color get _red => Theme.of(context).colorScheme.error;
 
   @override
   void initState() {
@@ -90,7 +90,7 @@ class _AccountOperationsScreenState
                       : 'Your recovery request will be reviewed. '
                       'Your business records and pending sales '
                       'will be kept safe.',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 13,
                     height: 1.5,
                   ),
@@ -110,12 +110,12 @@ class _AccountOperationsScreenState
             TextButton(
               onPressed: () =>
                   Navigator.pop(dialogContext, false),
-              child: const Text('Cancel'),
+              child: Text('Cancel'),
             ),
             FilledButton(
               onPressed: () =>
                   Navigator.pop(dialogContext, true),
-              child: const Text('Submit request'),
+              child: Text('Submit request'),
             ),
           ],
         ),
@@ -179,7 +179,7 @@ class _AccountOperationsScreenState
         surfaceTintColor: Colors.transparent,
         elevation: 0,
         titleSpacing: 0,
-        title: const Text(
+        title: Text(
           'Account and Recovery',
           style: TextStyle(
             color: _navy,
@@ -191,7 +191,7 @@ class _AccountOperationsScreenState
           IconButton(
             tooltip: 'Refresh',
             onPressed: busy ? null : _refresh,
-            icon: const Icon(
+            icon: Icon(
               Icons.refresh_rounded,
               color: _navy,
             ),
@@ -220,7 +220,7 @@ class _AccountOperationsScreenState
 
             if (busy) ...[
               const SizedBox(height: 12),
-              const LinearProgressIndicator(
+              LinearProgressIndicator(
                 color: _blue,
               ),
             ],
@@ -284,7 +284,7 @@ class _AccountOperationsScreenState
   }
 
   Widget _buildHeader() {
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
@@ -311,7 +311,7 @@ class _AccountOperationsScreenState
   Widget _sectionTitle(String title) {
     return Text(
       title,
-      style: const TextStyle(
+      style: TextStyle(
         color: _navy,
         fontSize: 15,
         fontWeight: FontWeight.w800,
@@ -364,7 +364,7 @@ class _AccountOperationsScreenState
             ConnectionState.done &&
             !snapshot.hasData) {
           return _surfaceCard(
-            child: const Padding(
+            child: Padding(
               padding: EdgeInsets.symmetric(
                 vertical: 12,
               ),
@@ -380,7 +380,7 @@ class _AccountOperationsScreenState
 
         if (snapshot.hasError) {
           return _surfaceCard(
-            child: const Text(
+            child: Text(
               'Operational status unavailable. Refresh to try again.',
               style: TextStyle(
                 color: _muted,
@@ -395,7 +395,7 @@ class _AccountOperationsScreenState
 
         if (backup is! Map) {
           return _surfaceCard(
-            child: const Row(
+            child: Row(
               crossAxisAlignment:
               CrossAxisAlignment.start,
               children: [
@@ -433,7 +433,7 @@ class _AccountOperationsScreenState
                   borderRadius:
                   BorderRadius.circular(12),
                 ),
-                child: const Icon(
+                child: Icon(
                   Icons.cloud_done_outlined,
                   color: _blue,
                   size: 22,
@@ -445,7 +445,7 @@ class _AccountOperationsScreenState
                   crossAxisAlignment:
                   CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                    Text(
                       'Latest backup',
                       style: TextStyle(
                         color: _navy,
@@ -456,7 +456,7 @@ class _AccountOperationsScreenState
                     const SizedBox(height: 5),
                     Text(
                       'Status: ${CustomerPresentation.label(backup['status'])}',
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: _muted,
                         fontSize: 12,
                       ),
@@ -464,7 +464,7 @@ class _AccountOperationsScreenState
                     const SizedBox(height: 4),
                     Text(
                       'Saved: ${CustomerPresentation.date(backup['captured_at'], includeTime: true)}',
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: _muted,
                         fontSize: 11,
                       ),
@@ -519,7 +519,7 @@ class _AccountOperationsScreenState
                   children: [
                     Text(
                       title,
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: _navy,
                         fontSize: 14,
                         fontWeight: FontWeight.w800,
@@ -528,7 +528,7 @@ class _AccountOperationsScreenState
                     const SizedBox(height: 5),
                     Text(
                       description,
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: _muted,
                         fontSize: 12,
                         height: 1.5,
@@ -557,7 +557,7 @@ class _AccountOperationsScreenState
               ),
               child: Text(
                 actionText,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w800,
                 ),
@@ -577,7 +577,7 @@ class _AccountOperationsScreenState
             snapshot.connectionState !=
                 ConnectionState.done) {
           return _surfaceCard(
-            child: const Center(
+            child: Center(
               child: Padding(
                 padding: EdgeInsets.all(12),
                 child: CircularProgressIndicator(
@@ -591,7 +591,7 @@ class _AccountOperationsScreenState
 
         if (snapshot.hasError) {
           return _surfaceCard(
-            child: const Text(
+            child: Text(
               'Unable to load request history.',
               style: TextStyle(
                 color: _muted,
@@ -605,7 +605,7 @@ class _AccountOperationsScreenState
 
         if (items.isEmpty) {
           return _surfaceCard(
-            child: const Column(
+            child: Column(
               children: [
                 Icon(
                   Icons.history_rounded,
@@ -643,7 +643,7 @@ class _AccountOperationsScreenState
               index++) ...[
                 _requestItem(items[index]),
                 if (index != items.length - 1)
-                  const Divider(
+                  Divider(
                     height: 22,
                     color: _border,
                   ),
@@ -664,7 +664,7 @@ class _AccountOperationsScreenState
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Icon(
+        Icon(
           Icons.description_outlined,
           color: _blue,
           size: 21,
@@ -677,7 +677,7 @@ class _AccountOperationsScreenState
             children: [
               Text(
                 '$kind · $status',
-                style: const TextStyle(
+                style: TextStyle(
                   color: _navy,
                   fontSize: 13,
                   fontWeight: FontWeight.w700,
@@ -689,7 +689,7 @@ class _AccountOperationsScreenState
                   item['created_at'],
                   includeTime: true,
                 ),
-                style: const TextStyle(
+                style: TextStyle(
                   color: _muted,
                   fontSize: 11,
                 ),
@@ -699,7 +699,7 @@ class _AccountOperationsScreenState
                 const SizedBox(height: 5),
                 Text(
                   item['reason'].toString(),
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: _muted,
                     fontSize: 12,
                     height: 1.4,

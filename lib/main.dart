@@ -126,7 +126,9 @@ class _TrexvenAppState extends State<TrexvenApp> {
           title: 'TREXVEN',
           debugShowCheckedModeBanner: false,
           theme: TrexvenTheme.lightTheme,
-          darkTheme: TrexvenTheme.darkTheme,
+          darkTheme: themeProvider.appearance == OwnerAppearance.trexven
+              ? TrexvenTheme.signatureTheme
+              : TrexvenTheme.darkTheme,
           themeMode: themeProvider.themeMode,
           home: SplashScreen(),
           builder: (context, child) {

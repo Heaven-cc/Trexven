@@ -22,20 +22,11 @@ class TrexvenAuthColors {
           ? const Color(0xFF94A3B8)
           : const Color(0xFF475569);
 
-  static Color border(BuildContext context) =>
-      Theme.of(context).brightness == Brightness.dark
-          ? const Color(0xFF334155)
-          : const Color(0xFFCBD5E1);
+  static Color border(BuildContext context) => Theme.of(context).colorScheme.outlineVariant;
 
-  static Color fieldFill(BuildContext context) =>
-      Theme.of(context).brightness == Brightness.dark
-          ? const Color(0xFF0F172A)
-          : const Color(0xFFF1F5FB);
+  static Color fieldFill(BuildContext context) => Theme.of(context).colorScheme.surfaceContainerHighest;
 
-  static Color cardBg(BuildContext context) =>
-      Theme.of(context).brightness == Brightness.dark
-          ? const Color(0xFF1E293B)
-          : Colors.white;
+  static Color cardBg(BuildContext context) => Theme.of(context).colorScheme.surface;
 }
 
 /// Dynamic, responsive shell with 3D frosted T backdrop.
@@ -49,7 +40,7 @@ class TrexvenAuthShell extends StatelessWidget {
     final isDark = theme.brightness == Brightness.dark;
 
     return Scaffold(
-      backgroundColor: isDark ? const Color(0xFF0B0F19) : const Color(0xFFF6F8FE),
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: Stack(
         children: [
           Positioned.fill(
@@ -59,12 +50,9 @@ class TrexvenAuthShell extends StatelessWidget {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: isDark
-                      ? const [
-                          Color(0xFF0F172A),
-                          Color(0xFF1E293B),
-                          Color(0xFF0B0F19),
-                          Color(0xFF111827),
-                        ]
+                      ? (theme.scaffoldBackgroundColor == Colors.black
+                          ? const [Color(0xFF000000), Color(0xFF101010), Color(0xFF000000), Color(0xFF080808)]
+                          : const [Color(0xFF0F172A), Color(0xFF1E293B), Color(0xFF0B0F19), Color(0xFF111827)])
                       : const [
                           Color(0xFFDFEDFF),
                           Color(0xFFF9FBFF),
