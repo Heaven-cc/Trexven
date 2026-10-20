@@ -5,15 +5,22 @@ abstract final class TrexvenTheme {
   static const primaryBlue = Color(0xFF2563EB);
   static const primaryDark = Color(0xFF0F172A);
   static ThemeData get lightTheme => build(Brightness.light);
-  static ThemeData get darkTheme => build(Brightness.dark);
+  static ThemeData get signatureTheme => build(Brightness.dark);
+  static ThemeData get darkTheme => build(Brightness.dark, pureBlack: true);
 
-  static ThemeData build(Brightness brightness) {
+  static ThemeData build(Brightness brightness, {bool pureBlack = false}) {
     final dark = brightness == Brightness.dark;
-    final surface = dark ? const Color(0xFF1E293B) : Colors.white;
-    final background = dark ? primaryDark : const Color(0xFFF5F7FC);
+    final surface = pureBlack && dark
+        ? const Color(0xFF141414)
+        : dark ? const Color(0xFF1E293B) : Colors.white;
+    final background = pureBlack && dark
+        ? Colors.black
+        : dark ? primaryDark : const Color(0xFFF5F7FC);
     final ink = dark ? const Color(0xFFF1F5F9) : primaryDark;
     final muted = dark ? const Color(0xFFB0BED0) : const Color(0xFF526179);
-    final outline = dark ? const Color(0xFF475569) : const Color(0xFFCBD5E1);
+    final outline = pureBlack && dark
+        ? const Color(0xFF383838)
+        : dark ? const Color(0xFF475569) : const Color(0xFFCBD5E1);
     final error = dark ? const Color(0xFFFCA5A5) : const Color(0xFFB91C1C);
     final scheme =
         ColorScheme.fromSeed(
@@ -25,9 +32,9 @@ abstract final class TrexvenTheme {
           surface: surface,
           onSurface: ink,
           onSurfaceVariant: muted,
-          surfaceContainerHighest: dark
-              ? const Color(0xFF29384F)
-              : const Color(0xFFF1F5F9),
+          surfaceContainerHighest: pureBlack && dark
+              ? const Color(0xFF242424)
+              : dark ? const Color(0xFF29384F) : const Color(0xFFF1F5F9),
           outline: outline,
           outlineVariant: outline,
           error: error,
