@@ -1,221 +1,144 @@
-import 'package:trexven_design_system/trexven_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:trexven_design_system/trexven_design_system.dart';
 
 import '../../core/theme_provider.dart';
 
+/// Owner appearance settings: three device modes plus a separate signature preset.
 class AppearanceScreen extends StatelessWidget {
   const AppearanceScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final selected = context.watch<ThemeProvider>().appearance;
     final theme = Theme.of(context);
-    final themeProvider = Provider.of<ThemeProvider>(context);
-    final muted = theme.trexvenColors.muted!;
+    final colors = theme.colorScheme;
+    final muted = colors.onSurfaceVariant;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Appearance',
-          style: TextStyle(
-            fontWeight: FontWeight.w800,
-            fontSize: TrexvenFontSize.section,
-          ),
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        scrolledUnderElevation: 0,
-        foregroundColor: theme.colorScheme.onSurface,
-      ),
+      appBar: AppBar(title: const Text('Appearance')),
       body: ListView(
-        padding: EdgeInsets.fromLTRB(16, 16, 16, 32),
+        padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
         children: [
-          Text(
-            'Theme Mode',
-            style: TextStyle(
-              fontSize: TrexvenFontSize.input,
-              fontWeight: FontWeight.w800,
-              color: theme.colorScheme.onSurface,
-            ),
+          Text('Theme Mode', style: theme.textTheme.titleMedium),
+          const SizedBox(height: 6),
+          Text('Choose how the app looks on this device.',
+              style: theme.textTheme.bodySmall?.copyWith(color: muted)),
+          const SizedBox(height: 16),
+          _group(context, [
+            _choice(context, selected,
+                option: OwnerAppearance.system,
+                icon: Icons.brightness_auto_rounded,
+                title: 'System Default',
+                subtitle: 'Match your device settings'),
+            _choice(context, selected,
+                option: OwnerAppearance.light,
+                icon: Icons.light_mode_outlined,
+                title: 'Light Mode',
+                subtitle: 'Always use the light theme'),
+            _choice(context, selected,
+                option: OwnerAppearance.dark,
+                icon: Icons.dark_mode_outlined,
+                title: 'Dark Mode',
+                subtitle: 'Pure black appearance'),
+          ]),
+          const SizedBox(height: 26),
+          Row(
+            children: [
+              Expanded(child: Text('Signature Theme',
+                  style: theme.textTheme.titleMedium)),
+              Text('Default',
+                  style: theme.textTheme.labelSmall?.copyWith(
+                      color: colors.primary, fontWeight: FontWeight.w700)),
+            ],
           ),
-          SizedBox(height: 8),
-          Text(
-            'Choose how TREXVEN looks on this device.',
-            style: TextStyle(fontSize: TrexvenFontSize.body, color: muted),
-          ),
-          SizedBox(height: TrexvenSpacing.fieldGap),
-
-          Container(
-            decoration: BoxDecoration(
-              color: theme.trexvenColors.cardBackground,
-              borderRadius: BorderRadius.circular(TrexvenRadii.card),
-            ),
-            child: Column(
-              children: [
-                _radioItem(
-                  context,
-                  theme,
-                  icon: Icons.brightness_auto_rounded,
-                  title: 'System Default',
-                  subtitle: 'Match your device settings',
-                  mode: ThemeMode.system,
-                  provider: themeProvider,
-                ),
-                _divider(context, theme),
-                _radioItem(
-                  context,
-                  theme,
-                  icon: Icons.light_mode_outlined,
-                  title: 'Light Mode',
-                  subtitle: 'Always use the light theme',
-                  mode: ThemeMode.light,
-                  provider: themeProvider,
-                ),
-                _divider(context, theme),
-                _radioItem(
-                  context,
-                  theme,
-                  icon: Icons.dark_mode_outlined,
-                  title: 'Dark Mode',
-                  subtitle: 'Always use the dark theme',
-                  mode: ThemeMode.dark,
-                  provider: themeProvider,
-                ),
-              ],
-            ),
-          ),
-
-          SizedBox(height: TrexvenSpacing.sectionGap),
-
-          Text(
-            'Preview',
-            style: TextStyle(
-              fontSize: TrexvenFontSize.input,
-              fontWeight: FontWeight.w800,
-              color: theme.colorScheme.onSurface,
-            ),
-          ),
-          SizedBox(height: 12),
-
-          _previewCard(context, theme),
+          const SizedBox(height: 8),
+          _group(context, [
+            _choice(context, selected,
+                option: OwnerAppearance.trexven,
+                logo: true,
+                title: null,
+                subtitle: 'Deep navy blue with signature accents'),
+          ]),
         ],
       ),
     );
   }
 
-  Widget _divider(BuildContext context, ThemeData theme) {
-    return Padding(
-      padding: EdgeInsets.only(left: 76),
-      child: Divider(
-        height: 1,
-        color:
-            theme.trexvenColors.border?.withValues(alpha: 0.5) ??
-            Colors.white12,
+  Widget _group(BuildContext context, List<Widget> items) {
+    final theme = Theme.of(context);
+    return Container(
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surface,
+        borderRadius: BorderRadius.circular(TrexvenRadii.card),
+        border: Border.all(color: theme.colorScheme.outlineVariant),
       ),
+      child: Column(children: [
+        for (var i = 0; i < items.length; i++) ...[
+          if (i > 0)
+            Divider(height: 1, indent: 76,
+                color: theme.colorScheme.outlineVariant),
+          items[i],
+        ],
+      ]),
     );
   }
 
-  Widget _radioItem(
+  Widget _choice(
     BuildContext context,
-    ThemeData theme, {
-    required IconData icon,
-    required String title,
+    OwnerAppearance selected, {
+    required OwnerAppearance option,
     required String subtitle,
-    required ThemeMode mode,
-    required ThemeProvider provider,
+    String? title,
+    IconData? icon,
+    bool logo = false,
   }) {
-    final brandBlue = theme.colorScheme.primary;
-    final muted = theme.trexvenColors.muted!;
-
+    final theme = Theme.of(context);
+    final colors = theme.colorScheme;
+    final active = selected == option;
     return InkWell(
-      onTap: () => provider.setThemeMode(mode),
-      borderRadius: BorderRadius.circular(TrexvenRadii.card),
+      onTap: () => context.read<ThemeProvider>().setAppearance(option),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
         child: Row(
           children: [
             Container(
               width: 44,
               height: 44,
+              alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: brandBlue.withValues(alpha: 0.08),
-                borderRadius: BorderRadius.circular(TrexvenRadii.card),
+                color: colors.primary.withValues(alpha: .10),
+                borderRadius: BorderRadius.circular(12),
               ),
-              child: Icon(icon, color: brandBlue, size: 22),
+              child: logo
+                  ? Image.asset('assets/images/trexven_logo.png',
+                      width: 34, height: 34, fit: BoxFit.contain,
+                      errorBuilder: (context, error, stack) =>
+                          Icon(Icons.auto_awesome, color: colors.primary))
+                  : Icon(icon, color: colors.primary, size: 23),
             ),
-            SizedBox(width: 14),
+            const SizedBox(width: 14),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    title,
-                    style: TextStyle(
-                      fontSize: TrexvenFontSize.input,
-                      fontWeight: FontWeight.w700,
-                      color: theme.colorScheme.onSurface,
-                    ),
-                  ),
-                  SizedBox(height: 3),
-                  Text(
-                    subtitle,
-                    style: TextStyle(
-                      fontSize: TrexvenFontSize.caption,
-                      color: muted,
-                    ),
-                  ),
+                  if (title != null)
+                    Text(title, style: theme.textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.w700)),
+                  if (title != null) const SizedBox(height: 3),
+                  Text(subtitle,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                          color: colors.onSurfaceVariant)),
                 ],
               ),
             ),
-            Radio<ThemeMode>(
-              value: mode,
-              groupValue: provider.themeMode,
-              activeColor: brandBlue,
-              onChanged: (value) {
-                if (value != null) {
-                  provider.setThemeMode(value);
-                }
-              },
-            ),
+            const SizedBox(width: 8),
+            Icon(active ? Icons.radio_button_checked : Icons.radio_button_off,
+                color: active ? colors.primary : colors.onSurfaceVariant,
+                size: 22),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _previewCard(BuildContext context, ThemeData theme) {
-    final brandBlue = theme.colorScheme.primary;
-
-    return Container(
-      padding: TrexvenSpacing.cardPadding,
-      decoration: BoxDecoration(
-        color: theme.trexvenColors.cardBackground,
-        borderRadius: BorderRadius.circular(TrexvenRadii.card),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-              color: brandBlue,
-              borderRadius: BorderRadius.circular(TrexvenRadii.card),
-            ),
-            child: Icon(Icons.storefront_rounded, color: Colors.white),
-          ),
-          SizedBox(width: 14),
-          Expanded(
-            child: Text(
-              'TREXVEN',
-              style: TextStyle(
-                fontSize: TrexvenFontSize.input,
-                fontWeight: FontWeight.w800,
-                color: theme.colorScheme.onSurface,
-              ),
-            ),
-          ),
-          Icon(Icons.check_circle_rounded, color: brandBlue),
-        ],
       ),
     );
   }
