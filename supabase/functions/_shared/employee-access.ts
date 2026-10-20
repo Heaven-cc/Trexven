@@ -3,7 +3,7 @@ export async function assertStaffAccess(client: any, businessId: string, employe
   const { data, error } = await client.rpc('assert_trexven_staff_access', {
     p_business_id: businessId, p_employee_id: employeeId,
   });
-  if (error || !data || typeof data.owner !== 'boolean') {
+  if (error || !data || data.owner !== true) {
     throw new Error('Staff administration denied');
   }
   return { owner: data.owner as boolean };

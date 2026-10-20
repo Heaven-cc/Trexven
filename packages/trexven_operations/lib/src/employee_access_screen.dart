@@ -397,6 +397,7 @@ class _PermissionOverridesState
   static const forbidden = {
     'owner_app',
     'manage_permissions',
+    'manage_employees',
     'assign_roles',
     'view_camera_events',
     'view_profit',
