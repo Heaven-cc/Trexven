@@ -34,13 +34,13 @@ class _BusinessProfileScreenState
   final _emailCtrl = TextEditingController();
   final _webCtrl = TextEditingController();
 
-  static const _background = Color(0xFFF5F7FC);
-  static const _white = Colors.white;
-  static const _navy = Color(0xFF14213D);
-  static const _blue = Color(0xFF2864F0);
-  static const _muted = Color(0xFF71809A);
-  static const _softBlue = Color(0xFFE8EFFF);
-  static const _border = Color(0xFFE6EAF2);
+  Color get _background => Theme.of(context).scaffoldBackgroundColor;
+  Color get _white => Theme.of(context).colorScheme.surface;
+  Color get _navy => Theme.of(context).colorScheme.onSurface;
+  Color get _blue => Theme.of(context).colorScheme.primary;
+  Color get _muted => Theme.of(context).colorScheme.onSurfaceVariant;
+  Color get _softBlue => _blue.withValues(alpha: .10);
+  Color get _border => Theme.of(context).colorScheme.outlineVariant;
 
   @override
   void initState() {
@@ -168,7 +168,7 @@ class _BusinessProfileScreenState
         surfaceTintColor: Colors.transparent,
         elevation: 0,
         titleSpacing: 0,
-        title: const Text(
+        title: Text(
           'Business Profile',
           style: TextStyle(
             color: _navy,
@@ -205,7 +205,7 @@ class _BusinessProfileScreenState
                 crossAxisAlignment:
                 CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     'Business Information',
                     style: TextStyle(
                       color: _navy,
@@ -214,7 +214,7 @@ class _BusinessProfileScreenState
                     ),
                   ),
                   const SizedBox(height: 6),
-                  const Text(
+                  Text(
                     'Manage your business details in TREXVEN.',
                     style: TextStyle(
                       color: _muted,
@@ -250,7 +250,7 @@ class _BusinessProfileScreenState
 
                   const SizedBox(height: 20),
 
-                  const Text(
+                  Text(
                     'Location & Contact',
                     style: TextStyle(
                       color: _navy,
@@ -337,7 +337,7 @@ class _BusinessProfileScreenState
                           strokeWidth: 2,
                         ),
                       )
-                          : const Text(
+                          : Text(
                         'Save Changes',
                         style: TextStyle(
                           fontSize: 13,
@@ -386,7 +386,7 @@ class _BusinessProfileScreenState
       children: [
         Text(
           label,
-          style: const TextStyle(
+          style: TextStyle(
             color: _navy,
             fontSize: 12,
             fontWeight: FontWeight.w700,
@@ -404,13 +404,13 @@ class _BusinessProfileScreenState
               keyboardType == TextInputType.url
               ? TextCapitalization.none
               : TextCapitalization.words,
-          style: const TextStyle(
+          style: TextStyle(
             color: _navy,
             fontSize: 13,
           ),
           decoration: InputDecoration(
             hintText: hint,
-            hintStyle: const TextStyle(
+            hintStyle: TextStyle(
               color: _muted,
               fontSize: 12,
             ),
@@ -431,13 +431,13 @@ class _BusinessProfileScreenState
               borderRadius:
               BorderRadius.circular(11),
               borderSide:
-              const BorderSide(color: _border),
+              BorderSide(color: _border),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius:
               BorderRadius.circular(11),
               borderSide:
-              const BorderSide(color: _border),
+              BorderSide(color: _border),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius:
@@ -460,7 +460,7 @@ class _BusinessProfileScreenState
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(
+            Icon(
               Icons.error_outline_rounded,
               size: 44,
               color: _muted,
@@ -469,7 +469,7 @@ class _BusinessProfileScreenState
             Text(
               _error ?? 'Something went wrong.',
               textAlign: TextAlign.center,
-              style: const TextStyle(
+              style: TextStyle(
                 color: _muted,
                 fontSize: 13,
               ),
@@ -483,8 +483,8 @@ class _BusinessProfileScreenState
                 });
                 _loadBusiness();
               },
-              icon: const Icon(Icons.refresh_rounded),
-              label: const Text('Try Again'),
+              icon: Icon(Icons.refresh_rounded),
+              label: Text('Try Again'),
             ),
           ],
         ),
