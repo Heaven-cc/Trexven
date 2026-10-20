@@ -20,13 +20,13 @@ class OperationalPermissionsScreen extends StatefulWidget {
 
 class _OperationalPermissionsScreenState
     extends State<OperationalPermissionsScreen> {
-  static const Color _background = Color(0xFFF5F7FC);
-  static const Color _navy = Color(0xFF14213D);
-  static const Color _blue = Color(0xFF2864F0);
-  static const Color _muted = Color(0xFF71809A);
-  static const Color _border = Color(0xFFE6EAF2);
-  static const Color _softBlue = Color(0xFFEAF0FF);
-  static const Color _green = Color(0xFF16845A);
+  Color get _background => Theme.of(context).scaffoldBackgroundColor;
+  Color get _navy => Theme.of(context).colorScheme.onSurface;
+  Color get _blue => Theme.of(context).colorScheme.primary;
+  Color get _muted => Theme.of(context).colorScheme.onSurfaceVariant;
+  Color get _border => Theme.of(context).colorScheme.outlineVariant;
+  Color get _softBlue => _blue.withValues(alpha: .10);
+  Color get _green => Theme.of(context).trexvenColors.success ?? const Color(0xFF16845A);
 
   late Future<List<Map<String, dynamic>>> employees;
 
@@ -215,7 +215,7 @@ class _OperationalPermissionsScreenState
                               borderRadius:
                               BorderRadius.circular(12),
                             ),
-                            child: const Icon(
+                            child: Icon(
                               Icons.admin_panel_settings_outlined,
                               color: _blue,
                               size: 22,
@@ -231,14 +231,14 @@ class _OperationalPermissionsScreenState
                                   _employeeName(employee),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     color: _navy,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w800,
                                   ),
                                 ),
                                 const SizedBox(height: 3),
-                                const Text(
+                                Text(
                                   'Operational permissions',
                                   style: TextStyle(
                                     color: _muted,
@@ -253,7 +253,7 @@ class _OperationalPermissionsScreenState
                             onPressed: busy
                                 ? null
                                 : () => Navigator.pop(dialogContext),
-                            icon: const Icon(
+                            icon: Icon(
                               Icons.close_rounded,
                               color: _muted,
                             ),
@@ -358,7 +358,7 @@ class _OperationalPermissionsScreenState
                                         _permissionNames[
                                         group.value[i]] ??
                                             group.value[i],
-                                        style: const TextStyle(
+                                        style: TextStyle(
                                           color: _navy,
                                           fontSize: 12,
                                           fontWeight:
@@ -410,7 +410,7 @@ class _OperationalPermissionsScreenState
                               BorderRadius.circular(11),
                             ),
                           ),
-                          child: const Text('Done'),
+                          child: Text('Done'),
                         ),
                       ),
                     ),
@@ -427,7 +427,7 @@ class _OperationalPermissionsScreenState
   Widget _dialogSection(String title) {
     return Text(
       title,
-      style: const TextStyle(
+      style: TextStyle(
         color: _navy,
         fontSize: 13,
         fontWeight: FontWeight.w800,
@@ -462,7 +462,7 @@ class _OperationalPermissionsScreenState
         backgroundColor: _background,
         surfaceTintColor: Colors.transparent,
         elevation: 0,
-        title: const Text(
+        title: Text(
           'Employee Permissions',
           style: TextStyle(
             color: _navy,
@@ -474,7 +474,7 @@ class _OperationalPermissionsScreenState
           IconButton(
             tooltip: 'Refresh employees',
             onPressed: _refresh,
-            icon: const Icon(
+            icon: Icon(
               Icons.refresh_rounded,
               color: _navy,
             ),
@@ -510,7 +510,7 @@ class _OperationalPermissionsScreenState
                 16, 14, 16, 32,
               ),
               children: [
-                const Text(
+                Text(
                   'Operational Access',
                   style: TextStyle(
                     color: _navy,
@@ -519,7 +519,7 @@ class _OperationalPermissionsScreenState
                   ),
                 ),
                 const SizedBox(height: 5),
-                const Text(
+                Text(
                   'Control which sensitive business operations '
                       'employees are authorized to perform.',
                   style: TextStyle(
@@ -607,7 +607,7 @@ class _OperationalPermissionsScreenState
       ),
       child: Text(
         '$count',
-        style: const TextStyle(
+        style: TextStyle(
           color: _blue,
           fontSize: 11,
           fontWeight: FontWeight.w800,
@@ -642,7 +642,7 @@ class _OperationalPermissionsScreenState
                   color: _softBlue,
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: const Icon(
+                child: Icon(
                   Icons.person_outline_rounded,
                   color: _blue,
                   size: 22,
@@ -658,7 +658,7 @@ class _OperationalPermissionsScreenState
                       name,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: _navy,
                         fontSize: 13,
                         fontWeight: FontWeight.w800,
@@ -669,7 +669,7 @@ class _OperationalPermissionsScreenState
                       CustomerPresentation.label(
                         employee['role'],
                       ),
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: _muted,
                         fontSize: 11,
                       ),
@@ -701,7 +701,7 @@ class _OperationalPermissionsScreenState
                     ),
                   ),
                   const SizedBox(height: 6),
-                  const Icon(
+                  Icon(
                     Icons.chevron_right_rounded,
                     color: _muted,
                     size: 19,
@@ -760,13 +760,13 @@ class _OperationalPermissionsScreenState
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(
+            Icon(
               Icons.cloud_off_outlined,
               color: _muted,
               size: 36,
             ),
             const SizedBox(height: 12),
-            const Text(
+            Text(
               'Employee access unavailable',
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -776,7 +776,7 @@ class _OperationalPermissionsScreenState
               ),
             ),
             const SizedBox(height: 8),
-            const Text(
+            Text(
               'We could not load employee permissions.',
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -790,7 +790,7 @@ class _OperationalPermissionsScreenState
               style: FilledButton.styleFrom(
                 backgroundColor: _blue,
               ),
-              child: const Text('Retry'),
+              child: Text('Retry'),
             ),
           ],
         ),
