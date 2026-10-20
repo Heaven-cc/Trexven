@@ -15,12 +15,12 @@ class BillingScreen extends StatefulWidget {
 }
 
 class _BillingScreenState extends State<BillingScreen> {
-  static const bg = Color(0xFF141414);
-  static const card = Color(0xFF222222);
-  static const border = Color(0xFF383838);
-  static const blue = Color(0xFF5A9BFA);
-  static const selected = Color(0xFF293447);
-  static const muted = Color(0xFFAAAAAA);
+  Color get bg => Theme.of(context).scaffoldBackgroundColor;
+  Color get card => Theme.of(context).colorScheme.surface;
+  Color get border => Theme.of(context).colorScheme.outlineVariant;
+  Color get blue => Theme.of(context).colorScheme.primary;
+  Color get selected => blue.withValues(alpha: .14);
+  Color get muted => Theme.of(context).colorScheme.onSurfaceVariant;
 
   OperationsClient? _api;
   List<SubscriptionPlan> _plans = [];
@@ -164,19 +164,19 @@ class _BillingScreenState extends State<BillingScreen> {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Request cancellation?'),
-        content: const Text(
+        title: Text('Request cancellation?'),
+        content: Text(
           'Your cancellation request will be recorded '
               'for review. Your plan stays unchanged until processed.',
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx, false),
-            child: const Text('Keep plan'),
+            child: Text('Keep plan'),
           ),
           TextButton(
             onPressed: () => Navigator.pop(ctx, true),
-            child: const Text('Request cancellation'),
+            child: Text('Request cancellation'),
           ),
         ],
       ),
@@ -218,16 +218,8 @@ class _BillingScreenState extends State<BillingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: bg,
-        colorScheme: const ColorScheme.dark(
-          primary: blue,
-          surface: card,
-        ),
-      ),
-      child: Scaffold(
-        appBar: AppBar(title: const Text('Billing & Plans')),
+    return Scaffold(
+        appBar: AppBar(title: Text('Billing & Plans')),
         backgroundColor: bg,
         body: SafeArea(
           child: _loading
@@ -242,31 +234,31 @@ class _BillingScreenState extends State<BillingScreen> {
               ),
               children: [
                 const SizedBox(height: 10),
-                const Text(
+                Text(
                   'Get more TREXVEN',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 29,
                     fontWeight: FontWeight.w600,
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
                 const SizedBox(height: 14),
-                const Text(
+                Text(
                   'Choose the plan right for your business',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.white70,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
                 ),
                 const SizedBox(height: 8),
-                const Text(
+                Text(
                   'Plan upgrades are not available yet.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 13,
-                    color: Colors.white70,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
                 ),
                 const SizedBox(height: 24),
@@ -283,8 +275,8 @@ class _BillingScreenState extends State<BillingScreen> {
                   const SizedBox(height: 16),
                   Text(
                     _message!,
-                    style: const TextStyle(
-                      color: Colors.white70,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
                   ),
                 ],
@@ -302,7 +294,6 @@ class _BillingScreenState extends State<BillingScreen> {
             ),
           ),
         ),
-      ),
     );
   }
 
@@ -404,11 +395,11 @@ class _BillingScreenState extends State<BillingScreen> {
           SwitchListTile.adaptive(
             value: _autoRenew,
             activeTrackColor: blue,
-            title: const Text(
+            title: Text(
               'Automatic renewal',
               style: TextStyle(fontSize: 13),
             ),
-            subtitle: const Text(
+            subtitle: Text(
               'Optional. Authorize the full Pro '
                   'subscription charge after the '
                   'introductory period.',
@@ -428,7 +419,7 @@ class _BillingScreenState extends State<BillingScreen> {
                 : 'Your Pro access ends after the '
                 'introductory period unless '
                 'you subscribe manually.',
-            style: const TextStyle(
+            style: TextStyle(
               color: muted,
               fontSize: 11,
             ),
@@ -467,14 +458,14 @@ class _BillingScreenState extends State<BillingScreen> {
                     Expanded(
                       child: Text(
                         name,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
                     if (popular)
-                      const Text(
+                      Text(
                         'POPULAR',
                         style: TextStyle(
                           color: blue,
@@ -487,9 +478,9 @@ class _BillingScreenState extends State<BillingScreen> {
                 const SizedBox(height: 8),
                 Text(
                   description,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 14,
-                    color: Colors.white70,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
                 ),
                 const SizedBox(height: 24),
@@ -512,9 +503,9 @@ class _BillingScreenState extends State<BillingScreen> {
                   child: FilledButton(
                     onPressed: null,
                     style: FilledButton.styleFrom(
-                      backgroundColor: Colors.white,
+                      backgroundColor: Theme.of(context).colorScheme.onSurface,
                       disabledBackgroundColor:
-                      Colors.white.withValues(alpha: .75),
+                      Theme.of(context).colorScheme.onSurface.withValues(alpha: .75),
                       disabledForegroundColor:
                       Colors.black87,
                       minimumSize: const Size(0, 48),
@@ -524,7 +515,7 @@ class _BillingScreenState extends State<BillingScreen> {
                   ),
                 ),
                 const SizedBox(height: 8),
-                const Text(
+                Text(
                   'Checkout is not available yet.',
                   style: TextStyle(
                     fontSize: 10,
@@ -546,15 +537,15 @@ class _BillingScreenState extends State<BillingScreen> {
               children: [
                 Text(
                   'Included with $name:',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 13,
-                    color: Colors.white70,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
                 const SizedBox(height: 15),
                 if (features.isEmpty)
-                  const Text(
+                  Text(
                     'Features unavailable',
                     style: TextStyle(color: muted),
                   ),
@@ -566,7 +557,7 @@ class _BillingScreenState extends State<BillingScreen> {
                       crossAxisAlignment:
                       CrossAxisAlignment.start,
                       children: [
-                        const Icon(
+                        Icon(
                           Icons.check_rounded,
                           size: 19,
                           color: muted,
@@ -575,9 +566,9 @@ class _BillingScreenState extends State<BillingScreen> {
                         Expanded(
                           child: Text(
                             feature,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 13,
-                              color: Colors.white70,
+                              color: Theme.of(context).colorScheme.onSurfaceVariant,
                               height: 1.4,
                             ),
                           ),
@@ -628,8 +619,8 @@ class _BillingScreenState extends State<BillingScreen> {
             const SizedBox(height: 18),
             Text(
               title,
-              style: const TextStyle(
-                color: Colors.white,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSurface,
                 fontSize: 15,
                 fontWeight: FontWeight.w700,
               ),
@@ -637,7 +628,7 @@ class _BillingScreenState extends State<BillingScreen> {
             const SizedBox(height: 6),
             Text(
               subtitle,
-              style: const TextStyle(
+              style: TextStyle(
                 color: muted,
                 fontSize: 11,
                 height: 1.4,
@@ -661,10 +652,10 @@ class _BillingScreenState extends State<BillingScreen> {
       title: 'Manage Subscription',
       children: [
         if (_configured) ...[
-          const Text(
+          Text(
             'Current plan',
             style: TextStyle(
-              color: Colors.white,
+              color: Theme.of(context).colorScheme.onSurface,
               fontSize: 13,
               fontWeight: FontWeight.bold,
             ),
@@ -672,24 +663,24 @@ class _BillingScreenState extends State<BillingScreen> {
           const SizedBox(height: 4),
           Text(
             _label(_subscription['plan']),
-            style: const TextStyle(
-              color: Colors.white,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onSurface,
               fontSize: 13,
             ),
           ),
           const SizedBox(height: 8),
           Text(
             _label(_subscription['status']),
-            style: const TextStyle(
+            style: TextStyle(
               color: muted,
               fontSize: 12,
             ),
           ),
         ] else ...[
-          const Text(
+          Text(
             'No active subscription',
             style: TextStyle(
-              color: Colors.white,
+              color: Theme.of(context).colorScheme.onSurface,
               fontSize: 13,
             ),
           ),
@@ -697,12 +688,12 @@ class _BillingScreenState extends State<BillingScreen> {
         if (_subscription['renews_at'] != null)
           Text(
             'Renews: ${_date(_subscription['renews_at'])}',
-            style: const TextStyle(color: muted),
+            style: TextStyle(color: muted),
           ),
         if (_subscription['expires_at'] != null)
           Text(
             'Expires: ${_date(_subscription['expires_at'])}',
-            style: const TextStyle(color: muted),
+            style: TextStyle(color: muted),
           ),
         if (canCancel) ...[
           const SizedBox(height: 14),
@@ -726,7 +717,7 @@ class _BillingScreenState extends State<BillingScreen> {
                 ),
               );
             },
-            child: const Text(
+            child: Text(
               'Account requests and recovery',
             ),
           ),
@@ -739,7 +730,7 @@ class _BillingScreenState extends State<BillingScreen> {
       title: 'Billing History',
       children: [
         if (_history.isEmpty)
-          const Text(
+          Text(
             'No billing payments yet.',
             style: TextStyle(color: muted),
           ),
@@ -751,21 +742,21 @@ class _BillingScreenState extends State<BillingScreen> {
                 payment['amount'],
                 payment['currency'] as String?,
               ),
-              style: const TextStyle(
-                color: Colors.white,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSurface,
                 fontSize: 13,
               ),
             ),
             subtitle: Text(
               _date(payment['verified_at']),
-              style: const TextStyle(
+              style: TextStyle(
                 color: muted,
                 fontSize: 11,
               ),
             ),
             trailing: Text(
               _label(payment['status']),
-              style: const TextStyle(
+              style: TextStyle(
                 color: muted,
                 fontSize: 11,
               ),
@@ -791,7 +782,7 @@ class _BillingScreenState extends State<BillingScreen> {
         children: [
           Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 17,
               fontWeight: FontWeight.w600,
             ),
@@ -815,7 +806,7 @@ class _BillingScreenState extends State<BillingScreen> {
           const SizedBox(height: 12),
           TextButton(
             onPressed: _load,
-            child: const Text('Try again'),
+            child: Text('Try again'),
           ),
         ],
       ),
@@ -838,8 +829,8 @@ class BillingPlanCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(22),
       decoration: BoxDecoration(
-        color: current ? const Color(0xFF293447) : const Color(0xFF222222),
-        border: Border.all(color: const Color(0xFF383838)),
+        color: current ? selected : card,
+        border: Border.all(color: border),
         borderRadius: BorderRadius.circular(24),
       ),
       child: Column(
@@ -850,15 +841,15 @@ class BillingPlanCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   plan.name,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w600,
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
               ),
               if (current)
-                const Text(
+                Text(
                   'Current plan',
                   style: TextStyle(
                     color: Color(0xFF5A9BFA),
@@ -871,7 +862,7 @@ class BillingPlanCard extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             plan.description,
-            style: const TextStyle(fontSize: 14, color: Colors.white70),
+            style: TextStyle(fontSize: 14, color: Theme.of(context).colorScheme.onSurfaceVariant),
           ),
           const SizedBox(height: 12),
           for (final feature in plan.features)
@@ -879,10 +870,10 @@ class BillingPlanCard extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 8),
               child: Row(
                 children: [
-                  const Icon(Icons.check_rounded, size: 18, color: Colors.white70),
+                  Icon(Icons.check_rounded, size: 18, color: Theme.of(context).colorScheme.onSurfaceVariant),
                   const SizedBox(width: 8),
                   Expanded(
-                    child: Text(feature, style: const TextStyle(fontSize: 13, color: Colors.white70)),
+                    child: Text(feature, style: TextStyle(fontSize: 13, color: Theme.of(context).colorScheme.onSurfaceVariant)),
                   ),
                 ],
               ),
