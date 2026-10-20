@@ -78,8 +78,7 @@ class _OperationalFinanceScreenState extends State<OperationalFinanceScreen> {
             child: ListView(
               padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
               children: [
-                _buildHeader(),
-                const SizedBox(height: 22),
+                const SizedBox(height: 8),
                 _buildSectionTitle('Financial management'),
                 const SizedBox(height: 10),
                 _buildMenuCard(

@@ -241,18 +241,7 @@ class _BillingScreenState extends State<BillingScreen> {
                 20, 18, 20, 36,
               ),
               children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: IconButton(
-                    onPressed: () =>
-                        Navigator.maybePop(context),
-                    icon: const Icon(
-                      Icons.close_rounded,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 32),
+                const SizedBox(height: 10),
                 const Text(
                   'Get more TREXVEN',
                   textAlign: TextAlign.center,
