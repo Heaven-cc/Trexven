@@ -89,7 +89,7 @@ class _CreditBadge extends StatelessWidget {
   const _CreditBadge(this.text, {this.active = false});
   @override
   Widget build(BuildContext context) => Container(
-    padding: const EdgeInsets.symmetric(horizontal: TrexvenPresentation.spacing(context, 10), vertical: TrexvenPresentation.spacing(context, 5)),
+    padding: EdgeInsets.symmetric(horizontal: TrexvenPresentation.spacing(context, 10), vertical: TrexvenPresentation.spacing(context, 5)),
     decoration: BoxDecoration(
       color: active
           ? Theme.of(context).colorScheme.primaryContainer

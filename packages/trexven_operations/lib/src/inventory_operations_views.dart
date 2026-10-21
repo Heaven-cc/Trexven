@@ -293,7 +293,7 @@ context: context,
       title: Text('${product?['name'] ?? 'Product'}',
         style: TextStyle(fontSize: TrexvenPresentation.fontSize(context, 14), fontWeight: FontWeight.w600)),
       subtitle: Padding(
-        padding: const EdgeInsets.only(top: TrexvenPresentation.spacing(context, 5)),
+        padding: EdgeInsets.only(top: TrexvenPresentation.spacing(context, 5)),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(counted == null ? 'Not counted' : 'Counted $counted ${product?['unit'] ?? ''}'),
           if (showExpected && expected != null)

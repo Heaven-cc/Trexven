@@ -821,7 +821,7 @@ context: context,
     IconData icon = Icons.receipt_long_outlined,
   }) => _CreditCard(
     child: Padding(
-      padding: const EdgeInsets.symmetric(vertical: TrexvenPresentation.spacing(context, 18)),
+      padding: EdgeInsets.symmetric(vertical: TrexvenPresentation.spacing(context, 18)),
       child: Column(
         children: [
           Icon(
@@ -897,7 +897,7 @@ context: context,
     _CustomerCredit customer, {
     bool limitView = false,
   }) => Padding(
-    padding: const EdgeInsets.only(bottom: TrexvenPresentation.spacing(context, 10)),
+    padding: EdgeInsets.only(bottom: TrexvenPresentation.spacing(context, 10)),
     child: _CreditCard(
       child: InkWell(
         onTap: () => unawaited(_openCustomer(customer.key)),
@@ -1050,7 +1050,7 @@ context: context,
       const SizedBox(height: 12),
       for (final request in _returns.rows.reversed)
         Padding(
-          padding: const EdgeInsets.only(bottom: TrexvenPresentation.spacing(context, 10)),
+          padding: EdgeInsets.only(bottom: TrexvenPresentation.spacing(context, 10)),
           child: _CreditCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

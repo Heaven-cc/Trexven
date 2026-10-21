@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -26,12 +25,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool _saving = false;
 
   Color get _background => Theme.of(context).scaffoldBackgroundColor;
-  Color get _white => Theme.of(context).trexvenColors.cardBackground ?? Theme.of(context).colorScheme.surface;
+  Color get _white => Theme.of(context).brightness == Brightness.dark ? const Color(0xFF1E293B) : Colors.white;
   Color get _navy => Theme.of(context).colorScheme.onSurface;
   Color get _blue => Theme.of(context).colorScheme.primary;
-  Color get _muted => Theme.of(context).trexvenColors.muted ?? Theme.of(context).colorScheme.onSurfaceVariant;
+  Color get _muted => Theme.of(context).colorScheme.onSurfaceVariant;
   Color get _softBlue => Theme.of(context).colorScheme.primary.withValues(alpha: 0.12);
-  Color get _border => Theme.of(context).trexvenColors.border ?? Theme.of(context).colorScheme.outlineVariant;
+  Color get _border => Theme.of(context).colorScheme.outlineVariant;
 
   @override
   void initState() {
@@ -114,7 +113,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         surfaceTintColor: Colors.transparent,
         elevation: 0,
         titleSpacing: 0,
-        title: const Text(
+        title: Text(
           'My Profile',
           style: TextStyle(
             color: _navy,
@@ -178,7 +177,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             color: _softBlue,
             borderRadius: BorderRadius.circular(14),
           ),
-          child: const Icon(
+          child: Icon(
             Icons.person_outline_rounded,
             color: _blue,
             size: 25,
@@ -187,7 +186,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
         const SizedBox(width: 12),
 
-        const Expanded(
+        Expanded(
           child: Column(
             crossAxisAlignment:
             CrossAxisAlignment.start,
@@ -201,7 +200,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
 
-              SizedBox(height: 4),
+              const SizedBox(height: 4),
 
               Text(
                 'Manage your personal account details',
@@ -232,7 +231,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'Personal information',
             style: TextStyle(
               color: _navy,
@@ -243,7 +242,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
           const SizedBox(height: 17),
 
-          const Text(
+          Text(
             'Full name',
             style: TextStyle(
               color: _navy,
@@ -271,19 +270,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
               }
               return null;
             },
-            style: const TextStyle(
+            style: TextStyle(
               color: _navy,
               fontSize: 14,
               fontWeight: FontWeight.w500,
             ),
             decoration: InputDecoration(
               hintText: 'Enter your full name',
-              hintStyle: const TextStyle(
+              hintStyle: TextStyle(
                 color: _muted,
                 fontSize: 13,
               ),
               counterText: '',
-              prefixIcon: const Icon(
+              prefixIcon: Icon(
                 Icons.person_outline_rounded,
                 color: _blue,
                 size: 20,
@@ -298,21 +297,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
               border: OutlineInputBorder(
                 borderRadius:
                 BorderRadius.circular(12),
-                borderSide: const BorderSide(
+                borderSide: BorderSide(
                   color: _border,
                 ),
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius:
                 BorderRadius.circular(12),
-                borderSide: const BorderSide(
+                borderSide: BorderSide(
                   color: _border,
                 ),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius:
                 BorderRadius.circular(12),
-                borderSide: const BorderSide(
+                borderSide: BorderSide(
                   color: _blue,
                   width: 1.5,
                 ),
@@ -322,14 +321,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
           const SizedBox(height: 13),
 
-          const Divider(
+          Divider(
             color: _border,
             height: 1,
           ),
 
           const SizedBox(height: 17),
 
-          const Text(
+          Text(
             'Email address',
             style: TextStyle(
               color: _navy,
@@ -356,7 +355,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             child: Row(
               children: [
-                const Icon(
+                Icon(
                   Icons.mail_outline_rounded,
                   color: _muted,
                   size: 20,
@@ -367,7 +366,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Expanded(
                   child: SelectableText(
                     email,
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: _navy,
                       fontSize: 13,
                     ),
@@ -376,7 +375,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                 const SizedBox(width: 8),
 
-                const Icon(
+                Icon(
                   Icons.lock_outline_rounded,
                   color: _muted,
                   size: 16,
@@ -387,7 +386,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
           const SizedBox(height: 8),
 
-          const Text(
+          Text(
             'Your sign-in email cannot be changed here.',
             style: TextStyle(
               color: _muted,

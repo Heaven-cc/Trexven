@@ -153,8 +153,8 @@ class _OperationalFinanceScreenState extends State<OperationalFinanceScreen> {
         surfaceTintColor: Colors.transparent,
         elevation: 0,
         titleSpacing: 0,
-        iconTheme: const IconThemeData(color: _navy),
-        title: const Text(
+        iconTheme: IconThemeData(color: _navy),
+        title: Text(
           'Business Operations',
           style: TextStyle(
             color: _navy,
@@ -172,7 +172,7 @@ class _OperationalFinanceScreenState extends State<OperationalFinanceScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           'Manage your business',
           style: TextStyle(
             color: _navy,
@@ -182,7 +182,7 @@ class _OperationalFinanceScreenState extends State<OperationalFinanceScreen> {
           ),
         ),
         const SizedBox(height: 6),
-        const Text(
+        Text(
           'Access your financial tools, inventory controls, '
           'cash management and employee permissions.',
           style: TextStyle(color: _muted, fontSize: 12, height: 1.5),
@@ -194,7 +194,7 @@ class _OperationalFinanceScreenState extends State<OperationalFinanceScreen> {
   Widget _buildSectionTitle(String title) {
     return Text(
       title,
-      style: const TextStyle(
+      style: TextStyle(
         color: _navy,
         fontSize: 13,
         fontWeight: FontWeight.w800,
@@ -209,8 +209,11 @@ class _OperationalFinanceScreenState extends State<OperationalFinanceScreen> {
     required String description,
     required VoidCallback onTap,
   }) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final cardBg = isDark ? const Color(0xFF1E293B) : Colors.white;
+
     return Material(
-      color: Colors.white,
+      color: cardBg,
       borderRadius: BorderRadius.circular(14),
       child: InkWell(
         onTap: onTap,
@@ -239,7 +242,7 @@ class _OperationalFinanceScreenState extends State<OperationalFinanceScreen> {
                   children: [
                     Text(
                       title,
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: _navy,
                         fontSize: 13,
                         fontWeight: FontWeight.w800,
@@ -248,7 +251,7 @@ class _OperationalFinanceScreenState extends State<OperationalFinanceScreen> {
                     const SizedBox(height: 5),
                     Text(
                       description,
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: _muted,
                         fontSize: 11,
                         height: 1.4,
@@ -258,7 +261,7 @@ class _OperationalFinanceScreenState extends State<OperationalFinanceScreen> {
                 ),
               ),
               const SizedBox(width: 8),
-              const Icon(Icons.chevron_right_rounded, color: _muted, size: 21),
+              Icon(Icons.chevron_right_rounded, color: _muted, size: 21),
             ],
           ),
         ),
@@ -273,11 +276,11 @@ class _OperationalFinanceScreenState extends State<OperationalFinanceScreen> {
         color: _softBlue,
         borderRadius: BorderRadius.circular(12),
       ),
-      child: const Row(
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Icon(Icons.shield_outlined, color: _blue, size: 19),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           Expanded(
             child: Text(
               'Business operations are connected to your '
@@ -305,14 +308,14 @@ class _OperationalFinanceScreenState extends State<OperationalFinanceScreen> {
                 color: _softBlue,
                 borderRadius: BorderRadius.circular(18),
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.business_outlined,
                 color: _blue,
                 size: 29,
               ),
             ),
             const SizedBox(height: 16),
-            const Text(
+            Text(
               'Business verification required',
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -322,7 +325,7 @@ class _OperationalFinanceScreenState extends State<OperationalFinanceScreen> {
               ),
             ),
             const SizedBox(height: 8),
-            const Text(
+            Text(
               'We could not load your verified business. '
               'Please check your account or try again.',
               textAlign: TextAlign.center,

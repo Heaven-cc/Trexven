@@ -508,7 +508,7 @@ class _RecordSaleScreenState extends State<RecordSaleScreen> {
     padding: const EdgeInsets.only(bottom: 9),
     child: Text(
       label,
-      style: const TextStyle(
+      style: TextStyle(
         color: _navy,
         fontSize: 13,
         fontWeight: FontWeight.w700,
@@ -516,15 +516,21 @@ class _RecordSaleScreenState extends State<RecordSaleScreen> {
     ),
   );
 
-  Widget _surface({required Widget child}) => Container(
-    width: double.infinity,
-    padding: const EdgeInsets.all(16),
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(16),
-    ),
-    child: child,
-  );
+  Widget _surface({required Widget child}) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final cardBg = isDark ? const Color(0xFF1E293B) : Colors.white;
+    final border = Theme.of(context).trexvenColors.border ?? Theme.of(context).colorScheme.outlineVariant;
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: cardBg,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: border.withValues(alpha: 0.5)),
+      ),
+      child: child,
+    );
+  }
 
   Widget _detailRow(String label, String value, {bool strong = false}) =>
       Padding(
@@ -558,7 +564,6 @@ class _RecordSaleScreenState extends State<RecordSaleScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
     return PopScope(
       canPop: !_isLoading && !_hasUnconfirmedSale,
       child: Scaffold(
@@ -571,9 +576,9 @@ class _RecordSaleScreenState extends State<RecordSaleScreen> {
             onPressed: _isLoading || _hasUnconfirmedSale
                 ? null
                 : () => Navigator.pop(context),
-            icon: const Icon(Icons.arrow_back_rounded, color: _navy),
+            icon: Icon(Icons.arrow_back_rounded, color: _navy),
           ),
-          title: const Text(
+          title: Text(
             'Record sale',
             style: TextStyle(
               color: _navy,
@@ -658,10 +663,10 @@ class _RecordSaleScreenState extends State<RecordSaleScreen> {
                                     color: _background,
                                     borderRadius: BorderRadius.circular(12),
                                   ),
-                                  child: const Row(
+                                  child: Row(
                                     children: [
                                       Icon(Icons.search, color: _muted),
-                                      SizedBox(width: 12),
+                                      const SizedBox(width: 12),
                                       Expanded(
                                         child: Text(
                                           'Search or select products',
@@ -684,7 +689,7 @@ class _RecordSaleScreenState extends State<RecordSaleScreen> {
                                     Expanded(
                                       child: Text(
                                         entry.value.product.name,
-                                        style: const TextStyle(
+                                        style: TextStyle(
                                           fontWeight: FontWeight.w700,
                                           color: _navy,
                                         ),
@@ -703,7 +708,7 @@ class _RecordSaleScreenState extends State<RecordSaleScreen> {
                                 ),
                                 Text(
                                   _money(entry.value.product.price),
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     color: _muted,
                                     fontSize: 12,
                                   ),
@@ -745,7 +750,7 @@ class _RecordSaleScreenState extends State<RecordSaleScreen> {
                                                   entry.key,
                                                   1,
                                                 ),
-                                          icon: const Icon(
+                                          icon: Icon(
                                             Icons.add,
                                             color: _blue,
                                           ),
@@ -763,7 +768,7 @@ class _RecordSaleScreenState extends State<RecordSaleScreen> {
                                                 1000) /
                                             100,
                                       ),
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         fontWeight: FontWeight.w700,
                                         color: _navy,
                                       ),
@@ -884,8 +889,8 @@ class _RecordSaleScreenState extends State<RecordSaleScreen> {
                                 ],
                               ),
                               if (_paymentMethod == 'credit')
-                                const Padding(
-                                  padding: EdgeInsets.only(top: 12),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 12),
                                   child: Text(
                                     'Credit requires customer details, due date and approval. '
                                     'Enter full or partial payment details on the next step.',

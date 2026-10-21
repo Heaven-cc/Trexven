@@ -748,6 +748,12 @@ class BillingPlanCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+    final card = isDark ? const Color(0xFF1E293B) : Colors.white;
+    final selected = isDark ? const Color(0xFF1E3A8A) : const Color(0xFFEBF2FF);
+    final border = isDark ? const Color(0xFF334155) : const Color(0xFFE2E8F0);
+
     return Container(
       padding: const EdgeInsets.all(22),
       decoration: BoxDecoration(

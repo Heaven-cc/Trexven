@@ -40,14 +40,14 @@ class _CatalogImportScreenState
   bool _showCsvEditor = false;
   bool _showInstructions = false;
 
-  Color get _background => Theme.of(context).scaffoldBackgroundColor;
-  Color get _white => Theme.of(context).trexvenColors.cardBackground ?? Theme.of(context).colorScheme.surface;
-  Color get _navy => Theme.of(context).colorScheme.onSurface;
-  Color get _blue => Theme.of(context).colorScheme.primary;
-  Color get _muted => Theme.of(context).trexvenColors.muted ?? Theme.of(context).colorScheme.onSurfaceVariant;
-  Color get _softBlue => Theme.of(context).colorScheme.primary.withValues(alpha: 0.12);
-  Color get _border => Theme.of(context).trexvenColors.border ?? Theme.of(context).colorScheme.outlineVariant;
-  Color get _green => Theme.of(context).trexvenColors.success ?? const Color(0xFF16845A);
+  static const Color _background = Color(0xFFF5F7FC);
+  static const Color _white = Colors.white;
+  static const Color _navy = Color(0xFF14213D);
+  static const Color _blue = Color(0xFF2864F0);
+  static const Color _muted = Color(0xFF71809A);
+  static const Color _softBlue = Color(0xFFE8EFFF);
+  static const Color _border = Color(0xFFE6EAF2);
+  static const Color _green = Color(0xFF16845A);
 
   @override
   void dispose() {

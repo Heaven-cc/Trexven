@@ -786,7 +786,7 @@ context: context,
       _ => scheme.onSurfaceVariant,
     };
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: TrexvenPresentation.spacing(context, 9), vertical: TrexvenPresentation.spacing(context, 5)),
+      padding: EdgeInsets.symmetric(horizontal: TrexvenPresentation.spacing(context, 9), vertical: TrexvenPresentation.spacing(context, 5)),
       decoration: BoxDecoration(
         color: color.withValues(alpha: .12),
         borderRadius: BorderRadius.circular(TrexvenRadii.status),
@@ -805,7 +805,7 @@ context: context,
   );
 
   Widget _empty(String title, String description, IconData icon) => Padding(
-    padding: const EdgeInsets.symmetric(vertical: TrexvenPresentation.spacing(context, 22), horizontal: 12),
+    padding: EdgeInsets.symmetric(vertical: TrexvenPresentation.spacing(context, 22), horizontal: 12),
     child: Column(children: [
       Icon(icon, size: 32, color: Theme.of(context).colorScheme.onSurfaceVariant),
       const SizedBox(height: 12),
@@ -818,7 +818,7 @@ context: context,
   );
 
   Widget _heading(String title, {Widget? action}) => Padding(
-    padding: const EdgeInsets.only(top: TrexvenPresentation.spacing(context, 22), bottom: 12),
+    padding: EdgeInsets.only(top: TrexvenPresentation.spacing(context, 22), bottom: 12),
     child: Row(children: [
       Expanded(child: Text(title,
         style: TextStyle(fontSize: TrexvenPresentation.fontSize(context, 17), fontWeight: FontWeight.w700))),
@@ -830,9 +830,9 @@ context: context,
     required String title, required String subtitle, required IconData icon,
     dynamic status, VoidCallback? onTap,
   }) => ListTile(
-    contentPadding: const EdgeInsets.symmetric(horizontal: 2, vertical: TrexvenPresentation.spacing(context, 5)),
+    contentPadding: EdgeInsets.symmetric(horizontal: 2, vertical: TrexvenPresentation.spacing(context, 5)),
     leading: Container(
-      padding: const EdgeInsets.all(TrexvenPresentation.spacing(context, 10)),
+      padding: EdgeInsets.all(TrexvenPresentation.spacing(context, 10)),
       decoration: BoxDecoration(color: _blue.withValues(alpha: .12),
         borderRadius: BorderRadius.circular(13)),
       child: Icon(icon, color: _blue, size: 21),
@@ -840,7 +840,7 @@ context: context,
     title: Text(title,
       style: TextStyle(fontSize: TrexvenPresentation.fontSize(context, 14), fontWeight: FontWeight.w600)),
     subtitle: Padding(
-      padding: const EdgeInsets.only(top: TrexvenPresentation.spacing(context, 5)),
+      padding: EdgeInsets.only(top: TrexvenPresentation.spacing(context, 5)),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text(subtitle),
         if (status != null) ...[SizedBox(height: TrexvenPresentation.spacing(context, 6)), _status(status)],
@@ -968,7 +968,7 @@ context: context,
   Widget _records(String title, String description, List<Widget> children, {
     required String empty, required IconData icon,
   }) => Padding(
-    padding: const EdgeInsets.only(top: TrexvenPresentation.spacing(context, 14)),
+    padding: EdgeInsets.only(top: TrexvenPresentation.spacing(context, 14)),
     child: _surface(ExpansionTile(
       tilePadding: EdgeInsets.zero,
       childrenPadding: EdgeInsets.zero,
@@ -1054,7 +1054,7 @@ context: context,
                     const SizedBox(height: 12),
                   ],
                   if (widget.branchName != null)
-                    Padding(padding: const EdgeInsets.only(bottom: TrexvenPresentation.spacing(context, 10)),
+                    Padding(padding: EdgeInsets.only(bottom: TrexvenPresentation.spacing(context, 10)),
                       child: Text(widget.branchName!, style: theme.textTheme.labelLarge)),
                   _summary(rows),
                   if (_branchesEnabled && _owner && widget.branchId == null) ...[
@@ -1095,7 +1095,7 @@ context: context,
                     FilledButton.icon(
                       style: FilledButton.styleFrom(
                         minimumSize: const Size(0, 50),
-                        padding: const EdgeInsets.symmetric(horizontal: TrexvenPresentation.spacing(context, 18), vertical: TrexvenPresentation.spacing(context, 14)),
+                        padding: EdgeInsets.symmetric(horizontal: TrexvenPresentation.spacing(context, 18), vertical: TrexvenPresentation.spacing(context, 14)),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
                         backgroundColor: theme.brightness == Brightness.dark
                             ? theme.colorScheme.onSurface : _blue,

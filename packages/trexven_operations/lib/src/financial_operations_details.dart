@@ -275,7 +275,7 @@ extension _FinancialDetails on _FinancialOperationsScreenState {
                           else
                             for (final entry in entries)
                               Padding(
-                                padding: const EdgeInsets.only(bottom: TrexvenPresentation.spacing(context, 10)),
+                                padding: EdgeInsets.only(bottom: TrexvenPresentation.spacing(context, 10)),
                                 child: _CreditCard(
                                   child: Column(
                                     crossAxisAlignment:

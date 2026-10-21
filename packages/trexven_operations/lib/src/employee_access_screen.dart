@@ -195,7 +195,7 @@ class _EmployeeAccessScreenState
                 ),
                 SizedBox(height: TrexvenPresentation.spacing(context, 18)),
                 Container(
-                  padding: const EdgeInsets.all(TrexvenPresentation.spacing(context, 14)),
+                  padding: EdgeInsets.all(TrexvenPresentation.spacing(context, 14)),
                   decoration: BoxDecoration(
                     color: TrexvenPresentation.color(context, _AccessStyle.paleBlue, 'soft'),
                     borderRadius: BorderRadius.circular(14),
@@ -254,7 +254,7 @@ class _EmployeeAccessScreenState
                 for (final employee in staff)
                   Padding(
                     padding:
-                    const EdgeInsets.only(bottom: TrexvenPresentation.spacing(context, 10)),
+                    EdgeInsets.only(bottom: TrexvenPresentation.spacing(context, 10)),
                     child: _employeeCard(employee),
                   ),
               ],
@@ -294,7 +294,7 @@ class _EmployeeAccessScreenState
             ? () => act(() => permissions(employee))
             : null,
         child: Padding(
-          padding: const EdgeInsets.all(TrexvenPresentation.spacing(context, 14)),
+          padding: EdgeInsets.all(TrexvenPresentation.spacing(context, 14)),
           child: Row(
             children: [
               Container(
@@ -746,7 +746,7 @@ context: context,
               _employeeSummary(employeeName, role),
               SizedBox(height: TrexvenPresentation.spacing(context, 14)),
               Container(
-                padding: const EdgeInsets.all(TrexvenPresentation.spacing(context, 13)),
+                padding: EdgeInsets.all(TrexvenPresentation.spacing(context, 13)),
                 decoration: BoxDecoration(
                   color: TrexvenPresentation.color(context, _AccessStyle.paleBlue, 'soft'),
                   borderRadius:
@@ -778,7 +778,7 @@ context: context,
               if (error != null) ...[
                 const SizedBox(height: 12),
                 Container(
-                  padding: const EdgeInsets.all(TrexvenPresentation.spacing(context, 13)),
+                  padding: EdgeInsets.all(TrexvenPresentation.spacing(context, 13)),
                   decoration: BoxDecoration(
                     color: TrexvenPresentation.color(context, _AccessStyle.paleRed, 'errorSurface'),
                     borderRadius:
@@ -848,7 +848,7 @@ context: context,
                 ))
                   Padding(
                     padding:
-                    const EdgeInsets.only(bottom: TrexvenPresentation.spacing(context, 10)),
+                    EdgeInsets.only(bottom: TrexvenPresentation.spacing(context, 10)),
                     child: _categoryCard(
                       category,
                       visible
@@ -1140,7 +1140,7 @@ class _AccessEmpty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(TrexvenPresentation.spacing(context, 30)),
+      padding: EdgeInsets.all(TrexvenPresentation.spacing(context, 30)),
       decoration: BoxDecoration(
         color: TrexvenPresentation.color(context, _AccessStyle.white, 'surface'),
         borderRadius: BorderRadius.circular(16),

@@ -896,7 +896,7 @@ class _PaymentNotice extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 9),
       padding: const EdgeInsets.all(11),
       decoration: BoxDecoration(
-        color: blue.withValues(alpha: .10),
+        color: const Color(0xFF2864F0).withValues(alpha: .10),
         borderRadius: BorderRadius.circular(11),
       ),
       child: Row(

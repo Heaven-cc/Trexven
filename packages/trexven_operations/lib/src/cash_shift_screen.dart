@@ -517,7 +517,7 @@ context: context,
           childrenPadding: EdgeInsets.zero,
           title: Text('Cash events (${events.length})', style: TextStyle(color: TrexvenPresentation.color(context, _navy, 'ink'), fontSize: TrexvenPresentation.fontSize(context, 12), fontWeight: FontWeight.w800)),
           children: [for (final e in events) Padding(
-            padding: const EdgeInsets.symmetric(vertical: TrexvenPresentation.spacing(context, 7)),
+            padding: EdgeInsets.symmetric(vertical: TrexvenPresentation.spacing(context, 7)),
             child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Icon(Icons.receipt_long_outlined, color: TrexvenPresentation.color(context, _blue, 'brand'), size: 17),
               SizedBox(width: TrexvenPresentation.spacing(context, 9)),
@@ -544,7 +544,7 @@ context: context,
   Widget _smallButton(String title, Future<void> Function() callback) => OutlinedButton(
     onPressed: busy ? null : () { callback(); },
     style: TrexvenPresentation.isPos(context) ? Theme.of(context).outlinedButtonTheme.style
-      : OutlinedButton.styleFrom(visualDensity: VisualDensity.compact, padding: const EdgeInsets.symmetric(horizontal: TrexvenPresentation.spacing(context, 11), vertical: 8)),
+      : OutlinedButton.styleFrom(visualDensity: VisualDensity.compact, padding: EdgeInsets.symmetric(horizontal: TrexvenPresentation.spacing(context, 11), vertical: 8)),
     child: Text(title, style: TextStyle(fontSize: TrexvenPresentation.fontSize(context, 11))),
   );
 
@@ -564,12 +564,12 @@ context: context,
 
   Widget _heading(String title, int count) => Row(children: [
     Expanded(child: Text(title, style: TextStyle(color: TrexvenPresentation.color(context, _navy, 'ink'), fontSize: TrexvenPresentation.fontSize(context, 15), fontWeight: FontWeight.w800))),
-    Container(padding: const EdgeInsets.symmetric(horizontal: TrexvenPresentation.spacing(context, 9), vertical: 4), decoration: BoxDecoration(color: TrexvenPresentation.color(context, const Color(0xFFE8EFFF), 'soft'), borderRadius: BorderRadius.circular(20)), child: Text('$count', style: TextStyle(color: TrexvenPresentation.color(context, _blue, 'brand'), fontSize: TrexvenPresentation.fontSize(context, 11), fontWeight: FontWeight.w800))),
+    Container(padding: EdgeInsets.symmetric(horizontal: TrexvenPresentation.spacing(context, 9), vertical: 4), decoration: BoxDecoration(color: TrexvenPresentation.color(context, const Color(0xFFE8EFFF), 'soft'), borderRadius: BorderRadius.circular(20)), child: Text('$count', style: TextStyle(color: TrexvenPresentation.color(context, _blue, 'brand'), fontSize: TrexvenPresentation.fontSize(context, 11), fontWeight: FontWeight.w800))),
   ]);
 
   Widget _card({required Widget child}) => Container(
     width: double.infinity,
-    padding: const EdgeInsets.all(TrexvenPresentation.spacing(context, 14)),
+    padding: EdgeInsets.all(TrexvenPresentation.spacing(context, 14)),
     decoration: BoxDecoration(color: TrexvenPresentation.color(context, Colors.white, 'surface'), border: Border.all(color: TrexvenPresentation.color(context, _border, 'border')), borderRadius: BorderRadius.circular(14)),
     child: child,
   );
@@ -596,7 +596,7 @@ context: context,
   );
 
   Widget _detail(String label, dynamic value) => Padding(
-    padding: const EdgeInsets.only(bottom: TrexvenPresentation.spacing(context, 5)),
+    padding: EdgeInsets.only(bottom: TrexvenPresentation.spacing(context, 5)),
     child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       SizedBox(width: 115, child: Text(label, style: TextStyle(color: TrexvenPresentation.color(context, _muted, 'muted'), fontSize: TrexvenPresentation.fontSize(context, 11)))),
       Expanded(child: Text('${value ?? '—'}', style: TextStyle(color: TrexvenPresentation.color(context, _navy, 'ink'), fontSize: TrexvenPresentation.fontSize(context, 11), fontWeight: FontWeight.w600))),
@@ -609,14 +609,14 @@ context: context,
         ? TrexvenPresentation.color(context, const Color(0xFF16845A), 'success')
         : value == 'pending' ? TrexvenPresentation.color(context, const Color(0xFFB7791F), 'warning') : TrexvenPresentation.color(context, _muted, 'muted');
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: TrexvenPresentation.spacing(context, 5)),
+      padding: EdgeInsets.symmetric(horizontal: 8, vertical: TrexvenPresentation.spacing(context, 5)),
       decoration: BoxDecoration(color: color.withValues(alpha: 0.09), borderRadius: BorderRadius.circular(8)),
       child: Text(CustomerPresentation.label(raw), style: TextStyle(color: color, fontSize: TrexvenPresentation.fontSize(context, 10), fontWeight: FontWeight.w700)),
     );
   }
 
   Widget _empty(String text) => _card(child: Padding(
-    padding: const EdgeInsets.symmetric(vertical: TrexvenPresentation.spacing(context, 14)),
+    padding: EdgeInsets.symmetric(vertical: TrexvenPresentation.spacing(context, 14)),
     child: Column(children: [
       Icon(Icons.inbox_outlined, color: TrexvenPresentation.color(context, _muted, 'muted'), size: 27),
       const SizedBox(height: 8),
