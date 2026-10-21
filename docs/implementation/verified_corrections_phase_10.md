@@ -1,12 +1,12 @@
-# Phase 10: auth.uid RLS initplan preparation
+# Phase 10: auth.uid RLS initplan deployment
 
-Date: 2026-10-21. Status: source prepared; production deployment and merge pending approval.
+Date: 2026-10-21. Status: approved production migration applied and catalog-verified; merge requested by user.
 
 ## Problem and proposed behavior
 
 The live performance advisor reports 20 auth_rls_initplan findings. The prepared SQL wraps exactly 25 direct, row-independent `auth.uid()` calls in those 20 policies as `(select auth.uid())`. This allows PostgreSQL to plan the identity lookup as a statement-level initplan. This is a planning optimization, with no intended change in authorization results. No query-plan measurement or speedup is claimed.
 
-Pending source: `supabase/changes/rls_auth_uid_initplan_optimization.sql`. It is deliberately outside canonical migration history until an approved production application supplies its actual migration version.
+Applied source: `supabase/migrations/20261021023640_rls_auth_uid_initplan_optimization.sql`. Production assigned this actual migration version after approval. The prepared file was moved into canonical history without changing its SQL; its PREPARED ONLY comment records its original approval gate.
 
 ## Baselines and scope
 
@@ -74,9 +74,9 @@ All scope and identity-definition guards run before any ALTER. A mismatch requir
 
 Read-only catalog/advisor inspection and selected source inspection completed. The prepared target list matches the baseline catalog exactly: 20 policies, 25 calls and 12 tables. In-memory source comparison confirms each proposed expression reverses exactly to its original by removing the added scalar wrapper, and preserves null expression fields.
 
-The prepared SQL has not been executed or parsed by PostgreSQL. No local clone, build, analyzer, test suite, dependency download, temporary file, backup, synthetic transaction, EXPLAIN workload or app launch was performed. No deployment or runtime success is claimed.
+After the user's explicit “Merge and deploy” instruction, the exact prepared SQL was applied once using Supabase apply_migration. Supabase returned success, the migration record was read back and its stored statements matched the approved source exactly. No local clone, build, analyzer, test suite, dependency download, temporary file, backup, synthetic transaction, EXPLAIN workload or app launch was performed. Application runtime acceptance and measured performance remain unverified.
 
-## Required checks after an approved application
+## Deployment checklist used
 
 1. Capture fresh read-only catalog, function, grant/RLS, index/constraint and operational row-count baselines immediately before application; recheck both repository heads.
 2. Apply the exact reviewed SQL once using a named migration. Abort and report any guard, lock or execution failure.
@@ -99,3 +99,29 @@ Advisor baseline also reports 123 unindexed foreign keys, 69 multiple-permissive
 - https://www.postgresql.org/docs/current/sql-alterpolicy.html
 
 Supabase recommends scalar wrapping only when the function result is independent of row data. PostgreSQL documents that omitted ALTER POLICY clauses remain unchanged.
+
+## Observed deployment results
+
+Production migration: `20261021023640_rls_auth_uid_initplan_optimization`. Supabase apply_migration returned `success: true`. All guarded baseline policies and the identity definition matched preparation immediately before application. Current Owner PR head was `b1f3c32f81cf4f27e2e29d9fa31d59446ca6872c`; Owner master and POS main remained at the baseline commits above.
+
+| Read-only comparison | Observed result |
+| --- | --- |
+| All policies | 298 before and after; exactly the 20 approved targets changed |
+| Identity wrappers | Exactly 25 scalar wrappers in target USING/WITH CHECK clauses |
+| Target metadata | Roles, commands, permissive/restrictive modes and null expression fields unchanged |
+| Target expression structure | Removing only the exact PostgreSQL-deparsed scalar wrapper restores the original expression token sequence; quoted SQL literals/identifiers preserved |
+| Non-target policies | All 278 byte-for-byte unchanged in catalog JSON |
+| Public/private functions | All 186 definition hashes, ACLs, definer flags and settings unchanged |
+| auth.uid | Definition MD5 unchanged |
+| Tables | All 83 ownership/grant/RLS records unchanged |
+| Indexes | All 207 index definitions and valid/ready states unchanged |
+| Constraints | All 401 constraint definitions, validation states and backing-index IDs unchanged |
+| Role/database settings | All 11 records unchanged |
+| Operational counts | All 20 selected row counts unchanged |
+| Migration history | 53 production records; 52 prior filenames plus this actual migration match canonical source names |
+
+Performance advisor after application: auth_rls_initplan is absent (previously 20 findings). Remaining groups: 123 unindexed foreign keys, one missing primary key, 25 unused indexes and 69 multiple-permissive-policy findings. Warning removal is not a measured speedup.
+
+Security advisor findings are identical after excluding only their observation timestamps: 18 RLS-enabled tables without policies, two anon-executable security-definer functions, 87 authenticated-executable security-definer functions and leaked-password protection disabled. These pre-existing findings were not altered or declared resolved.
+
+GitHub exposed zero check runs and zero commit-status contexts for the prepared head; the aggregate status was pending. No CI pass is claimed. Device acceptance remains pending with the user. This phase changed only policy planning expressions and repository migration/report source; no application release or Edge Function deployment occurred.
