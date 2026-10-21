@@ -6,6 +6,8 @@ import 'package:trexven_operations/trexven_operations.dart';
 
 import '../../services/database_service.dart';
 import '../../models/subscription_plan.dart';
+import 'terms_of_service_screen.dart';
+import 'privacy_policy_screen.dart';
 
 class BillingScreen extends StatefulWidget {
   const BillingScreen({super.key});
@@ -29,16 +31,13 @@ class _BillingScreenState extends State<BillingScreen> {
 
   bool _loading = false;
   bool _busy = false;
-  bool _autoRenew = false;
-
-  String _coreCycle = 'monthly';
-  String _proChoice = 'regular';
+  final Map<String, int> _cycles = {'start': 1, 'core': 1, 'pro': 12};
+  String? _billingCountry;
+  bool _countryPricingAvailable = false;
 
   String? _error;
   String? _message;
 
-  // Supabase must supply verified offer configuration.
-  Map<String, dynamic>? _proOffer;
 
   @override
   void initState() {
@@ -71,6 +70,19 @@ class _BillingScreenState extends State<BillingScreen> {
           .eq('active', true)
           .order('rank');
 
+      // An older backend can still supply features/history, but global plan
+      // prices must never masquerade as country-specific commercial settings.
+      Map<String, dynamic>? catalog;
+      try {
+        final result = await Supabase.instance.client.rpc(
+          'get_trexven_country_billing_catalog',
+          params: {'p_business_id': businessId},
+        );
+        catalog = Map<String, dynamic>.from(result as Map);
+      } on PostgrestException catch (error) {
+        if (error.code != 'PGRST202') rethrow;
+      }
+
       final entitlement = await api.call(
         'get_trexven_entitlements',
         {'p_business_id': businessId},
@@ -82,10 +94,11 @@ class _BillingScreenState extends State<BillingScreen> {
 
       setState(() {
         _api = api;
-        _plans = (rows as List)
+        _plans = ((catalog?['plans'] ?? rows) as List)
             .map(
               (r) => SubscriptionPlan.fromJson(
-            Map<String, dynamic>.from(r as Map),
+            {...Map<String, dynamic>.from(r as Map),
+              if (catalog == null) 'price': null},
           ),
         )
             .toList();
@@ -94,9 +107,8 @@ class _BillingScreenState extends State<BillingScreen> {
         Map<String, dynamic>.from(entitlement as Map);
         _history = payments;
 
-        // Remains null until a real backend offer
-        // configuration endpoint is connected.
-        _proOffer = null;
+        _billingCountry = catalog?['country_name'] as String?;
+        _countryPricingAvailable = catalog?['country_code'] != null;
       });
     } catch (_) {
       if (mounted) {
@@ -254,7 +266,9 @@ class _BillingScreenState extends State<BillingScreen> {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Plan upgrades are not available yet.',
+                  _countryPricingAvailable
+                      ? 'Prices for $_billingCountry. Checkout is not available yet.'
+                      : 'Country pricing is not available yet. Checkout is unavailable.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 13,
@@ -281,14 +295,22 @@ class _BillingScreenState extends State<BillingScreen> {
                   ),
                 ],
                 const SizedBox(height: 30),
-                Center(
-                  child: Text(
-                    'Terms of Service     Privacy Policy',
-                    style: TextStyle(
-                      color: muted,
-                      fontSize: 12,
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  children: [
+                    TextButton(
+                      onPressed: () => Navigator.push(context, MaterialPageRoute(
+                        builder: (_) => const TermsOfServiceScreen(),
+                      )),
+                      child: const Text('Terms of Service'),
                     ),
-                  ),
+                    TextButton(
+                      onPressed: () => Navigator.push(context, MaterialPageRoute(
+                        builder: (_) => const PrivacyPolicyScreen(),
+                      )),
+                      child: const Text('Privacy Policy'),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -297,136 +319,36 @@ class _BillingScreenState extends State<BillingScreen> {
     );
   }
 
-  Widget _startCard() {
-    final plan = _planFor('start', 1);
+  Widget _startCard() => _cycleCard(
+    'start', 'Start', 'Everything you need to get started',
+  );
+
+  Widget _coreCard() => _cycleCard(
+    'core', 'Core', 'More control. Better business insights.', popular: true,
+  );
+
+  Widget _proCard() => _cycleCard(
+    'pro', 'Pro', 'The complete TREXVEN experience',
+  );
+
+  Widget _cycleCard(String tier, String name, String description, {
+    bool popular = false,
+  }) {
     return _planCard(
-      name: 'Start',
-      description: 'Everything you need to get started',
+      name: name,
+      description: description,
+      popular: popular,
       options: [
-        _option(
-          selectedOption: true,
-          title: plan?.priceDisplay ?? 'Price unavailable',
-          subtitle: 'Billed monthly',
-          onTap: null,
-        ),
-      ],
-      features: _features('start'),
-      buttonLabel: 'Get Start plan',
-    );
-  }
-
-  Widget _coreCard() {
-    final monthly = _planFor('core', 1);
-    final yearly = _planFor('core', 12);
-
-    return _planCard(
-      name: 'Core',
-      description: 'More control. Better business insights.',
-      popular: true,
-      options: [
-        _option(
-          selectedOption: _coreCycle == 'monthly',
-          title:
-          monthly?.priceDisplay ?? 'Price unavailable',
-          subtitle: 'Billed monthly',
-          onTap: monthly == null
-              ? null
-              : () => setState(
-                () => _coreCycle = 'monthly',
-          ),
-        ),
-        _option(
-          selectedOption: _coreCycle == 'yearly',
-          title:
-          yearly?.priceDisplay ?? 'Price unavailable',
-          subtitle: 'Billed annually',
-          onTap: yearly == null
-              ? null
-              : () => setState(
-                () => _coreCycle = 'yearly',
-          ),
-        ),
-      ],
-      features: _features('core'),
-      buttonLabel: 'Get Core plan',
-    );
-  }
-
-  Widget _proCard() {
-    final yearly = _planFor('pro', 12);
-    final offer = _proOffer;
-    final hasOffer = offer?['enabled'] == true;
-
-    return _planCard(
-      name: 'Pro',
-      description: 'The complete TREXVEN experience',
-      options: [
-        if (hasOffer)
+        for (final months in [1, 12])
           _option(
-            selectedOption: _proChoice == 'intro',
-            title: _money(
-              offer!['intro_price'],
-              offer['currency'] as String?,
-            ),
-            subtitle:
-            '${offer['duration_days']} days introductory access',
-            onTap: () => setState(
-                  () => _proChoice = 'intro',
-            ),
+            selectedOption: _cycles[tier] == months,
+            title: _planFor(tier, months)?.priceDisplay ?? 'Price unavailable',
+            subtitle: months == 1 ? 'Billed monthly' : 'Billed annually',
+            onTap: () => setState(() => _cycles[tier] = months),
           ),
-        _option(
-          selectedOption:
-          !hasOffer || _proChoice == 'regular',
-          title:
-          yearly?.priceDisplay ?? 'Price unavailable',
-          subtitle: 'Billed annually',
-          onTap: yearly == null
-              ? null
-              : () => setState(
-                () => _proChoice = 'regular',
-          ),
-        ),
       ],
-      features: _features('pro'),
-      buttonLabel: 'Get Pro plan',
-      footer: hasOffer && _proChoice == 'intro'
-          ? Column(
-        children: [
-          SwitchListTile.adaptive(
-            value: _autoRenew,
-            activeTrackColor: blue,
-            title: Text(
-              'Automatic renewal',
-              style: TextStyle(fontSize: 13),
-            ),
-            subtitle: Text(
-              'Optional. Authorize the full Pro '
-                  'subscription charge after the '
-                  'introductory period.',
-              style: TextStyle(
-                fontSize: 11,
-                color: muted,
-              ),
-            ),
-            onChanged: (value) {
-              setState(() => _autoRenew = value);
-            },
-          ),
-          Text(
-            _autoRenew
-                ? 'Recurring payment authorization '
-                'will be required at checkout.'
-                : 'Your Pro access ends after the '
-                'introductory period unless '
-                'you subscribe manually.',
-            style: TextStyle(
-              color: muted,
-              fontSize: 11,
-            ),
-          ),
-        ],
-      )
-          : null,
+      features: _features(tier),
+      buttonLabel: 'Get $name plan',
     );
   }
 

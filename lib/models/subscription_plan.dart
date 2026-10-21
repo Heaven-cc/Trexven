@@ -23,8 +23,8 @@ class SubscriptionPlan {
   });
   String get priceDisplay =>
       price == null || currency == null || intervalMonths == null
-      ? 'Plan upgrades are not available yet.'
-      : '${CustomerPresentation.money(price!, currency: currency)} / ${intervalMonths == 1 ? 'month' : '$intervalMonths months'}';
+      ? 'Price unavailable'
+      : '${CustomerPresentation.money(price!, currency: currency)} / ${intervalMonths == 1 ? 'month' : intervalMonths == 12 ? 'year' : '$intervalMonths months'}';
   factory SubscriptionPlan.fromJson(Map<String, dynamic> row) =>
       SubscriptionPlan(
         tier: SubscriptionTier.values.byName(row['id'] as String),
