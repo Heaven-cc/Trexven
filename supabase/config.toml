@@ -47,3 +47,8 @@ entrypoint = "./functions/delete-account/index.ts"
 [functions.account-deletion-recovery]
 verify_jwt = false
 entrypoint = "./functions/account-deletion-recovery/index.ts"
+
+# Prepared Phase 3 self-service credential endpoint; requires deployment approval.
+[functions.change-employee-password]
+verify_jwt = true
+entrypoint = "./functions/change-employee-password/index.ts"
