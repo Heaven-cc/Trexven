@@ -1,6 +1,6 @@
 # Verified corrections — Phase 8: authoritative migration history and NULL validation
 
-Status: seven historical sources restored to the Owner repository from production's migration records; no historical SQL replayed. A current NULL-validation replacement is prepared only and needs new production approval.
+Status: seven historical sources restored without replay; current NULL-validation replacement deployed under explicit approval as 20261021020444_current_null_input_validation. Device acceptance remains pending.
 
 ## Authoritative sources and provenance
 
@@ -39,14 +39,14 @@ No version was inserted/deleted/renamed in production migration history. No supa
 
 Read all five live target definitions and their ACLs. All six old validation clauses remain present exactly once. SQL three-valued logic means an absent SQL value can make a <> / NOT IN condition unknown rather than true, allowing an IF validation branch to be skipped. Valid arrays/payment methods/conditions must retain their current behavior.
 
-Prepared supabase/changes/phase_8_current_null_input_validation.sql:
+Approved source: supabase/migrations/20261021020444_current_null_input_validation.sql:
 - Reject missing stocktake counts, checkout payment lines, return items and return inspection conditions with IS DISTINCT FROM array.
 - Explicitly reject missing repayment method and missing per-line return condition before their existing enum validation.
 - Guard the full current definition MD5 and ACL of each of the five live functions before any replacement.
 - Then perform only the six exact clause replacements using pg_get_functiondef, with a one-occurrence guard for each.
 - Preserve current branch inventory logic, completed-receipt replay order, business/employee/branch authorization, confirmed-payment logic, role grants and signatures. No historical row, RLS policy or function grant is changed.
 - Two changes target inspect_trexven_return; baseline guards run once before the replacement loop, so the second replacement does not compare against an obsolete intermediate hash.
-- It does not reuse the unrecorded timestamp. After explicit approval, deploy once under a newly generated actual migration version and promote the exact approved SQL source.
+- It does not reuse the unrecorded timestamp. The exact approved SQL was deployed once under the actual version 20261021020444 and promoted to canonical migration source.
 
 Full-definition baselines:
 - public.complete_trexven_transaction(uuid,uuid,uuid,numeric,jsonb,jsonb,jsonb,uuid,uuid): 392c26da300d934bf68c8a8eda784f9f
@@ -63,10 +63,27 @@ All five functions are existing shared backend contracts used by Owner/POS workf
 
 Current source comparison and production catalog reads are the evidence. Device acceptance remains pending. No unrelated SQL migration, index, policy, Edge Function, credential, price, provider or entitlement setting is deployed as part of Phase 8 preparation.
 
-## Manual acceptance after approved deployment (user)
+## Manual acceptance after deployment (user; not executed)
 
 Valid checkout and original-request receipt recovery; valid branch/global stock counts; confirmed repayment; return item selection and inspection must retain prior outcomes. Missing collections/method/condition must reject atomically and leave financial/inventory rows unchanged. No fabricated production records were used to exercise these paths.
 
 ## Remaining performance work
 
 Advisor read after Phase 7 still reports 123 missing-FK-index notices, 20 RLS initplan warnings, 69 permissive-policy findings and 9 duplicate-index pairs. Read-only index catalog inspection found candidates for a separate carefully guarded duplicate-index change, but no index/policy modification is prepared or deployed by this Phase 8 work. That remains Phase 9. Security advisors still include intentionally exposed bounded account admission and the separate leaked-password configuration recommendation.
+
+## Approved deployment evidence — 2026-10-21
+
+Applied exact approved SQL once as 20261021020444_current_null_input_validation. Before/after comparison found exactly the six approved clause changes in five functions; all five complete definitions match the precomputed expected definitions. Their signatures, grants, definer attributes and search_path values stayed unchanged. The other 181 public/private functions, all 298 RLS policies, grant/RLS attributes on 83 tables and all role settings stayed unchanged.
+
+All 20 checked counts stayed unchanged: auth.users 2; sales 4; expenses 0; inventory 0; sale_items 4; return_items 0; sale_returns 0; sale_payments 3; private.sale_requests 4; credit_entries 1; billing_invoices 0; billing_payments 0; billing_sessions 0; stocktake_counts 0; private.catalog_requests 7; stocktake_sessions 0; inventory_movements 5; subscription_events 0; business_subscriptions 0; private.account_deletion_state 1.
+
+Post-deployment function MD5 values:
+- complete_trexven_transaction: bfe24a389cadeea4c421a4eeccd011fb
+- repay_trexven_credit: dd11802ceeea19710c08446ccd6da420
+- request_trexven_return: 2f668471675355611686edf24bd37845
+- inspect_trexven_return: 498ff0e3afa2d6210112c2166cb55b8c
+- count_trexven_stock: 37de30cf1156b785467e828ef0758910
+
+No invalid/valid transaction probe, auth mutation, stock count, repayment, return, application build or test suite was run. Catalog/source evidence is not runtime acceptance. No index or policy change was included.
+
+Before this deployment, the actual GitHub tree's 50 canonical migration names/versions matched production's 50 recorded entries. The seven restored statement bodies, moved unrecorded source, prepared replacement and Phase 7 deployment record were fetched back and compared exactly. The new approved deployment adds one canonical version and one production record; the unrecorded old timestamp remains outside the migration history.
