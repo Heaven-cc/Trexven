@@ -1,7 +1,7 @@
 # Verified corrections — Phase 9: justified duplicate-index cleanup
 
-Status: prepared only in supabase/changes/phase_9_duplicate_index_cleanup.sql; NOT deployed.
-No index, query policy, grant, data row, application dependency or frontend was changed.
+Status: exact approved SQL deployed as 20261021021637_duplicate_index_cleanup; runtime/device acceptance remains pending.
+Exactly nine approved redundant indexes were removed. No query policy, grant, business data row, application dependency or frontend was changed.
 
 ## Scope and evidence
 
@@ -23,7 +23,7 @@ The proposed removals each have zero scans in the current cumulative statistics.
 
 All 18 currently occupy 16384 bytes each. Removing nine redundant copies would remove 147456 bytes (144 KiB) at the observed size. The practical intent is fewer redundant index maintenance writes as data grows. No benchmark or measured app-latency improvement is claimed; statistics can reset and current storage is small.
 
-## Exact prepared SQL safeguards
+## Approved SQL safeguards
 
 - Require a transactional migration batch; local lock timeout 1 second and statement timeout 10 seconds.
 - Acquire ACCESS EXCLUSIVE locks on the seven affected parent tables using NOWAIT. If any is busy, abort immediately rather than queueing the lock. Acquired locks are held until transaction completion; successful cleanup briefly blocks other access to those tables. This lock behavior is material and requires production approval.
@@ -32,7 +32,7 @@ All 18 currently occupy 16384 bytes each. Removing nine redundant copies would r
 - Recheck constraint, incoming dependency, extension-membership and inheritance protection before dropping a candidate.
 - DROP INDEX ... RESTRICT only. No CASCADE, uniqueness change, FK change, raw-table/RPC grant, policy consolidation or data rewrite.
 - Retained equivalents provide the same columns/order/predicates/operator classes/collations/include attributes and storage/access method. Neither app references index names through its REST data contracts.
-- Keep all historical migrations unchanged. After separate approval, apply once and promote exact source to the actual generated migration version. On lock conflict or baseline drift, inspect current state before retrying; never force through the guard.
+- Keep all historical migrations unchanged. Applied once under explicit approval and promoted exact source to the actual generated migration version. On lock conflict or baseline drift, inspect current state before retrying; never force through the guard.
 
 ## Other findings remain intentionally pending
 
@@ -56,4 +56,23 @@ Owner and POS keep their current API contracts, valid payloads, business/branch 
 
 Read-only catalog/statistics review only: no local build, analyzer, test suite, EXPLAIN ANALYZE, load test, fake sales, generated backup or temporary file was run. No table lock or index drop was exercised during preparation. Device acceptance remains pending.
 
-After approval: capture complete pre/post index inventory, verify exactly nine targeted indexes removed and all retained peers unchanged, constraints/RLS/grants/function definitions and financial row counts unchanged, and refresh the advisor. Do not describe unrelated performance/security warnings as fixed. User checks should cover ordinary Owner/POS reads, checkout/recovery, inventory and camera-event navigation without fabricated production transactions.
+Approved deployment verification captured complete pre/post index inventory and checked removals, retained peers, constraints/RLS/grants/functions and row counts, then refreshed the advisor; results follow. Do not describe unrelated performance/security warnings as fixed. User checks should cover ordinary Owner/POS reads, checkout/recovery, inventory and camera-event navigation without fabricated production transactions.
+
+## Approved deployment evidence — 2026-10-21
+
+Applied the exact approved batch once as 20261021021637_duplicate_index_cleanup. All NOWAIT locks and guards succeeded. Recorded source: supabase/migrations/20261021021637_duplicate_index_cleanup.sql. No index was added. Exactly these nine indexes disappeared:
+- public.business_members_business_idx; retained public.idx_business_members_business
+- public.businesses_owner_id_idx; retained public.idx_businesses_owner
+- public.idx_camera_events_business; retained public.camera_events_business_idx
+- public.camera_events_occurred_idx; retained public.camera_events_business_time_idx
+- public.cameras_business_idx; retained public.idx_cameras_business
+- public.inventory_movements_business_idx; retained public.idx_inventory_movements_business
+- public.inventory_movements_product_idx; retained public.idx_inventory_movements_product
+- public.products_business_id_idx; retained public.idx_products_business
+- public.sales_business_id_idx; retained public.idx_sales_business
+
+All 207 retained public/private index definitions and captured structural attributes stayed unchanged, including the nine explicitly retained peers. All 401 constraints, 186 function records, 298 RLS policies, grant/RLS records on 83 tables and role settings stayed unchanged. All 20 checked business/account/financial row counts stayed unchanged.
+
+Refreshed performance advisor reports no duplicate_index group. Remaining counts: unindexed_foreign_keys 123, auth_rls_initplan 20, multiple_permissive_policies 69, no_primary_key 1, unused_index 25 (previously 34). Do not treat remaining unused indexes as deletion candidates without further evidence. This deployment does not claim all performance/security findings are fixed or that application latency improved.
+
+Only approved schema maintenance and read-only verification ran. No local build, analyzer, tests, EXPLAIN ANALYZE, fake transaction/auth call, generated CSV or backup ran. No Edge Function, credential, price, entitlement or Auth setting changed. User device acceptance remains pending. User authorized merging both open correction PRs after this deployment; the source checkpoint is recorded before merge and the PR merge metadata supplies the final merge evidence.
