@@ -92,7 +92,7 @@ class _IntelligenceTabState extends State<IntelligenceTab> {
       MaterialPageRoute(builder: (_) => AddCameraScreen()),
     );
 
-    if (result == true) {
+    if (result == true && mounted) {
       _loadCameras();
     }
   }
@@ -117,161 +117,150 @@ class _IntelligenceTabState extends State<IntelligenceTab> {
     final offline = _cameras.where((c) => c.isOffline).length;
     final aiEnabled = _cameras.where((c) => c.aiEnabled).length;
 
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: Text(
-          'Intelligence',
-          style: TextStyle(
-            fontSize: TrexvenFontSize.section,
-            fontWeight: FontWeight.w800,
-            color: theme.colorScheme.onSurface,
-          ),
-        ),
-        actions: [
-          IconButton(
-            tooltip: 'AI Live',
-            icon: Icon(Icons.auto_awesome),
-            onPressed: _cameras.isEmpty
-                ? null
-                : () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) =>
-                          LiveFeedScreen(camera: _cameras.first, aiLive: true),
-                    ),
-                  ),
-          ),
-          IconButton(
-            tooltip: 'Vision Server',
-            icon: Icon(Icons.dns_outlined),
-            onPressed: _openVisionServer,
-          ),
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => RecordingsScreen()),
-              );
-            },
-            icon: Icon(
-              Icons.video_library_outlined,
-              color: theme.colorScheme.onSurface,
-            ),
-            tooltip: 'Recordings',
-          ),
-          IconButton(
-            onPressed: _loadCameras,
-            icon: Icon(
-              Icons.refresh_rounded,
-              color: theme.colorScheme.onSurface,
-            ),
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _addCamera,
-        backgroundColor: brandBlue,
-        icon: Icon(
-          _needsSetup ? Icons.dns_outlined : Icons.videocam_outlined,
-          color: Colors.white,
-        ),
-        label: Text(
-          _needsSetup ? 'Connect Vision server' : 'Add camera',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
-        ),
-      ),
-      body: RefreshIndicator(
-        onRefresh: _loadCameras,
-        child: _loading
-            ? Center(child: TrexvenLoading())
-            : _error != null
-            ? ListView(
-                padding: TrexvenSpacing.pagePadding,
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(18, 8, 18, 4),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Intelligence', style: TextStyle(
+                fontSize: TrexvenFontSize.section,
+                fontWeight: FontWeight.w800,
+                color: theme.colorScheme.onSurface,
+              )),
+              Wrap(
+                spacing: 4,
                 children: [
-                  SizedBox(height: 100),
-                  Icon(
-                    Icons.error_outline,
-                    size: 50,
-                    color: theme.trexvenColors.error,
-                  ),
-                  SizedBox(height: TrexvenSpacing.fieldGap),
-                  Center(
-                    child: Text(
-                      'Could not load cameras',
-                      style: TextStyle(
-                        fontSize: TrexvenFontSize.section,
-                        fontWeight: FontWeight.w800,
-                      ),
+                  TextButton.icon(
+                    onPressed: _cameras.isEmpty ? null : () => Navigator.push(
+                      context, MaterialPageRoute(builder: (_) =>
+                        LiveFeedScreen(camera: _cameras.first, aiLive: true)),
                     ),
+                    icon: const Icon(Icons.auto_awesome, size: 18),
+                    label: const Text('AI Live'),
                   ),
-                  SizedBox(height: 8),
-                  Text(
-                    _error!,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: muted),
+                  TextButton.icon(
+                    onPressed: _openVisionServer,
+                    icon: const Icon(Icons.dns_outlined, size: 18),
+                    label: const Text('Vision Server'),
                   ),
-                  SizedBox(height: TrexvenSpacing.fieldGap),
-                  Center(
-                    child: ElevatedButton(
-                      onPressed: _loadCameras,
-                      child: Text('Retry'),
-                    ),
+                  TextButton.icon(
+                    onPressed: () => Navigator.push(context, MaterialPageRoute(
+                      builder: (_) => RecordingsScreen(),
+                    )),
+                    icon: const Icon(Icons.video_library_outlined, size: 18),
+                    label: const Text('Recordings'),
+                  ),
+                  TextButton.icon(
+                    onPressed: _loading ? null : _loadCameras,
+                    icon: const Icon(Icons.refresh_rounded, size: 18),
+                    label: const Text('Refresh'),
+                  ),
+                  TextButton.icon(
+                    onPressed: _loading ? null : _addCamera,
+                    icon: Icon(_needsSetup ? Icons.dns_outlined : Icons.add_rounded, size: 18),
+                    label: Text(_needsSetup ? 'Connect Vision server' : 'Add camera'),
                   ),
                 ],
-              )
-            : _needsSetup
-            ? ListView(
-                padding: const EdgeInsets.fromLTRB(18, 8, 18, 100),
-                children: [_buildEmptyState()],
-              )
-            : ListView(
-                padding: EdgeInsets.fromLTRB(18, 8, 18, 100),
-                children: [
-                  _buildOverview(online, offline, aiEnabled),
-                  SizedBox(height: TrexvenSpacing.fieldGap),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              ),
+            ],
+          ),
+        ),
+        Expanded(
+          child: RefreshIndicator(
+            onRefresh: _loadCameras,
+            child: _loading
+                ? Center(child: TrexvenLoading())
+                : _error != null
+                ? ListView(
+                    padding: TrexvenSpacing.pagePadding,
                     children: [
-                      Text(
-                        'Cameras',
-                        style: TextStyle(
-                          fontSize: TrexvenFontSize.section,
-                          fontWeight: FontWeight.w800,
-                          color: theme.colorScheme.onSurface,
-                        ),
+                      SizedBox(height: 100),
+                      Icon(
+                        Icons.error_outline,
+                        size: 50,
+                        color: theme.trexvenColors.error,
                       ),
-                      TextButton.icon(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (_) => EventsScreen()),
-                          );
-                        },
-                        icon: Icon(
-                          Icons.timeline_rounded,
-                          size: 16,
-                          color: brandBlue,
-                        ),
-                        label: Text(
-                          'Events',
+                      SizedBox(height: TrexvenSpacing.fieldGap),
+                      Center(
+                        child: Text(
+                          'Could not load cameras',
                           style: TextStyle(
-                            color: brandBlue,
-                            fontWeight: FontWeight.w700,
-                            fontSize: TrexvenFontSize.body,
+                            fontSize: TrexvenFontSize.section,
+                            fontWeight: FontWeight.w800,
                           ),
                         ),
                       ),
+                      SizedBox(height: 8),
+                      Text(
+                        _error!,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: muted),
+                      ),
+                      SizedBox(height: TrexvenSpacing.fieldGap),
+                      Center(
+                        child: ElevatedButton(
+                          onPressed: _loadCameras,
+                          child: Text('Retry'),
+                        ),
+                      ),
+                    ],
+                  )
+                : _needsSetup
+                ? ListView(
+                    padding: const EdgeInsets.fromLTRB(18, 8, 18, 100),
+                    children: [_buildEmptyState()],
+                  )
+                : ListView(
+                    padding: EdgeInsets.fromLTRB(18, 8, 18, 100),
+                    children: [
+                      _buildOverview(online, offline, aiEnabled),
+                      SizedBox(height: TrexvenSpacing.fieldGap),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Cameras',
+                            style: TextStyle(
+                              fontSize: TrexvenFontSize.section,
+                              fontWeight: FontWeight.w800,
+                              color: theme.colorScheme.onSurface,
+                            ),
+                          ),
+                          TextButton.icon(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (_) => EventsScreen()),
+                              );
+                            },
+                            icon: Icon(
+                              Icons.timeline_rounded,
+                              size: 16,
+                              color: brandBlue,
+                            ),
+                            label: Text(
+                              'Events',
+                              style: TextStyle(
+                                color: brandBlue,
+                                fontWeight: FontWeight.w700,
+                                fontSize: TrexvenFontSize.body,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      if (_cameras.isEmpty)
+                        _buildEmptyState()
+                      else
+                        ..._cameras.map(_buildCameraCard),
                     ],
                   ),
-                  SizedBox(height: 10),
-                  if (_cameras.isEmpty)
-                    _buildEmptyState()
-                  else
-                    ..._cameras.map(_buildCameraCard),
-                ],
-              ),
-      ),
+          ),
+        ),
+      ],
     );
   }
 
