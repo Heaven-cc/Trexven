@@ -1,6 +1,6 @@
 # Verified corrections — Phase 5: country billing preparation
 
-Status: source prepared; SQL NOT deployed; Edge Functions NOT deployed.
+Status: database foundation deployed under explicit approval as 20261021012021_country_billing_foundation; Edge Functions NOT deployed.
 Checkout, provider registration, payment verification and automatic activation remain disabled.
 This phase is not runtime-complete and does not authorize a subscription charge.
 
@@ -22,7 +22,7 @@ This phase is not runtime-complete and does not authorize a subscription charge.
 
 - lib/screens/me/billing_screen.dart
 - lib/models/subscription_plan.dart
-- supabase/changes/phase_5_country_billing_foundation.sql
+- supabase/migrations/20261021012021_country_billing_foundation.sql
 - supabase/functions/_shared/paystack-provider.ts
 - supabase/functions/_shared/paystack-server.ts
 - supabase/functions/prepare-billing-checkout/index.ts
@@ -62,11 +62,11 @@ Still required before any live checkout:
 - Separately approved entitlement activation and reconciliation. No callback/client success response may activate subscriptions.
 - User acceptance on devices; no application build/analyzer/test suite or fake payment/authentication was run.
 
-## Proposed next production checkpoint
+## Approved database production checkpoint
 
-Deploy ONLY phase_5_country_billing_foundation.sql after explicit approval. It creates an empty server-managed pricing table, adds nullable session snapshot fields, creates the owner catalog/session and service snapshot RPCs, and changes activation's interval source with its previous fallback retained. It inserts no commercial values, enables no provider, activates no subscription, and deploys no Edge Function.
+Deployed ONLY the exact approved country billing foundation SQL. It creates an empty server-managed pricing table, adds nullable session snapshot fields, creates the owner catalog/session and service snapshot RPCs, and changes activation's interval source with its previous fallback retained. It inserts no commercial values, enables no provider, activates no subscription, and deploys no Edge Function.
 
-After approval: re-read definitions/grants/counts, apply once, record the actual generated migration version and compare existing financial rows and preserved API definitions/ACLs. Do not replay older foundation SQL.
+The exact approved SQL was applied once and promoted to its actual migration version. No earlier foundation SQL was replayed.
 
 ## Manual acceptance (user; not executed)
 
@@ -76,3 +76,11 @@ After approval: re-read definitions/grants/counts, apply once, record the actual
 - Terms and Privacy open and return normally in all four existing themes.
 - Later approved provider exercise: wrong owner/country, changed request payload, amount/currency/metadata mismatch, bad raw signature, pending/reversed status and wrong test/live domain must fail.
 - Later approved recovery exercise: retain the original session/reference after uncertainty; duplicate events produce one recorded payment/invoice; no automatic subscription activation.
+
+## Deployment evidence — 2026-10-21
+
+Migration 20261021012021_country_billing_foundation succeeded. Before/after source/catalog comparison found 12 existing public API definitions and ACLs unchanged. Activation exactly matches the approved session-cycle change, with the same postgres/service_role-only ACL. Billing session table ACL and policies, all global plan records and empty provider configuration are unchanged.
+
+All 15 checked row counts stayed unchanged: sales 4, sale_items 4, sale_payments 3, private.sale_requests 4, private.catalog_requests 7, inventory 0, inventory_movements 5, expenses 0, sale_returns 0, credit_entries 1, billing_sessions 0, billing_payments 0, billing_invoices 0, business_subscriptions 0, subscription_events 0.
+
+New country pricing table has RLS enabled, zero rows and no anonymous/authenticated table access. Both new session snapshot columns are nullable without defaults. New catalog and request functions allow authenticated owners, deny anonymous execution and use an empty search_path. The exact-decimal snapshot is service-only; the private country normalizer is postgres-only and not SECURITY DEFINER. Catalog retains checkout_available=false. No runtime financial/authentication operation was exercised. Edge deployment, live release, pricing, credentials and device acceptance remain pending as described above.
