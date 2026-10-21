@@ -1,6 +1,6 @@
 # Verified corrections — Phase 7: intentional APIs and hook metadata
 
-Status: SQL prepared in supabase/changes/phase_7_account_hook_metadata_hardening.sql; NOT deployed.
+Status: exact approved SQL deployed as 20261021015428_account_hook_metadata_hardening; runtime/device acceptance pending.
 No Auth configuration, raw data grant, employee record, role setting or business row was changed.
 
 ## Verified production dependency
@@ -12,7 +12,7 @@ Simply revoking anonymous EXECUTE would break anonymous REST requests before the
 
 The SQL-source scan found trexven_guard_account_access as the sole current stored-function caller of the metadata getter. The configured REST hook is authoritative across Owner, POS and Edge clients. No client API rename is required.
 
-## Prepared correction and privilege boundary
+## Approved correction and privilege boundary
 
 - Add public.trexven_prepare_account_request(): no arguments, void return, empty search_path, SECURITY DEFINER. Move the exact existing account admission logic into it: auth.uid-based shared transaction advisory lock and the existing closed/deleting-account rejection.
 - It obtains the previous hook through the existing getter as postgres and overwrites trexven.previous_api_hook using set_config(...,true). This is a transaction-local handoff, not a response payload, persistent role setting or session-wide configuration. Clients receive no hook name.
@@ -154,8 +154,16 @@ References:
 
 Official docs confirm that the pre-request hook runs after role impersonation. That is why the invoker dispatcher must be preserved.
 
-## Proposed approval checkpoint
+## Approved production checkpoint
 
-Approve ONLY phase_7_account_hook_metadata_hardening.sql. Re-read the current definitions/grants/settings before applying once; promote exact source to the actual generated migration version. Compare guard invoker mode and retained ACL, metadata getter denial to API roles, new helper's void return/search_path/grants, unchanged account-access predicate, unchanged hook configuration/private schema grants, and unchanged financial/account-deletion row counts.
+Applied only the exact approved hook-hardening SQL once. Source is recorded as supabase/migrations/20261021015428_account_hook_metadata_hardening.sql. Before/after evidence follows.
 
 Owner/POS runtime acceptance after deployment remains the user's responsibility: existing authenticated REST flows and session restoration; anonymous requests; closed/deleting-account rejection; account-deletion admission lock coordination; direct metadata RPC denial. Do not configure a fake legacy hook or delete an account to validate production. Future hook-chain runtime checks require a safe approved environment. No frontend merge/release, Paystack activation, or Auth setting change is included.
+
+## Deployment evidence — 2026-10-21
+
+Migration 20261021015428_account_hook_metadata_hardening succeeded. Compared all 185 pre-existing public/private function definitions, ACLs and relevant attributes. 183 entries stayed unchanged. The guard's source changed exactly as approved and remains SECURITY INVOKER with its previous ACL. The metadata getter definition is unchanged; its ACL is now postgres/service_role only. New admission helper source exactly matches the approved SQL, returns void, uses SECURITY DEFINER with empty search_path and explicit API-role grants. Account-access predicate definition and ACL stayed unchanged.
+
+All role settings, public/private schema grants and stored previous-hook configuration stayed unchanged. All 17 checked row counts stayed unchanged: sales 4, sale_items 4, sale_payments 3, private.sale_requests 4, private.catalog_requests 7, inventory 0, inventory_movements 5, expenses 0, sale_returns 0, credit_entries 1, billing_sessions 0, billing_payments 0, billing_invoices 0, business_subscriptions 0, subscription_events 0, private.account_deletion_state 1, auth.users 2. No account, credential or financial operation was performed.
+
+No builds, test suites, fabricated REST/JWT/role probes or app launches ran. Source/catalog evidence does not prove runtime acceptance. No Edge Function or Auth configuration was changed. Leaked-password protection remains a separate pending recommendation. Phases 8–9 remain pending at this deployment record.
