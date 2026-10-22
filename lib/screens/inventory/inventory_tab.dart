@@ -87,12 +87,6 @@ class _InventoryTabState extends State<InventoryTab> {
     );
   }
 
-  void _addProduct() {
-    _openScreen(
-      CatalogEditorScreen(database: _db),
-    );
-  }
-
   void _restock() {
     _openScreen(
       AddProductScreen(
@@ -552,8 +546,6 @@ class _InventoryTabState extends State<InventoryTab> {
       Text('Products and stock management',
         style: TextStyle(color: _muted, fontSize: 13)),
     ])),
-    IconButton(onPressed: _addProduct, tooltip: 'Add product',
-      icon: Icon(Icons.add_rounded, color: _blue)),
   ]);
 
   // ============================================================
