@@ -461,7 +461,6 @@ class _AngelScreenState extends State<AngelScreen> {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (dialogContext) => AlertDialog(
-        backgroundColor: surface,
         title: Text(
           'Delete conversation?',
           style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
@@ -476,12 +475,13 @@ class _AngelScreenState extends State<AngelScreen> {
             onPressed: () => Navigator.pop(dialogContext, false),
             child: Text('Cancel'),
           ),
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, true),
-            child: Text(
-              'Delete',
-              style: TextStyle(color: Color(0xFFFF7474)),
+          FilledButton(
+            style: FilledButton.styleFrom(
+              backgroundColor: Theme.of(context).colorScheme.error,
+              foregroundColor: Theme.of(context).colorScheme.onError,
             ),
+            onPressed: () => Navigator.pop(dialogContext, true),
+            child: const Text('Delete'),
           ),
         ],
       ),
