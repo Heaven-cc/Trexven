@@ -320,7 +320,7 @@ class _BillingScreenState extends State<BillingScreen> {
       popular: popular,
       options: [_option(selectedOption: true, title: tier == 'start' ? 'Free' : _countryPricingAvailable ? (_planFor(tier, _billingMonths)?.priceDisplay ?? 'Price unavailable') : 'Price unavailable', subtitle: tier == 'start' ? 'No charge' : _billingMonths == 1 ? 'Billed monthly' : 'Billed yearly')],
       features: _approvedFeatures(tier),
-      buttonLabel: 'Get $name plan',
+      buttonLabel: tier == 'start' ? 'Start plan · Coming soon' : 'Choose $name · Coming soon',
     );
   }
 
@@ -332,207 +332,54 @@ class _BillingScreenState extends State<BillingScreen> {
     required String buttonLabel,
     bool popular = false,
     Widget? footer,
-  }) {
-    return Container(
-      decoration: BoxDecoration(
-        color: card,
-        border: Border.all(color: border),
-        borderRadius: BorderRadius.circular(24),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(22),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        name,
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                    if (popular)
-                      Text(
-                        'POPULAR',
-                        style: TextStyle(
-                          color: blue,
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  description,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
-                  ),
-                ),
-                const SizedBox(height: 24),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    for (var i = 0; i < options.length; i++) ...[
-                      if (i > 0) const SizedBox(width: 10),
-                      Expanded(child: options[i]),
-                    ],
-                  ],
-                ),
-                if (footer != null) ...[
-                  const SizedBox(height: 12),
-                  footer,
-                ],
-                const SizedBox(height: 22),
-                SizedBox(
-                  width: double.infinity,
-                  child: FilledButton(
-                    onPressed: null,
-                    style: FilledButton.styleFrom(
-                      backgroundColor: Theme.of(context).colorScheme.onSurface,
-                      disabledBackgroundColor:
-                      Theme.of(context).colorScheme.onSurface.withValues(alpha: .75),
-                      disabledForegroundColor:
-                      Colors.black87,
-                      minimumSize: const Size(0, 48),
-                      shape: const StadiumBorder(),
-                    ),
-                    child: Text(buttonLabel),
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'Checkout is not available yet.',
-                  style: TextStyle(
-                    fontSize: 10,
-                    color: muted,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
-          ),
-          Divider(
-            height: 1,
-            color: border,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(22),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Included with $name:',
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                const SizedBox(height: 15),
-                if (features.isEmpty)
-                  Text(
-                    'Features unavailable',
-                    style: TextStyle(color: muted),
-                  ),
-                for (final feature in features)
-                  Padding(
-                    padding:
-                    const EdgeInsets.only(bottom: 12),
-                    child: Row(
-                      crossAxisAlignment:
-                      CrossAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.check_rounded,
-                          size: 19,
-                          color: muted,
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: Text(
-                            feature,
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: Theme.of(context).colorScheme.onSurfaceVariant,
-                              height: 1.4,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  }) => _glass(Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Row(children: [
+        Expanded(child: Text(name, style: TextStyle(
+          fontSize: 18, fontWeight: FontWeight.w800,
+          color: Theme.of(context).colorScheme.onSurface))),
+        if (popular) _pill('MOST POPULAR'),
+      ]),
+      const SizedBox(height: 5),
+      Text(description, style: TextStyle(fontSize: 12, color: muted)),
+      const SizedBox(height: 10),
+      ...options,
+      if (footer != null) footer,
+      const SizedBox(height: 8),
+      Divider(color: border.withValues(alpha: .30)),
+      const SizedBox(height: 3),
+      for (final feature in features)
+        Padding(padding: const EdgeInsets.symmetric(vertical: 4),
+          child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            const Icon(Icons.check_rounded, size: 17, color: Color(0xFF21966B)),
+            const SizedBox(width: 8),
+            Expanded(child: Text(feature, style: TextStyle(
+              color: Theme.of(context).colorScheme.onSurface,
+              fontSize: 12, height: 1.4))),
+          ])),
+      const SizedBox(height: 12),
+      SizedBox(width: double.infinity, child: FilledButton(
+        onPressed: null,
+        child: Text(buttonLabel))),
+      const SizedBox(height: 6),
+      Center(child: Text('Google Play checkout is not connected yet.',
+        style: TextStyle(fontSize: 10, color: muted))),
+    ],
+  ), highlight: popular);
 
   Widget _option({
     required bool selectedOption,
     required String title,
     required String subtitle,
     VoidCallback? onTap,
-  }) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(17),
-      child: Container(
-        constraints: const BoxConstraints(
-          minHeight: 145,
-        ),
-        padding: const EdgeInsets.all(15),
-        decoration: BoxDecoration(
-          color: selectedOption ? selected : card,
-          border: Border.all(
-            color: selectedOption ? blue : border,
-          ),
-          borderRadius: BorderRadius.circular(17),
-        ),
-        child: Column(
-          crossAxisAlignment:
-          CrossAxisAlignment.start,
-          children: [
-            Icon(
-              selectedOption
-                  ? Icons.radio_button_checked
-                  : Icons.radio_button_unchecked,
-              color: selectedOption ? blue : muted,
-              size: 25,
-            ),
-            const SizedBox(height: 18),
-            Text(
-              title,
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onSurface,
-                fontSize: 15,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            const SizedBox(height: 6),
-            Text(
-              subtitle,
-              style: TextStyle(
-                color: muted,
-                fontSize: 11,
-                height: 1.4,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  }) => Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+    Text(title, style: TextStyle(fontSize: 18,
+      color: Theme.of(context).colorScheme.onSurface,
+      fontWeight: FontWeight.w800)),
+    const SizedBox(height: 3),
+    Text(subtitle, style: TextStyle(color: muted, fontSize: 11)),
+  ]);
 
   Widget _managementSection() {
     final tier = _subscription['plan']?.toString().toLowerCase();
