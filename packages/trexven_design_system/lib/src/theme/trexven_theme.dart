@@ -49,9 +49,12 @@ abstract final class TrexvenTheme {
     final shape = RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(TrexvenRadii.field),
     );
+    // All Owner App inputs, including popups and mini forms, retain a visible
+    // boundary before focus. Avoid white-on-white fields in light dialogs.
+    final fieldFill = dark ? scheme.surfaceContainerHighest : const Color(0xFFF1F5F9);
     final fieldBorder = OutlineInputBorder(
       borderRadius: BorderRadius.circular(TrexvenRadii.field),
-      borderSide: BorderSide.none,
+      borderSide: BorderSide(color: outline.withValues(alpha: .7)),
     );
     final button = ButtonStyle(
       minimumSize: const WidgetStatePropertyAll(
@@ -103,12 +106,14 @@ abstract final class TrexvenTheme {
       iconTheme: IconThemeData(color: muted, size: 22),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: dark ? scheme.surfaceContainerHighest : surface,
+        fillColor: fieldFill,
         isDense: true,
         contentPadding: TrexvenSpacing.fieldPadding,
         border: fieldBorder,
         enabledBorder: fieldBorder,
-        disabledBorder: fieldBorder,
+        disabledBorder: fieldBorder.copyWith(
+          borderSide: BorderSide(color: outline.withValues(alpha: .45)),
+        ),
         focusedBorder: fieldBorder.copyWith(
           borderSide: BorderSide(color: scheme.primary, width: 1.2),
         ),
@@ -116,6 +121,8 @@ abstract final class TrexvenTheme {
         focusedErrorBorder: fieldBorder.copyWith(
           borderSide: BorderSide(color: error, width: 1.2),
         ),
+        labelStyle: TrexvenTypography.label.copyWith(color: ink),
+        floatingLabelStyle: TrexvenTypography.label.copyWith(color: scheme.primary),
         hintStyle: TrexvenTypography.input.copyWith(color: muted),
         errorStyle: TrexvenTypography.caption.copyWith(color: error),
         errorMaxLines: 12,
@@ -131,6 +138,11 @@ abstract final class TrexvenTheme {
           minWidth: 48,
           minHeight: 48,
         ),
+      ),
+      textSelectionTheme: TextSelectionThemeData(
+        cursorColor: scheme.primary,
+        selectionColor: scheme.primary.withValues(alpha: .22),
+        selectionHandleColor: scheme.primary,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: button.copyWith(
