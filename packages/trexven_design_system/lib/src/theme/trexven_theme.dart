@@ -216,6 +216,28 @@ abstract final class TrexvenTheme {
           borderRadius: BorderRadius.circular(TrexvenRadii.dialog),
         ),
       ),
+      timePickerTheme: TimePickerThemeData(
+        backgroundColor: surface,
+        dialBackgroundColor: scheme.surfaceContainerHighest,
+        dialHandColor: scheme.primary,
+        hourMinuteColor: scheme.surfaceContainerHighest,
+        hourMinuteTextColor: ink,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(TrexvenRadii.dialog),
+        ),
+      ),
+      menuTheme: MenuThemeData(
+        style: MenuStyle(
+          backgroundColor: WidgetStatePropertyAll(surface),
+          surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
+          shape: WidgetStatePropertyAll(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(TrexvenRadii.field),
+              side: BorderSide(color: outline.withValues(alpha: .28)),
+            ),
+          ),
+        ),
+      ),
       tabBarTheme: TabBarThemeData(
         indicatorColor: scheme.primary,
         labelColor: scheme.primary,
