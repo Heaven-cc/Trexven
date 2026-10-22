@@ -1,5 +1,5 @@
 -- PREPARED ONLY: Requires explicit approval before applying to production.
--- Sales History for the POS: returns a seven-business-local-day, identity-scoped
+-- Sales History for the POS: returns a date-filtered, identity-scoped
 -- receipt feed. Does NOT change existing sales or sale_items RLS policies.
 -- Existing POS must be updated before the endpoint is activated.
 set lock_timeout = '5s';
@@ -9,7 +9,10 @@ create or replace function public.get_pos_recent_sales(
   p_business_id uuid,
   p_branch_id uuid default null,
   p_offset integer default 0,
-  p_limit integer default 100
+  p_limit integer default 100,
+  p_filter text default 'week',
+  p_start_date date default null,
+  p_end_date date default null
 ) returns jsonb
 language plpgsql stable security definer
 set search_path = ''
@@ -19,6 +22,9 @@ declare
   v_business record;
   v_can_branch_history boolean := false;
   v_result jsonb;
+  v_today date;
+  v_from date;
+  v_through date;
 begin
   if auth.uid() is null or p_business_id is null then
     raise exception 'Authenticated business context required' using errcode='42501';
@@ -64,6 +70,23 @@ begin
      raise exception 'Invalid pagination' using errcode='22023';
   end if;
 
+  if p_filter is null or p_filter not in ('today','yesterday','week','custom','all') then
+    raise exception 'Unsupported sales history filter' using errcode='22023';
+  end if;
+
+  v_today := (private.business_timestamp() at time zone v_business.timezone)::date;
+  case p_filter
+    when 'today' then v_from := v_today; v_through := v_today;
+    when 'yesterday' then v_from := v_today - 1; v_through := v_today - 1;
+    when 'week' then v_from := v_today - 6; v_through := v_today;
+    when 'custom' then
+      if p_start_date is null or p_end_date is null or p_start_date > p_end_date then
+        raise exception 'Valid custom start and end dates required' using errcode='22023';
+      end if;
+      v_from := p_start_date; v_through := p_end_date;
+    when 'all' then v_from := null; v_through := null;
+  end case;
+
   -- Explicit finance permission enables branch-wide operational receipts.
   -- Employees without this grant see only sales tied to their own membership.
   v_can_branch_history :=
@@ -85,9 +108,8 @@ begin
     where s.business_id=p_business_id
       and (not coalesce(v_business.branches_enabled,false) or s.branch_id=p_branch_id)
       and (v_can_branch_history or s.employee_id=v_member)
-      and (coalesce(s.sold_at,s.created_at) at time zone v_business.timezone)::date
-          between ((private.business_timestamp() at time zone v_business.timezone)::date - 6)
-              and (private.business_timestamp() at time zone v_business.timezone)::date
+      and (v_from is null or (coalesce(s.sold_at,s.created_at) at time zone v_business.timezone)::date >= v_from)
+      and (v_through is null or (coalesce(s.sold_at,s.created_at) at time zone v_business.timezone)::date <= v_through)
     order by recorded_at desc,s.id desc
     offset p_offset limit p_limit
   ) row_record;
@@ -95,10 +117,10 @@ begin
 end
 $$;
 
-revoke all on function public.get_pos_recent_sales(uuid,uuid,integer,integer)
+revoke all on function public.get_pos_recent_sales(uuid,uuid,integer,integer,text,date,date)
 from public,anon,authenticated;
-grant execute on function public.get_pos_recent_sales(uuid,uuid,integer,integer)
+grant execute on function public.get_pos_recent_sales(uuid,uuid,integer,integer,text,date,date)
 to authenticated;
 
-comment on function public.get_pos_recent_sales(uuid,uuid,integer,integer) is
- 'Seven business-local days of authorized POS receipts, active employee and branch scoped. Deliberately does not expose cross-business or unauthorized sales.';
+comment on function public.get_pos_recent_sales(uuid,uuid,integer,integer,text,date,date) is
+ 'Filterable business-local POS receipts (today, yesterday, week, custom, all), active employee and branch scoped. Does not disclose unauthorized business or branch sales.';
