@@ -143,13 +143,8 @@ class _InventoryTabState extends State<InventoryTab> {
 
     await showModalBottomSheet<void>(
       context: context,
-      backgroundColor: _card,
       isScrollControlled: true,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(22),
-        ),
-      ),
+      // Inherit the unified TREXVEN bottom sheet appearance.
       builder: (sheetContext) {
         return StatefulBuilder(
           builder: (context, refresh) {
@@ -168,8 +163,8 @@ class _InventoryTabState extends State<InventoryTab> {
                       'Inventory filters',
                       style: TextStyle(
                         color: _navy,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
+                        fontSize: TrexvenFontSize.section,
+                        fontWeight: FontWeight.w800,
                       ),
                     ),
 
@@ -284,12 +279,7 @@ class _InventoryTabState extends State<InventoryTab> {
   Future<void> _showSortOptions() async {
     await showModalBottomSheet<void>(
       context: context,
-      backgroundColor: _card,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(22),
-        ),
-      ),
+      // Inherit the unified TREXVEN bottom sheet appearance.
       builder: (sheetContext) {
         return SafeArea(
           top: false,
@@ -306,8 +296,8 @@ class _InventoryTabState extends State<InventoryTab> {
                   'Sort products',
                   style: TextStyle(
                     color: _navy,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
+                    fontSize: TrexvenFontSize.section,
+                    fontWeight: FontWeight.w800,
                   ),
                 ),
 
