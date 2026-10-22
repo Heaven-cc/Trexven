@@ -180,22 +180,32 @@ abstract final class TrexvenTheme {
           borderRadius: BorderRadius.circular(TrexvenRadii.card),
         ),
       ),
+      // Unified Owner App overlays, including legacy Material dialogs.
       dialogTheme: DialogThemeData(
         backgroundColor: surface,
         surfaceTintColor: Colors.transparent,
+        elevation: 0,
+        insetPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(TrexvenRadii.dialog),
+          side: BorderSide(color: outline.withValues(alpha: .28)),
         ),
-        titleTextStyle: TrexvenTypography.section.copyWith(color: ink),
-        contentTextStyle: TrexvenTypography.body.copyWith(color: ink),
+        titleTextStyle: TrexvenTypography.section.copyWith(
+          color: ink,
+          fontWeight: FontWeight.w800,
+        ),
+        contentTextStyle: TrexvenTypography.body.copyWith(color: muted),
+        actionsPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
       ),
       bottomSheetTheme: BottomSheetThemeData(
         backgroundColor: surface,
         surfaceTintColor: Colors.transparent,
         showDragHandle: true,
+        elevation: 0,
+        dragHandleColor: muted.withValues(alpha: .45),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
-            top: Radius.circular(TrexvenRadii.dialog),
+            top: Radius.circular(TrexvenRadii.dialog + 2),
           ),
         ),
       ),
@@ -204,6 +214,28 @@ abstract final class TrexvenTheme {
         surfaceTintColor: Colors.transparent,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(TrexvenRadii.dialog),
+        ),
+      ),
+      timePickerTheme: TimePickerThemeData(
+        backgroundColor: surface,
+        dialBackgroundColor: scheme.surfaceContainerHighest,
+        dialHandColor: scheme.primary,
+        hourMinuteColor: scheme.surfaceContainerHighest,
+        hourMinuteTextColor: ink,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(TrexvenRadii.dialog),
+        ),
+      ),
+      menuTheme: MenuThemeData(
+        style: MenuStyle(
+          backgroundColor: WidgetStatePropertyAll(surface),
+          surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
+          shape: WidgetStatePropertyAll(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(TrexvenRadii.field),
+              side: BorderSide(color: outline.withValues(alpha: .28)),
+            ),
+          ),
         ),
       ),
       tabBarTheme: TabBarThemeData(
@@ -252,21 +284,35 @@ abstract final class TrexvenTheme {
       ),
       snackBarTheme: SnackBarThemeData(
         behavior: SnackBarBehavior.floating,
-        backgroundColor: ink,
-        contentTextStyle: TrexvenTypography.body.copyWith(color: background),
-        shape: shape,
+        backgroundColor: dark ? const Color(0xFF29384F) : primaryDark,
+        contentTextStyle: TrexvenTypography.body.copyWith(color: Colors.white),
+        insetPadding: const EdgeInsets.all(16),
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(TrexvenRadii.field),
+        ),
       ),
       progressIndicatorTheme: ProgressIndicatorThemeData(color: scheme.primary),
       popupMenuTheme: PopupMenuThemeData(
         color: surface,
         surfaceTintColor: Colors.transparent,
-        shape: shape,
+        elevation: 4,
+        textStyle: TrexvenTypography.body.copyWith(color: ink),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(TrexvenRadii.field),
+          side: BorderSide(color: outline.withValues(alpha: .28)),
+        ),
       ),
       dropdownMenuTheme: DropdownMenuThemeData(
         textStyle: TrexvenTypography.input.copyWith(color: ink),
       ),
-      tooltipTheme: const TooltipThemeData(
-        waitDuration: Duration(milliseconds: 400),
+      tooltipTheme: TooltipThemeData(
+        waitDuration: const Duration(milliseconds: 400),
+        decoration: BoxDecoration(
+          color: dark ? const Color(0xFF29384F) : primaryDark,
+          borderRadius: BorderRadius.circular(TrexvenRadii.status),
+        ),
+        textStyle: TrexvenTypography.caption.copyWith(color: Colors.white),
       ),
     );
   }

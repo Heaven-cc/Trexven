@@ -186,9 +186,9 @@ class _BillingScreenState extends State<BillingScreen> {
             onPressed: () => Navigator.pop(ctx, false),
             child: Text('Keep plan'),
           ),
-          TextButton(
+          FilledButton(
             onPressed: () => Navigator.pop(ctx, true),
-            child: Text('Request cancellation'),
+            child: const Text('Request cancellation'),
           ),
         ],
       ),

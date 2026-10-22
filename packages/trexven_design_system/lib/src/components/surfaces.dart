@@ -230,6 +230,9 @@ class TrexvenDialog extends StatelessWidget {
     return AlertDialog(
       title: title,
       scrollable: true,
+      titlePadding: const EdgeInsets.fromLTRB(20, 20, 20, 8),
+      contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 16),
+      actionsPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
       content: content,
       actions: actions,
     );
@@ -250,11 +253,10 @@ class TrexvenBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      top: false,
       child: SingleChildScrollView(
-        padding: TrexvenSpacing.pagePadding.add(
-          EdgeInsets.only(
-            bottom: MediaQuery.viewInsetsOf(context).bottom,
-          ),
+        padding: const EdgeInsets.fromLTRB(20, 12, 20, 24).add(
+          EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(context).bottom),
         ),
         child: child,
       ),

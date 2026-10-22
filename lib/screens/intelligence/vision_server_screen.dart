@@ -136,9 +136,13 @@ class _VisionServerScreenState extends State<VisionServerScreen> {
             onPressed: () => Navigator.pop(ctx, false),
             child: Text('Cancel'),
           ),
-          TextButton(
+          FilledButton(
+            style: FilledButton.styleFrom(
+              backgroundColor: Theme.of(context).colorScheme.error,
+              foregroundColor: Theme.of(context).colorScheme.onError,
+            ),
             onPressed: () => Navigator.pop(ctx, true),
-            child: Text('Remove'),
+            child: const Text('Remove'),
           ),
         ],
       ),
