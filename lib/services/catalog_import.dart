@@ -64,8 +64,7 @@ class CatalogImport {
 
   static bool _isHeader(List<String> values) {
     final headers = values.map(_header).toList();
-    return headers.contains('name') &&
-        headers.every((header) => columns.contains(header));
+    return headers.contains('name');
   }
 
   static List<Map<String, dynamic>> parseExcel(
