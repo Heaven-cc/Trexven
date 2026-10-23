@@ -54,7 +54,7 @@ class CatalogImport {
 
   static String _header(String value) {
     final normalized = value
-        .replaceAll('\\ufeff', '')
+        .replaceAll(String.fromCharCode(0xfeff), '')
         .trim()
         .toLowerCase()
         .replaceAll(RegExp(r'[^a-z0-9]+'), '_')
@@ -164,7 +164,7 @@ class CatalogImport {
     if (text.startsWith('\ufeff')) text = text.substring(1);
     final cells = const CsvToListConverter(
       shouldParseNumbers: false,
-    ).convert(text.replaceAll('\r\n', '\n'), eol: '\n');
+    ).convert(text.replaceAll('\r\n', '\n').replaceAll('\r', '\n'), eol: '\n');
     if (cells.length < 2) {
       throw const FormatException('Include a header and at least one product.');
     }
