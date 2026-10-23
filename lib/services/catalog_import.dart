@@ -44,7 +44,6 @@ class CatalogImport {
     'image': 'image_url',
     'image_link': 'image_url',
     'product_image': 'image_url',
-    'status': 'active',
     'is_active': 'active',
     'product_group': 'group_name',
     'group': 'group_name',
@@ -76,7 +75,11 @@ class CatalogImport {
     final workbook = Excel.decodeBytes(bytes);
     final candidates = workbook.tables.values.where((sheet) =>
         sheet.rows.any((row) => _isHeader(row
-            .map((cell) => cell?.value?.toString() ?? '')
+            .map((cell) => switch (cell?.value) {
+              TextCellValue v => v.value.toString(),
+              null => '',
+              final v => v.toString(),
+            })
             .toList()))).toList();
     final sheet = sheetName != null
         ? workbook.tables[sheetName]
