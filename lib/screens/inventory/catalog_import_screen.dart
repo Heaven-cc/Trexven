@@ -559,7 +559,7 @@ class _CatalogImportScreenState
                 15, 0, 15, 16,
               ),
               child: Text(
-                'Required: Product name.\n\n'
+                'Required: Name, Product name, or Names.\n\n'
                     'Optional: Barcode, SKU, Category, Brand, Description, '
                     'Image URL, Unit, Selling price, Low stock threshold, '
                     'Initial quantity, Stock delta, Stock reason, Active, '
@@ -571,7 +571,7 @@ class _CatalogImportScreenState
                     'Common headings such as Price, Quantity, Stock, Part number and '
                     'Product code are accepted automatically. Each field may appear '
                     'only once. For Excel, format barcode and SKU columns as Text '
-                    'before entering values with leading zeroes.\\n\\n'
+                    'before entering values with leading zeroes.\n\n'
                     'Every import must be reviewed before confirmation.',
                 style: TextStyle(
                   color: _muted,
