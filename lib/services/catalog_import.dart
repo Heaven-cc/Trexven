@@ -3,9 +3,68 @@ import 'package:excel/excel.dart';
 
 /// A reviewed CSV import. Barcodes remain text, including leading zeroes.
 class CatalogImport {
+  static const _aliases = <String, String>{
+    'product_name': 'name',
+    'product_names': 'name',
+    'names': 'name',
+    'item': 'name',
+    'item_name': 'name',
+    'product': 'name',
+    'product_title': 'name',
+    'item_description': 'description',
+    'product_description': 'description',
+    'brand_name': 'brand',
+    'part_number': 'sku',
+    'part_no': 'sku',
+    'product_code': 'sku',
+    'item_code': 'sku',
+    'stock_keeping_unit': 'sku',
+    'bar_code': 'barcode',
+    'barcode_number': 'barcode',
+    'product_barcode': 'barcode',
+    'price': 'selling_price',
+    'sale_price': 'selling_price',
+    'sales_price': 'selling_price',
+    'retail_price': 'selling_price',
+    'sellingprice': 'selling_price',
+    'qty': 'initial_quantity',
+    'quantity': 'initial_quantity',
+    'stock': 'initial_quantity',
+    'stock_quantity': 'initial_quantity',
+    'opening_stock': 'initial_quantity',
+    'opening_quantity': 'initial_quantity',
+    'initial_stock': 'initial_quantity',
+    'low_stock': 'low_stock_threshold',
+    'reorder_level': 'low_stock_threshold',
+    'min_stock': 'low_stock_threshold',
+    'minimum_stock': 'low_stock_threshold',
+    'measurement_unit': 'unit',
+    'unit_of_measure': 'unit',
+    'uom': 'unit',
+    'image': 'image_url',
+    'image_link': 'image_url',
+    'product_image': 'image_url',
+    'is_active': 'active',
+    'product_group': 'group_name',
+    'group': 'group_name',
+    'colour': 'color',
+    'stock_change': 'stock_delta',
+    'stock_change_reason': 'stock_reason',
+  };
+
   static String _header(String value) {
-    final normalized = value.trim().toLowerCase().replaceAll(' ', '_');
-    return normalized == 'product_name' ? 'name' : normalized;
+    final normalized = value
+        .replaceAll(String.fromCharCode(0xfeff), '')
+        .trim()
+        .toLowerCase()
+        .replaceAll(RegExp(r'[^a-z0-9]+'), '_')
+        .replaceAll(RegExp(r'^_+|_+$'), '');
+    return _aliases[normalized] ?? normalized;
+  }
+
+  static bool _isHeader(List<String> values) {
+    final headers = values.map(_header).toList();
+    return headers.contains('name');
   }
 
   static List<Map<String, dynamic>> parseExcel(
@@ -13,21 +72,32 @@ class CatalogImport {
     String? sheetName,
   }) {
     final workbook = Excel.decodeBytes(bytes);
-    final sheets = workbook.tables.values
-        .where(
-          (s) => s.rows.any((row) => row.any((cell) => cell?.value != null)),
-        )
-        .toList();
-    if (sheets.isEmpty) {
-      throw const FormatException('No product worksheet found.');
+    final candidates = workbook.tables.values.where((sheet) =>
+        sheet.rows.any((row) => _isHeader(row
+            .map((cell) => switch (cell?.value) {
+              TextCellValue v => v.value.toString(),
+              null => '',
+              final v => v.toString(),
+            })
+            .toList()))).toList();
+    final sheet = sheetName != null
+        ? workbook.tables[sheetName]
+        : candidates.length == 1
+            ? candidates.single
+            : null;
+    if (sheet == null) {
+      if (sheetName != null) {
+        throw FormatException('Worksheet "$sheetName" not found.');
+      }
+      if (candidates.isEmpty) {
+        throw const FormatException(
+          'No worksheet has a supported product header. Include Product name or Name.',
+        );
+      }
+      throw const FormatException(
+        'Multiple product worksheets found. Keep one product worksheet per file.',
+      );
     }
-    if (sheetName == null && sheets.length != 1) {
-      throw const FormatException('Use one product worksheet per import.');
-    }
-    final sheet = sheetName == null
-        ? sheets.single
-        : workbook.tables[sheetName];
-    if (sheet == null) throw const FormatException('Worksheet not found.');
     final grid = <List<String>>[];
     List<String>? headers;
     for (final source in sheet.rows) {
@@ -56,6 +126,7 @@ class CatalogImport {
         });
       }
       if (headers == null) {
+        if (!_isHeader(row)) continue;
         headers = row.map(_header).toList();
       } else {
         while (row.length < headers.length) {
@@ -73,6 +144,7 @@ class CatalogImport {
     'sku',
     'category',
     'description',
+    'brand',
     'image_url',
     'unit',
     'selling_price',
@@ -91,16 +163,31 @@ class CatalogImport {
     if (text.startsWith('\ufeff')) text = text.substring(1);
     final cells = const CsvToListConverter(
       shouldParseNumbers: false,
-    ).convert(text.replaceAll('\r\n', '\n'), eol: '\n');
+    ).convert(text.replaceAll('\r\n', '\n').replaceAll('\r', '\n'), eol: '\n');
     if (cells.length < 2) {
       throw const FormatException('Include a header and at least one product.');
     }
     final headers = cells.first.map((v) => _header(v.toString())).toList();
-    if (headers.toSet().length != headers.length ||
-        !headers.contains('name') ||
-        headers.any((h) => !columns.contains(h))) {
+    final duplicates = <String>{};
+    final seen = <String>{};
+    for (final header in headers) {
+      if (!seen.add(header)) duplicates.add(header);
+    }
+    if (duplicates.isNotEmpty) {
+      throw FormatException(
+        'Duplicate product columns: ${duplicates.join(', ')}. Keep only one of each.',
+      );
+    }
+    if (!headers.contains('name')) {
       throw const FormatException(
-        'Use unique supported headers, including name.',
+        'Missing product name column. Use Name, Product name, or Names.',
+      );
+    }
+    final unsupported = headers.where((h) => !columns.contains(h)).toList();
+    if (unsupported.isNotEmpty) {
+      throw FormatException(
+        'Unsupported columns: ${unsupported.join(', ')}. '
+        'Supported: ${columns.join(', ')}.',
       );
     }
     final rows = <Map<String, dynamic>>[];

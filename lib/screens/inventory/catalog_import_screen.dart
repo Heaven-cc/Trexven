@@ -139,11 +139,12 @@ class _CatalogImportScreenState
       if (!mounted) return;
 
       setState(() {
-        _error = CustomerPresentation.error(
-          e,
-          fallback:
-          'Unable to read import. Please try again.',
-        );
+        _error = e is FormatException
+            ? _importValidation(e.message)
+            : CustomerPresentation.error(
+                e,
+                fallback: 'Unable to read import. Please try again.',
+              );
       });
     }
   }
@@ -558,8 +559,8 @@ class _CatalogImportScreenState
                 15, 0, 15, 16,
               ),
               child: Text(
-                'Required: Product name.\n\n'
-                    'Optional: Barcode, SKU, Category, Description, '
+                'Required: Name, Product name, or Names.\n\n'
+                    'Optional: Barcode, SKU, Category, Brand, Description, '
                     'Image URL, Unit, Selling price, Low stock threshold, '
                     'Initial quantity, Stock delta, Stock reason, Active, '
                     'Group name, Size, Color and Material.\n\n'
@@ -567,6 +568,10 @@ class _CatalogImportScreenState
                     'and Stock reason for updates.\n\n'
                     'Blank prices preserve existing prices. New products '
                     'without prices remain pending until priced.\n\n'
+                    'Common headings such as Price, Quantity, Stock, Part number and '
+                    'Product code are accepted automatically. Each field may appear '
+                    'only once. For Excel, format barcode and SKU columns as Text '
+                    'before entering values with leading zeroes.\n\n'
                     'Every import must be reviewed before confirmation.',
                 style: TextStyle(
                   color: _muted,
