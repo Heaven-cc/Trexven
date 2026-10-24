@@ -23,6 +23,8 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> with WidgetsBindingObserver {
   int _currentIndex = 0;
+  final Set<int> _visitedTabs = {0};
+  String? _navigationIdentity;
   int _lastUnreadCount = 0;
   final _alertService = AlertService();
   final _cameraService = CameraService();
@@ -145,8 +147,23 @@ class _MainScreenState extends State<MainScreen> with WidgetsBindingObserver {
     super.dispose();
   }
 
+  void _selectTab(int index) {
+    if (index == _currentIndex) return;
+    setState(() {
+      _visitedTabs.add(index);
+      _currentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final userProvider = context.watch<UserProvider>();
+    final identity = '${userProvider.user?.id ?? ''}:${userProvider.business?.id ?? ''}';
+    if (_navigationIdentity != identity) {
+      _navigationIdentity = identity;
+      _currentIndex = 0;
+      _visitedTabs..clear()..add(0);
+    }
     final theme = Theme.of(context);
     final unread = _alertService.unreadCount;
 
@@ -223,13 +240,24 @@ class _MainScreenState extends State<MainScreen> with WidgetsBindingObserver {
       ),
       body: SafeArea(
         child: KeyedSubtree(
-          key: ValueKey(context.watch<UserProvider>().business?.id),
-          child: _buildCurrentPage(),
+          key: ValueKey(identity),
+          child: IndexedStack(
+            index: _currentIndex,
+            children: [
+              for (var index = 0; index < 5; index++)
+                _visitedTabs.contains(index)
+                    ? TickerMode(
+                        enabled: index == _currentIndex,
+                        child: _buildPage(index, userProvider),
+                      )
+                    : const SizedBox.shrink(),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _currentIndex,
-        onDestinationSelected: (index) => setState(() => _currentIndex = index),
+        onDestinationSelected: _selectTab,
         destinations: [
           NavigationDestination(
             icon: Icon(Icons.home_outlined),
@@ -261,15 +289,13 @@ class _MainScreenState extends State<MainScreen> with WidgetsBindingObserver {
     );
   }
 
-  Widget _buildCurrentPage() {
-    final userProvider = context.watch<UserProvider>();
-
-    switch (_currentIndex) {
+  Widget _buildPage(int index, UserProvider userProvider) {
+    switch (index) {
       case 0:
         return DashboardScreen(
           ownerName: userProvider.ownerName,
           businessName: userProvider.businessName,
-          onOpenCameras: () => setState(() => _currentIndex = 3),
+          onOpenCameras: () => _selectTab(3),
         );
       case 1:
         return InventoryTab();
