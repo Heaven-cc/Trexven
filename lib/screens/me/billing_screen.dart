@@ -7,6 +7,7 @@ import 'package:trexven_operations/trexven_operations.dart';
 
 import '../../services/database_service.dart';
 import '../../models/subscription_plan.dart';
+import '../../services/trexven_play_billing.dart';
 import 'terms_of_service_screen.dart';
 import 'privacy_policy_screen.dart';
 
@@ -35,6 +36,7 @@ class _BillingScreenState extends State<BillingScreen> {
   int _billingMonths = 1;
   String? _billingCountry;
   bool _countryPricingAvailable = false;
+  bool _backendCheckoutAvailable = false;
 
   String? _error;
   String? _message;
@@ -110,6 +112,7 @@ class _BillingScreenState extends State<BillingScreen> {
 
         _billingCountry = catalog?['country_name'] as String?;
         _countryPricingAvailable = catalog?['country_code'] != null;
+        _backendCheckoutAvailable = catalog?['checkout_available'] == true;
       });
     } catch (_) {
       if (mounted) {
@@ -320,7 +323,12 @@ class _BillingScreenState extends State<BillingScreen> {
       popular: popular,
       options: [_option(selectedOption: true, title: tier == 'start' ? 'Free' : _countryPricingAvailable ? (_planFor(tier, _billingMonths)?.priceDisplay ?? 'Price unavailable') : 'Price unavailable', subtitle: tier == 'start' ? 'No charge' : _billingMonths == 1 ? 'Billed monthly' : 'Billed yearly')],
       features: _approvedFeatures(tier),
-      buttonLabel: tier == 'start' ? 'Start plan · Coming soon' : 'Choose $name · Coming soon',
+      buttonLabel: tier == 'start' ? 'Start plan' : 'Choose $name',
+      checkoutReady: TrexvenPlayBilling.canPurchase(
+        tier: tier,
+        pricingAvailable: _planFor(tier, _billingMonths)?.price != null,
+        backendActivated: _backendCheckoutAvailable,
+      ),
     );
   }
 
@@ -330,6 +338,7 @@ class _BillingScreenState extends State<BillingScreen> {
     required List<Widget> options,
     required List<String> features,
     required String buttonLabel,
+    bool checkoutReady = false,
     bool popular = false,
     Widget? footer,
   }) => _glass(Column(
@@ -363,7 +372,7 @@ class _BillingScreenState extends State<BillingScreen> {
         onPressed: null,
         child: Text(buttonLabel))),
       const SizedBox(height: 6),
-      Center(child: Text('Google Play checkout is not connected yet.',
+      Center(child: Text('Google Play purchases remain disabled until activation.',
         style: TextStyle(fontSize: 10, color: muted))),
     ],
   ), highlight: popular);
