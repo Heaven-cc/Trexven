@@ -42,6 +42,8 @@ class _InventoryTabState extends State<InventoryTab> {
   bool _lowStockOnly = false;
 
   String _sort = 'name';
+  static const int _batchSize = 20;
+  int _visibleCount = _batchSize;
 
   Color get _background => Theme.of(context).scaffoldBackgroundColor;
   Color get _card => Theme.of(context).trexvenColors.cardBackground ??
@@ -72,6 +74,7 @@ class _InventoryTabState extends State<InventoryTab> {
 
   void _retry() {
     setState(() {
+      _visibleCount = _batchSize;
       _products = withInitialLoadTimeout(
         _db.getProductsStream(),
       );
@@ -85,6 +88,7 @@ class _InventoryTabState extends State<InventoryTab> {
         builder: (_) => screen,
       ),
     );
+    if (mounted) _retry();
   }
 
   void _restock() {
@@ -190,6 +194,7 @@ class _InventoryTabState extends State<InventoryTab> {
                           _category == null,
                               () {
                             setState(() {
+                              _visibleCount = _batchSize;
                               _category = null;
                             });
                             refresh(() {});
@@ -202,7 +207,8 @@ class _InventoryTabState extends State<InventoryTab> {
                             _category == category,
                                 () {
                               setState(() {
-                                _category = category;
+                                _visibleCount = _batchSize;
+                              _category = category;
                               });
                               refresh(() {});
                             },
@@ -221,6 +227,7 @@ class _InventoryTabState extends State<InventoryTab> {
                       activeTrackColor: _blue,
                       onChanged: (value) {
                         setState(() {
+                          _visibleCount = _batchSize;
                           _showArchived = value;
                         });
                         refresh(() {});
@@ -310,7 +317,8 @@ class _InventoryTabState extends State<InventoryTab> {
                   activeColor: _blue,
                   onChanged: (value) {
                     setState(() {
-                      _sort = value ?? 'name';
+                      _visibleCount = _batchSize;
+                        _sort = value ?? 'name';
                     });
                     Navigator.pop(sheetContext);
                   },
@@ -323,7 +331,8 @@ class _InventoryTabState extends State<InventoryTab> {
                   activeColor: _blue,
                   onChanged: (value) {
                     setState(() {
-                      _sort = value ?? 'stock';
+                      _visibleCount = _batchSize;
+                        _sort = value ?? 'stock';
                     });
                     Navigator.pop(sheetContext);
                   },
@@ -340,6 +349,13 @@ class _InventoryTabState extends State<InventoryTab> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: _background,
+      bottomNavigationBar: SafeArea(
+        top: false,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 8, 16, 10),
+          child: _buildBottomActions(),
+        ),
+      ),
       body: StreamBuilder<List<Product>>(
         stream: _products,
         builder: (context, snapshot) {
@@ -489,7 +505,7 @@ class _InventoryTabState extends State<InventoryTab> {
                       horizontal: 16,
                     ),
                     sliver: SliverList.builder(
-                      itemCount: products.length,
+                      itemCount: visibleProducts.length,
                       itemBuilder: (context, index) {
                         return Padding(
                           padding:
@@ -497,21 +513,26 @@ class _InventoryTabState extends State<InventoryTab> {
                             bottom: 10,
                           ),
                           child: _buildProductCard(
-                            products[index],
+                            visibleProducts[index],
                           ),
                         );
                       },
                     ),
                   ),
-
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(
-                      16, 12, 16, 8,
+                if (products.length > visibleProducts.length)
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
+                      child: OutlinedButton(
+                        onPressed: () => setState(() {
+                          _visibleCount += _batchSize;
+                        }),
+                        child: Text(
+                          'Show more products (${visibleProducts.length} of ${products.length})',
+                        ),
+                      ),
                     ),
-                    child: _buildBottomActions(),
                   ),
-                ),
 
                 SliverToBoxAdapter(
                   child: SizedBox(height: 20),
@@ -555,6 +576,7 @@ class _InventoryTabState extends State<InventoryTab> {
         textInputAction: TextInputAction.search,
         onChanged: (value) {
           setState(() {
+            _visibleCount = _batchSize;
             _searchQuery = value.toLowerCase();
           });
         },
@@ -669,7 +691,8 @@ class _InventoryTabState extends State<InventoryTab> {
             selected: true,
             onTap: () {
               setState(() {
-                _lowStockOnly = !_lowStockOnly;
+                _visibleCount = _batchSize;
+                  _lowStockOnly = !_lowStockOnly;
               });
             },
           ),
