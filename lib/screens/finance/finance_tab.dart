@@ -466,10 +466,13 @@ class _FinanceTabState extends State<FinanceTab> {
                     'Unable to load financial history. Please retry.',
                   );
                 if (!snapshot.hasData)
-                  return SizedBox(
+                  return const SizedBox(
                     height: 160,
                     child: Center(
-                      child: CircularProgressIndicator(color: _blue),
+                      child: Text(
+                        'Loading financial activity…',
+                        style: TextStyle(color: Color(0xFFA7B5D0)),
+                      ),
                     ),
                   );
                 final report = snapshot.data!;
