@@ -824,21 +824,26 @@ class DatabaseService {
     );
     final business = await requireBusinessId();
 
-    final summaryRes = await _supabase.rpc(
-      'get_trexven_financial_summary',
-      params: {
-        'p_business_id': business,
-        'p_start': period.start.toIso8601String(),
-        'p_end': period.end.toIso8601String(),
-      },
-    );
-    if (summaryRes is! Map) {
-      throw StateError('The financial summary is unavailable. Please retry.');
-    }
-    final rows = await Future.wait([
+    final results = await Future.wait<dynamic>([
+      _supabase.rpc(
+        'get_trexven_financial_summary',
+        params: {
+          'p_business_id': business,
+          'p_start': period.start.toIso8601String(),
+          'p_end': period.end.toIso8601String(),
+        },
+      ),
       getFinancialSales(period),
       getExpenses(period),
     ]);
+    final summaryRes = results[0];
+    if (summaryRes is! Map) {
+      throw StateError('The financial summary is unavailable. Please retry.');
+    }
+    final rows = [
+      results[1] as List<Map<String, dynamic>>,
+      results[2] as List<Map<String, dynamic>>,
+    ];
     return FinanceReport(
       period,
       Map<String, dynamic>.from(summaryRes),
