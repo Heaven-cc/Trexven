@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:trexven_operations/trexven_operations.dart';
 import '../../services/database_service.dart';
 import '../inventory/inventory_tab.dart';
+import '../inventory/angel_inventory_approval_screen.dart';
 import '../finance/operational_finance_screen.dart';
 import '../intelligence/alerts_screen.dart';
 import 'employment_screen.dart';
@@ -49,6 +50,8 @@ class _NotificationsSettingsScreenState
             api: OperationsClient(Supabase.instance.client, id),
             open: (context, route, referenceId) {
               final Widget screen = switch (route) {
+                'angel_inventory_approval' when referenceId != null => AngelInventoryApprovalScreen(client: Supabase.instance.client, businessId: id, requestId: referenceId),
+                'credit' || 'returns' => FinancialOperationsScreen(api: OperationsClient(Supabase.instance.client, id), owner: true, notificationReferenceId:referenceId, notificationIsReturn:route == 'returns'),
                 'inventory' => InventoryTab(),
                 'cash' => OperationalFinanceScreen(),
                 'employees' => EmploymentScreen(),
@@ -515,3 +518,4 @@ class _NotificationsSettingsScreenState
     );
   }
 }
+

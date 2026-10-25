@@ -13,6 +13,8 @@ import 'catalog_editor_screen.dart';
 import 'catalog_import_screen.dart';
 import 'add_product_screen.dart';
 import 'scanner_screen.dart';
+import 'angel_scan_review_screen.dart';
+import '../../services/angel_scan_client.dart';
 
 class InventoryTab extends StatefulWidget {
   const InventoryTab({
@@ -120,17 +122,29 @@ class _InventoryTabState extends State<InventoryTab> {
   }
 
   Future<void> _scan() async {
-    final scannedBarcode = await Navigator.push<String>(
-      context,
-      MaterialPageRoute(
-        builder: (_) => ScannerScreen(),
-      ),
-    );
-    if (mounted && scannedBarcode != null && scannedBarcode.isNotEmpty) {
-      setState(() {
-        _searchQuery = scannedBarcode;
-      });
-      _searchController.text = scannedBarcode;
+    try {
+      final business = await _db.requireBusinessId();
+      final client = Supabase.instance.client;
+      final owner = client.auth.currentUser?.id;
+      final row = await client.from('businesses').select('owner_id,branches_enabled').eq('id', business).single();
+      if (row['owner_id'] != owner) throw StateError('Verified owner required.');
+      String? branch;
+      if (row['branches_enabled'] == true) {
+        final branches = await client.from('branches').select('id,name').eq('business_id', business).eq('is_active', true).order('name');
+        if (!mounted) return;
+        branch = await showDialog<String>(context: context, builder: (c) => SimpleDialog(
+          title: const Text('Restock which branch?'), children: [
+            for (final b in branches) SimpleDialogOption(onPressed: () => Navigator.pop(c, b['id'].toString()), child: Text(b['name'].toString())),
+            if (branches.isEmpty) const Padding(padding: EdgeInsets.all(16), child: Text('No active branch available.')),
+          ]));
+        if (branch == null) return;
+      }
+      if (!mounted) return;
+      await _openScreen(AngelScanReviewScreen(api: AngelScanClient(client, businessId: business,
+        branchId: branch, inventoryMode: true), owner: true,
+        scanBarcode: () => Navigator.push<String>(context, MaterialPageRoute(builder: (_) => const ScannerScreen()))));
+    } catch (_) {
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Unable to open Angel Scan. Verify current owner and branch access.')));
     }
   }
 
@@ -418,6 +432,8 @@ class _InventoryTabState extends State<InventoryTab> {
                 .toLowerCase()
                 .compareTo(b.name.toLowerCase());
           });
+
+          final visibleProducts = products.take(_visibleCount).toList();
 
           final activeProducts = allProducts
               .where(
@@ -1026,3 +1042,4 @@ class _InventoryTabState extends State<InventoryTab> {
     );
   }
 }
+
