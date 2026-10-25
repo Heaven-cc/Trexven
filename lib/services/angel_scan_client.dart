@@ -42,6 +42,7 @@ class AngelScanClient {
   Future<Map<String, dynamic>> recognize(
     Uint8List bytes, {
     bool document = false,
+    bool autoDetect = false,
     bool research = false,
   }) async {
     checkSession();
@@ -54,6 +55,7 @@ class AngelScanClient {
         'branch_id': branchId,
         'purpose': inventoryMode ? 'inventory' : 'sale',
         'document': document,
+        'auto_detect': autoDetect,
         'research': research,
         'mime_type': imageType(bytes),
         'image_base64': base64Encode(bytes),
