@@ -1388,7 +1388,7 @@ context: context,
             'Return to the original authorized account and business to continue.',
           )
         : _loading
-        ? const Center(child: TrexvenLoading())
+        ? const TrexvenSkeleton(kind: TrexvenSkeletonKind.operations)
         : RefreshIndicator(
             onRefresh: () => _reload(),
             child: ListView(
