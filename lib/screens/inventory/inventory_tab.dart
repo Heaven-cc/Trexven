@@ -370,9 +370,7 @@ class _InventoryTabState extends State<InventoryTab> {
           }
 
           if (!snapshot.hasData) {
-            return Center(
-              child: TrexvenLoading(),
-            );
+            return const TrexvenSkeleton(kind: TrexvenSkeletonKind.inventory);
           }
 
           final allProducts = snapshot.data!;
