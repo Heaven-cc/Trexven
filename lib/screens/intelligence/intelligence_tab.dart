@@ -42,7 +42,7 @@ class _IntelligenceTabState extends State<IntelligenceTab> {
 
   Future<void> _loadCameras() async {
     setState(() {
-      _loading = true;
+      _loading = _cameras.isEmpty;
       _error = null;
     });
 
@@ -168,7 +168,7 @@ class _IntelligenceTabState extends State<IntelligenceTab> {
           child: RefreshIndicator(
             onRefresh: _loadCameras,
             child: _loading
-                ? Center(child: TrexvenLoading())
+                ? const TrexvenSkeleton(kind: TrexvenSkeletonKind.intelligence)
                 : _error != null
                 ? ListView(
                     padding: TrexvenSpacing.pagePadding,
