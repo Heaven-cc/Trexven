@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import '../screens/intelligence/event_detail_screen.dart';
 import 'alert_service.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:trexven_operations/trexven_operations.dart';
+import '../screens/inventory/angel_inventory_approval_screen.dart';
+import 'database_service.dart';
 import '../screens/finance/operational_finance_screen.dart';
 import '../screens/inventory/inventory_tab.dart';
 import '../screens/me/employment_screen.dart';
@@ -26,7 +30,19 @@ Future<void> openAlertDestination(
   if (!context.mounted) return;
   final eventId = alert['reference_id'];
   final source = alert['source'];
-  if (eventId != null &&
+  if (alert['route'] == 'angel_inventory_approval' && eventId != null) {
+    final business = await DatabaseService().requireBusinessId();
+    if (!context.mounted) return;
+    if (alert['business_id'] != null && alert['business_id'] != business) return;
+    await Navigator.push(context, MaterialPageRoute(builder: (_) => AngelInventoryApprovalScreen(
+      client: Supabase.instance.client, businessId: business, requestId: eventId.toString())));
+  } else if (alert['route'] == 'credit' || alert['route'] == 'returns') {
+    final business = await DatabaseService().requireBusinessId();
+    if (!context.mounted) return;
+    if (alert['business_id'] != null && alert['business_id'] != business) return;
+    await Navigator.push(context, MaterialPageRoute(builder: (_) => FinancialOperationsScreen(
+      api: OperationsClient(Supabase.instance.client, business), owner: true, notificationReferenceId:eventId?.toString(), notificationIsReturn:alert['route'] == 'returns')));
+  } else if (eventId != null &&
       (source == 'vision_local' ||
           source == 'vision_intelligence' ||
           source == 'camera_ai')) {
@@ -71,3 +87,4 @@ Future<void> openAlertDestination(
     );
   }
 }
+

@@ -40,6 +40,7 @@ class _OperationalPermissionsScreenState
       'reverse_credit_repayment',
     ],
     'Inventory operations': [
+      'angel_scan_inventory',
       'stocktake',
       'approve_stocktake',
       'dispose_stock',
@@ -56,6 +57,7 @@ class _OperationalPermissionsScreenState
   };
 
   static const Map<String, String> _permissionNames = {
+    'angel_scan_inventory': 'Angel Scan inventory (managers only)',
     'offline_cash': 'Offline cash transactions',
     'approve_credit': 'Approve customer credit',
     'record_credit_repayment': 'Record credit repayments',
@@ -369,7 +371,7 @@ class _OperationalPermissionsScreenState
                                       group.value[i]] ??
                                           false,
                                       activeTrackColor: _blue,
-                                      onChanged: busy
+                                      onChanged: busy || (group.value[i] == 'angel_scan_inventory' && employee['role'] != 'manager')
                                           ? null
                                           : (value) =>
                                           changePermission(
@@ -798,3 +800,4 @@ class _OperationalPermissionsScreenState
     );
   }
 }
+

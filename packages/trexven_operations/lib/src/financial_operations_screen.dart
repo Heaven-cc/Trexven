@@ -20,6 +20,8 @@ class FinancialOperationsScreen extends StatefulWidget {
   final bool manager;
   final Set<String> permissions;
   final String? branchId;
+  final String? notificationReferenceId;
+  final bool notificationIsReturn;
   final String? currency;
   final bool Function()? contextIsCurrent;
   final VoidCallback? onRecordsChanged;
@@ -30,6 +32,8 @@ class FinancialOperationsScreen extends StatefulWidget {
     this.manager = false,
     this.permissions = const {},
     this.branchId,
+    this.notificationReferenceId,
+    this.notificationIsReturn = false,
     this.currency,
     this.contextIsCurrent,
     this.onRecordsChanged,
@@ -88,6 +92,7 @@ class _FinancialOperationsScreenState extends State<FinancialOperationsScreen>
   void initState() {
     super.initState();
     _actor = widget.api.client.auth.currentUser?.id;
+    if (widget.notificationIsReturn) _tab = 1;
     _currency = widget.currency;
     WidgetsBinding.instance.addObserver(this);
     _authChanges = widget.api.client.auth.onAuthStateChange.listen((event) {
@@ -1048,7 +1053,7 @@ context: context,
           ),
         ),
       const SizedBox(height: 12),
-      for (final request in _returns.rows.reversed)
+      for (final request in _returns.rows.reversed.where((r) => !widget.notificationIsReturn || widget.notificationReferenceId == null || r['id'] == widget.notificationReferenceId))
         Padding(
           padding: EdgeInsets.only(bottom: TrexvenPresentation.spacing(context, 10)),
           child: _CreditCard(
@@ -1134,6 +1139,7 @@ context: context,
         _CreditCard(
           child: ExpansionTile(
             tilePadding: EdgeInsets.zero,
+            initiallyExpanded: widget.notificationReferenceId != null && !widget.notificationIsReturn,
             title: const Text('Review credit requests'),
             subtitle: const Text('Decisions apply to the original saved sale.'),
             children: [
@@ -1144,7 +1150,7 @@ context: context,
                   padding: EdgeInsets.all(12),
                   child: Text('No credit requests.'),
                 ),
-              for (final approval in _approvals.rows.reversed)
+              for (final approval in _approvals.rows.reversed.where((a) => widget.notificationIsReturn || widget.notificationReferenceId == null || a['id'] == widget.notificationReferenceId))
                 _approvalTile(approval),
             ],
           ),
@@ -1486,3 +1492,4 @@ context: context,
           ),
   );
 }
+

@@ -575,6 +575,8 @@ class _PermissionOverridesState
   bool _canGrant(String id) {
     final role = widget.employee['role'];
 
+    if (id == 'angel_scan_inventory' && role != 'manager') return false;
+
     if (priceOrFinance.contains(id) &&
         role != 'manager') {
       return false;
@@ -1209,3 +1211,4 @@ class _AccessError extends StatelessWidget {
     );
   }
 }
+
