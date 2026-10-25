@@ -203,7 +203,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     final theme = Theme.of(context);
 
     if (_isLoading) {
-      return const Center(child: TrexvenLoading());
+      return const TrexvenSkeleton(kind: TrexvenSkeletonKind.dashboard);
     }
 
     if (_errorMessage != null && !_hasLoadedStats) {
