@@ -14,6 +14,7 @@ import 'catalog_import_screen.dart';
 import 'add_product_screen.dart';
 import 'scanner_screen.dart';
 import 'angel_scan_review_screen.dart';
+import 'angel_auto_camera_screen.dart';
 import '../../services/angel_scan_client.dart';
 
 class InventoryTab extends StatefulWidget {
@@ -126,25 +127,48 @@ class _InventoryTabState extends State<InventoryTab> {
       final business = await _db.requireBusinessId();
       final client = Supabase.instance.client;
       final owner = client.auth.currentUser?.id;
-      final row = await client.from('businesses').select('owner_id,branches_enabled').eq('id', business).single();
-      if (row['owner_id'] != owner) throw StateError('Verified owner required.');
+      final row = await client.from('businesses')
+          .select('owner_id,branches_enabled').eq('id',business).single();
+      if (owner == null || row['owner_id'] != owner) throw StateError('Owner required');
       String? branch;
       if (row['branches_enabled'] == true) {
-        final branches = await client.from('branches').select('id,name').eq('business_id', business).eq('is_active', true).order('name');
+        final branches = await client.from('branches').select('id,name')
+            .eq('business_id',business).eq('is_active',true).order('name');
         if (!mounted) return;
-        branch = await showDialog<String>(context: context, builder: (c) => SimpleDialog(
-          title: const Text('Restock which branch?'), children: [
-            for (final b in branches) SimpleDialogOption(onPressed: () => Navigator.pop(c, b['id'].toString()), child: Text(b['name'].toString())),
-            if (branches.isEmpty) const Padding(padding: EdgeInsets.all(16), child: Text('No active branch available.')),
-          ]));
+        branch = await showDialog<String>(context: context, builder: (ctx) => SimpleDialog(
+          title: const Text('Select inventory branch'),
+          children: [
+            for(final item in branches)
+              SimpleDialogOption(
+                onPressed: () => Navigator.pop(ctx,item['id'].toString()),
+                child: Text(item['name'].toString()),
+              ),
+          ],
+        ));
         if (branch == null) return;
       }
       if (!mounted) return;
-      await _openScreen(AngelScanReviewScreen(api: AngelScanClient(client, businessId: business,
-        branchId: branch, inventoryMode: true), owner: true,
-        scanBarcode: () => Navigator.push<String>(context, MaterialPageRoute(builder: (_) => const ScannerScreen()))));
+      final api = AngelScanClient(client, businessId:business, branchId:branch, inventoryMode:true);
+      await _openScreen(AngelAutoCameraScreen(
+        api:api,
+        contextIsCurrent: () => client.auth.currentUser?.id == owner,
+        onRecognized:(items,sourceHash) async {
+          if (!mounted) return;
+          await Navigator.push<void>(context, MaterialPageRoute(builder: (_) =>
+            AngelScanReviewScreen(
+              api:api,
+              owner:true,
+              initialItems:items,
+              automaticSourceHash:sourceHash,
+            ),
+          ));
+          if (mounted) _retry();
+        },
+      ));
     } catch (_) {
-      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Unable to open Angel Scan. Verify current owner and branch access.')));
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content:Text('Unable to open Angel Scan. Verify camera and owner access.'),
+      ));
     }
   }
 
