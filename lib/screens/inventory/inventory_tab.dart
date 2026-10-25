@@ -32,6 +32,7 @@ class InventoryTab extends StatefulWidget {
 class _InventoryTabState extends State<InventoryTab> {
   late final DatabaseService _db;
   late Stream<List<Product>> _products;
+  String _currency = 'NGN';
 
   final TextEditingController _searchController =
   TextEditingController();
@@ -66,6 +67,7 @@ class _InventoryTabState extends State<InventoryTab> {
     _products = withInitialLoadTimeout(
       _db.getProductsStream(),
     );
+    _loadCurrency();
   }
 
   @override
@@ -73,6 +75,20 @@ class _InventoryTabState extends State<InventoryTab> {
     _searchController.dispose();
     _searchFocus.dispose();
     super.dispose();
+  }
+
+  Future<void> _loadCurrency() async {
+    try {
+      final id = await _db.requireBusinessId();
+      final row = await Supabase.instance.client.from('businesses')
+          .select('currency').eq('id', id).single();
+      final code = row['currency']?.toString().trim().toUpperCase();
+      if (mounted && code != null && RegExp(r'^[A-Z]{3}$').hasMatch(code)) {
+        setState(() => _currency = code);
+      }
+    } catch (_) {
+      // Keep the default currency when business settings are temporarily unavailable.
+    }
   }
 
   void _retry() {
@@ -112,7 +128,6 @@ class _InventoryTabState extends State<InventoryTab> {
         scanBarcode: (context) => Navigator.push<String>(
           context, MaterialPageRoute(builder: (_) => const ScannerScreen())),
       ));
-      if (mounted) _retry();
     } catch (error) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -162,7 +177,6 @@ class _InventoryTabState extends State<InventoryTab> {
               automaticSourceHash:sourceHash,
             ),
           ));
-          if (mounted) _retry();
         },
       ));
     } catch (_) {
@@ -432,6 +446,7 @@ class _InventoryTabState extends State<InventoryTab> {
                 query.isEmpty ||
                     [
                       p.name,
+                      p.brand ?? '',
                       p.barcode ?? '',
                       p.sku ?? '',
                       p.category ?? '',
@@ -478,12 +493,7 @@ class _InventoryTabState extends State<InventoryTab> {
           )
               .length;
 
-          return RefreshIndicator(
-            onRefresh: () async {
-              _retry();
-            },
-            color: _blue,
-            child: CustomScrollView(
+          return CustomScrollView(
               physics:
               AlwaysScrollableScrollPhysics(
                 parent: BouncingScrollPhysics(),
@@ -576,8 +586,7 @@ class _InventoryTabState extends State<InventoryTab> {
                   child: SizedBox(height: 20),
                 ),
               ],
-            ),
-          );
+            );
         },
       ),
     );
@@ -808,7 +817,7 @@ class _InventoryTabState extends State<InventoryTab> {
       Product product,
       ) {
     final currency = NumberFormat.currency(
-      symbol: 'NGN ',
+      symbol: '$_currency ',
       decimalDigits: 2,
     );
 
@@ -918,6 +927,7 @@ class _InventoryTabState extends State<InventoryTab> {
 
   Widget _buildBottomActions() {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Row(
           children: [

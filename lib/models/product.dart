@@ -6,6 +6,7 @@ class Product {
   final bool isPricePending;
   final num stock;
   final String? category;
+  final String? brand;
   final String? sku;
   final String? barcode;
   final String? description;
@@ -25,6 +26,7 @@ class Product {
     this.isPricePending = false,
     required this.stock,
     this.category,
+    this.brand,
     this.sku,
     this.barcode,
     this.description,
@@ -49,6 +51,7 @@ class Product {
       isPricePending: map['selling_price'] == null,
       stock: (map['quantity'] as num?) ?? 0,
       category: map['category'],
+      brand: map['brand'],
       sku: map['sku'],
       barcode: map['barcode'],
       description: map['description'],
@@ -74,6 +77,7 @@ class Product {
       'selling_price': isPricePending ? null : price,
       'quantity': stock,
       'category': category,
+      if (brand != null) 'brand': brand,
       'sku': sku,
       'barcode': barcode,
       'description': description,

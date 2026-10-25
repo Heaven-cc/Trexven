@@ -99,7 +99,8 @@ class _AngelAutoCameraScreenState extends State<AngelAutoCameraScreen> with Widg
       // POS recognizes only one sellable product.
       final result = await widget.api.recognize(
         bytes,
-        document: widget.api.inventoryMode,
+        document: false,
+        autoDetect: widget.api.inventoryMode,
       );
       final items = (result['items'] as List?)
               ?.map((x) => Map<String, dynamic>.from(x as Map))
