@@ -283,7 +283,7 @@ class _FinanceTabState extends State<FinanceTab> {
       if (snapshot.hasError)
         return _error('Unable to load revenue. Please retry.');
       if (!snapshot.hasData)
-        return _card(child: const Center(child: TrexvenLoading()));
+        return _card(child: const TrexvenSkeleton(kind: TrexvenSkeletonKind.financeSummary, scrollable: false));
       final data = snapshot.data!;
       _current = data;
       final revenue = financialNumber(data.summary['gross_sales']);
@@ -469,10 +469,7 @@ class _FinanceTabState extends State<FinanceTab> {
                   return const SizedBox(
                     height: 160,
                     child: Center(
-                      child: Text(
-                        'Loading financial activity…',
-                        style: TextStyle(color: Color(0xFFA7B5D0)),
-                      ),
+                      child: TrexvenSkeleton(kind: TrexvenSkeletonKind.financeChart, scrollable: false),
                     ),
                   );
                 final report = snapshot.data!;
@@ -643,7 +640,7 @@ class _FinanceTabState extends State<FinanceTab> {
       if (snapshot.hasError)
         return _error('Unable to load transactions. Please retry.');
       if (!snapshot.hasData)
-        return _card(child: const Center(child: TrexvenLoading()));
+        return _card(child: const TrexvenSkeleton(kind: TrexvenSkeletonKind.financeSummary, scrollable: false));
       final report = snapshot.data!;
       return _card(
         child: Column(
