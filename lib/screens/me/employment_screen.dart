@@ -76,7 +76,7 @@ class _EmploymentScreenState extends State<EmploymentScreen> {
               ),
             )
           : _businessId == null
-          ? const Center(child: TrexvenLoading())
+          ? const TrexvenSkeleton(kind: TrexvenSkeletonKind.employees)
           : Column(
               children: [
                 _buildStats(theme),
@@ -239,9 +239,7 @@ class _EmploymentScreenState extends State<EmploymentScreen> {
             ),
           );
         if (!snapshot.hasData)
-          return Center(
-            child: CircularProgressIndicator(color: theme.colorScheme.primary),
-          );
+          return const TrexvenSkeleton(kind: TrexvenSkeletonKind.employees);
 
         final list = snapshot.data!.where((e) {
           final matchesSearch =
