@@ -31,7 +31,7 @@ class OwnerOperationRecoveryRequired extends StateError {
 
 class DatabaseService {
   static const catalogProductColumns =
-      'id,business_id,name,selling_price,quantity,category,sku,barcode,description,image_url,unit,active,is_active,catalog_group_id,variant_attributes,low_stock_threshold,created_at';
+      'id,business_id,name,selling_price,quantity,category,brand,sku,barcode,description,image_url,unit,active,is_active,catalog_group_id,variant_attributes,low_stock_threshold,created_at';
   static const productColumns =
       'id,business_id,name,selling_price,quantity,category,sku,barcode,description,image_url,unit,active,is_active,low_stock_threshold,created_at';
   static final Map<String, String> _selectedBusinesses = {};
