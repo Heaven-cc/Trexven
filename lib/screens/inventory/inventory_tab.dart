@@ -403,9 +403,12 @@ class _InventoryTabState extends State<InventoryTab> {
       backgroundColor: _background,
       bottomNavigationBar: SafeArea(
         top: false,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 8, 16, 10),
-          child: _buildBottomActions(),
+        child: SizedBox(
+          height: 140,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 10),
+            child: _buildBottomActions(),
+          ),
         ),
       ),
       body: StreamBuilder<List<Product>>(
