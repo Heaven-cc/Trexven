@@ -165,7 +165,7 @@ class _AngelInventoryApprovalScreenState
               'Decision: ${row['status']} • Stock: ${row['application_status']}',
             ),
             if (row['applied_at'] != null) Text('Posted: ${row['applied_at']}'),
-            if (_busy) const LinearProgressIndicator(),
+            if (_busy) const Text('Working…'),
             if (_error != null || row['application_error'] != null)
               Text(
                 '${_error ?? row['application_error']}',
