@@ -420,10 +420,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ? const SizedBox(
           width: 20,
           height: 20,
-          child: CircularProgressIndicator(
-            strokeWidth: 2,
-            color: Colors.white,
-          ),
+          child: Text('Please wait…'),
         )
             : const Row(
           mainAxisAlignment:
