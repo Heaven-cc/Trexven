@@ -259,10 +259,7 @@ class _DataBackupScreenState extends State<DataBackupScreen> {
             ? SizedBox(
                 width: 20,
                 height: 20,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  color: brandBlue,
-                ),
+                child: Text('Please wait…'),
               )
             : Icon(Icons.chevron_right, color: muted.withValues(alpha: 0.5)),
         ),
