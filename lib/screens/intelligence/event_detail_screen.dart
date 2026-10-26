@@ -51,7 +51,7 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
       future: _detail,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: TrexvenLoading());
+          return Center(child: Text('Loading…'));
         }
         if (snapshot.hasError) {
           return Center(
