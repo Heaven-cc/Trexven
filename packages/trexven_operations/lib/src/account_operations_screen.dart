@@ -220,9 +220,7 @@ class _AccountOperationsScreenState
 
             if (busy) ...[
               const SizedBox(height: 12),
-              LinearProgressIndicator(
-                color: _blue,
-              ),
+              Text('Working…'),
             ],
 
             if (message != null) ...[
@@ -369,10 +367,7 @@ class _AccountOperationsScreenState
                 vertical: 12,
               ),
               child: Center(
-                child: CircularProgressIndicator(
-                  color: _blue,
-                  strokeWidth: 2,
-                ),
+                child: Text('Please wait…'),
               ),
             ),
           );
@@ -580,10 +575,7 @@ class _AccountOperationsScreenState
             child: Center(
               child: Padding(
                 padding: EdgeInsets.all(12),
-                child: CircularProgressIndicator(
-                  color: _blue,
-                  strokeWidth: 2,
-                ),
+                child: Text('Please wait…'),
               ),
             ),
           );

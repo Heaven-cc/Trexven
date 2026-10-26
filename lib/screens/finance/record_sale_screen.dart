@@ -598,7 +598,7 @@ class _RecordSaleScreenState extends State<RecordSaleScreen> {
             if (!snapshot.hasData &&
                 snapshot.connectionState == ConnectionState.waiting &&
                 !retainsSale) {
-              return const Center(child: TrexvenLoading());
+              return const Center(child: Text('Loading…'));
             }
             if (snapshot.hasError && !retainsSale) {
               return _ErrorState(
@@ -954,10 +954,7 @@ class _RecordSaleScreenState extends State<RecordSaleScreen> {
                                 ? const SizedBox(
                                     width: 22,
                                     height: 22,
-                                    child: CircularProgressIndicator(
-                                      strokeWidth: 2.4,
-                                      color: Colors.white,
-                                    ),
+                                    child: Icon(Icons.more_horiz_rounded, size: 16),
                                   )
                                 : Text(
                                     product == null

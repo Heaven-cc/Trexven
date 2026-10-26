@@ -123,7 +123,7 @@ class _AccountGateState extends State<AccountGate> {
           ),
         );
       }
-      return snapshot.data ?? Scaffold(body: Center(child: TrexvenLoading()));
+      return snapshot.data ?? Scaffold(body: Center(child: Text('Loading…')));
     },
   );
 }

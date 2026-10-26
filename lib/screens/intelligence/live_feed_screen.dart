@@ -328,7 +328,7 @@ class _LiveFeedScreenState extends State<LiveFeedScreen>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if (!_attempted) CircularProgressIndicator(color: brandBlue),
+            if (!_attempted) Text('Please wait…'),
             SizedBox(height: TrexvenSpacing.fieldGap),
             Text(
               _attempted

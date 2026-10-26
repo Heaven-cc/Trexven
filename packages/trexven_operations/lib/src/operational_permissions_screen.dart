@@ -306,9 +306,7 @@ class _OperationalPermissionsScreenState
                           ),
                           if (busy) ...[
                             const SizedBox(height: 12),
-                            LinearProgressIndicator(
-                              color: _blue,
-                            ),
+                            Text('Working…'),
                           ],
                           if (errorMessage != null) ...[
                             const SizedBox(height: 12),
@@ -487,7 +485,7 @@ class _OperationalPermissionsScreenState
         future: employees,
         builder: (context, snapshot) {
           if (snapshot.connectionState != ConnectionState.done) {
-            return const Center(child: TrexvenLoading());
+            return const Center(child: Text('Loading…'));
           }
 
           if (snapshot.hasError) {

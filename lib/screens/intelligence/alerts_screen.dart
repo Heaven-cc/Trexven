@@ -93,7 +93,7 @@ class _AlertsScreenState extends State<AlertsScreen> {
             ),
           Expanded(
             child: _alertService.loading
-                ? Center(child: TrexvenLoading())
+                ? Center(child: Text('Loading…'))
                 : alerts.isEmpty
                 ? _buildEmptyState(theme)
                 : ListView.builder(

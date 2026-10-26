@@ -78,7 +78,7 @@ class _RecordingPlaybackScreenState extends State<RecordingPlaybackScreen> {
         child: _failed || (player?.value.hasError ?? false)
             ? Text('Unable to play this recording. Reopen it to retry.')
             : player == null
-            ? CircularProgressIndicator()
+            ? Text('Please wait…')
             : Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

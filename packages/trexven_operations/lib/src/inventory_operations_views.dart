@@ -130,7 +130,7 @@ context: context,
           future: _data,
           builder: (context, snapshot) {
             if (snapshot.connectionState != ConnectionState.done) {
-              return const Center(child: TrexvenLoading());
+              return const Center(child: Text('Loading…'));
             }
             if (!ops._current || snapshot.hasError || !snapshot.hasData) {
               return Center(child: Padding(padding: const EdgeInsets.all(24),
@@ -172,7 +172,7 @@ context: context,
                 children: [Center(child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 840),
                   child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-                    if (_working) const LinearProgressIndicator(minHeight: 3),
+                    if (_working) const Text('Working…'),
                     if (_notice != null) ...[
                       ops._notice(_notice!), const SizedBox(height: 12),
                     ],

@@ -729,7 +729,7 @@ class _AngelScanReviewScreenState extends State<AngelScanReviewScreen> {
         ],
         if (_busy) ...[
           const SizedBox(height: 12),
-          const LinearProgressIndicator(),
+          const Text('Working…'),
           Text('Processing · $_progress pages read'),
         ],
         if (_error != null)

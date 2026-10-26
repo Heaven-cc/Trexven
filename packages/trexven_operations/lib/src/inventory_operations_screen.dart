@@ -1038,7 +1038,7 @@ context: context,
                 constraints: const BoxConstraints(maxWidth: 840),
                 child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                   if (busy) const Padding(padding: EdgeInsets.only(bottom: 12),
-                    child: LinearProgressIndicator(minHeight: 3)),
+                    child: Text('Working…')),
                   if (message != null) ...[
                     _notice(message!),
                     Align(alignment: Alignment.centerRight, child: TextButton(

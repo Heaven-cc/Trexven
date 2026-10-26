@@ -455,10 +455,7 @@ class TrexvenAuthPrimaryButton extends StatelessWidget {
                   ? const SizedBox(
                       width: 22,
                       height: 22,
-                      child: CircularProgressIndicator(
-                        color: Colors.white,
-                        strokeWidth: 2.4,
-                      ),
+                      child: Icon(Icons.more_horiz_rounded, size: 16),
                     )
                   : Row(
                       mainAxisSize: MainAxisSize.min,

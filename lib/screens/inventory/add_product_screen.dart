@@ -486,7 +486,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
               SizedBox(
                 width: 20,
                 height: 20,
-                child: CircularProgressIndicator(strokeWidth: 2),
+                child: Icon(Icons.more_horiz_rounded, size: 16),
               ),
               SizedBox(width: 12),
               Flexible(child: Text('Loading products…')),
@@ -964,10 +964,7 @@ class _PrimaryButton extends StatelessWidget {
             ? SizedBox(
                 width: 22,
                 height: 22,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2.4,
-                  color: colors.onPrimary,
-                ),
+                child: Icon(Icons.more_horiz_rounded, size: 16),
               )
             : Text(text, textAlign: TextAlign.center),
       ),

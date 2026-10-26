@@ -241,7 +241,7 @@ class _BillingScreenState extends State<BillingScreen> {
           _billingBackdrop(),
           SafeArea(
           child: _loading
-              ? const Center(child: TrexvenLoading())
+              ? const Center(child: Text('Loading…'))
               : _error != null
               ? _errorView()
               : RefreshIndicator(

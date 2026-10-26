@@ -23,7 +23,7 @@ class _PermissionsScreenState extends State<PermissionsScreen> {
           ),
         );
       if (snapshot.connectionState != ConnectionState.done)
-        return Scaffold(body: Center(child: TrexvenLoading()));
+        return Scaffold(body: Center(child: Text('Loading…')));
       final id = snapshot.data;
       if (id == null)
         return Scaffold(

@@ -103,7 +103,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
         if (_rows.isEmpty && !_busy && _error == null)
           const Text('No transactions in this period.'),
         if (_error != null) Text(_error!),
-        if (_busy) const Center(child: CircularProgressIndicator()),
+        if (_busy) const Center(child: Text('Please wait…')),
         if (_more && !_busy)
           TextButton(
             onPressed: _load,

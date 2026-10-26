@@ -187,7 +187,7 @@ class _NotificationsSettingsScreenState
     if (_loading) {
       return Scaffold(
         body: Center(
-          child: CircularProgressIndicator(color: theme.colorScheme.primary),
+          child: Text('Please wait…'),
         ),
       );
     }
@@ -257,7 +257,7 @@ class _NotificationsSettingsScreenState
                 child: SizedBox(
                   width: 18,
                   height: 18,
-                  child: CircularProgressIndicator(strokeWidth: 2),
+                  child: Icon(Icons.more_horiz_rounded, size: 16),
                 ),
               ),
             ),

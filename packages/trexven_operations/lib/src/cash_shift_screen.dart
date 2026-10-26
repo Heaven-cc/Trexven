@@ -375,7 +375,7 @@ context: context,
       future: data,
       builder: (context, snapshot) {
         if (snapshot.connectionState != ConnectionState.done) {
-          return const Center(child: TrexvenLoading());
+          return const Center(child: Text('Loading…'));
         }
         if (snapshot.hasError || !snapshot.hasData) {
           return Center(child: Padding(padding: const EdgeInsets.all(24), child: Column(
@@ -405,7 +405,7 @@ context: context,
             if (!TrexvenPresentation.isPos(context)) Text('Cash Management', style: TextStyle(fontSize: TrexvenPresentation.fontSize(context, 21), fontWeight: FontWeight.w800, color: TrexvenPresentation.color(context, _navy, 'ink'))),
             SizedBox(height: TrexvenPresentation.spacing(context, 5)),
             Text('Manage shared registers, cash movements, handovers and shift reconciliation.', style: TextStyle(color: TrexvenPresentation.color(context, _muted, 'muted'), fontSize: TrexvenPresentation.fontSize(context, 12), height: 1.5)),
-            if (busy) ...[const SizedBox(height: 12), LinearProgressIndicator(color: TrexvenPresentation.color(context, _blue, 'brand'))],
+            if (busy) ...[const SizedBox(height: 12), Text('Working…')],
             if (message != null) ...[const SizedBox(height: 12), _card(child: Text(message!, style: TextStyle(color: TrexvenPresentation.color(context, _navy, 'ink'), fontSize: TrexvenPresentation.fontSize(context, 12))))],
             SizedBox(height: TrexvenPresentation.spacing(context, 18)),
             if (TrexvenPresentation.isPos(context))
