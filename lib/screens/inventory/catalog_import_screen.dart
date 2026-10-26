@@ -756,10 +756,7 @@ class _CatalogImportScreenState
             ? const SizedBox(
           width: 17,
           height: 17,
-          child: CircularProgressIndicator(
-            strokeWidth: 2,
-            color: Colors.white,
-          ),
+          child: Text('Please wait…'),
         )
             : Icon(icon, size: 19),
         label: Text(
