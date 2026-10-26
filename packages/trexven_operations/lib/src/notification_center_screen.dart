@@ -130,7 +130,7 @@ class _NotificationCenterScreenState extends State<NotificationCenterScreen> {
                 'Notifications unavailable. Current access must be verified online.',
               ),
             );
-          if (!state.hasData) return Center(child: TrexvenLoading());
+          if (!state.hasData) return Center(child: Text('Loading…'));
           return ListView(
             children: [
               Padding(
@@ -144,7 +144,7 @@ class _NotificationCenterScreenState extends State<NotificationCenterScreen> {
                   padding: TrexvenSpacing.cardPadding,
                   child: Text(error!),
                 ),
-              if (busy) LinearProgressIndicator(),
+              if (busy) Text('Working…'),
               if (state.data!.isEmpty)
                 TrexvenPresentation.isPos(context)
                     ? const TrexvenEmptyState(title: 'No notifications', message: 'New operational updates will appear here.', icon: Icons.notifications_none_rounded)
