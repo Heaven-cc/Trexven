@@ -135,9 +135,7 @@ class _EditEmployeeScreenState extends State<EditEmployeeScreen> {
                       foregroundColor: Theme.of(context).colorScheme.onPrimary,
                     ),
                     child: _isLoading
-                        ? CircularProgressIndicator(
-                            color: Theme.of(context).colorScheme.onPrimary,
-                          )
+                        ? Text('Please wait…')
                         : Text(
                             'Save Changes',
                             style: TextStyle(fontWeight: FontWeight.w700),
