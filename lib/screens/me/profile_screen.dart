@@ -420,7 +420,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ? const SizedBox(
           width: 20,
           height: 20,
-          child: Text('Please wait…'),
+          child: Icon(Icons.more_horiz_rounded, size: 16),
         )
             : const Row(
           mainAxisAlignment:
