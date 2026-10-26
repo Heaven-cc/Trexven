@@ -178,7 +178,7 @@ class _BusinessProfileScreenState
         ),
       ),
       body: _isLoading
-          ? const Center(child: TrexvenLoading())
+          ? const Center(child: Text('Loading…'))
           : _error != null || _business == null
           ? _errorState()
           : _content(),
@@ -332,10 +332,7 @@ class _BusinessProfileScreenState
                         width: 20,
                         height: 20,
                         child:
-                        CircularProgressIndicator(
-                          color: _white,
-                          strokeWidth: 2,
-                        ),
+                        Text('Please wait…'),
                       )
                           : Text(
                         'Save Changes',
