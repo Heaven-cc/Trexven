@@ -380,10 +380,7 @@ class _SecurityScreenState extends State<SecurityScreen> {
                     SizedBox(
                       width: 20,
                       height: 20,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                        color: errorColor,
-                      ),
+                      child: Text('Please wait…'),
                     )
                   else
                     Icon(
