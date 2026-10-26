@@ -952,7 +952,7 @@ class _AngelScreenState extends State<AngelScreen> {
           SizedBox(
             width: 17,
             height: 17,
-            child: Text('Please wait…'),
+            child: Icon(Icons.more_horiz_rounded, size: 16),
           ),
           SizedBox(width: 12),
           Text(
