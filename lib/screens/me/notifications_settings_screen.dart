@@ -257,7 +257,7 @@ class _NotificationsSettingsScreenState
                 child: SizedBox(
                   width: 18,
                   height: 18,
-                  child: Text('Please wait…'),
+                  child: Icon(Icons.more_horiz_rounded, size: 16),
                 ),
               ),
             ),
