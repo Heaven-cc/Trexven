@@ -333,12 +333,7 @@ class _BusinessSetupScreenState extends State<BusinessSetupScreen> {
                               SizedBox(
                                 width: 19,
                                 height: 19,
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                  color: Theme.of(
-                                    context,
-                                  ).colorScheme.onPrimary,
-                                ),
+                                child: Text('Please wait…'),
                               ),
                               SizedBox(width: 12),
                               Flexible(
