@@ -13,7 +13,7 @@ import 'catalog_editor_screen.dart';
 import 'catalog_import_screen.dart';
 import 'add_product_screen.dart';
 import 'scanner_screen.dart';
-import 'angel_scan_review_screen.dart';
+import 'product_review_screen.dart';
 import 'angel_auto_camera_screen.dart';
 import '../../services/angel_scan_client.dart';
 
@@ -167,16 +167,11 @@ class _InventoryTabState extends State<InventoryTab> {
       await _openScreen(AngelAutoCameraScreen(
         api:api,
         contextIsCurrent: () => client.auth.currentUser?.id == owner,
-        onRecognized:(items,sourceHash) async {
+        onRecognized:(result, singleProduct) async {
           if (!mounted) return;
-          await Navigator.push<void>(context, MaterialPageRoute(builder: (_) =>
-            AngelScanReviewScreen(
-              api:api,
-              owner:true,
-              initialItems:items,
-              automaticSourceHash:sourceHash,
-            ),
-          ));
+          await showAngelProductReview(context, api: api, result: result,
+            singleProduct: singleProduct, owner: true,
+            contextIsCurrent: () => client.auth.currentUser?.id == owner);
         },
       ));
     } catch (_) {
