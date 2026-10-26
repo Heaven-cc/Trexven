@@ -43,7 +43,7 @@ class _ExpenseHistoryScreenState extends State<ExpenseHistoryScreen> {
             ),
           );
         if (!snapshot.hasData)
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: Text('Please wait…'));
         return ListView(
           padding: const EdgeInsets.all(16),
           children: [
