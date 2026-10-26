@@ -198,7 +198,7 @@ class _AddCameraScreenState extends State<AddCameraScreen> {
                   ? SizedBox(
                       width: 16,
                       height: 16,
-                      child: CircularProgressIndicator(strokeWidth: 2),
+                      child: Text('Please wait…'),
                     )
                   : Icon(Icons.wifi_tethering_rounded),
               label: Text(_testingConnection ? 'Testing…' : 'Test Connection'),
@@ -249,10 +249,7 @@ class _AddCameraScreenState extends State<AddCameraScreen> {
                   ? SizedBox(
                       width: 20,
                       height: 20,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                        color: Theme.of(context).colorScheme.onPrimary,
-                      ),
+                      child: Text('Please wait…'),
                     )
                   : Text(
                       'Save Camera',
