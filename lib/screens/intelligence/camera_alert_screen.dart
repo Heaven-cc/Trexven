@@ -241,7 +241,7 @@ class _CameraAlertsScreenState extends State<CameraAlertsScreen> {
                             ? SizedBox(
                                 width: 14,
                                 height: 14,
-                                child: Text('Please wait…'),
+                                child: Icon(Icons.more_horiz_rounded, size: 16),
                               )
                             : Icon(Icons.auto_awesome, size: 16),
                         label: Text(
