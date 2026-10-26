@@ -255,7 +255,7 @@ class _VisionServerScreenState extends State<VisionServerScreen> {
           onPressed: _busy ? null : _connect,
           child: Text('Connect and save'),
         ),
-        if (_busy) LinearProgressIndicator(),
+        if (_busy) Text('Working…'),
         if (_error != null)
           Padding(
             padding: EdgeInsets.symmetric(vertical: 12),
