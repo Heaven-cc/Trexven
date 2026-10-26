@@ -1,41 +1,37 @@
-
 import 'package:flutter/material.dart';
-import 'package:uuid/uuid.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:csv/csv.dart';
 import 'package:file_selector/file_selector.dart';
 import 'package:trexven_design_system/trexven_design_system.dart';
 import 'package:trexven_operations/trexven_operations.dart';
 
 import '../../services/catalog_import.dart';
 import '../../services/database_service.dart';
+import '../../services/angel_scan_client.dart';
+import 'angel_document_reader.dart';
+import 'product_review_screen.dart';
 
 class CatalogImportScreen extends StatefulWidget {
-  const CatalogImportScreen({
-    super.key,
-    required this.database,
-  });
+  const CatalogImportScreen({super.key, required this.database});
 
   final DatabaseService database;
 
   @override
-  State<CatalogImportScreen> createState() =>
-      _CatalogImportScreenState();
+  State<CatalogImportScreen> createState() => _CatalogImportScreenState();
 }
 
-class _CatalogImportScreenState
-    extends State<CatalogImportScreen> {
+class _CatalogImportScreenState extends State<CatalogImportScreen> {
   final _text = TextEditingController();
 
-  // Keep the same request ID for retries of a submitted import.
-  String _request = const Uuid().v4();
+  Map<String, dynamic>? _pdfResult;
+  AngelScanClient? _pdfApi;
 
-  List<Map<String, dynamic>>? _rows;
   List<Map<String, dynamic>>? _fileRows;
 
   String? _fileName;
   String? _error;
 
   bool _busy = false;
-  bool _submitted = false;
   bool _updateExisting = false;
   bool _showCsvEditor = false;
   bool _showInstructions = false;
@@ -67,35 +63,33 @@ class _CatalogImportScreenState
     };
 
     for (final entry in labels.entries) {
-      message = message.replaceAll(
-        entry.key,
-        entry.value,
-      );
+      message = message.replaceAll(entry.key, entry.value);
     }
 
     return message;
   }
 
   void _clearReview() {
-    _rows = null;
     _error = null;
   }
 
   Future<void> _chooseFile() async {
-    if (_busy || _submitted) return;
+    if (_busy) return;
 
     try {
       final file = await openFile(
         acceptedTypeGroups: [
           XTypeGroup(
-            label: 'Product CSV or Excel',
-            extensions: ['csv', 'xlsx'],
+            label: 'Product CSV, Excel or PDF',
+            extensions: ['csv', 'xlsx', 'pdf'],
             mimeTypes: [
               'text/csv',
+              'application/pdf',
               'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
             ],
             uniformTypeIdentifiers: [
               'public.comma-separated-values-text',
+              'com.adobe.pdf',
               'org.openxmlformats.spreadsheetml.sheet',
             ],
           ),
@@ -104,8 +98,74 @@ class _CatalogImportScreenState
 
       if (file == null) return;
 
-      final isExcel =
-      file.name.toLowerCase().endsWith('.xlsx');
+      if (await file.length() > 20000000) {
+        throw StateError('Choose a file smaller than 20 MB.');
+      }
+      if (file.name.toLowerCase().endsWith('.pdf')) {
+        setState(() {
+          _busy = true;
+          _error = null;
+        });
+        final client = Supabase.instance.client;
+        final user = client.auth.currentUser?.id;
+        final business = await widget.database.requireBusinessId();
+        final scope = await client
+            .from('businesses')
+            .select('owner_id,branches_enabled')
+            .eq('id', business)
+            .single();
+        if (user == null || scope['owner_id'] != user) {
+          throw StateError('Owner access required.');
+        }
+        String? branch;
+        if (scope['branches_enabled'] == true) {
+          final branches = await client
+              .from('branches')
+              .select('id,name')
+              .eq('business_id', business)
+              .eq('is_active', true)
+              .order('name');
+          if (!mounted) return;
+          branch = await showDialog<String>(
+            context: context,
+            builder: (c) => SimpleDialog(
+              title: const Text('Select inventory branch'),
+              children: [
+                for (final b in branches)
+                  SimpleDialogOption(
+                    onPressed: () => Navigator.pop(c, '${b['id']}'),
+                    child: Text('${b['name']}'),
+                  ),
+              ],
+            ),
+          );
+          if (branch == null) return;
+        }
+        final api = AngelScanClient(
+          client,
+          businessId: business,
+          branchId: branch,
+          inventoryMode: true,
+        );
+        final result = await AngelDocumentReader.readPdf(
+          api,
+          await file.readAsBytes(),
+          contextIsCurrent: () =>
+              mounted && client.auth.currentUser?.id == user,
+        );
+        if (!mounted) return;
+        setState(() {
+          _pdfResult = result;
+          _pdfApi = api;
+          _fileRows = null;
+          _text.clear();
+          _fileName = file.name;
+          _showCsvEditor = false;
+          _clearReview();
+        });
+        return;
+      }
+      final isExcel = file.name.toLowerCase().endsWith('.xlsx');
 
       // Parse before updating the visible state so a failed file
       // read does not replace the previous valid import.
@@ -113,9 +173,7 @@ class _CatalogImportScreenState
       String? csvContent;
 
       if (isExcel) {
-        excelRows = CatalogImport.parseExcel(
-          await file.readAsBytes(),
-        );
+        excelRows = CatalogImport.parseExcel(await file.readAsBytes());
       } else {
         csvContent = await file.readAsString();
       }
@@ -123,6 +181,8 @@ class _CatalogImportScreenState
       if (!mounted) return;
 
       setState(() {
+        _pdfResult = null;
+        _pdfApi = null;
         _fileRows = excelRows;
 
         if (isExcel) {
@@ -141,16 +201,20 @@ class _CatalogImportScreenState
       setState(() {
         _error = e is FormatException
             ? _importValidation(e.message)
+            : e is StateError
+            ? e.message.toString()
             : CustomerPresentation.error(
                 e,
                 fallback: 'Unable to read import. Please try again.',
               );
       });
+    } finally {
+      if (mounted) setState(() => _busy = false);
     }
   }
 
   Future<void> _review() async {
-    if (_busy || _submitted) return;
+    if (_busy) return;
 
     setState(() {
       _busy = true;
@@ -158,71 +222,82 @@ class _CatalogImportScreenState
     });
 
     try {
-      final rows = (
-          _fileRows ??
-              CatalogImport.parse(_text.text)
-      ).map(
-            (row) => Map<String, dynamic>.from(row),
-      ).toList();
-
-      final products = await widget.database.getProducts();
-
-      for (final row in rows) {
-        final matches = products.where(
-              (product) =>
-          (row['barcode'] != null &&
-              product.barcode?.trim() ==
-                  row['barcode']) ||
-              (row['sku'] != null &&
-                  product.sku?.trim() ==
-                      row['sku']),
-        ).toList();
-
-        if (matches.length > 1) {
-          throw FormatException(
-            'Ambiguous barcode/SKU for ${row['name']}.',
-          );
-        }
-
-        if (matches.isNotEmpty) {
-          if (!_updateExisting) {
-            throw FormatException(
-              'Existing barcode/SKU for ${row['name']}. Enable reviewed updates or edit separately.',
-            );
-          }
-
-          if (row.containsKey('initial_quantity')) {
-            throw FormatException(
-              'Use stock_delta and stock_reason when updating ${row['name']}.',
-            );
-          }
-
-          row['product_id'] = matches.single.id;
-        } else if (row.containsKey('stock_delta')) {
-          throw FormatException(
-            'Use initial_quantity for new product ${row['name']}.',
-          );
-        }
+      final business = await widget.database.requireBusinessId();
+      final client = Supabase.instance.client;
+      final user = client.auth.currentUser?.id;
+      final api =
+          _pdfApi ??
+          AngelScanClient(client, businessId: business, inventoryMode: true);
+      if (api.businessId != business) {
+        throw StateError('Business changed. Select the file again.');
       }
-
+      final rows = _pdfResult == null
+          ? await _validateRows(
+              _fileRows ?? CatalogImport.parse(_text.text),
+              business,
+              user,
+            )
+          : null;
       if (!mounted) return;
-
-      setState(() {
-        _rows = rows;
-        _error = null;
-      });
+      final confirmed = await Navigator.push<bool>(
+        context,
+        MaterialPageRoute(
+          builder: (_) => ProductReviewScreen(
+            api: api,
+            owner: true,
+            allowExisting: _updateExisting,
+            sourceLabel: _pdfResult != null
+                ? 'PDF imported'
+                : _fileName == null
+                ? 'Manual CSV import'
+                : _fileName!.toLowerCase().endsWith('.xlsx')
+                ? 'Excel imported'
+                : 'CSV imported',
+            sourceName: _fileName,
+            initialItems:
+                rows ??
+                (_pdfResult!['items'] as List)
+                    .map((i) => Map<String, dynamic>.from(i as Map))
+                    .toList(),
+            automaticSourceHash: _pdfResult?['document_hash']?.toString(),
+            initialDocuments: (_pdfResult?['documents'] as List? ?? [])
+                .map((i) => Map<String, dynamic>.from(i as Map))
+                .toList(),
+            contextIsCurrent: () => client.auth.currentUser?.id == user,
+            validateCatalog: _pdfResult != null
+                ? null
+                : (values) => _validateRows(values, business, user),
+            confirmCatalog: _pdfResult != null
+                ? null
+                : (values, request) async {
+                    if (await widget.database.requireBusinessId() != business ||
+                        client.auth.currentUser?.id != user) {
+                      throw StateError(
+                        'Business or account changed. Reopen import.',
+                      );
+                    }
+                    await widget.database.importCatalog(
+                      values,
+                      request,
+                      expectedBusinessId: business,
+                    );
+                  },
+          ),
+        ),
+      );
+      if (confirmed == true && mounted) Navigator.pop(context, true);
     } catch (e) {
       if (!mounted) return;
 
       setState(() {
         _error = e is FormatException
             ? _importValidation(e.message)
+            : e is StateError
+            ? e.message.toString()
             : CustomerPresentation.error(
-          e,
-          fallback:
-          'We could not review this import. Please try again.',
-        );
-        _rows = null;
+                e,
+                fallback: 'We could not review this import. Please try again.',
+              );
       });
     } finally {
       if (mounted) {
@@ -231,50 +306,66 @@ class _CatalogImportScreenState
     }
   }
 
-  Future<void> _import() async {
-    if (_busy || _rows == null || _rows!.isEmpty) {
-      return;
+  Future<List<Map<String, dynamic>>> _validateRows(
+    List<Map<String, dynamic>> values,
+    String business,
+    String? user,
+  ) async {
+    if (await widget.database.requireBusinessId() != business ||
+        Supabase.instance.client.auth.currentUser?.id != user) {
+      throw StateError('Business or account changed. Reopen import.');
     }
-
-    setState(() {
-      _busy = true;
-      _submitted = true;
-      _error = null;
-    });
-
-    try {
-      await widget.database.importCatalog(
-        _rows!,
-        _request,
-      );
-
-      if (mounted) {
-        Navigator.pop(context, true);
+    // Round-trip edited values through the existing CSV rules; metadata is not an import column.
+    final headers = CatalogImport.columns.toList();
+    final parsed = CatalogImport.parse(
+      const ListToCsvConverter().convert([
+        headers,
+        for (final row in values) [for (final key in headers) row[key] ?? ''],
+      ]),
+    );
+    final products = await widget.database.getProducts();
+    for (final row in parsed) {
+      final matches = products
+          .where(
+            (p) =>
+                (row['barcode'] != null &&
+                    p.barcode?.trim() == row['barcode']) ||
+                (row['sku'] != null && p.sku?.trim() == row['sku']),
+          )
+          .toList();
+      if (matches.length > 1) {
+        throw FormatException('Ambiguous barcode/SKU for ${row['name']}.');
       }
-    } catch (e) {
-      if (!mounted) return;
-
-      setState(() {
-        _error = CustomerPresentation.error(
-          e,
-          fallback:
-          'Import failed. Retry preserves this request.',
+      if (matches.isNotEmpty) {
+        if (!_updateExisting) {
+          throw FormatException(
+            'Existing barcode/SKU for ${row['name']}. Enable reviewed updates or edit separately.',
+          );
+        }
+        if (row.containsKey('initial_quantity')) {
+          throw FormatException(
+            'Use stock_delta and stock_reason when updating ${row['name']}.',
+          );
+        }
+        row['product_id'] = matches.single.id;
+        // A restock never changes an established selling price.
+        row.remove('selling_price');
+      } else if (row.containsKey('stock_delta')) {
+        throw FormatException(
+          'Use initial_quantity for new product ${row['name']}.',
         );
-      });
-    } finally {
-      if (mounted) {
-        setState(() => _busy = false);
       }
     }
+    return parsed;
   }
 
   @override
   Widget build(BuildContext context) {
     final hasSource =
-        _fileRows != null || _text.text.trim().isNotEmpty;
+        _pdfResult != null || _fileRows != null || _text.text.trim().isNotEmpty;
 
     return PopScope(
-      canPop: !_busy && !_submitted,
+      canPop: !_busy,
       child: Scaffold(
         backgroundColor: _background,
         appBar: AppBar(
@@ -283,13 +374,8 @@ class _CatalogImportScreenState
           elevation: 0,
           titleSpacing: 0,
           leading: IconButton(
-            icon: const Icon(
-              Icons.arrow_back_rounded,
-              color: _navy,
-            ),
-            onPressed: _busy || _submitted
-                ? null
-                : () => Navigator.pop(context),
+            icon: const Icon(Icons.arrow_back_rounded, color: _navy),
+            onPressed: _busy ? null : () => Navigator.pop(context),
           ),
           title: const Text(
             'Import products',
@@ -303,9 +389,7 @@ class _CatalogImportScreenState
         body: SafeArea(
           top: false,
           child: ListView(
-            padding: const EdgeInsets.fromLTRB(
-              16, 18, 16, 32,
-            ),
+            padding: const EdgeInsets.fromLTRB(16, 18, 16, 32),
             children: [
               const SizedBox(height: 6),
 
@@ -336,62 +420,14 @@ class _CatalogImportScreenState
               const SizedBox(height: 18),
 
               _primaryButton(
-                title: _busy && !_submitted
-                    ? 'Reviewing...'
-                    : 'Review import',
+                title: _busy ? 'Reviewing...' : 'Review products',
                 icon: Icons.fact_check_outlined,
-                onPressed:
-                _busy || _submitted || !hasSource
-                    ? null
-                    : _review,
+                onPressed: _busy || !hasSource ? null : _review,
               ),
-
-              if (_rows != null) ...[
-                const SizedBox(height: 22),
-                _buildReview(),
-              ],
-
-              if (_submitted && _error != null) ...[
-                const SizedBox(height: 12),
-                const Text(
-                  'The previous import result is not confirmed. Retry the same request; do not create a new import.',
-                  style: TextStyle(
-                    color: _muted,
-                    fontSize: 12,
-                    height: 1.5,
-                  ),
-                ),
-              ],
             ],
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildHeading() {
-    return const Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Bulk product import',
-          style: TextStyle(
-            color: _navy,
-            fontSize: 23,
-            fontWeight: FontWeight.w800,
-            letterSpacing: -0.5,
-          ),
-        ),
-        SizedBox(height: 6),
-        Text(
-          'Add or update multiple products using a spreadsheet.',
-          style: TextStyle(
-            color: _muted,
-            fontSize: 13,
-            height: 1.5,
-          ),
-        ),
-      ],
     );
   }
 
@@ -400,14 +436,11 @@ class _CatalogImportScreenState
       color: _white,
       borderRadius: BorderRadius.circular(16),
       child: InkWell(
-        onTap: _busy || _submitted ? null : _chooseFile,
+        onTap: _busy ? null : _chooseFile,
         borderRadius: BorderRadius.circular(16),
         child: Container(
           width: double.infinity,
-          padding: const EdgeInsets.symmetric(
-            horizontal: 15,
-            vertical: 17,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 17),
           decoration: BoxDecoration(
             border: Border.all(color: _border),
             borderRadius: BorderRadius.circular(16),
@@ -430,11 +463,10 @@ class _CatalogImportScreenState
               const SizedBox(width: 12),
               const Expanded(
                 child: Column(
-                  crossAxisAlignment:
-                  CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Choose CSV or Excel file',
+                      'Choose CSV, Excel or PDF file',
                       style: TextStyle(
                         color: _navy,
                         fontSize: 14,
@@ -443,19 +475,13 @@ class _CatalogImportScreenState
                     ),
                     SizedBox(height: 4),
                     Text(
-                      'Supported formats: .csv, .xlsx',
-                      style: TextStyle(
-                        color: _muted,
-                        fontSize: 11,
-                      ),
+                      'Supported formats: .csv, .xlsx, .pdf',
+                      style: TextStyle(color: _muted, fontSize: 11),
                     ),
                   ],
                 ),
               ),
-              const Icon(
-                Icons.chevron_right_rounded,
-                color: _muted,
-              ),
+              const Icon(Icons.chevron_right_rounded, color: _muted),
             ],
           ),
         ),
@@ -465,10 +491,7 @@ class _CatalogImportScreenState
 
   Widget _buildSelectedFile() {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 12,
-        vertical: 10,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: BoxDecoration(
         color: const Color(0xFFE6F7EF),
         borderRadius: BorderRadius.circular(11),
@@ -493,23 +516,21 @@ class _CatalogImportScreenState
               ),
             ),
           ),
-          if (!_busy && !_submitted)
+          if (!_busy)
             IconButton(
               tooltip: 'Remove selected file',
               visualDensity: VisualDensity.compact,
               onPressed: () {
                 setState(() {
+                  _pdfResult = null;
+                  _pdfApi = null;
                   _fileName = null;
                   _fileRows = null;
                   _text.clear();
                   _clearReview();
                 });
               },
-              icon: const Icon(
-                Icons.close_rounded,
-                color: _green,
-                size: 18,
-              ),
+              icon: const Icon(Icons.close_rounded, color: _green, size: 18),
             ),
         ],
       ),
@@ -525,9 +546,7 @@ class _CatalogImportScreenState
       child: Column(
         children: [
           ListTile(
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 14,
-            ),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 14),
             leading: const Icon(
               Icons.info_outline_rounded,
               color: _blue,
@@ -555,29 +574,23 @@ class _CatalogImportScreenState
           ),
           if (_showInstructions)
             const Padding(
-              padding: EdgeInsets.fromLTRB(
-                15, 0, 15, 16,
-              ),
+              padding: EdgeInsets.fromLTRB(15, 0, 15, 16),
               child: Text(
                 'Required: Name, Product name, or Names.\n\n'
-                    'Optional: Barcode, SKU, Category, Brand, Description, '
-                    'Image URL, Unit, Selling price, Low stock threshold, '
-                    'Initial quantity, Stock delta, Stock reason, Active, '
-                    'Group name, Size, Color and Material.\n\n'
-                    'Use Initial quantity for new products. Use Stock delta '
-                    'and Stock reason for updates.\n\n'
-                    'Blank prices preserve existing prices. New products '
-                    'without prices remain pending until priced.\n\n'
-                    'Common headings such as Price, Quantity, Stock, Part number and '
-                    'Product code are accepted automatically. Each field may appear '
-                    'only once. For Excel, format barcode and SKU columns as Text '
-                    'before entering values with leading zeroes.\n\n'
-                    'Every import must be reviewed before confirmation.',
-                style: TextStyle(
-                  color: _muted,
-                  fontSize: 12,
-                  height: 1.6,
-                ),
+                'Optional: Barcode, SKU, Category, Brand, Description, '
+                'Image URL, Unit, Selling price, Low stock threshold, '
+                'Initial quantity, Stock delta, Stock reason, Active, '
+                'Group name, Size, Color and Material.\n\n'
+                'Use Initial quantity for new products. Use Stock delta '
+                'and Stock reason for updates.\n\n'
+                'Blank prices preserve existing prices. New products '
+                'without prices remain pending until priced.\n\n'
+                'Common headings such as Price, Quantity, Stock, Part number and '
+                'Product code are accepted automatically. Each field may appear '
+                'only once. For Excel, format barcode and SKU columns as Text '
+                'before entering values with leading zeroes.\n\n'
+                'Every import must be reviewed before confirmation.',
+                style: TextStyle(color: _muted, fontSize: 12, height: 1.6),
               ),
             ),
         ],
@@ -587,10 +600,7 @@ class _CatalogImportScreenState
 
   Widget _buildUpdateOption() {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 13,
-        vertical: 6,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 6),
       decoration: BoxDecoration(
         color: _white,
         borderRadius: BorderRadius.circular(14),
@@ -609,20 +619,16 @@ class _CatalogImportScreenState
         ),
         subtitle: const Text(
           'Match products by barcode or SKU',
-          style: TextStyle(
-            color: _muted,
-            fontSize: 11,
-          ),
+          style: TextStyle(color: _muted, fontSize: 11),
         ),
         value: _updateExisting,
-        onChanged: _busy || _submitted
+        onChanged: _busy
             ? null
             : (value) {
-          setState(() {
-            _updateExisting = value ?? false;
-            _rows = null;
-          });
-        },
+                setState(() {
+                  _updateExisting = value ?? false;
+                });
+              },
       ),
     );
   }
@@ -636,13 +642,8 @@ class _CatalogImportScreenState
       child: Column(
         children: [
           ListTile(
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 14,
-            ),
-            leading: const Icon(
-              Icons.edit_note_rounded,
-              color: _blue,
-            ),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 14),
+            leading: const Icon(Icons.edit_note_rounded, color: _blue),
             title: const Text(
               'Paste CSV manually',
               style: TextStyle(
@@ -653,10 +654,7 @@ class _CatalogImportScreenState
             ),
             subtitle: const Text(
               'Optional alternative to uploading a file',
-              style: TextStyle(
-                color: _muted,
-                fontSize: 11,
-              ),
+              style: TextStyle(color: _muted, fontSize: 11),
             ),
             trailing: Icon(
               _showCsvEditor
@@ -664,27 +662,26 @@ class _CatalogImportScreenState
                   : Icons.keyboard_arrow_down_rounded,
               color: _muted,
             ),
-            onTap: _busy || _submitted
+            onTap: _busy
                 ? null
                 : () {
-              setState(() {
-                _showCsvEditor = !_showCsvEditor;
-              });
-            },
+                    setState(() {
+                      _showCsvEditor = !_showCsvEditor;
+                    });
+                  },
           ),
           if (_showCsvEditor)
             Padding(
-              padding: const EdgeInsets.fromLTRB(
-                13, 0, 13, 14,
-              ),
+              padding: const EdgeInsets.fromLTRB(13, 0, 13, 14),
               child: TrexvenTextField(
                 controller: _text,
                 minLines: 4,
                 maxLines: 9,
-                enabled: !_busy && !_submitted,
+                enabled: !_busy,
                 onChanged: (_) {
                   setState(() {
-                    _rows = null;
+                    _pdfResult = null;
+                    _pdfApi = null;
                     _fileRows = null;
                     _fileName = null;
                     _error = null;
@@ -693,7 +690,7 @@ class _CatalogImportScreenState
                 decoration: const TrexvenInputDecoration(
                   labelText: 'CSV products',
                   hintText:
-                  'Product name,Barcode,Selling price,Initial quantity',
+                      'Product name,Barcode,Selling price,Initial quantity',
                 ),
               ),
             ),
@@ -754,228 +751,15 @@ class _CatalogImportScreenState
         ),
         icon: _busy
             ? const SizedBox(
-          width: 17,
-          height: 17,
-          child: Icon(Icons.more_horiz_rounded, size: 16),
-        )
+                width: 17,
+                height: 17,
+                child: Icon(Icons.more_horiz_rounded, size: 16),
+              )
             : Icon(icon, size: 19),
         label: Text(
           title,
-          style: const TextStyle(
-            fontSize: 13,
-            fontWeight: FontWeight.w800,
-          ),
+          style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w800),
         ),
-      ),
-    );
-  }
-
-  Widget _buildReview() {
-    final rows = _rows!;
-
-    final createCount = rows
-        .where((row) => row['product_id'] == null)
-        .length;
-
-    final updateCount = rows.length - createCount;
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Import review',
-          style: TextStyle(
-            color: _navy,
-            fontSize: 17,
-            fontWeight: FontWeight.w800,
-          ),
-        ),
-        const SizedBox(height: 10),
-        Row(
-          children: [
-            Expanded(
-              child: _reviewMetric(
-                '${rows.length}',
-                'Products',
-              ),
-            ),
-            const SizedBox(width: 9),
-            Expanded(
-              child: _reviewMetric(
-                '$createCount',
-                'New',
-              ),
-            ),
-            const SizedBox(width: 9),
-            Expanded(
-              child: _reviewMetric(
-                '$updateCount',
-                'Updates',
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 12),
-        Container(
-          decoration: BoxDecoration(
-            color: _white,
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: Column(
-            children: [
-              for (var i = 0; i < rows.length; i++) ...[
-                _reviewProduct(rows[i]),
-                if (i != rows.length - 1)
-                  const Divider(
-                    height: 1,
-                    color: _border,
-                    indent: 13,
-                    endIndent: 13,
-                  ),
-              ],
-            ],
-          ),
-        ),
-        const SizedBox(height: 16),
-        _primaryButton(
-          title: _submitted
-              ? 'Retry same import'
-              : 'Confirm import',
-          icon: Icons.check_circle_outline_rounded,
-          onPressed: _busy ? null : _import,
-        ),
-      ],
-    );
-  }
-
-  Widget _reviewMetric(
-      String value,
-      String label,
-      ) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: _white,
-        borderRadius: BorderRadius.circular(13),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            value,
-            style: const TextStyle(
-              color: _navy,
-              fontSize: 21,
-              fontWeight: FontWeight.w800,
-            ),
-          ),
-          const SizedBox(height: 5),
-          Text(
-            label,
-            style: const TextStyle(
-              color: _muted,
-              fontSize: 11,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _reviewProduct(
-      Map<String, dynamic> row,
-      ) {
-    final isUpdate = row['product_id'] != null;
-
-    final price = row['selling_price'] == null
-        ? isUpdate
-        ? 'Keep existing price'
-        : 'Awaiting price'
-        : CustomerPresentation.amount(
-      row['selling_price'],
-    );
-
-    final stock = isUpdate
-        ? 'Stock change: ${row['stock_delta'] ?? 0}'
-        : 'Opening qty: ${row['initial_quantity'] ?? 0}';
-
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 13,
-        vertical: 12,
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 39,
-            height: 39,
-            decoration: BoxDecoration(
-              color: _softBlue,
-              borderRadius: BorderRadius.circular(11),
-            ),
-            child: const Icon(
-              Icons.inventory_2_outlined,
-              color: _blue,
-              size: 19,
-            ),
-          ),
-          const SizedBox(width: 11),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  row['name']?.toString() ?? 'Product',
-                  style: const TextStyle(
-                    color: _navy,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  '${row['barcode'] ?? 'No barcode'} • $price',
-                  style: const TextStyle(
-                    color: _muted,
-                    fontSize: 11,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  '$stock ${row['unit'] ?? 'piece'}',
-                  style: const TextStyle(
-                    color: _muted,
-                    fontSize: 11,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(width: 6),
-          Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 8,
-              vertical: 5,
-            ),
-            decoration: BoxDecoration(
-              color: isUpdate
-                  ? const Color(0xFFFFF2DF)
-                  : const Color(0xFFE6F7EF),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Text(
-              isUpdate ? 'Update' : 'New',
-              style: TextStyle(
-                color: isUpdate
-                    ? const Color(0xFFB86B13)
-                    : _green,
-                fontSize: 10,
-                fontWeight: FontWeight.w800,
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

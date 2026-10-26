@@ -355,12 +355,17 @@ class DatabaseService {
 
   Future<void> importCatalog(
     List<Map<String, dynamic>> rows,
-    String requestId,
-  ) async {
+    String requestId, {
+    String? expectedBusinessId,
+  }) async {
+    final business = await requireBusinessId();
+    if (expectedBusinessId != null && business != expectedBusinessId) {
+      throw StateError('Business changed. Reopen the import.');
+    }
     await _supabase.rpc(
       'import_trexven_catalog',
       params: {
-        'p_business_id': await requireBusinessId(),
+        'p_business_id': business,
         'p_request_id': requestId,
         'p_rows': rows,
       },
