@@ -154,7 +154,7 @@ class _EmployeeAccessScreenState
 
           if (!state.hasData) {
             return const Center(
-              child: TrexvenLoading(),
+              child: Text('Loading…'),
             );
           }
 
@@ -837,7 +837,7 @@ context: context,
                 Center(
                   child: Padding(
                     padding: EdgeInsets.all(TrexvenPresentation.spacing(context, 30)),
-                    child: TrexvenLoading(),
+                    child: Text('Loading…'),
                   ),
                 ),
               for (final category in categories)
@@ -871,10 +871,7 @@ context: context,
               left: 0,
               right: 0,
               top: 0,
-              child: LinearProgressIndicator(
-                color: TrexvenPresentation.color(context, _AccessStyle.blue, 'brand'),
-                minHeight: 2,
-              ),
+              child: Text('Working…'),
             ),
         ],
       ),
