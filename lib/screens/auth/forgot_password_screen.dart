@@ -125,7 +125,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         SizedBox(
                           width: 19,
                           height: 19,
-                          child: Text('Please wait…'),
+                          child: Icon(Icons.more_horiz_rounded, size: 16),
                         ),
                         SizedBox(width: 12),
                         Text('Sending reset link...'),
