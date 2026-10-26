@@ -954,7 +954,7 @@ class _RecordSaleScreenState extends State<RecordSaleScreen> {
                                 ? const SizedBox(
                                     width: 22,
                                     height: 22,
-                                    child: Text('Please wait…'),
+                                    child: Icon(Icons.more_horiz_rounded, size: 16),
                                   )
                                 : Text(
                                     product == null
