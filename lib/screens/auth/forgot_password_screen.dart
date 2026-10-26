@@ -125,10 +125,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                         SizedBox(
                           width: 19,
                           height: 19,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                            color: Theme.of(context).colorScheme.onPrimary,
-                          ),
+                          child: Text('Please wait…'),
                         ),
                         SizedBox(width: 12),
                         Text('Sending reset link...'),
