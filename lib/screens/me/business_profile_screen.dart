@@ -332,7 +332,7 @@ class _BusinessProfileScreenState
                         width: 20,
                         height: 20,
                         child:
-                        Text('Please wait…'),
+                        Icon(Icons.more_horiz_rounded, size: 16),
                       )
                           : Text(
                         'Save Changes',
