@@ -109,7 +109,7 @@ class _CameraAlertsScreenState extends State<CameraAlertsScreen> {
           }
 
           if (!snapshot.hasData) {
-            return const Center(child: TrexvenLoading());
+            return const Center(child: Text('Loading…'));
           }
 
           final events = snapshot.data ?? [];
@@ -241,10 +241,7 @@ class _CameraAlertsScreenState extends State<CameraAlertsScreen> {
                             ? SizedBox(
                                 width: 14,
                                 height: 14,
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                  color: brandBlue,
-                                ),
+                                child: Text('Please wait…'),
                               )
                             : Icon(Icons.auto_awesome, size: 16),
                         label: Text(
