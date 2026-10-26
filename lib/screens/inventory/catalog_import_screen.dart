@@ -756,7 +756,7 @@ class _CatalogImportScreenState
             ? const SizedBox(
           width: 17,
           height: 17,
-          child: Text('Please wait…'),
+          child: Icon(Icons.more_horiz_rounded, size: 16),
         )
             : Icon(icon, size: 19),
         label: Text(
