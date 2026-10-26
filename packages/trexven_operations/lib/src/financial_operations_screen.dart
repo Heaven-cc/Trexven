@@ -860,7 +860,7 @@ context: context,
 
   Widget _notice() => Column(
     children: [
-      if (_busy) const LinearProgressIndicator(),
+      if (_busy) const Text('Working…'),
       if (_message != null)
         Padding(
           padding: const EdgeInsets.only(bottom: 12),
