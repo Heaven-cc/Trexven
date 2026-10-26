@@ -582,7 +582,7 @@ class _AngelScreenState extends State<AngelScreen> {
           children: [
             Expanded(
               child: _loading && _messages.isEmpty
-                  ? Center(child: CircularProgressIndicator(color: blue))
+                  ? Center(child: Text('Please wait…'))
                   : _error != null && _messages.isEmpty
                   ? _errorView()
                   : _messages.isEmpty
@@ -721,7 +721,7 @@ class _AngelScreenState extends State<AngelScreen> {
             ),
             Expanded(
               child: _loadingChats && _conversations.isEmpty
-                  ? Center(child: CircularProgressIndicator(color: blue))
+                  ? Center(child: Text('Please wait…'))
                   : _conversations.isEmpty
                   ? Center(
                       child: Text(
@@ -952,7 +952,7 @@ class _AngelScreenState extends State<AngelScreen> {
           SizedBox(
             width: 17,
             height: 17,
-            child: CircularProgressIndicator(color: blue, strokeWidth: 2),
+            child: Text('Please wait…'),
           ),
           SizedBox(width: 12),
           Text(
