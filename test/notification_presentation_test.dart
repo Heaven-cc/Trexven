@@ -16,41 +16,46 @@ void main() {
     (tester) async {
       final marks = <Map>[];
       var opens = 0;
-      final client = SupabaseClient(
-        'https://example.invalid',
-        'synthetic',
-        authOptions: const AuthClientOptions(autoRefreshToken: false),
-        httpClient: MockClient((request) async {
-          Object? response;
-          if (request.url.path.endsWith('/get_trexven_notifications')) {
-            response = [
-              {
-                'alert_key': 'staff:synthetic',
-                'title': 'Employee access changed',
-                'message': 'Legacy generic text',
-                'route': 'employees',
-                'reference_id': null,
-                'read_at': null,
-                'occurred_at': '2026-10-29T12:00:00Z',
-                'employee_name': 'Sample employee',
-                'actor_name': 'Business owner',
-                'action': 'employee_permission_changed',
-                'details': {'permission': 'manage_inventory', 'granted': true},
-              },
-            ];
-          } else if (request.url.path.endsWith(
-            '/mark_trexven_notification_read',
-          )) {
-            marks.add(jsonDecode(request.body) as Map);
-          }
-          return http.Response(
-            jsonEncode(response),
-            200,
-            request: request,
-            headers: {'content-type': 'application/json'},
-          );
-        }),
-      );
+      final client = (await tester.runAsync(
+        () async => SupabaseClient(
+          'https://example.invalid',
+          'synthetic',
+          authOptions: const AuthClientOptions(autoRefreshToken: false),
+          httpClient: MockClient((request) async {
+            Object? response;
+            if (request.url.path.endsWith('/get_trexven_notifications')) {
+              response = [
+                {
+                  'alert_key': 'staff:synthetic',
+                  'title': 'Employee access changed',
+                  'message': 'Legacy generic text',
+                  'route': 'employees',
+                  'reference_id': null,
+                  'read_at': null,
+                  'occurred_at': '2026-10-29T12:00:00Z',
+                  'employee_name': 'Sample employee',
+                  'actor_name': 'Business owner',
+                  'action': 'employee_permission_changed',
+                  'details': {
+                    'permission': 'manage_inventory',
+                    'granted': true,
+                  },
+                },
+              ];
+            } else if (request.url.path.endsWith(
+              '/mark_trexven_notification_read',
+            )) {
+              marks.add(jsonDecode(request.body) as Map);
+            }
+            return http.Response(
+              jsonEncode(response),
+              200,
+              request: request,
+              headers: {'content-type': 'application/json'},
+            );
+          }),
+        ),
+      ))!;
       await tester.runAsync(() => signInSynthetic(client));
       await tester.pumpWidget(
         MaterialApp(

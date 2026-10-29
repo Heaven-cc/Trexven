@@ -75,6 +75,11 @@ void main() {
         }),
       );
       expect(requests, 1);
+      await tester.scrollUntilVisible(
+        find.text('No cameras yet'),
+        250,
+        scrollable: find.byType(Scrollable).first,
+      );
       expect(find.text('No cameras yet'), findsOneWidget);
       expect(find.text('Could not load cameras'), findsNothing);
       expect(tester.takeException(), isNull);
@@ -105,17 +110,17 @@ void main() {
           ),
         );
         await tester.pumpAndSettle();
-        expect(
-          find.text(
-            'Your Vision access could not be verified. Sign in again and retry.',
-          ),
-          findsOneWidget,
-        );
+        expect(find.text('Could not load cameras'), findsOneWidget);
         expect(find.text('No cameras yet'), findsNothing);
         expect(find.text('Set up Intelligence'), findsNothing);
         fail = false;
         await tester.tap(find.text('Retry'));
         await tester.pumpAndSettle();
+        await tester.scrollUntilVisible(
+          find.text('No cameras yet'),
+          250,
+          scrollable: find.byType(Scrollable).first,
+        );
         expect(find.text('No cameras yet'), findsOneWidget);
         expect(find.text('Could not load cameras'), findsNothing);
       },

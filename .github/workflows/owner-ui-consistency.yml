@@ -2,8 +2,6 @@ name: Owner UI consistency
 on:
   pull_request:
     branches: [master]
-  push:
-    branches: ['fix/owner-ui-consistency-*']
 permissions:
   contents: read
 concurrency:
