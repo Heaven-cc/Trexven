@@ -1,10 +1,12 @@
 import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:trexven_design_system/trexven_design_system.dart';
 
 import '../../services/database_service.dart';
 import '../../services/business_reporting.dart';
+import '../../services/business_currency.dart';
 import 'transaction_history_screen.dart';
 import 'operational_finance_screen.dart';
 
@@ -21,9 +23,15 @@ class _FinanceTabState extends State<FinanceTab> {
   Color get _bg => Theme.of(context).scaffoldBackgroundColor;
   Color get _navy => Theme.of(context).colorScheme.onSurface;
   Color get _blue => Theme.of(context).colorScheme.primary;
-  Color get _muted => Theme.of(context).trexvenColors.muted ?? Theme.of(context).colorScheme.onSurfaceVariant;
-  Color get _cardBg => Theme.of(context).trexvenColors.cardBackground ?? Theme.of(context).colorScheme.surface;
-  Color get _borderColor => Theme.of(context).trexvenColors.border ?? Theme.of(context).colorScheme.outlineVariant;
+  Color get _muted =>
+      Theme.of(context).trexvenColors.muted ??
+      Theme.of(context).colorScheme.onSurfaceVariant;
+  Color get _cardBg =>
+      Theme.of(context).trexvenColors.cardBackground ??
+      Theme.of(context).colorScheme.surface;
+  Color get _borderColor =>
+      Theme.of(context).trexvenColors.border ??
+      Theme.of(context).colorScheme.outlineVariant;
 
   late final DatabaseService _db;
   late Future<FinanceReport> _report;
@@ -33,11 +41,27 @@ class _FinanceTabState extends State<FinanceTab> {
   String _metric = 'sales';
   DateTimeRange? _customRange;
 
-  String _money(num amount) => NumberFormat.currency(
-    locale: 'en_NG',
-    symbol: '₦',
-    decimalDigits: 2,
-  ).format(amount);
+  String _money(num amount) =>
+      BusinessCurrency.formatter(_current?.currency).format(amount);
+
+  Widget _loadingValue(Widget child, bool loading) {
+    if (!loading) return child;
+    return ExcludeSemantics(
+      child: Stack(
+        children: [
+          Opacity(opacity: 0, child: child),
+          Positioned.fill(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: _muted.withValues(alpha: .18),
+                borderRadius: BorderRadius.circular(6),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   void initState() {
@@ -149,7 +173,7 @@ class _FinanceTabState extends State<FinanceTab> {
     child: child,
   );
 
-  Widget _breakdownCard(Map<String, dynamic> summary) {
+  Widget _breakdownCard(Map<String, dynamic> summary, {bool loading = false}) {
     return _card(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -166,41 +190,55 @@ class _FinanceTabState extends State<FinanceTab> {
           _breakdownRow(
             'Net Collected',
             _money(financialNumber(summary['net_collected'])),
+            loading: loading,
           ),
           Divider(height: 16, color: _borderColor.withValues(alpha: .55)),
-          _breakdownRow('Refunds', _money(financialNumber(summary['refunds']))),
+          _breakdownRow(
+            'Refunds',
+            _money(financialNumber(summary['refunds'])),
+            loading: loading,
+          ),
           Divider(height: 16, color: _borderColor.withValues(alpha: .55)),
           _breakdownRow(
             'Sale Collections',
             _money(financialNumber(summary['sale_collections'])),
+            loading: loading,
           ),
           Divider(height: 16, color: _borderColor.withValues(alpha: .55)),
           _breakdownRow(
             'Repayments',
             _money(financialNumber(summary['repayment_collections'])),
+            loading: loading,
           ),
           Divider(height: 16, color: _borderColor.withValues(alpha: .55)),
           _breakdownRow(
             'Current Receivables (Balance)',
             _money(financialNumber(summary['receivables'])),
+            loading: loading,
           ),
         ],
       ),
     );
   }
 
-  Widget _breakdownRow(String label, String value) {
+  Widget _breakdownRow(String label, String value, {bool loading = false}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(label, style: TextStyle(color: _muted, fontSize: 13)),
-        Text(
-          value,
-          style: TextStyle(
-            color: _navy,
-            fontSize: 13,
-            fontWeight: FontWeight.w700,
+        Expanded(
+          child: Text(label, style: TextStyle(color: _muted, fontSize: 13)),
+        ),
+        const SizedBox(width: 12),
+        _loadingValue(
+          Text(
+            value,
+            style: TextStyle(
+              color: _navy,
+              fontSize: 13,
+              fontWeight: FontWeight.w700,
+            ),
           ),
+          loading,
         ),
       ],
     );
@@ -210,11 +248,7 @@ class _FinanceTabState extends State<FinanceTab> {
     padding: const EdgeInsets.only(bottom: 12),
     child: Text(
       title,
-      style: TextStyle(
-        fontSize: 17,
-        fontWeight: FontWeight.w800,
-        color: _navy,
-      ),
+      style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: _navy),
     ),
   );
 
@@ -226,10 +260,7 @@ class _FinanceTabState extends State<FinanceTab> {
           textAlign: TextAlign.center,
           style: TextStyle(color: _muted),
         ),
-        TextButton(
-          onPressed: () => setState(_load),
-          child: Text('Retry'),
-        ),
+        TextButton(onPressed: () => setState(_load), child: Text('Retry')),
       ],
     ),
   );
@@ -239,6 +270,7 @@ class _FinanceTabState extends State<FinanceTab> {
     String value,
     IconData icon, {
     String? hint,
+    bool loading = false,
   }) => _card(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -260,13 +292,16 @@ class _FinanceTabState extends State<FinanceTab> {
         FittedBox(
           fit: BoxFit.scaleDown,
           alignment: Alignment.centerLeft,
-          child: Text(
-            value,
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w800,
-              color: _navy,
+          child: _loadingValue(
+            Text(
+              value,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w800,
+                color: _navy,
+              ),
             ),
+            loading,
           ),
         ),
         if (hint != null) ...[
@@ -282,12 +317,12 @@ class _FinanceTabState extends State<FinanceTab> {
     builder: (context, snapshot) {
       if (snapshot.hasError)
         return _error('Unable to load revenue. Please retry.');
-      if (!snapshot.hasData)
-        return _card(child: const TrexvenSkeleton(kind: TrexvenSkeletonKind.financeSummary, scrollable: false));
-      final data = snapshot.data!;
-      _current = data;
-      final revenue = financialNumber(data.summary['gross_sales']);
-      final count = data.sales.length;
+      final loading = snapshot.connectionState != ConnectionState.done;
+      final data = loading ? null : snapshot.data;
+      if (data != null) _current = data;
+      final summary = data?.summary ?? <String, dynamic>{};
+      final revenue = financialNumber(summary['gross_sales']);
+      final count = data?.sales.length ?? 0;
       final revenueText = _money(revenue);
       final countText = count.toString();
       final averageText = _money(count == 0 ? 0 : revenue / count);
@@ -316,37 +351,38 @@ class _FinanceTabState extends State<FinanceTab> {
                 FittedBox(
                   fit: BoxFit.scaleDown,
                   alignment: Alignment.centerLeft,
-                  child: Text(
-                    revenueText,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                      fontWeight: FontWeight.w800,
+                  child: _loadingValue(
+                    Text(
+                      revenueText,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontWeight: FontWeight.w800,
+                      ),
                     ),
+                    loading,
                   ),
                 ),
                 const SizedBox(height: 8),
                 Text(
                   '$_periodLabel · before refunds',
-                  style: TextStyle(
-                    color: Color(0xFFB9C8E3),
-                    fontSize: 12,
-                  ),
+                  style: TextStyle(color: Color(0xFFB9C8E3), fontSize: 12),
                 ),
               ],
             ),
           ),
           const SizedBox(height: 8),
-          _breakdownCard(data.summary),
+          _breakdownCard(summary, loading: loading),
           const SizedBox(height: 11),
           Row(
             children: [
               Expanded(
                 child: _metricTile(
                   'Business Expenses',
-                  _money(data.expenseTotal),
+                  _money(data?.expenseTotal ?? 0),
                   Icons.wallet_outlined,
                   hint: 'Recorded in this period',
+                  loading: loading,
                 ),
               ),
               const SizedBox(width: 10),
@@ -356,6 +392,7 @@ class _FinanceTabState extends State<FinanceTab> {
                   '—',
                   Icons.trending_up_rounded,
                   hint: 'Historical costs unavailable',
+                  loading: loading,
                 ),
               ),
             ],
@@ -368,6 +405,7 @@ class _FinanceTabState extends State<FinanceTab> {
                   'Transactions',
                   countText,
                   Icons.receipt_long_outlined,
+                  loading: loading,
                 ),
               ),
               const SizedBox(width: 10),
@@ -376,6 +414,7 @@ class _FinanceTabState extends State<FinanceTab> {
                   'Average Sale',
                   averageText,
                   Icons.analytics_outlined,
+                  loading: loading,
                 ),
               ),
             ],
@@ -465,12 +504,11 @@ class _FinanceTabState extends State<FinanceTab> {
                   return _error(
                     'Unable to load financial history. Please retry.',
                   );
-                if (!snapshot.hasData)
-                  return const SizedBox(
-                    height: 160,
-                    child: Center(
-                      child: TrexvenSkeleton(kind: TrexvenSkeletonKind.financeChart, scrollable: false),
-                    ),
+                if (snapshot.connectionState != ConnectionState.done)
+                  return const TrexvenSkeleton(
+                    kind: TrexvenSkeletonKind.financeChart,
+                    scrollable: false,
+                    padding: EdgeInsets.zero,
                   );
                 final report = snapshot.data!;
                 final rows = _metric == 'sales'
@@ -507,10 +545,7 @@ class _FinanceTabState extends State<FinanceTab> {
                       _metric == 'sales'
                           ? 'GROSS SALES ACTIVITY'
                           : 'RECORDED EXPENSES',
-                      style: TextStyle(
-                        color: Color(0xFFA7B5D0),
-                        fontSize: 11,
-                      ),
+                      style: TextStyle(color: Color(0xFFA7B5D0), fontSize: 11),
                     ),
                     const SizedBox(height: 14),
                     LayoutBuilder(
@@ -567,10 +602,7 @@ class _FinanceTabState extends State<FinanceTab> {
                       _metric == 'sales'
                           ? 'Complete period sales, before refunds. Tap the line for details.'
                           : 'Complete recorded expenses in this period. Tap the line for details.',
-                      style: TextStyle(
-                        color: Color(0xFFA7B5D0),
-                        fontSize: 11,
-                      ),
+                      style: TextStyle(color: Color(0xFFA7B5D0), fontSize: 11),
                     ),
                   ],
                 );
@@ -639,16 +671,25 @@ class _FinanceTabState extends State<FinanceTab> {
     builder: (context, snapshot) {
       if (snapshot.hasError)
         return _error('Unable to load transactions. Please retry.');
-      if (!snapshot.hasData)
-        return _card(child: const TrexvenSkeleton(kind: TrexvenSkeletonKind.financeSummary, scrollable: false));
+      if (snapshot.connectionState != ConnectionState.done)
+        return _card(
+          child: const TrexvenSkeleton(
+            kind: TrexvenSkeletonKind.financeTransactions,
+            scrollable: false,
+            padding: EdgeInsets.zero,
+          ),
+        );
       final report = snapshot.data!;
       return _card(
         child: Column(
           children: [
-            if (report.sales.isEmpty)
-              Text('No transactions in this period.'),
+            if (report.sales.isEmpty) Text('No transactions in this period.'),
             for (final row in report.sales.take(8))
-              financialTransactionTile(row, report.period),
+              financialTransactionTile(
+                row,
+                report.period,
+                currency: report.currency,
+              ),
             TextButton(
               onPressed: () => Navigator.push(
                 context,
@@ -656,6 +697,7 @@ class _FinanceTabState extends State<FinanceTab> {
                   builder: (_) => TransactionHistoryScreen(
                     database: _db,
                     period: report.period,
+                    currency: report.currency,
                   ),
                 ),
               ),
@@ -680,7 +722,7 @@ class _FinanceTabState extends State<FinanceTab> {
             'Finance',
             style: TextStyle(
               color: _navy,
-              fontSize: 26,
+              fontSize: TrexvenFontSize.title,
               fontWeight: FontWeight.w800,
             ),
           ),

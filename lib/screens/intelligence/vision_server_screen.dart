@@ -1,5 +1,6 @@
 import 'package:trexven_design_system/trexven_design_system.dart';
 import 'package:flutter/material.dart';
+
 import '../../services/vision_service.dart';
 import '../../models/camera.dart';
 import 'live_feed_screen.dart';
@@ -14,8 +15,6 @@ class VisionServerScreen extends StatefulWidget {
 
 class _VisionServerScreenState extends State<VisionServerScreen> {
   final _vision = VisionService();
-  final _url = TextEditingController();
-  final _key = TextEditingController();
   bool _busy = true;
   bool _connected = false;
   String? _error;
@@ -32,25 +31,19 @@ class _VisionServerScreenState extends State<VisionServerScreen> {
     try {
       await _vision.init();
       if (!mounted) return;
-      _url.text = _vision.baseUrl;
-      _key.text = _vision.apiKey;
+      if (_vision.isConfigured) {
+        await _connect();
+        return;
+      }
     } catch (_) {
       if (mounted) {
-        _error =
-            'Could not load saved pairing. Please enter the address and key.';
+        _error = 'Cloud Vision settings could not load. Please retry.';
       }
     }
     if (mounted) {
       setState(() => _busy = false);
       if (widget.connectOnOpen && _error == null) await _connect();
     }
-  }
-
-  @override
-  void dispose() {
-    _url.dispose();
-    _key.dispose();
-    super.dispose();
   }
 
   Future<void> _connect() async {
@@ -60,10 +53,14 @@ class _VisionServerScreenState extends State<VisionServerScreen> {
       _connected = false;
     });
     try {
-      final health = await _vision.verifyConnection(_url.text, _key.text);
-      await _vision.setServerUrl(_url.text);
-      await _vision.setApiKey(_key.text);
-      await _vision.pairBusiness();
+      await _vision.init();
+      if (!_vision.isConfigured) {
+        setState(
+          () => _error = 'Cloud Vision is not available yet. Cameras can be connected once the cloud service is activated.',
+        );
+        return;
+      }
+      final health = await _vision.connectCloud();
       await _loadData();
       if (mounted) {
         setState(() {
@@ -74,8 +71,7 @@ class _VisionServerScreenState extends State<VisionServerScreen> {
     } catch (_) {
       if (mounted) {
         setState(
-          () => _error =
-              'Connection failed. Check the server address, API key, Wi-Fi and firewall.',
+          () => _error = 'Cloud Vision could not connect. Check your internet connection and retry.',
         );
       }
     } finally {
@@ -129,7 +125,7 @@ class _VisionServerScreenState extends State<VisionServerScreen> {
         scrollable: true,
         title: Text('Remove this camera?'),
         content: Text(
-          'This stops processing and removes the camera from the Vision Server.',
+          'This stops processing and removes the camera from Cloud Vision.',
         ),
         actions: [
           TextButton(
@@ -196,7 +192,7 @@ class _VisionServerScreenState extends State<VisionServerScreen> {
                           ),
                         ),
                   icon: Icon(Icons.play_circle_outline),
-                  label: Text('View frame'),
+                  label: Text('View live'),
                 ),
                 TextButton(
                   onPressed: _busy
@@ -223,39 +219,33 @@ class _VisionServerScreenState extends State<VisionServerScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: Text('Vision Server')),
+    appBar: AppBar(title: Text('Cloud Vision')),
     body: ListView(
       padding: TrexvenSpacing.cardPadding,
       children: [
-        Text(
-          'Connect to your local Vision Server. Keep this device and the server on the same Wi-Fi.',
+        Text('Cloud Vision', style: Theme.of(context).textTheme.titleLarge),
+        const SizedBox(height: 8),
+        const Text(
+          'Manage your cameras through the cloud. No in-store computer or shared Wi-Fi connection is required.',
         ),
-        SizedBox(height: TrexvenSpacing.fieldGap),
-        TrexvenTextField(
-          controller: _url,
-          enabled: !_busy,
-          keyboardType: TextInputType.url,
-          autocorrect: false,
-          decoration: TrexvenInputDecoration(
-            labelText: 'Server address',
-            hintText: 'http://192.168.1.19:8000',
+        const SizedBox(height: 16),
+        if (!_busy && !_connected && _error == null)
+          const Text(
+            'Cloud Vision is not available yet. Cameras can be connected once the cloud service is activated.',
           ),
-        ),
-        SizedBox(height: 12),
-        TrexvenTextField(
-          controller: _key,
-          enabled: !_busy,
-          obscureText: true,
-          autocorrect: false,
-          enableSuggestions: false,
-          decoration: TrexvenInputDecoration(labelText: 'Vision API key'),
-        ),
-        SizedBox(height: 12),
-        FilledButton(
-          onPressed: _busy ? null : _connect,
-          child: Text('Connect and save'),
-        ),
-        if (_busy) Text('Working…'),
+        if (!_busy && !_connected) ...[
+          const SizedBox(height: 16),
+          FilledButton.icon(
+            onPressed: _connect,
+            icon: const Icon(Icons.cloud_sync_outlined),
+            label: const Text('Check connection'),
+          ),
+        ],
+        if (_busy)
+          const SizedBox(
+            height: 220,
+            child: TrexvenSkeleton(kind: TrexvenSkeletonKind.detail),
+          ),
         if (_error != null)
           Padding(
             padding: EdgeInsets.symmetric(vertical: 12),
@@ -267,7 +257,7 @@ class _VisionServerScreenState extends State<VisionServerScreen> {
         if (_connected) ...[
           SizedBox(height: TrexvenSpacing.fieldGap),
           Text(
-            'Connected · Server ${_health?['status'] ?? 'unknown'}',
+            'Connected · Cloud Vision ${_health?['status'] ?? 'unknown'}',
             style: Theme.of(context).textTheme.titleMedium,
           ),
           Text(
@@ -275,7 +265,7 @@ class _VisionServerScreenState extends State<VisionServerScreen> {
           ),
           if (_health?['has_errors'] == true)
             Text(
-              'The server reports a model or storage issue. Check the server logs.',
+              'Cloud Vision reports a processing issue. Please contact support.',
             ),
           Wrap(
             spacing: 12,

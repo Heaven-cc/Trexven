@@ -1,0 +1,40 @@
+name: Owner UI consistency
+on:
+  pull_request:
+    branches: [master]
+  push:
+    branches: ['fix/owner-ui-consistency-*']
+permissions:
+  contents: read
+concurrency:
+  group: owner-ui-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  flutter:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CI: 'true'
+      FLUTTER_SUPPRESS_ANALYTICS: 'true'
+      DART_SUPPRESS_ANALYTICS: 'true'
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2
+        with:
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - run: flutter analyze --no-fatal-infos --no-fatal-warnings
+      - name: Targeted regressions
+        run: >-
+          flutter test
+          test/owner_ui_consistency_test.dart
+          test/finance_loading_test.dart
+          test/finance_repository_test.dart
+          test/inventory_loading_test.dart
+          test/notification_account_isolation_test.dart
+          test/notification_presentation_test.dart
+          test/owner_notifications_test.dart
+          test/vision_service_test.dart
+          test/intelligence_initial_setup_test.dart
+      - run: flutter build apk --debug

@@ -485,7 +485,7 @@ class _OperationalPermissionsScreenState
         future: employees,
         builder: (context, snapshot) {
           if (snapshot.connectionState != ConnectionState.done) {
-            return const Center(child: Text('Loading…'));
+            return const TrexvenSkeleton(kind: TrexvenSkeletonKind.employeeAccess);
           }
 
           if (snapshot.hasError) {

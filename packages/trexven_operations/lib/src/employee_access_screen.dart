@@ -153,9 +153,7 @@ class _EmployeeAccessScreenState
           }
 
           if (!state.hasData) {
-            return const Center(
-              child: Text('Loading…'),
-            );
+            return const TrexvenSkeleton(kind: TrexvenSkeletonKind.employeeAccess);
           }
 
           final staff = state.data!;
@@ -837,7 +835,7 @@ context: context,
                 Center(
                   child: Padding(
                     padding: EdgeInsets.all(TrexvenPresentation.spacing(context, 30)),
-                    child: Text('Loading…'),
+                    child: const TrexvenSkeleton(kind: TrexvenSkeletonKind.employeeAccess, scrollable: false),
                   ),
                 ),
               for (final category in categories)

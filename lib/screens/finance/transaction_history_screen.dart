@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import '../../services/business_reporting.dart';
+import '../../services/business_currency.dart';
+
+import 'package:trexven_design_system/trexven_design_system.dart';
+
 import '../../services/database_service.dart';
 
 Widget financialTransactionTile(
   Map<String, dynamic> row,
-  BusinessPeriod period,
-) {
+  BusinessPeriod period, {
+  String currency = 'NGN',
+}) {
   final items = (row['sale_items'] as List? ?? []).cast<Map>();
   final date = DateTime.parse((row['sold_at'] ?? row['created_at']) as String);
-  final money = NumberFormat.currency(
-    locale: 'en_NG',
-    symbol: '₦',
-    decimalDigits: 2,
-  );
+  final money = BusinessCurrency.formatter(currency);
   final summary = items.isEmpty
       ? 'Sale'
       : items.map((e) => e['product_name'] ?? 'Product').join(', ');
@@ -51,10 +53,12 @@ Widget financialTransactionTile(
 class TransactionHistoryScreen extends StatefulWidget {
   final DatabaseService database;
   final BusinessPeriod period;
+  final String currency;
   const TransactionHistoryScreen({
     super.key,
     required this.database,
     required this.period,
+    this.currency = 'NGN',
   });
   @override
   State<TransactionHistoryScreen> createState() =>
@@ -99,11 +103,20 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
     body: ListView(
       padding: const EdgeInsets.all(16),
       children: [
-        for (final row in _rows) financialTransactionTile(row, widget.period),
+        for (final row in _rows)
+          financialTransactionTile(
+            row,
+            widget.period,
+            currency: widget.currency,
+          ),
         if (_rows.isEmpty && !_busy && _error == null)
           const Text('No transactions in this period.'),
         if (_error != null) Text(_error!),
-        if (_busy) const Center(child: Text('Please wait…')),
+        if (_busy)
+          const TrexvenSkeleton(
+            kind: TrexvenSkeletonKind.financeTransactions,
+            scrollable: false,
+          ),
         if (_more && !_busy)
           TextButton(
             onPressed: _load,

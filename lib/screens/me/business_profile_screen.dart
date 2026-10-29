@@ -61,7 +61,7 @@ class _BusinessProfileScreenState
 
   Future<void> _loadBusiness() async {
     try {
-      final biz = await _db.getBusinessProfile();
+      final biz = await _db.getBusinessProfile().timeout(const Duration(seconds: 20));
 
       if (!mounted) return;
 
@@ -178,7 +178,7 @@ class _BusinessProfileScreenState
         ),
       ),
       body: _isLoading
-          ? const Center(child: Text('Loading…'))
+          ? const TrexvenSkeleton(kind: TrexvenSkeletonKind.businessProfile)
           : _error != null || _business == null
           ? _errorState()
           : _content(),

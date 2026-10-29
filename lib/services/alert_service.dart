@@ -1,3 +1,4 @@
+import 'package:trexven_operations/trexven_operations.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
@@ -187,6 +188,7 @@ class AlertService {
                 (row) => <String, dynamic>{
                   ...?metadata[row['alert_key']],
                   ...row,
+                  'message': CustomerPresentation.notificationMessage(row),
                   'id': 'op:${row['alert_key']}',
                   'business_id': businessId,
                   'source':

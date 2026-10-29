@@ -1,4 +1,5 @@
 import 'package:trexven_operations/trexven_operations.dart';
+import '../services/business_currency.dart';
 
 enum SubscriptionTier { start, core, pro }
 
@@ -24,7 +25,7 @@ class SubscriptionPlan {
   String get priceDisplay =>
       price == null || currency == null || intervalMonths == null
       ? 'Price unavailable'
-      : '${CustomerPresentation.money(price!, currency: currency)} / ${intervalMonths == 1 ? 'month' : intervalMonths == 12 ? 'year' : '$intervalMonths months'}';
+      : '${BusinessCurrency.formatter(currency).format(price!)} / ${intervalMonths == 1 ? 'month' : intervalMonths == 12 ? 'year' : '$intervalMonths months'}';
   factory SubscriptionPlan.fromJson(Map<String, dynamic> row) =>
       SubscriptionPlan(
         tier: SubscriptionTier.values.byName(row['id'] as String),

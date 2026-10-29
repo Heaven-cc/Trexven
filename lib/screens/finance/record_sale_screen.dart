@@ -598,7 +598,7 @@ class _RecordSaleScreenState extends State<RecordSaleScreen> {
             if (!snapshot.hasData &&
                 snapshot.connectionState == ConnectionState.waiting &&
                 !retainsSale) {
-              return const Center(child: Text('Loading…'));
+              return const TrexvenSkeleton(kind: TrexvenSkeletonKind.checkout);
             }
             if (snapshot.hasError && !retainsSale) {
               return _ErrorState(

@@ -840,6 +840,7 @@ class DatabaseService {
       ),
       getFinancialSales(period),
       getExpenses(period),
+      _supabase.from('businesses').select('currency').eq('id', business).single(),
     ]);
     final summaryRes = results[0];
     if (summaryRes is! Map) {
@@ -854,6 +855,7 @@ class DatabaseService {
       Map<String, dynamic>.from(summaryRes),
       rows[0],
       rows[1],
+      currency: (results[3] as Map)['currency']?.toString() ?? 'NGN',
     );
   }
 }

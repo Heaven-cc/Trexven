@@ -37,7 +37,7 @@ void main() {
       expect(requests, 0);
       expect(find.text('Set up Intelligence'), findsOneWidget);
       expect(find.text('Could not load cameras'), findsNothing);
-      expect(find.text('Connect Vision server'), findsNWidgets(2));
+      expect(find.text('Connect Cloud Vision'), findsOneWidget);
       expect(vision.isConfigured, false);
       expect(tester.takeException(), isNull);
       await tester.pumpWidget(const SizedBox());
@@ -53,7 +53,10 @@ void main() {
       FlutterSecureStorage.setMockInitialValues({
         'vision_api_key': 'configured-key',
       });
-      final vision = VisionService.withAccess(accessHeaders: () async => {});
+      final vision = VisionService.withAccess(
+        accessHeaders: () async => {},
+        cloudUrl: 'https://vision.example.com',
+      );
       var requests = 0;
       await http.runWithClient(
         () async {
@@ -88,7 +91,10 @@ void main() {
     FlutterSecureStorage.setMockInitialValues({
       'vision_api_key': 'configured-key',
     });
-    final vision = VisionService.withAccess(accessHeaders: () async => {});
+    final vision = VisionService.withAccess(
+      accessHeaders: () async => {},
+      cloudUrl: 'https://vision.example.com',
+    );
     var fail = true;
     await http.runWithClient(
       () async {
@@ -99,7 +105,12 @@ void main() {
           ),
         );
         await tester.pumpAndSettle();
-        expect(find.text('Could not load cameras'), findsOneWidget);
+        expect(
+          find.text(
+            'Your Vision access could not be verified. Sign in again and retry.',
+          ),
+          findsOneWidget,
+        );
         expect(find.text('No cameras yet'), findsNothing);
         expect(find.text('Set up Intelligence'), findsNothing);
         fail = false;
