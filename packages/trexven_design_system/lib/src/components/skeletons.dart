@@ -19,6 +19,7 @@ enum TrexvenSkeletonKind {
   employeeAccess,
   detail,
   checkout,
+  notificationSettings,
 }
 
 class TrexvenSkeleton extends StatefulWidget {
@@ -229,18 +230,52 @@ class _TrexvenSkeletonState extends State<TrexvenSkeleton>
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            _line(0.46, height: 20),
+            _line(.46, height: 29),
+            _space(5),
+            _line(.65, height: 16),
             _space(17),
-            _shape(height: 44, radius: 12),
+            _shape(height: 50, radius: 14),
             _space(14),
-            _metrics(),
+            _panel([
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final metrics = [
+                    for (var i = 0; i < 3; i++)
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _shape(width: 32, height: 30),
+                          _space(5),
+                          _shape(width: 65, height: 14),
+                        ],
+                      ),
+                  ];
+                  if (constraints.maxWidth < 280 ||
+                      MediaQuery.textScalerOf(context).scale(14) > 21) {
+                    return Wrap(spacing: 24, runSpacing: 16, children: metrics);
+                  }
+                  return Row(
+                    children: [
+                      for (final metric in metrics) Expanded(child: metric),
+                    ],
+                  );
+                },
+              ),
+            ]),
             _space(18),
             _shape(height: 48, radius: 14),
             _space(16),
-            _line(.4, height: 18),
+            _line(.4, height: 21),
             _space(16),
-            _filters(),
-            _space(15),
+            Row(
+              children: [
+                for (var i = 0; i < 3; i++) ...[
+                  Expanded(child: _shape(height: 42, radius: 12)),
+                  if (i < 2) const SizedBox(width: 8),
+                ],
+              ],
+            ),
+            _space(8),
             _rows(5),
           ],
         );
@@ -407,6 +442,46 @@ class _TrexvenSkeletonState extends State<TrexvenSkeleton>
                 _line(.32, height: 9),
               ]),
               _space(8),
+            ],
+          ],
+        );
+      case TrexvenSkeletonKind.notificationSettings:
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            _line(.7, height: 18),
+            _space(10),
+            _line(.9),
+            _space(8),
+            _line(.8),
+            _space(20),
+            for (final count in [1, 2, 2]) ...[
+              _line(.4, height: 16),
+              _space(12),
+              _panel([
+                for (var i = 0; i < count; i++) ...[
+                  Row(
+                    children: [
+                      _shape(width: 36, height: 36, radius: 10),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _line(.65, height: 14),
+                            _space(8),
+                            _line(.85, height: 10),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      _shape(width: 44, height: 24, radius: 16),
+                    ],
+                  ),
+                  if (i < count - 1) _space(20),
+                ],
+              ]),
+              _space(24),
             ],
           ],
         );

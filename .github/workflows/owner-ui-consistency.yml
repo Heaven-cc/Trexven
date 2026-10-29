@@ -26,8 +26,9 @@ jobs:
       - run: flutter pub get
       - run: flutter analyze --no-fatal-infos --no-fatal-warnings
       - name: Targeted regressions
+        timeout-minutes: 5
         run: >-
-          flutter test
+          flutter test --reporter expanded --timeout=60s
           test/owner_ui_consistency_test.dart
           test/finance_loading_test.dart
           test/finance_repository_test.dart
