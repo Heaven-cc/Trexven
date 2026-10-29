@@ -1,4 +1,4 @@
-package com.ODT.odt
+package com.trexven.app
 
 import io.flutter.embedding.android.FlutterActivity
 
