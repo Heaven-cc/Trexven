@@ -5,6 +5,40 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+val keystoreProperties = java.util.Properties().apply {
+    val propertiesFile = rootProject.file("key.properties")
+    if (propertiesFile.isFile) {
+        propertiesFile.inputStream().use { load(it) }
+    }
+}
+
+// Environment variables override android/key.properties; neither belongs in Git.
+val releaseSigning = mapOf(
+    "storeFile" to "TREXVEN_KEYSTORE_PATH",
+    "storePassword" to "TREXVEN_KEYSTORE_PASSWORD",
+    "keyAlias" to "TREXVEN_KEY_ALIAS",
+    "keyPassword" to "TREXVEN_KEY_PASSWORD",
+).mapValues { (property, environment) ->
+    System.getenv(environment)?.takeIf { it.isNotBlank() }
+        ?: keystoreProperties.getProperty(property)?.takeIf { it.isNotBlank() }
+}
+val releaseKeystoreFile = releaseSigning["storeFile"]?.let { rootProject.file(it) }
+
+// Defer validation until a release build, so IDE sync and debug need no release key.
+tasks.matching { it.name == "preReleaseBuild" }.configureEach {
+    doFirst {
+        val missing = releaseSigning.filterValues { it == null }.keys
+        check(missing.isEmpty()) {
+            "Release signing requires ${missing.joinToString()} in android/key.properties " +
+                "or the corresponding TREXVEN_* environment variables. No debug fallback is allowed."
+        }
+        check(releaseKeystoreFile?.isFile == true) {
+            "Release keystore not found. Check storeFile in android/key.properties " +
+                "or TREXVEN_KEYSTORE_PATH."
+        }
+    }
+}
+
 android {
     namespace = "com.trexven.app"
     compileSdk = flutter.compileSdkVersion
@@ -27,11 +61,18 @@ android {
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        create("release") {
+            storeFile = releaseKeystoreFile
+            storePassword = releaseSigning["storePassword"]
+            keyAlias = releaseSigning["keyAlias"]
+            keyPassword = releaseSigning["keyPassword"]
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 }
