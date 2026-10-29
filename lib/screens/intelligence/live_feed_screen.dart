@@ -184,7 +184,7 @@ class _LiveFeedScreenState extends State<LiveFeedScreen>
           _connected = false;
           _attempted = true;
           _selectionReason =
-              'AI Live is unavailable. Retry the Vision Server connection.';
+              'AI Live is unavailable. Retry the Cloud Vision connection.';
         });
       }
     } finally {
@@ -271,7 +271,7 @@ class _LiveFeedScreenState extends State<LiveFeedScreen>
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              'Camera adjustment requires the business owner and a connected Vision Server.',
+              'Camera adjustment requires the business owner and a Cloud Vision connection.',
             ),
           ),
         );

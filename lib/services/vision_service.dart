@@ -266,7 +266,7 @@ class VisionService {
     } catch (_) {
       return {
         'success': false,
-        'message': 'Could not test camera. Check Vision Server pairing and connection.',
+        'message': 'Could not test camera. Check Cloud Vision and your internet connection.',
       };
     }
   }

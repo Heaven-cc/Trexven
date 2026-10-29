@@ -1,6 +1,7 @@
 import 'package:trexven_design_system/trexven_design_system.dart';
 import 'package:trexven_operations/trexven_operations.dart';
 import 'package:flutter/material.dart';
+
 import '../../services/vision_service.dart';
 
 class AddCameraScreen extends StatefulWidget {
@@ -36,11 +37,17 @@ class _AddCameraScreenState extends State<AddCameraScreen> {
     super.dispose();
   }
 
-  String _buildRtspUrl() => VisionService.cameraSource(
-    _rtspCtrl.text,
-    username: _usernameCtrl.text.trim(),
-    password: _passwordCtrl.text,
-  );
+  String _buildRtspUrl() {
+    if (RegExp(r'^\d+$').hasMatch(_rtspCtrl.text.trim())) {
+      throw const FormatException('Enter a network camera stream URL.');
+    }
+    return VisionService.cameraSource(
+      _rtspCtrl.text,
+      username: _usernameCtrl.text.trim(),
+      password: _passwordCtrl.text,
+    );
+  }
+
   Future<void> _testConnection() async {
     String url;
     try {
@@ -49,8 +56,7 @@ class _AddCameraScreenState extends State<AddCameraScreen> {
       setState(() {
         _testResult = CustomerPresentation.error(
           error,
-          fallback:
-              'We could not connect to this camera. Check its address and try again.',
+          fallback: 'We could not connect to this camera. Check its address and try again.',
         );
         _testSuccess = false;
       });
@@ -107,7 +113,7 @@ class _AddCameraScreenState extends State<AddCameraScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              'Camera could not be registered. Check Vision Server pairing, then try again.',
+              'Camera could not be registered. Check Cloud Vision and your camera connection, then retry.',
             ),
           ),
         );
@@ -168,8 +174,8 @@ class _AddCameraScreenState extends State<AddCameraScreen> {
             _field(
               theme,
               controller: _rtspCtrl,
-              label: 'Camera stream URL or webcam index',
-              hint: 'rtsp://192.168.1.100:554/stream1',
+              label: 'Camera stream URL',
+              hint: 'rtsps://camera.example.com/stream1',
               icon: Icons.link_rounded,
               keyboardType: TextInputType.url,
               validator: (v) => v == null || v.trim().isEmpty
@@ -226,7 +232,7 @@ class _AddCameraScreenState extends State<AddCameraScreen> {
                     ),
                   ),
                   subtitle: Text(
-                    'Register on your paired Vision Server and start local processing. Use 0 for the server webcam.',
+                    'Use a camera stream that Cloud Vision can reach. A private Wi-Fi address will not work directly.',
                     style: TextStyle(
                       fontSize: TrexvenFontSize.caption,
                       color: theme.trexvenColors.muted,

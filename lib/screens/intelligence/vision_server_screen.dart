@@ -101,8 +101,7 @@ class _VisionServerScreenState extends State<VisionServerScreen> {
     } catch (_) {
       if (mounted) {
         setState(
-          () => _error =
-              'The request failed. Check the server connection and refresh.',
+          () => _error = 'The request failed. Check Cloud Vision and retry.',
         );
       }
     } finally {

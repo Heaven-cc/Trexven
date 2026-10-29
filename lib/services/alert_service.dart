@@ -215,7 +215,7 @@ class AlertService {
               local!.where((row) => row['is_read'] != true).length;
         } catch (_) {
           errors.add(
-            'Vision notifications could not refresh. Check server pairing.',
+            'Vision notifications could not refresh. Check Cloud Vision.',
           );
         }
       })(),
