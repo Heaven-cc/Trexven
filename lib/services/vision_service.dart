@@ -1,7 +1,11 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
+
 import 'database_service.dart';
+
 import 'dart:convert';
+
 import '../models/camera.dart';
+
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -12,7 +16,9 @@ class VisionService {
   static final VisionService _instance = VisionService._internal();
   factory VisionService() => _instance;
   VisionService._internal();
-  VisionService.withAccess({required this.accessHeaders});
+  VisionService.withAccess({required this.accessHeaders, String? cloudUrl}) {
+    if (cloudUrl != null) _baseUrl = normalizeCloudUrl(cloudUrl);
+  }
   Future<Map<String, String>> Function()? accessHeaders;
   String? _businessId, _userId;
   DateTime? _businessFetchedAt;
@@ -56,13 +62,15 @@ class VisionService {
   }
 
   final _secure = const FlutterSecureStorage();
-  String _baseUrl = 'http://192.168.1.19:8000';
+  String _baseUrl = const String.fromEnvironment('VISION_CLOUD_URL');
   String _apiKey = '';
   Future<void>? _initializing;
   Future<void> init() => _initializing ??= _load();
   Future<void> _load() async {
     final prefs = await SharedPreferences.getInstance();
-    _baseUrl = prefs.getString(_prefKey) ?? _baseUrl;
+    // A device's legacy LAN address must never become the cloud endpoint.
+    // Cloud routing is configured by the app release, not by individual staff.
+    if (_baseUrl.isNotEmpty) _baseUrl = normalizeCloudUrl(_baseUrl);
     _apiKey = await _secure.read(key: _apiKeyPrefKey) ?? '';
     final legacy = prefs.getString(_apiKeyPrefKey);
     if (legacy != null) {
@@ -72,6 +80,34 @@ class VisionService {
       }
       await prefs.remove(_apiKeyPrefKey);
     }
+  }
+
+  static String normalizeCloudUrl(String url) {
+    final value = normalizeUrl(url);
+    final uri = Uri.parse(value);
+    final host = uri.host.toLowerCase();
+    if (uri.scheme != 'https' ||
+        !host.contains('.') ||
+        RegExp(r'^[0-9.]+$').hasMatch(host) ||
+        host.contains(':') ||
+        host == 'localhost' ||
+        host.endsWith('.localhost') ||
+        host.endsWith('.local') ||
+        host.endsWith('.internal')) {
+      throw const FormatException(
+        'Cloud Vision requires a public HTTPS address.',
+      );
+    }
+    return value;
+  }
+
+  Future<Map<String, dynamic>> connectCloud() async {
+    await init();
+    if (!isConfigured) throw StateError('Cloud Vision is not available yet.');
+    // Business-scoped JWT authorization; no shared server secret in the app.
+    final health = await request('/health');
+    await request('/cameras');
+    return health;
   }
 
   static String normalizeUrl(String url) {
@@ -84,9 +120,7 @@ class VisionService {
         uri.hasQuery ||
         uri.hasFragment ||
         (uri.path.isNotEmpty && uri.path != '/')) {
-      throw const FormatException(
-        'Enter a server address such as http://192.168.1.19:8000',
-      );
+      throw const FormatException('Enter a complete server address');
     }
     return value;
   }
@@ -106,17 +140,14 @@ class VisionService {
 
   String get baseUrl => _baseUrl;
   String get apiKey => _apiKey;
-  bool get isConfigured => _apiKey.trim().isNotEmpty;
-  Map<String, String> get _headers => {
-    'X-Vision-API-Key': _apiKey,
-    'Content-Type': 'application/json',
-  };
+  bool get isConfigured => _baseUrl.isNotEmpty;
+  Map<String, String> get _headers => {'Content-Type': 'application/json'};
   String frameUrl(String cameraId) =>
       '$_baseUrl/app/cameras/${Uri.encodeComponent(cameraId)}/frame';
   static Map<String, dynamic> decodeResponse(http.Response response) {
     if (response.statusCode == 401) {
       throw Exception(
-        'The Vision API key was rejected. Check the key and reconnect.',
+        'Your Vision access could not be verified. Sign in again and retry.',
       );
     }
     if (response.statusCode < 200 || response.statusCode >= 300) {
@@ -135,6 +166,7 @@ class VisionService {
     Map<String, dynamic>? body,
   }) async {
     await init();
+    if (!isConfigured) throw StateError('Cloud Vision is not available yet.');
     try {
       final scoped = appPath(path);
       final headers = scoped.startsWith('/app/')
@@ -153,7 +185,7 @@ class VisionService {
       return decodeResponse(response);
     } on http.ClientException {
       throw Exception(
-        'Cannot reach Vision Server. Check its address, Wi-Fi and firewall.',
+        'Cannot reach Cloud Vision. Check your internet connection and retry.',
       );
     }
   }
@@ -234,8 +266,7 @@ class VisionService {
     } catch (_) {
       return {
         'success': false,
-        'message':
-            'Could not test camera. Check Vision Server pairing and connection.',
+        'message': 'Could not test camera. Check Cloud Vision and your internet connection.',
       };
     }
   }
@@ -282,6 +313,7 @@ class VisionService {
   }) async {
     try {
       await init();
+      if (!isConfigured) return null;
       final headers = await appHeaders();
       final url = '${frameUrl(cameraId)}${annotated ? '?annotated=true' : ''}';
       final response =
@@ -342,7 +374,12 @@ class VisionService {
     return List<Map<String, dynamic>>.from(data['alerts'] as List);
   }
 
-  Future<Map<String, dynamic>> getAlertInbox() => request('/alerts?limit=100');
+  Future<Map<String, dynamic>> getAlertInbox() async {
+    await init();
+    if (!isConfigured)
+      return {'alerts': <Map<String, dynamic>>[], 'unread_count': 0};
+    return request('/alerts?limit=100');
+  }
 
   Future<void> markAlertRead(String id) async =>
       request('/alerts/${Uri.encodeComponent(id)}/read', method: 'POST');

@@ -1,12 +1,14 @@
 import 'package:trexven_design_system/trexven_design_system.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:trexven_operations/trexven_operations.dart';
+
 import '../../services/database_service.dart';
 import '../inventory/inventory_tab.dart';
 import '../inventory/angel_inventory_approval_screen.dart';
 import '../finance/operational_finance_screen.dart';
 import '../intelligence/alerts_screen.dart';
 import 'employment_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -50,8 +52,18 @@ class _NotificationsSettingsScreenState
             api: OperationsClient(Supabase.instance.client, id),
             open: (context, route, referenceId) {
               final Widget screen = switch (route) {
-                'angel_inventory_approval' when referenceId != null => AngelInventoryApprovalScreen(client: Supabase.instance.client, businessId: id, requestId: referenceId),
-                'credit' || 'returns' => FinancialOperationsScreen(api: OperationsClient(Supabase.instance.client, id), owner: true, notificationReferenceId:referenceId, notificationIsReturn:route == 'returns'),
+                'angel_inventory_approval' when referenceId != null =>
+                  AngelInventoryApprovalScreen(
+                    client: Supabase.instance.client,
+                    businessId: id,
+                    requestId: referenceId,
+                  ),
+                'credit' || 'returns' => FinancialOperationsScreen(
+                  api: OperationsClient(Supabase.instance.client, id),
+                  owner: true,
+                  notificationReferenceId: referenceId,
+                  notificationIsReturn: route == 'returns',
+                ),
                 'inventory' => InventoryTab(),
                 'cash' => OperationalFinanceScreen(),
                 'employees' => EmploymentScreen(),
@@ -186,8 +198,9 @@ class _NotificationsSettingsScreenState
 
     if (_loading) {
       return Scaffold(
-        body: Center(
-          child: Text('Please wait…'),
+        appBar: AppBar(title: const Text('Notifications')),
+        body: const TrexvenSkeleton(
+          kind: TrexvenSkeletonKind.notificationSettings,
         ),
       );
     }
@@ -306,8 +319,7 @@ class _NotificationsSettingsScreenState
                       theme,
                       icon: Icons.inventory_2_outlined,
                       title: 'Low Stock Alerts',
-                      subtitle:
-                          'Notify me when products fall below their stock threshold',
+                      subtitle: 'Notify me when products fall below their stock threshold',
                       value: _lowStock,
                       onChanged: (value) {
                         _updateBool('notify_low_stock', value);
@@ -333,8 +345,7 @@ class _NotificationsSettingsScreenState
                       theme,
                       icon: Icons.visibility_outlined,
                       title: 'Vision AI Alerts',
-                      subtitle:
-                          'Alert me about important TREXVEN Vision detection events',
+                      subtitle: 'Alert me about important TREXVEN Vision detection events',
                       value: _aiAlerts,
                       onChanged: (value) {
                         _updateBool('notify_ai_alerts', value);
@@ -345,8 +356,7 @@ class _NotificationsSettingsScreenState
                       theme,
                       icon: Icons.shield_outlined,
                       title: 'Security Alerts',
-                      subtitle:
-                          'Sign-ins, password changes and important security activity',
+                      subtitle: 'Sign-ins, password changes and important security activity',
                       value: _security,
                       onChanged: (value) {
                         _updateBool('notify_security', value);
@@ -518,4 +528,3 @@ class _NotificationsSettingsScreenState
     );
   }
 }
-

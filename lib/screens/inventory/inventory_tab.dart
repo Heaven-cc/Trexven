@@ -1,12 +1,12 @@
 
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:trexven_operations/trexven_operations.dart';
 import 'package:trexven_design_system/trexven_design_system.dart';
 
 import '../../services/initial_load_timeout.dart';
 import '../../services/database_service.dart';
+import '../../services/business_currency.dart';
 import '../../models/product.dart';
 
 import 'catalog_editor_screen.dart';
@@ -814,10 +814,7 @@ class _InventoryTabState extends State<InventoryTab> {
   Widget _buildProductCard(
       Product product,
       ) {
-    final currency = NumberFormat.currency(
-      symbol: '$_currency ',
-      decimalDigits: 2,
-    );
+    final currency = BusinessCurrency.formatter(_currency);
 
     final price = product.isPricePending
         ? 'Price pending'
@@ -838,7 +835,7 @@ class _InventoryTabState extends State<InventoryTab> {
         },
         child: Container(
           constraints:
-          BoxConstraints(minHeight: 88),
+          BoxConstraints(minHeight: 76),
           padding: EdgeInsets.symmetric(
             horizontal: 13,
             vertical: 13,
@@ -846,8 +843,8 @@ class _InventoryTabState extends State<InventoryTab> {
           child: Row(
             children: [
               Container(
-                width: 53,
-                height: 53,
+                width: 44,
+                height: 44,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   color: _softBlue,
@@ -856,7 +853,7 @@ class _InventoryTabState extends State<InventoryTab> {
                 ),
                 clipBehavior: Clip.antiAlias,
                 child: product.imageUrl?.trim().isNotEmpty == true
-                    ? Image.network(product.imageUrl!, width: 53, height: 53,
+                    ? Image.network(product.imageUrl!, width: 44, height: 44,
                         fit: BoxFit.cover, cacheWidth: 160,
                         errorBuilder: (_, _, _) => Icon(Icons.inventory_2_outlined,
                           color: _blue, size: 25))
@@ -866,13 +863,14 @@ class _InventoryTabState extends State<InventoryTab> {
               SizedBox(width: 12),
 
               Expanded(
+                flex: 3,
                 child: Column(
                   crossAxisAlignment:
                   CrossAxisAlignment.start,
                   children: [
                     Text(
                       product.name,
-                      maxLines: 1,
+                      maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: _navy,
@@ -900,6 +898,7 @@ class _InventoryTabState extends State<InventoryTab> {
               SizedBox(width: 8),
 
               Flexible(
+                flex: 2,
                 child: Text(
                   price,
                   maxLines: 2,

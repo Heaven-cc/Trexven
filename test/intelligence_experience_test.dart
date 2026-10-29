@@ -218,6 +218,7 @@ void main() {
       var localRead = false, cloudRead = false;
       var updates = 0;
       final vision = VisionService.withAccess(
+        cloudUrl: 'https://vision.example.com',
         accessHeaders: () async => {
           'Authorization': 'Bearer test-session',
           'X-Business-ID': business,

@@ -113,8 +113,8 @@ class MeTab extends StatelessWidget {
             children: [
               TrexvenSettingsTile(
                 icon: Icons.memory_outlined,
-                title: 'Vision Server Settings',
-                subtitle: 'Configure Local/Cloud Vision AI Server',
+                title: 'Cloud Vision',
+                subtitle: 'Connection and camera management',
                 onTap: () => _showVisionSettings(context),
               ),
               TrexvenSettingsTile(

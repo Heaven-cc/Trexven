@@ -375,7 +375,7 @@ context: context,
       future: data,
       builder: (context, snapshot) {
         if (snapshot.connectionState != ConnectionState.done) {
-          return const Center(child: Text('Loading…'));
+          return const TrexvenSkeleton(kind: TrexvenSkeletonKind.operations);
         }
         if (snapshot.hasError || !snapshot.hasData) {
           return Center(child: Padding(padding: const EdgeInsets.all(24), child: Column(

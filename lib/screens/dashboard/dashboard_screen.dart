@@ -6,6 +6,7 @@ import 'package:trexven_operations/trexven_operations.dart';
 
 import '../../core/user_provider.dart';
 import '../../services/database_service.dart';
+import '../../services/business_currency.dart';
 import '../../models/sale.dart';
 import '../../models/product.dart';
 import '../inventory/add_product_screen.dart';
@@ -43,46 +44,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
   String? _errorMessage;
   int? _expandedIndex;
 
-  String _getCurrencySymbol(String? currency) {
-    if (currency == null || currency.trim().isEmpty) return '₦';
-    final code = currency.trim().toUpperCase();
-    switch (code) {
-      case 'NGN':
-        return '₦';
-      case 'USD':
-      case 'CAD':
-      case 'AUD':
-        return '\$';
-      case 'EUR':
-        return '€';
-      case 'GBP':
-        return '£';
-      case 'GHS':
-        return 'GH₵';
-      case 'KES':
-        return 'KSh';
-      case 'ZAR':
-        return 'R';
-      case 'INR':
-        return '₹';
-      case 'JPY':
-      case 'CNY':
-        return '¥';
-      default:
-        if (currency.length <= 3 &&
-            !RegExp(r'^[A-Za-z]{3}$').hasMatch(currency)) {
-          return currency;
-        }
-        return '₦';
-    }
-  }
-
-  NumberFormat get _currencyFormat {
-    final currency = context.read<UserProvider>().business?.currency;
-    final symbol = _getCurrencySymbol(currency);
-
-    return NumberFormat.currency(symbol: symbol, decimalDigits: 2);
-  }
+  NumberFormat get _currencyFormat => BusinessCurrency.formatter(
+    context.read<UserProvider>().business?.currency,
+  );
 
   Map<String, dynamic> _stats = {
     'sales': {

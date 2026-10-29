@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:intl/intl.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -7,6 +8,25 @@ abstract final class CustomerPresentation {
   static String amount(Object? value, {String? currency}) {
     final number = value is num ? value : num.tryParse(value?.toString() ?? '');
     return number == null ? 'Not available' : money(number, currency: currency);
+  }
+
+  static String notificationMessage(Map<String, dynamic> row) {
+    final name = row['employee_name']?.toString();
+    if (name == null || name.isEmpty) return row['message']?.toString() ?? '';
+    final details = row['details'] is Map ? row['details'] as Map : const {};
+    final actor = row['actor_name']?.toString() ?? 'Business owner';
+    String display(Object? value) => label(value);
+    final change = switch (row['action']) {
+      'employee_permission_changed' =>
+        '${display(details['permission'] ?? 'Access')} ${details['granted'] == true ? 'granted' : 'removed'}',
+      'employee_status_changed' =>
+        'Status: ${display(details['status'] ?? 'updated')}',
+      _ => [
+        if (details['role'] != null) 'Role: ${display(details['role'])}',
+        if (details['status'] != null) 'Status: ${display(details['status'])}',
+      ].join(' · '),
+    };
+    return '$name · ${change.isEmpty ? 'Access updated' : change}\nChanged by $actor';
   }
 
   static String stockDiscrepancies(Object? value) {
@@ -92,6 +112,8 @@ abstract final class CustomerPresentation {
         return '£';
       case 'GHS':
         return 'GH₵';
+      case 'XOF':
+        return 'CFA ';
       case 'KES':
         return 'KSh';
       case 'ZAR':
@@ -102,16 +124,20 @@ abstract final class CustomerPresentation {
       case 'CNY':
         return '¥';
       default:
-        if (currency.length <= 3 && !RegExp(r'^[A-Za-z]{3}$').hasMatch(currency)) {
+        if (currency.length <= 3 &&
+            !RegExp(r'^[A-Za-z]{3}$').hasMatch(currency)) {
           return currency;
         }
-        return '₦';
+        return '$code ';
     }
   }
 
   static String money(num value, {String? currency}) => NumberFormat.currency(
     symbol: _currencySymbol(currency),
-    decimalDigits: 2,
+    decimalDigits:
+        currency?.toUpperCase() == 'XOF' || currency?.toUpperCase() == 'JPY'
+        ? 0
+        : 2,
   ).format(value);
   static String date(Object? value, {bool includeTime = false}) {
     final date = value is DateTime

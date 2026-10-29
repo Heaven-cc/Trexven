@@ -149,7 +149,7 @@ class _IntelligenceTabState extends State<IntelligenceTab> {
                 PopupMenuItem(
                   value: 'server',
                   child: Text(_needsSetup
-                    ? 'Connect Vision server' : 'Vision Server')),
+                    ? 'Connect Cloud Vision' : 'Cloud Vision')),
                 if (!_needsSetup)
                   const PopupMenuItem(
                     value: 'camera', child: Text('Add camera')),
@@ -157,13 +157,6 @@ class _IntelligenceTabState extends State<IntelligenceTab> {
             ),
           ]),
         ),
-        if (_needsSetup)
-          Align(alignment: Alignment.centerLeft,
-            child: TextButton.icon(
-              onPressed: _openVisionServer,
-              icon: const Icon(Icons.dns_outlined),
-              label: const Text('Connect Vision server')),
-          ),
         Expanded(
           child: RefreshIndicator(
             onRefresh: _loadCameras,
@@ -495,7 +488,7 @@ class _IntelligenceTabState extends State<IntelligenceTab> {
     final muted = theme.trexvenColors.muted!;
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 40),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
       decoration: BoxDecoration(
         color: theme.trexvenColors.cardBackground,
         borderRadius: BorderRadius.circular(TrexvenRadii.card),
@@ -523,7 +516,7 @@ class _IntelligenceTabState extends State<IntelligenceTab> {
           SizedBox(height: 7),
           Text(
             _needsSetup
-                ? 'Connect your Vision server, then add your first camera to start monitoring your business.'
+                ? 'Connect Cloud Vision, then add your cameras to monitor your business from anywhere.'
                 : 'Add an IP camera to start building your business intelligence system.',
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -537,7 +530,7 @@ class _IntelligenceTabState extends State<IntelligenceTab> {
             onPressed: _addCamera,
             icon: Icon(_needsSetup ? Icons.dns_outlined : Icons.add_rounded),
             label: Text(
-              _needsSetup ? 'Connect Vision server' : 'Add your first camera',
+              _needsSetup ? 'Connect Cloud Vision' : 'Add your first camera',
             ),
           ),
         ],

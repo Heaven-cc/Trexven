@@ -91,7 +91,8 @@ class FinanceReport {
   final BusinessPeriod period;
   final Map<String, dynamic> summary;
   final List<Map<String, dynamic>> sales, expenses;
-  FinanceReport(this.period, this.summary, this.sales, this.expenses);
+  final String currency;
+  FinanceReport(this.period, this.summary, this.sales, this.expenses, {this.currency = 'NGN'});
   double get expenseTotal =>
       expenses.fold(0, (sum, e) => sum + financialNumber(e['amount']));
 }

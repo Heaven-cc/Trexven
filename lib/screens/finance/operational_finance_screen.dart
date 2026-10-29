@@ -51,7 +51,7 @@ class _OperationalFinanceScreenState extends State<OperationalFinanceScreen> {
       future: business,
       builder: (context, snapshot) {
         if (snapshot.connectionState != ConnectionState.done) {
-          return _buildScaffold(child: const Center(child: Text('Loading…')));
+          return _buildScaffold(child: const TrexvenSkeleton(kind: TrexvenSkeletonKind.operations));
         }
 
         final businessId = snapshot.data;

@@ -37,7 +37,7 @@ void main() {
       expect(requests, 0);
       expect(find.text('Set up Intelligence'), findsOneWidget);
       expect(find.text('Could not load cameras'), findsNothing);
-      expect(find.text('Connect Vision server'), findsNWidgets(2));
+      expect(find.text('Connect Cloud Vision'), findsOneWidget);
       expect(vision.isConfigured, false);
       expect(tester.takeException(), isNull);
       await tester.pumpWidget(const SizedBox());
@@ -53,7 +53,10 @@ void main() {
       FlutterSecureStorage.setMockInitialValues({
         'vision_api_key': 'configured-key',
       });
-      final vision = VisionService.withAccess(accessHeaders: () async => {});
+      final vision = VisionService.withAccess(
+        accessHeaders: () async => {},
+        cloudUrl: 'https://vision.example.com',
+      );
       var requests = 0;
       await http.runWithClient(
         () async {
@@ -72,6 +75,11 @@ void main() {
         }),
       );
       expect(requests, 1);
+      await tester.scrollUntilVisible(
+        find.text('No cameras yet'),
+        250,
+        scrollable: find.byType(Scrollable).first,
+      );
       expect(find.text('No cameras yet'), findsOneWidget);
       expect(find.text('Could not load cameras'), findsNothing);
       expect(tester.takeException(), isNull);
@@ -88,7 +96,10 @@ void main() {
     FlutterSecureStorage.setMockInitialValues({
       'vision_api_key': 'configured-key',
     });
-    final vision = VisionService.withAccess(accessHeaders: () async => {});
+    final vision = VisionService.withAccess(
+      accessHeaders: () async => {},
+      cloudUrl: 'https://vision.example.com',
+    );
     var fail = true;
     await http.runWithClient(
       () async {
@@ -105,6 +116,11 @@ void main() {
         fail = false;
         await tester.tap(find.text('Retry'));
         await tester.pumpAndSettle();
+        await tester.scrollUntilVisible(
+          find.text('No cameras yet'),
+          250,
+          scrollable: find.byType(Scrollable).first,
+        );
         expect(find.text('No cameras yet'), findsOneWidget);
         expect(find.text('Could not load cameras'), findsNothing);
       },

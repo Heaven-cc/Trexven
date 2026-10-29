@@ -5,7 +5,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:provider/provider.dart';
 import 'core/theme_provider.dart';
 import 'core/user_provider.dart';
-import 'screens/splash_screen.dart';
 import 'screens/auth/account_gate.dart';
 import 'screens/auth/reset_password_screen.dart';
 import 'widgets/build_error_fallback.dart';
@@ -130,12 +129,12 @@ class _TrexvenAppState extends State<TrexvenApp> {
               ? TrexvenTheme.signatureTheme
               : TrexvenTheme.darkTheme,
           themeMode: themeProvider.themeMode,
-          home: SplashScreen(),
+          home: AccountGate(),
           builder: (context, child) {
             // Global error boundary to prevent blank screens
             ErrorWidget.builder = (details) => BuildErrorFallback(
               onRetry: () => _navigator.currentState?.pushAndRemoveUntil(
-                MaterialPageRoute(builder: (_) => SplashScreen()),
+                MaterialPageRoute(builder: (_) => AccountGate()),
                 (route) => false,
               ),
             );

@@ -4,7 +4,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:odt/services/vision_service.dart';
+
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:odt/screens/intelligence/vision_server_screen.dart';
 
@@ -18,6 +20,7 @@ void main() {
     FlutterSecureStorage.setMockInitialValues({});
   });
   final vision = VisionService.withAccess(
+    cloudUrl: 'https://vision.example.com',
     accessHeaders: () async => {
       'Authorization': 'Bearer test-session',
       'X-Business-ID': 'test-business',
@@ -91,7 +94,9 @@ void main() {
   test('frames use authenticated server camera route', () async {
     final client = MockClient((request) async {
       expect(request.url.path, '/app/cameras/cam-123/frame');
-      expect(request.headers['X-Vision-API-Key'], 'legacy-test-key');
+      expect(request.headers['X-Vision-API-Key'], isNull);
+      expect(request.headers['Authorization'], 'Bearer test-session');
+      expect(request.headers['X-Business-ID'], 'test-business');
       return http.Response.bytes(
         [255, 216, 255, 217],
         200,
@@ -112,7 +117,7 @@ void main() {
       isNull,
     );
   });
-  testWidgets('pairing screen loads saved address and masks the API key', (
+  testWidgets('cloud setup never exposes LAN pairing or a shared API key', (
     tester,
   ) async {
     await tester.runAsync(() async {
@@ -120,13 +125,11 @@ void main() {
       await Future<void>.delayed(const Duration(milliseconds: 100));
     });
     await tester.pumpAndSettle();
-    expect(find.text('Connect and save'), findsOneWidget);
-    expect(find.text('http://localhost:8000'), findsOneWidget);
-    final fields = tester
-        .widgetList<TextField>(find.byType(TextField))
-        .toList();
-    expect(fields.last.obscureText, isTrue);
-    expect(find.text('Connected'), findsNothing);
+    expect(find.text('Check connection'), findsOneWidget);
+    expect(find.text('http://localhost:8000'), findsNothing);
+    expect(find.byType(TextField), findsNothing);
+    expect(find.textContaining('not available yet'), findsOneWidget);
+    expect(find.textContaining('same Wi-Fi'), findsNothing);
   });
   test('camera credentials are encoded into the stream source', () {
     final source = VisionService.cameraSource(
@@ -150,7 +153,9 @@ void main() {
     final client = MockClient((request) async {
       expect(request.method, 'POST');
       expect(request.url.path, '/app/cameras');
-      expect(request.headers['X-Vision-API-Key'], 'legacy-test-key');
+      expect(request.headers['X-Vision-API-Key'], isNull);
+      expect(request.headers['Authorization'], 'Bearer test-session');
+      expect(request.headers['X-Business-ID'], 'test-business');
       final body = jsonDecode(request.body) as Map;
       expect(body['stream_url'], 'rtsp://camera/live');
       expect(body['enabled'], false);

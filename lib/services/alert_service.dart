@@ -1,3 +1,4 @@
+import 'package:trexven_operations/trexven_operations.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
@@ -187,6 +188,7 @@ class AlertService {
                 (row) => <String, dynamic>{
                   ...?metadata[row['alert_key']],
                   ...row,
+                  'message': CustomerPresentation.notificationMessage(row),
                   'id': 'op:${row['alert_key']}',
                   'business_id': businessId,
                   'source':
@@ -213,7 +215,7 @@ class AlertService {
               local!.where((row) => row['is_read'] != true).length;
         } catch (_) {
           errors.add(
-            'Vision notifications could not refresh. Check server pairing.',
+            'Vision notifications could not refresh. Check Cloud Vision.',
           );
         }
       })(),

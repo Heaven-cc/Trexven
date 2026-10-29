@@ -55,7 +55,7 @@ class _AboutScreenState extends State<AboutScreen> {
         future: _packageInfoFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: Text('Loading…'));
+            return const TrexvenSkeleton(kind: TrexvenSkeletonKind.detail);
           }
 
           final packageInfo = snapshot.data;

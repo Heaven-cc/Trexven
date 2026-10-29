@@ -109,7 +109,7 @@ class _CameraAlertsScreenState extends State<CameraAlertsScreen> {
           }
 
           if (!snapshot.hasData) {
-            return const Center(child: Text('Loading…'));
+            return const TrexvenSkeleton(kind: TrexvenSkeletonKind.notifications);
           }
 
           final events = snapshot.data ?? [];

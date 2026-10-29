@@ -1,10 +1,12 @@
 import 'package:trexven_design_system/trexven_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
 import '../../services/database_service.dart';
 import '../../services/account_deletion_service.dart';
 import 'account_deletion_recovery_screen.dart';
 import '../main_screen.dart';
+import '../../widgets/startup_skeleton.dart';
 import '../welcome_screen.dart';
 import '../setup/business_setup_screen.dart';
 
@@ -21,8 +23,11 @@ class _AccountGateState extends State<AccountGate> {
   @override
   void initState() {
     super.initState();
-    _destination = _resolve();
+    _destination = _resolveDestination();
   }
+
+  Future<Widget> _resolveDestination() =>
+      _resolve().timeout(const Duration(seconds: 25));
 
   Future<Widget> _resolve() async {
     if (!widget.skipDeletionRecovery) {
@@ -63,7 +68,8 @@ class _AccountGateState extends State<AccountGate> {
                 title: Text(row['business_name']?.toString() ?? 'Business'),
                 onTap: () async {
                   await database.selectOwnedBusiness(row['id'].toString());
-                  if (mounted) setState(() => _destination = _resolve());
+                  if (mounted)
+                    setState(() => _destination = _resolveDestination());
                 },
               ),
           ],
@@ -106,14 +112,15 @@ class _AccountGateState extends State<AccountGate> {
                   if (snapshot.error is! OwnerAppAccessDenied)
                     ElevatedButton(
                       onPressed: () =>
-                          setState(() => _destination = _resolve()),
+                          setState(() => _destination = _resolveDestination()),
                       child: Text('Retry'),
                     ),
                   TextButton(
                     onPressed: () async {
                       DatabaseService().clearBusinessSelection();
                       await Supabase.instance.client.auth.signOut();
-                      if (mounted) setState(() => _destination = _resolve());
+                      if (mounted)
+                        setState(() => _destination = _resolveDestination());
                     },
                     child: Text('Sign out'),
                   ),
@@ -123,7 +130,7 @@ class _AccountGateState extends State<AccountGate> {
           ),
         );
       }
-      return snapshot.data ?? Scaffold(body: Center(child: Text('Loading…')));
+      return snapshot.data ?? const StartupSkeleton();
     },
   );
 }

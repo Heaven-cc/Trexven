@@ -307,7 +307,7 @@ class _EmployeeDetailsScreenState extends State<EmployeeDetailsScreen> {
           if (_isLoading)
             Container(
               color: Colors.black26,
-              child: const Center(child: Text('Loading…')),
+              child: const TrexvenSkeleton(kind: TrexvenSkeletonKind.employeeAccess),
             ),
         ],
       ),

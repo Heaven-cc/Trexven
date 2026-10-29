@@ -16,7 +16,8 @@ void main() {
         home: InventoryTab(database: db),
       ),
     );
-    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+    expect(find.byType(TrexvenSkeleton), findsOneWidget);
+    expect(find.byType(CircularProgressIndicator), findsNothing);
     db.updates.add([Product(id: 'p', name: 'Widget', price: 10, stock: 8)]);
     await tester.pumpAndSettle();
     await tester.enterText(find.byType(TextField), 'Wid');

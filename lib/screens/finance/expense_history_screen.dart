@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import '../../services/database_service.dart';
+import '../../services/business_currency.dart';
+
+import 'package:trexven_design_system/trexven_design_system.dart';
+
 import '../../services/business_reporting.dart';
 
 class ExpenseHistoryScreen extends StatefulWidget {
@@ -14,6 +19,7 @@ class _ExpenseHistoryScreenState extends State<ExpenseHistoryScreen> {
   late Future<List<Map<String, dynamic>>> _rows;
   final _database = DatabaseService();
   BusinessPeriod? _period;
+  String _currency = 'NGN';
   @override
   void initState() {
     super.initState();
@@ -25,6 +31,8 @@ class _ExpenseHistoryScreenState extends State<ExpenseHistoryScreen> {
       _period =
           widget.period ??
           BusinessPeriod.fromDay(await _database.getBusinessDay(), 'today');
+      final business = await _database.getBusinessProfile();
+      _currency = business?.currency ?? 'NGN';
       return _database.getExpenses(_period!);
     })().timeout(const Duration(seconds: 20));
   }
@@ -43,7 +51,9 @@ class _ExpenseHistoryScreenState extends State<ExpenseHistoryScreen> {
             ),
           );
         if (!snapshot.hasData)
-          return const Center(child: Text('Please wait…'));
+          return const TrexvenSkeleton(
+            kind: TrexvenSkeletonKind.financeTransactions,
+          );
         return ListView(
           padding: const EdgeInsets.all(16),
           children: [
@@ -61,11 +71,8 @@ class _ExpenseHistoryScreenState extends State<ExpenseHistoryScreen> {
                   '${DateFormat('d MMM, h:mm a').format(_period!.local(DateTime.parse(row['created_at'] as String)))} · ${row['payment_method'] ?? ''}',
                 ),
                 trailing: Text(
-                  NumberFormat.currency(
-                    locale: 'en_NG',
-                    symbol: '₦',
-                    decimalDigits: 2,
-                  ).format(financialNumber(row['amount'])),
+                  BusinessCurrency.formatter(_currency)
+                      .format(financialNumber(row['amount'])),
                 ),
               ),
           ],
