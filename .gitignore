@@ -57,6 +57,7 @@ app.*.map.json
 .env.*
 !.env.example
 !.env.sample
+key.properties
 *.jks
 *.keystore
 *.p12
