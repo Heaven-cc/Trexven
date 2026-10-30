@@ -222,34 +222,55 @@ class _FinanceTabState extends State<FinanceTab> {
   }
 
   Widget _breakdownRow(String label, String value, {bool loading = false}) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Expanded(
-          child: Text(label, style: TextStyle(color: _muted, fontSize: 13)),
+    final labelText = Text(
+      label,
+      style: TextStyle(color: _muted, fontSize: 13),
+    );
+    final valueText = _loadingValue(
+      Text(
+        value,
+        softWrap: false,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        textAlign: TextAlign.end,
+        style: TextStyle(
+          color: _navy,
+          fontSize: 13,
+          fontWeight: FontWeight.w700,
         ),
-        const SizedBox(width: 8),
-        Flexible(
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: _loadingValue(
-              Text(
-                value,
-                maxLines: 1,
-                softWrap: false,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.end,
-                style: TextStyle(
-                  color: _navy,
-                  fontSize: 13,
-                  fontWeight: FontWeight.w700,
-                ),
+      ),
+      loading,
+    );
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        // Very narrow screens and large system text need two lines, not a
+        // squeezed Row that overflows or truncates monetary values.
+        final stacked = constraints.maxWidth < 310 ||
+            MediaQuery.textScalerOf(context).scale(13) > 18;
+        if (stacked) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              labelText,
+              const SizedBox(height: 5),
+              Align(alignment: Alignment.centerRight, child: valueText),
+            ],
+          );
+        }
+        return Row(
+          children: [
+            Expanded(child: labelText),
+            const SizedBox(width: 8),
+            Flexible(
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: valueText,
               ),
-              loading,
             ),
-          ),
-        ),
-      ],
+          ],
+        );
+      },
     );
   }
 
@@ -480,14 +501,19 @@ class _FinanceTabState extends State<FinanceTab> {
                               : const Color(0xFF17243C),
                           borderRadius: BorderRadius.circular(9),
                         ),
-                        child: Text(
-                          entry.$2,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: _metric == entry.$1
-                                ? FontWeight.w700
-                                : FontWeight.w500,
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            entry.$2,
+                            maxLines: 1,
+                            softWrap: false,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontWeight: _metric == entry.$1
+                                  ? FontWeight.w700
+                                  : FontWeight.w500,
+                            ),
                           ),
                         ),
                       ),
@@ -738,16 +764,27 @@ class _FinanceTabState extends State<FinanceTab> {
             style: TextStyle(color: _muted, fontSize: 13),
           ),
           const SizedBox(height: 20),
-          Row(
-            children: [
-              Text(
-                'Duration',
-                style: TextStyle(color: _navy, fontWeight: FontWeight.w700),
-              ),
-              const Spacer(),
-              SizedBox(
-                width: 184,
-                child: DropdownButtonFormField<String>(
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final narrow = constraints.maxWidth < 330 ||
+                  MediaQuery.textScalerOf(context).scale(14) > 20;
+              return Flex(
+                direction: narrow ? Axis.vertical : Axis.horizontal,
+                crossAxisAlignment: narrow
+                    ? CrossAxisAlignment.start
+                    : CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Duration',
+                    style: TextStyle(color: _navy, fontWeight: FontWeight.w700),
+                  ),
+                  if (narrow)
+                    const SizedBox(height: 8)
+                  else
+                    const Spacer(),
+                  SizedBox(
+                    width: narrow ? constraints.maxWidth : 184,
+                    child: DropdownButtonFormField<String>(
                   value: _period,
                   isExpanded: true,
                   decoration: InputDecoration(
@@ -781,10 +818,12 @@ class _FinanceTabState extends State<FinanceTab> {
                       child: Text('Custom range'),
                     ),
                   ],
-                  onChanged: _choosePeriod,
-                ),
-              ),
-            ],
+                    onChanged: _choosePeriod,
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
           if (_period == 'custom' && _customRange != null) ...[
             const SizedBox(height: 7),
