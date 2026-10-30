@@ -73,11 +73,14 @@ void main() {
     await tester.pumpAndSettle();
     expect(db.salesRequests, 1);
     expect(db.statsRequests, 1);
-    final refreshing = tester
-        .state<RefreshIndicatorState>(find.byType(RefreshIndicator))
-        .show();
+    // The removed pull-down gesture must not trigger a background refetch.
+    expect(find.byType(RefreshIndicator), findsNothing);
+    final duration = find.byType(DropdownButtonFormField<String>);
+    expect(duration, findsOneWidget);
+    await tester.tap(duration);
     await tester.pumpAndSettle();
-    await refreshing;
+    await tester.tap(find.text('Yesterday').last);
+    await tester.pumpAndSettle();
     expect(db.salesRequests, 2);
     expect(db.statsRequests, 2);
     await tester.scrollUntilVisible(
