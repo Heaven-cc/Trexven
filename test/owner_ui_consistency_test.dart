@@ -21,6 +21,51 @@ class PendingFinanceDatabase extends FakeDatabase {
 }
 
 void main() {
+  testWidgets('Finance rows fit narrow phones with large text and amounts', (tester) async {
+    tester.view.physicalSize = const Size(320, 900);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    final db = PendingFinanceDatabase();
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: TrexvenTheme.lightTheme,
+        home: MediaQuery(
+          data: const MediaQueryData(
+            textScaler: TextScaler.linear(1.6),
+            disableAnimations: true,
+          ),
+          child: FinanceTab(database: db),
+        ),
+      ),
+    );
+    await tester.pump();
+    expect(tester.takeException(), isNull);
+    db.response.complete(
+      FinanceReport(
+        BusinessPeriod.fromDay({
+          'timezone': 'Africa/Lagos',
+          'local_date': '2026-10-29',
+        }, 'today'),
+        {
+          'gross_sales': 123456789012.50,
+          'net_collected': 123456789012.50,
+          'refunds': 12345678.50,
+          'sale_collections': 123456789012.50,
+          'repayment_collections': 500000.0,
+          'receivables': 123456789012.50,
+        },
+        const [],
+        const [],
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
+    expect(find.text('Financial Breakdown'), findsOneWidget);
+    await tester.pumpWidget(const SizedBox());
+    await db.updates.close();
+  });
+
   testWidgets('Finance keeps Insights in place while the summary loads', (
     tester,
   ) async {
