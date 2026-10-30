@@ -228,17 +228,26 @@ class _FinanceTabState extends State<FinanceTab> {
         Expanded(
           child: Text(label, style: TextStyle(color: _muted, fontSize: 13)),
         ),
-        const SizedBox(width: 12),
-        _loadingValue(
-          Text(
-            value,
-            style: TextStyle(
-              color: _navy,
-              fontSize: 13,
-              fontWeight: FontWeight.w700,
+        const SizedBox(width: 8),
+        Flexible(
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: _loadingValue(
+              Text(
+                value,
+                maxLines: 1,
+                softWrap: false,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.end,
+                style: TextStyle(
+                  color: _navy,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              loading,
             ),
           ),
-          loading,
         ),
       ],
     );
@@ -712,10 +721,7 @@ class _FinanceTabState extends State<FinanceTab> {
   @override
   Widget build(BuildContext context) => Scaffold(
     backgroundColor: _bg,
-    body: RefreshIndicator(
-      color: _blue,
-      onRefresh: _refresh,
-      child: ListView(
+    body: ListView(
         padding: const EdgeInsets.fromLTRB(16, 22, 16, 32),
         children: [
           Text(
@@ -803,7 +809,6 @@ class _FinanceTabState extends State<FinanceTab> {
           _transactions(),
         ],
       ),
-    ),
   );
 }
 
