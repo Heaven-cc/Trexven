@@ -166,18 +166,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    if (_isLoading) {
-      return const TrexvenSkeleton(kind: TrexvenSkeletonKind.dashboard);
-    }
-
     if (_errorMessage != null && !_hasLoadedStats) {
       return _buildErrorState();
     }
 
-    return RefreshIndicator(
-      color: theme.colorScheme.primary,
-      onRefresh: _loadStats,
-      child: SingleChildScrollView(
+    return SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(
           parent: BouncingScrollPhysics(),
         ),
@@ -215,8 +208,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             const SizedBox(height: 12),
           ],
         ),
-      ),
-    );
+      );
   }
 
   // ============================================================
@@ -365,7 +357,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             fit: BoxFit.scaleDown,
             alignment: Alignment.centerLeft,
             child: Text(
-              _currencyFormat.format(sales['totalToday'] ?? 0.0),
+              _isLoading ? '—' : _currencyFormat.format(sales['totalToday'] ?? 0.0),
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 30,
@@ -443,6 +435,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   Widget _buildKpiSection() {
     final cards = _getCardData();
+    if (_isLoading) {
+      for (final card in cards) {
+        card['value'] = '—';
+      }
+    }
 
     if (_expandedIndex != null) {
       return _buildDetailedCard(_expandedIndex!, cards[_expandedIndex!]);
