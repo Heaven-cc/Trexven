@@ -147,7 +147,7 @@ class _RecordingsScreenState extends State<RecordingsScreen> {
         color: brandBlue,
         onRefresh: _loadRecordings,
         child: _loading
-            ? const TrexvenSkeleton(kind: TrexvenSkeletonKind.detail)
+            ? const TrexvenSkeleton(kind: TrexvenSkeletonKind.recordings)
             : _recordings.isEmpty
             ? _buildEmptyState(theme)
             : ListView.builder(

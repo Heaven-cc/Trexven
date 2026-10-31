@@ -356,8 +356,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
           FittedBox(
             fit: BoxFit.scaleDown,
             alignment: Alignment.centerLeft,
-            child: Text(
-              _isLoading ? '—' : _currencyFormat.format(sales['totalToday'] ?? 0.0),
+            child: _isLoading
+                ? const TrexvenSkeletonBlock(width: 170, height: 31)
+                : Text(
+              _currencyFormat.format(sales['totalToday'] ?? 0.0),
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 30,
@@ -435,11 +437,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   Widget _buildKpiSection() {
     final cards = _getCardData();
-    if (_isLoading) {
-      for (final card in cards) {
-        card['value'] = '—';
-      }
-    }
 
     if (_expandedIndex != null) {
       return _buildDetailedCard(_expandedIndex!, cards[_expandedIndex!]);
@@ -526,7 +523,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 child: FittedBox(
                   fit: BoxFit.scaleDown,
                   alignment: Alignment.centerLeft,
-                  child: Text(
+                  child: _isLoading
+                      ? const TrexvenSkeletonBlock(width: 78, height: 22)
+                      : Text(
                     value,
                     style: TextStyle(
                       fontSize: 21,

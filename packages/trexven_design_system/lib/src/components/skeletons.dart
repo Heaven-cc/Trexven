@@ -20,6 +20,30 @@ enum TrexvenSkeletonKind {
   detail,
   checkout,
   notificationSettings,
+  events,
+  recordings,
+}
+
+/// A content-sized loading placeholder for values inside their final cards.
+class TrexvenSkeletonBlock extends StatelessWidget {
+  const TrexvenSkeletonBlock({super.key, this.width, this.height = 13});
+  final double? width;
+  final double height;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        color: theme.colorScheme.onSurface.withValues(
+          alpha: theme.brightness == Brightness.dark ? 0.20 : 0.13,
+        ),
+        borderRadius: BorderRadius.circular(7),
+      ),
+    );
+  }
 }
 
 class TrexvenSkeleton extends StatefulWidget {
@@ -277,6 +301,55 @@ class _TrexvenSkeletonState extends State<TrexvenSkeleton>
             ),
             _space(8),
             _rows(5),
+          ],
+        );
+      case TrexvenSkeletonKind.events:
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            _line(.34, height: 19),
+            _space(10),
+            _shape(height: 40, radius: 12),
+            _space(18),
+            for (var i = 0; i < 5; i++) ...[
+              _panel([
+                Row(children: [
+                  _shape(width: 24, height: 24, radius: 8),
+                  const SizedBox(width: 12),
+                  Expanded(child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [_line(.65, height: 13), _space(8), _line(.82)],
+                  )),
+                  _shape(width: 16, height: 16),
+                ]),
+              ]),
+              _space(10),
+            ],
+          ],
+        );
+      case TrexvenSkeletonKind.recordings:
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            _line(.42, height: 20),
+            _space(16),
+            for (var i = 0; i < 4; i++) ...[
+              _panel([
+                Row(children: [
+                  _shape(width: 92, height: 67, radius: 12),
+                  const SizedBox(width: 12),
+                  Expanded(child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _line(.78, height: 14),
+                      _space(10),
+                      _line(.54),
+                    ],
+                  )),
+                ]),
+              ]),
+              _space(12),
+            ],
           ],
         );
       case TrexvenSkeletonKind.financeSummary:

@@ -69,7 +69,7 @@ class _EventsScreenState extends State<EventsScreen> {
       future: _events,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const TrexvenSkeleton(kind: TrexvenSkeletonKind.financeTransactions);
+          return const TrexvenSkeleton(kind: TrexvenSkeletonKind.events);
         }
         if (snapshot.hasError) {
           return Center(

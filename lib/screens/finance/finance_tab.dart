@@ -50,14 +50,7 @@ class _FinanceTabState extends State<FinanceTab> {
       child: Stack(
         children: [
           Opacity(opacity: 0, child: child),
-          Positioned.fill(
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                color: _muted.withValues(alpha: .18),
-                borderRadius: BorderRadius.circular(6),
-              ),
-            ),
-          ),
+          const Positioned.fill(child: TrexvenSkeletonBlock()),
         ],
       ),
     );
