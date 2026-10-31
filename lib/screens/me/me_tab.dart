@@ -316,7 +316,10 @@ class _SubscriptionSettingsState extends State<_SubscriptionSettings> {
     builder: (context, snapshot) => TrexvenSettingsTile(
       icon: Icons.credit_card_outlined,
       title: 'Manage Subscription',
-      trailing: snapshot.hasData && snapshot.data!.configured
+      trailing: widget.businessId != null &&
+              !snapshot.hasData && !snapshot.hasError
+          ? const TrexvenSkeletonBlock(width: 70, height: 14)
+          : snapshot.hasData && snapshot.data!.configured
           ? Text(
               CustomerPresentation.label(snapshot.data!.plan),
               style: Theme.of(context).textTheme.labelLarge,
@@ -327,7 +330,7 @@ class _SubscriptionSettingsState extends State<_SubscriptionSettings> {
           : snapshot.hasError
           ? 'Subscription status unavailable'
           : !snapshot.hasData
-          ? 'Loading subscription'
+          ? null
           : snapshot.data!.configured
           ? CustomerPresentation.label(snapshot.data!.status)
           : 'No active subscription',
