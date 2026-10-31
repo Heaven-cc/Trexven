@@ -8,221 +8,26 @@ abstract final class BusinessCurrency {
       'NGN' => '₦',
       'GHS' => '₵',
       'XOF' => 'CFA',
-      'USD' || 'CAD' || 'AUD' => '\
+      'USD' || 'CAD' || 'AUD' => String.fromCharCode(36),
+      'EUR' => '€',
+      'GBP' => '£',
+      'KES' => 'KSh',
+      'ZAR' => 'R',
+      'INR' => '₹',
+      'JPY' || 'CNY' => '¥',
+      _ => code,
+    };
+  }
+  static NumberFormat formatter(String? currency) {
     final code = (currency == null || currency.trim().isEmpty)
         ? 'NGN'
         : currency.trim().toUpperCase();
-    final displaySymbol = switch (code) {
+    final symbol = switch (code) {
       'NGN' => '₦',
       'GHS' => '₵',
       'XOF' => 'CFA ',
       'USD' => '\$',
-      'CAD' => '\,
-      'AUD' => '\,
-      'EUR' => '€',
-      'GBP' => '£',
-      'KES' => 'KSh ',
-      'ZAR' => 'R ',
-      'INR' => '₹',
-      'JPY' || 'CNY' => '¥',
-      _ => '$code ',
-    };
-    return NumberFormat.currency(
-      locale: 'en',
-      name: code,
-      symbol: displaySymbol,
-      decimalDigits: code == 'XOF' || code == 'JPY' ? 0 : 2,
-    );
-  }
-}
-,
-      'EUR' => '€',
-      'GBP' => '£',
-      'KES' => 'KSh',
-      'ZAR' => 'R',
-      'INR' => '₹',
-      'JPY' || 'CNY' => '¥',
-      _ => code,
-    };
-  }
-
-  static NumberFormat formatter(String? currency) {
-    final code = (currency == null || currency.trim().isEmpty)
-        ? 'NGN'
-        : currency.trim().toUpperCase();
-    final symbol = switch (code) {
-      'NGN' => '₦',
-      'GHS' => 'GH₵',
-      'XOF' => 'CFA ',
-      'USD' => '\$',
-      'CAD' => 'CA\$',
-      'AUD' => 'A\$',
-      'EUR' => '€',
-      'GBP' => '£',
-      'KES' => 'KSh ',
-      'ZAR' => 'R ',
-      'INR' => '₹',
-      'JPY' || 'CNY' => '¥',
-      _ => '$code ',
-    };
-    return NumberFormat.currency(
-      locale: 'en',
-      name: code,
-      symbol: symbol,
-      decimalDigits: code == 'XOF' || code == 'JPY' ? 0 : 2,
-    );
-  }
-}
-,
-      'AUD' => 'A\$',
-      'EUR' => '€',
-      'GBP' => '£',
-      'KES' => 'KSh ',
-      'ZAR' => 'R ',
-      'INR' => '₹',
-      'JPY' || 'CNY' => '¥',
-      _ => '$code ',
-    };
-    return NumberFormat.currency(
-      locale: 'en',
-      name: code,
-      symbol: symbol,
-      decimalDigits: code == 'XOF' || code == 'JPY' ? 0 : 2,
-    );
-  }
-}
-,
-      'EUR' => '€',
-      'GBP' => '£',
-      'KES' => 'KSh',
-      'ZAR' => 'R',
-      'INR' => '₹',
-      'JPY' || 'CNY' => '¥',
-      _ => code,
-    };
-  }
-
-  static NumberFormat formatter(String? currency) {
-    final code = (currency == null || currency.trim().isEmpty)
-        ? 'NGN'
-        : currency.trim().toUpperCase();
-    final symbol = switch (code) {
-      'NGN' => '₦',
-      'GHS' => 'GH₵',
-      'XOF' => 'CFA ',
-      'USD' => '\$',
-      'CAD' => 'CA\$',
-      'AUD' => 'A\$',
-      'EUR' => '€',
-      'GBP' => '£',
-      'KES' => 'KSh ',
-      'ZAR' => 'R ',
-      'INR' => '₹',
-      'JPY' || 'CNY' => '¥',
-      _ => '$code ',
-    };
-    return NumberFormat.currency(
-      locale: 'en',
-      name: code,
-      symbol: symbol,
-      decimalDigits: code == 'XOF' || code == 'JPY' ? 0 : 2,
-    );
-  }
-}
-,
-      'EUR' => '€',
-      'GBP' => '£',
-      'KES' => 'KSh ',
-      'ZAR' => 'R ',
-      'INR' => '₹',
-      'JPY' || 'CNY' => '¥',
-      _ => '$code ',
-    };
-    return NumberFormat.currency(
-      locale: 'en',
-      name: code,
-      symbol: symbol,
-      decimalDigits: code == 'XOF' || code == 'JPY' ? 0 : 2,
-    );
-  }
-}
-,
-      'EUR' => '€',
-      'GBP' => '£',
-      'KES' => 'KSh',
-      'ZAR' => 'R',
-      'INR' => '₹',
-      'JPY' || 'CNY' => '¥',
-      _ => code,
-    };
-  }
-
-  static NumberFormat formatter(String? currency) {
-    final code = (currency == null || currency.trim().isEmpty)
-        ? 'NGN'
-        : currency.trim().toUpperCase();
-    final symbol = switch (code) {
-      'NGN' => '₦',
-      'GHS' => 'GH₵',
-      'XOF' => 'CFA ',
-      'USD' => '\$',
-      'CAD' => 'CA\$',
-      'AUD' => 'A\$',
-      'EUR' => '€',
-      'GBP' => '£',
-      'KES' => 'KSh ',
-      'ZAR' => 'R ',
-      'INR' => '₹',
-      'JPY' || 'CNY' => '¥',
-      _ => '$code ',
-    };
-    return NumberFormat.currency(
-      locale: 'en',
-      name: code,
-      symbol: symbol,
-      decimalDigits: code == 'XOF' || code == 'JPY' ? 0 : 2,
-    );
-  }
-}
-,
-      'AUD' => 'A\$',
-      'EUR' => '€',
-      'GBP' => '£',
-      'KES' => 'KSh ',
-      'ZAR' => 'R ',
-      'INR' => '₹',
-      'JPY' || 'CNY' => '¥',
-      _ => '$code ',
-    };
-    return NumberFormat.currency(
-      locale: 'en',
-      name: code,
-      symbol: symbol,
-      decimalDigits: code == 'XOF' || code == 'JPY' ? 0 : 2,
-    );
-  }
-}
-,
-      'EUR' => '€',
-      'GBP' => '£',
-      'KES' => 'KSh',
-      'ZAR' => 'R',
-      'INR' => '₹',
-      'JPY' || 'CNY' => '¥',
-      _ => code,
-    };
-  }
-
-  static NumberFormat formatter(String? currency) {
-    final code = (currency == null || currency.trim().isEmpty)
-        ? 'NGN'
-        : currency.trim().toUpperCase();
-    final symbol = switch (code) {
-      'NGN' => '₦',
-      'GHS' => 'GH₵',
-      'XOF' => 'CFA ',
-      'USD' => '\$',
-      'CAD' => 'CA\$',
+      'CAD' => String.fromCharCode(36),
       'AUD' => 'A\$',
       'EUR' => '€',
       'GBP' => '£',
