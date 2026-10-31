@@ -2,6 +2,9 @@ import 'package:trexven_design_system/trexven_design_system.dart';
 import '../../services/initial_load_timeout.dart';
 import 'package:flutter/material.dart';
 import '../../services/database_service.dart';
+import '../../services/business_currency.dart';
+import 'package:provider/provider.dart';
+import '../../core/user_provider.dart';
 import '../../models/product.dart';
 import 'package:uuid/uuid.dart';
 import '../../services/sale_errors.dart';
@@ -495,7 +498,7 @@ class _RecordSaleScreenState extends State<RecordSaleScreen> {
   }
 
   String _money(double amount) {
-    return '₦${amount.toStringAsFixed(2)}';
+    return BusinessCurrency.formatter(context.read<UserProvider>().business?.currency).format(amount);
   }
 
   Color get _background => Theme.of(context).scaffoldBackgroundColor;
@@ -1121,7 +1124,7 @@ class _ProductSelector extends StatelessWidget {
                       ),
                       SizedBox(height: 3),
                       Text(
-                        '₦${product.price.toStringAsFixed(2)} · ${product.stock} in stock',
+                        '${BusinessCurrency.formatter(context.read<UserProvider>().business?.currency).format(product.price)} · ${product.stock} in stock',
                         style: TextStyle(
                           fontSize: TrexvenFontSize.caption,
                           color: muted,
@@ -1171,7 +1174,7 @@ class _SelectedProductContent extends StatelessWidget {
               ),
               SizedBox(height: 2),
               Text(
-                '₦${product.price.toStringAsFixed(2)} · ${product.stock} in stock',
+                '${BusinessCurrency.formatter(context.read<UserProvider>().business?.currency).format(product.price)} · ${product.stock} in stock',
                 style: TextStyle(
                   color: muted,
                   fontSize: TrexvenFontSize.caption,
@@ -1470,7 +1473,7 @@ class _SearchProductSheetState extends State<_SearchProductSheet> {
                       enabled: product.stock > 0,
                       title: Text(product.name),
                       subtitle: Text(
-                        '₦${product.price.toStringAsFixed(2)} · ${product.stock} in stock',
+                        '${BusinessCurrency.formatter(context.read<UserProvider>().business?.currency).format(product.price)} · ${product.stock} in stock',
                       ),
                       trailing: const Icon(Icons.add_circle_outline),
                       onTap: product.stock > 0
