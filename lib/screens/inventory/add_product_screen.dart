@@ -5,6 +5,9 @@ import '../../services/initial_load_timeout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../services/database_service.dart';
+import '../../services/business_currency.dart';
+import 'package:provider/provider.dart';
+import '../../core/user_provider.dart';
 import '../../models/product.dart';
 
 class AddProductScreen extends StatefulWidget {
@@ -374,7 +377,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
           decoration: TrexvenInputDecoration(
             hintText: '0.00',
             prefixIcon: Icon(Icons.payments_outlined),
-            prefixText: '₦ ',
+            prefixText: '${BusinessCurrency.symbol(context.read<UserProvider>().business?.currency)} ',
           ),
           controller: _priceController,
           keyboardType: TextInputType.numberWithOptions(decimal: true),
@@ -751,7 +754,7 @@ class _ProductPreview extends StatelessWidget {
                 ),
                 SizedBox(height: 4),
                 Text(
-                  '₦${price.toStringAsFixed(2)} · $stock in stock',
+                  '${BusinessCurrency.formatter(context.read<UserProvider>().business?.currency).format(price)} · $stock in stock',
                   style: TextStyle(
                     color: muted,
                     fontSize: TrexvenFontSize.body,

@@ -401,7 +401,17 @@ class _BusinessSetupScreenState extends State<BusinessSetupScreen> {
       items: items.map((item) {
         return DropdownMenuItem<String>(
           value: item,
-          child: Text(item, overflow: TextOverflow.ellipsis),
+          child: Text(
+            hint == 'Select currency'
+                ? (item.contains('Nigerian Naira') ? '₦'
+                    : item.contains('Ghanaian Cedi') ? '₵'
+                    : item.contains('Kenyan Shilling') ? 'KSh'
+                    : item.contains('South African Rand') ? 'R'
+                    : item.contains('US Dollar') ? String.fromCharCode(36)
+                    : item.contains('British Pound') ? '£' : item)
+                : item,
+            overflow: TextOverflow.ellipsis,
+          ),
         );
       }).toList(),
       onChanged: _loading ? null : onChanged,
