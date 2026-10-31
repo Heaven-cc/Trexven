@@ -408,7 +408,7 @@ class _BusinessSetupScreenState extends State<BusinessSetupScreen> {
                     'Ghanaian Cedi (₵)' => '₵',
                     'Kenyan Shilling (KSh)' => 'KSh',
                     'South African Rand (R)' => 'R',
-                    'US Dollar (\$)' => '\
+                    'US Dollar (\\$)' => '
         );
       }).toList(),
       onChanged: _loading ? null : onChanged,
