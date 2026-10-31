@@ -148,9 +148,12 @@ void main() {
 
   test('Money respects the business currency without conversion', () {
     expect(BusinessCurrency.formatter('NGN').format(1234.5), '₦1,234.50');
-    expect(BusinessCurrency.formatter('GHS').format(1234.5), 'GH₵1,234.50');
+    expect(BusinessCurrency.formatter('GHS').format(1234.5), '₵1,234.50');
     expect(BusinessCurrency.formatter('XOF').format(1234), 'CFA 1,234');
     expect(BusinessCurrency.formatter('XYZ').format(1234.5), 'XYZ 1,234.50');
+    expect(BusinessCurrency.symbol('GHS'), '₵');
+    expect(BusinessCurrency.symbol('NGN'), '₦');
+    expect(BusinessCurrency.symbol('XOF'), 'CFA');
   });
 
   test(
