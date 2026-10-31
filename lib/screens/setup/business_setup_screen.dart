@@ -403,22 +403,12 @@ class _BusinessSetupScreenState extends State<BusinessSetupScreen> {
           value: item,
           child: Text(
             hint == 'Select currency'
-                ? switch (item) {
-                    'Nigerian Naira (₦)' => '₦',
-                    'Ghanaian Cedi (₵)' => '₵',
-                    'Kenyan Shilling (KSh)' => 'KSh',
-                    'South African Rand (R)' => 'R',
-                    'US Dollar (\\$)' => '
-        );
-      }).toList(),
-      onChanged: _loading ? null : onChanged,
-    );
-  }
-}
-,
-                    'British Pound (£)' => '£',
-                    _ => item,
-                  }
+                ? (item.contains('Nigerian Naira') ? '₦'
+                    : item.contains('Ghanaian Cedi') ? '₵'
+                    : item.contains('Kenyan Shilling') ? 'KSh'
+                    : item.contains('South African Rand') ? 'R'
+                    : item.contains('US Dollar') ? String.fromCharCode(36)
+                    : item.contains('British Pound') ? '£' : item)
                 : item,
             overflow: TextOverflow.ellipsis,
           ),
