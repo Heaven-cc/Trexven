@@ -36,6 +36,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
   bool _restockPriceSaved = false;
   String? _restockError;
 
+  String? _currency;
   late final DatabaseService _db;
   late Stream<List<Product>> _products;
 
@@ -57,11 +58,21 @@ class _AddProductScreenState extends State<AddProductScreen> {
     return _selectedProduct!.stock + _restockQuantity;
   }
 
+  Future<void> _loadCurrency() async {
+    try {
+      final business = await _db.getBusinessProfile();
+      if (mounted) setState(() => _currency = business?.currency);
+    } catch (_) {
+      // Keep currency unavailable; never guess a currency after a failed read.
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     _isNewProduct = !widget.startInRestock;
     _db = widget.database ?? DatabaseService();
+    _loadCurrency();
     _products = withInitialLoadTimeout(_db.getProductsStream());
 
     _nameController.addListener(_refresh);
@@ -374,7 +385,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
           decoration: TrexvenInputDecoration(
             hintText: '0.00',
             prefixIcon: Icon(Icons.payments_outlined),
-            prefixText: '₦ ',
+            prefixText: '${CustomerPresentation.currencyCode(_currency) ?? 'Currency unavailable'} ',
           ),
           controller: _priceController,
           keyboardType: TextInputType.numberWithOptions(decimal: true),
@@ -428,6 +439,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
         SizedBox(height: 12),
 
         _ProductPreview(
+          currency: _currency,
           name: _nameController.text.trim().isEmpty
               ? 'New product'
               : _nameController.text.trim(),
@@ -692,6 +704,7 @@ class _ModeOption extends StatelessWidget {
 }
 
 class _ProductPreview extends StatelessWidget {
+  final String? currency;
   final String name;
   final double price;
   final num stock;
@@ -699,6 +712,7 @@ class _ProductPreview extends StatelessWidget {
   final Color muted;
 
   const _ProductPreview({
+    this.currency,
     required this.name,
     required this.price,
     required this.stock,
@@ -751,7 +765,7 @@ class _ProductPreview extends StatelessWidget {
                 ),
                 SizedBox(height: 4),
                 Text(
-                  '₦${price.toStringAsFixed(2)} · $stock in stock',
+                  '${CustomerPresentation.money(price, currency: currency)} · $stock in stock',
                   style: TextStyle(
                     color: muted,
                     fontSize: TrexvenFontSize.body,

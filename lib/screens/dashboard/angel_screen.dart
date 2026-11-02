@@ -1,3 +1,4 @@
+import 'package:trexven_operations/trexven_operations.dart';
 import 'dart:async';
 import 'dart:convert';
 
@@ -397,8 +398,8 @@ class _AngelScreenState extends State<AngelScreen> {
         error is TimeoutException
             ? 'Angel took too long to respond. '
                   'Please check your connection.'
-            : error is FunctionException && error.status == 503
-            ? 'Angel is temporarily unavailable.'
+            : error is FunctionException
+            ? CustomerPresentation.angelError(error.status)
             : 'Angel could not answer right now.',
       );
     }

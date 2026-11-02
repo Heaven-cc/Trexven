@@ -1,31 +1,13 @@
-import 'package:intl/intl.dart';
+import 'package:trexven_operations/trexven_operations.dart';
 
-/// Display formatting only; amounts are never converted between currencies.
+/// Display only. Always uses the saved business or billing currency.
 abstract final class BusinessCurrency {
-  static NumberFormat formatter(String? currency) {
-    final code = (currency == null || currency.trim().isEmpty)
-        ? 'NGN'
-        : currency.trim().toUpperCase();
-    final symbol = switch (code) {
-      'NGN' => '₦',
-      'GHS' => 'GH₵',
-      'XOF' => 'CFA ',
-      'USD' => '\$',
-      'CAD' => 'CA\$',
-      'AUD' => 'A\$',
-      'EUR' => '€',
-      'GBP' => '£',
-      'KES' => 'KSh ',
-      'ZAR' => 'R ',
-      'INR' => '₹',
-      'JPY' || 'CNY' => '¥',
-      _ => '$code ',
-    };
-    return NumberFormat.currency(
-      locale: 'en',
-      name: code,
-      symbol: symbol,
-      decimalDigits: code == 'XOF' || code == 'JPY' ? 0 : 2,
-    );
-  }
+  static BusinessMoneyFormatter formatter(String? currency) =>
+      BusinessMoneyFormatter(currency);
+}
+
+class BusinessMoneyFormatter {
+  final String? currency;
+  const BusinessMoneyFormatter(this.currency);
+  String format(num amount) => CustomerPresentation.money(amount, currency: currency);
 }

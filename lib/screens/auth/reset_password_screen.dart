@@ -20,6 +20,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   }
 
   Future<void> _save() async {
+    if (_busy) return;
     if (!_form.currentState!.validate()) return;
     setState(() => _busy = true);
     try {
@@ -54,15 +55,23 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
         key: _form,
         child: ListView(
           children: [
+            Text('Choose a new password', style: Theme.of(context).textTheme.titleLarge),
+            const SizedBox(height: TrexvenSpacing.labelGap),
+            Text('Use at least 8 characters. Enter the same password in both fields.',
+                style: Theme.of(context).textTheme.bodyMedium),
+            const SizedBox(height: TrexvenSpacing.sectionGap),
             TrexvenTextFormField(
               controller: _password,
+              enabled: !_busy,
               obscureText: true,
               decoration: TrexvenInputDecoration(labelText: 'New password'),
               validator: (v) => v == null || v.length < 8
                   ? 'Use at least 8 characters.'
                   : null,
             ),
+            const SizedBox(height: TrexvenSpacing.fieldGap),
             TrexvenTextFormField(
+              enabled: !_busy,
               obscureText: true,
               decoration: TrexvenInputDecoration(labelText: 'Confirm password'),
               validator: (v) =>

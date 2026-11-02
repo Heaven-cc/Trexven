@@ -19,7 +19,7 @@ class _ExpenseHistoryScreenState extends State<ExpenseHistoryScreen> {
   late Future<List<Map<String, dynamic>>> _rows;
   final _database = DatabaseService();
   BusinessPeriod? _period;
-  String _currency = 'NGN';
+  String? _currency;
   @override
   void initState() {
     super.initState();
@@ -32,7 +32,7 @@ class _ExpenseHistoryScreenState extends State<ExpenseHistoryScreen> {
           widget.period ??
           BusinessPeriod.fromDay(await _database.getBusinessDay(), 'today');
       final business = await _database.getBusinessProfile();
-      _currency = business?.currency ?? 'NGN';
+      _currency = business?.currency;
       return _database.getExpenses(_period!);
     })().timeout(const Duration(seconds: 20));
   }

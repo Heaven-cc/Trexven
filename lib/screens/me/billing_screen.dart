@@ -122,18 +122,9 @@ class _BillingScreenState extends State<BillingScreen> {
     }
   }
 
-  String _label(dynamic value) {
-    final text = '${value ?? ''}'.replaceAll('_', ' ').trim();
-    if (text.isEmpty) return '—';
-    return text[0].toUpperCase() + text.substring(1);
-  }
+  String _label(dynamic value) => CustomerPresentation.label(value);
 
-  String _date(dynamic value) {
-    final parsed = DateTime.tryParse('${value ?? ''}');
-    if (parsed == null) return '—';
-    final d = parsed.toLocal();
-    return '${d.day}/${d.month}/${d.year}';
-  }
+  String _date(dynamic value) => CustomerPresentation.date(value);
 
   String _money(dynamic amount, String? currency) {
     final value = num.tryParse('$amount');
@@ -335,27 +326,24 @@ class _BillingScreenState extends State<BillingScreen> {
     String description, {
     bool popular = false,
   }) {
+    final plan = _planFor(tier, _billingMonths);
     return _planCard(
-      name: name,
-      description: description,
+      name: plan?.name ?? name,
+      description: plan?.description ?? description,
       popular: popular,
       options: [
         _option(
           selectedOption: true,
-          title: tier == 'start'
-              ? 'Free'
-              : _countryPricingAvailable
+          title: _countryPricingAvailable
               ? (_planFor(tier, _billingMonths)?.priceDisplay ??
                     'Price unavailable')
               : 'Price unavailable',
-          subtitle: tier == 'start'
-              ? 'No charge'
-              : _billingMonths == 1
+          subtitle: _billingMonths == 1
               ? 'Billed monthly'
               : 'Billed yearly',
         ),
       ],
-      features: _approvedFeatures(tier),
+      features: _features(tier),
       buttonLabel: tier == 'start' ? 'Start plan' : 'Choose $name',
       checkoutReady: TrexvenPlayBilling.canPurchase(
         tier: tier,
@@ -514,20 +502,13 @@ class _BillingScreenState extends State<BillingScreen> {
             spacing: 6,
             runSpacing: 6,
             children: [
-              for (final item
-                  in tier == 'start'
-                      ? ['1 shop', 'POS', 'Employees', 'Alerts']
-                      : tier == 'core'
-                      ? ['2 shops', '4 cameras', 'Vision']
-                      : tier == 'pro'
-                      ? ['Multiple shops', '10 cameras', 'AI Live']
-                      : <String>[])
+              for (final item in tier == null ? <String>[] : _features(tier))
                 _pill(item),
             ],
           ),
           const Divider(),
           Text(
-            tier == 'start' ? 'Free' : _label(status),
+            _label(status),
             style: const TextStyle(fontWeight: FontWeight.w700),
           ),
           if (_subscription['renews_at'] != null)
@@ -761,26 +742,6 @@ class _BillingScreenState extends State<BillingScreen> {
     ),
     highlight: true,
   );
-
-  List<String> _approvedFeatures(String tier) => switch (tier) {
-    'start' => [
-      '1 shop · POS and employees',
-      'Inventory, sales, expenses, credit and returns',
-      'Operational alerts and basic reports',
-    ],
-    'core' => [
-      'Everything in Start',
-      '2 shops · 4 cameras, expandable',
-      'TREXVEN Intelligence and Vision',
-      'Advanced reports and price levels',
-    ],
-    _ => [
-      'Everything in Core',
-      'Multiple shops · 10 cameras, expandable',
-      'Detailed activity and AI Live',
-      'Early access to updates',
-    ],
-  };
 
   Widget _darkSection({
     required String title,

@@ -37,6 +37,7 @@ class RecordSaleScreen extends StatefulWidget {
 }
 
 class _RecordSaleScreenState extends State<RecordSaleScreen> {
+  String? _currency;
   late final DatabaseService _db;
   late Stream<List<Product>> _products;
   String? _requestId;
@@ -52,10 +53,20 @@ class _RecordSaleScreenState extends State<RecordSaleScreen> {
   PaymentDraft? _confirmedPayment;
   String? _shiftId;
 
+  Future<void> _loadCurrency() async {
+    try {
+      final business = await _db.getBusinessProfile();
+      if (mounted) setState(() => _currency = business?.currency);
+    } catch (_) {
+      // Keep currency unavailable; never guess a currency after a failed read.
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     _db = widget.database ?? DatabaseService();
+    _loadCurrency();
     _products = withInitialLoadTimeout(_db.getProductsStream());
     if (widget.suggestedProductId != null) _loadSuggestion();
   }
@@ -185,7 +196,7 @@ class _RecordSaleScreenState extends State<RecordSaleScreen> {
       context: context,
       isScrollControlled: true,
       showDragHandle: true,
-      builder: (context) => _SearchProductSheet(products: products),
+      builder: (context) => _SearchProductSheet(products: products, currency: _currency),
     );
     if (chosen != null && mounted) _addProduct(chosen);
   }
@@ -332,6 +343,7 @@ class _RecordSaleScreenState extends State<RecordSaleScreen> {
           context,
           _total,
           _paymentMethod,
+          currency: _currency,
           cashAllowed: cashAllowed,
           businessDate: cash['local_date'] == null
               ? null
@@ -495,7 +507,7 @@ class _RecordSaleScreenState extends State<RecordSaleScreen> {
   }
 
   String _money(double amount) {
-    return '₦${amount.toStringAsFixed(2)}';
+    return CustomerPresentation.money(amount, currency: _currency);
   }
 
   Color get _background => Theme.of(context).scaffoldBackgroundColor;
@@ -1059,10 +1071,12 @@ class _ProductSelector extends StatelessWidget {
   final Product? selectedProduct;
   final Color cardColor;
   final Color borderColor;
+  final String? currency;
   final Color muted;
   final ValueChanged<Product?>? onChanged;
 
   const _ProductSelector({
+    this.currency,
     required this.products,
     required this.selectedProduct,
     required this.cardColor,
@@ -1090,7 +1104,7 @@ class _ProductSelector extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: Tooltip(
               message: product.name,
-              child: _SelectedProductContent(product: product, muted: muted),
+              child: _SelectedProductContent(product: product, muted: muted, currency: currency),
             ),
           );
         }).toList();
@@ -1121,7 +1135,7 @@ class _ProductSelector extends StatelessWidget {
                       ),
                       SizedBox(height: 3),
                       Text(
-                        '₦${product.price.toStringAsFixed(2)} · ${product.stock} in stock',
+                        '${CustomerPresentation.money(product.price, currency: currency)} · ${product.stock} in stock',
                         style: TextStyle(
                           fontSize: TrexvenFontSize.caption,
                           color: muted,
@@ -1144,9 +1158,10 @@ class _ProductSelector extends StatelessWidget {
 
 class _SelectedProductContent extends StatelessWidget {
   final Product product;
+  final String? currency;
   final Color muted;
 
-  const _SelectedProductContent({required this.product, required this.muted});
+  const _SelectedProductContent({required this.product, required this.muted, this.currency});
 
   @override
   Widget build(BuildContext context) {
@@ -1171,7 +1186,7 @@ class _SelectedProductContent extends StatelessWidget {
               ),
               SizedBox(height: 2),
               Text(
-                '₦${product.price.toStringAsFixed(2)} · ${product.stock} in stock',
+                '${CustomerPresentation.money(product.price, currency: currency)} · ${product.stock} in stock',
                 style: TextStyle(
                   color: muted,
                   fontSize: TrexvenFontSize.caption,
@@ -1386,7 +1401,8 @@ class _CartLine {
 }
 
 class _SearchProductSheet extends StatefulWidget {
-  const _SearchProductSheet({required this.products});
+  const _SearchProductSheet({required this.products, this.currency});
+  final String? currency;
   final List<Product> products;
   @override
   State<_SearchProductSheet> createState() => _SearchProductSheetState();
@@ -1470,7 +1486,7 @@ class _SearchProductSheetState extends State<_SearchProductSheet> {
                       enabled: product.stock > 0,
                       title: Text(product.name),
                       subtitle: Text(
-                        '₦${product.price.toStringAsFixed(2)} · ${product.stock} in stock',
+                        '${CustomerPresentation.money(product.price, currency: widget.currency)} · ${product.stock} in stock',
                       ),
                       trailing: const Icon(Icons.add_circle_outline),
                       onTap: product.stock > 0

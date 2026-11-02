@@ -32,7 +32,7 @@ class InventoryTab extends StatefulWidget {
 class _InventoryTabState extends State<InventoryTab> {
   late final DatabaseService _db;
   late Stream<List<Product>> _products;
-  String _currency = 'NGN';
+  String? _currency;
 
   final TextEditingController _searchController =
   TextEditingController();

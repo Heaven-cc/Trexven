@@ -355,7 +355,7 @@ class _FinanceTabState extends State<FinanceTab> {
             width: double.infinity,
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: const Color(0xFF111B35),
+              color: _cardBg,
               borderRadius: BorderRadius.circular(19),
             ),
             child: Column(
@@ -364,7 +364,7 @@ class _FinanceTabState extends State<FinanceTab> {
                 Text(
                   'GROSS SALES',
                   style: TextStyle(
-                    color: Color(0xFFB9C8E3),
+                    color: _muted,
                     fontSize: 11,
                     letterSpacing: 1,
                     fontWeight: FontWeight.w700,
@@ -378,7 +378,7 @@ class _FinanceTabState extends State<FinanceTab> {
                     Text(
                       revenueText,
                       style: TextStyle(
-                        color: Colors.white,
+                        color: _navy,
                         fontSize: 30,
                         fontWeight: FontWeight.w800,
                       ),
@@ -389,7 +389,7 @@ class _FinanceTabState extends State<FinanceTab> {
                 const SizedBox(height: 8),
                 Text(
                   '$_periodLabel · before refunds',
-                  style: TextStyle(color: Color(0xFFB9C8E3), fontSize: 12),
+                  style: TextStyle(color: _muted, fontSize: 12),
                 ),
               ],
             ),
@@ -452,7 +452,7 @@ class _FinanceTabState extends State<FinanceTab> {
     child: Container(
       padding: const EdgeInsets.all(17),
       decoration: BoxDecoration(
-        color: const Color(0xFF080F24),
+        color: _cardBg,
         borderRadius: BorderRadius.circular(18),
       ),
       child: Column(
@@ -461,7 +461,7 @@ class _FinanceTabState extends State<FinanceTab> {
           Text(
             'Business Performance',
             style: TextStyle(
-              color: Colors.white,
+              color: _navy,
               fontSize: 16,
               fontWeight: FontWeight.w800,
             ),
@@ -469,7 +469,7 @@ class _FinanceTabState extends State<FinanceTab> {
           const SizedBox(height: 4),
           Text(
             'A simple view of your financial activity',
-            style: TextStyle(color: Color(0xFFA7B5D0), fontSize: 12),
+            style: TextStyle(color: _muted, fontSize: 12),
           ),
           const SizedBox(height: 15),
           Row(
@@ -491,7 +491,7 @@ class _FinanceTabState extends State<FinanceTab> {
                         decoration: BoxDecoration(
                           color: _metric == entry.$1
                               ? _blue
-                              : const Color(0xFF17243C),
+                              : Theme.of(context).colorScheme.surfaceContainerHighest,
                           borderRadius: BorderRadius.circular(9),
                         ),
                         child: FittedBox(
@@ -501,7 +501,7 @@ class _FinanceTabState extends State<FinanceTab> {
                             maxLines: 1,
                             softWrap: false,
                             style: TextStyle(
-                              color: Colors.white,
+                              color: _metric == entry.$1 ? Theme.of(context).colorScheme.onPrimary : _navy,
                               fontSize: 12,
                               fontWeight: _metric == entry.$1
                                   ? FontWeight.w700
@@ -517,11 +517,11 @@ class _FinanceTabState extends State<FinanceTab> {
           ),
           const SizedBox(height: 18),
           if (_metric == 'profit')
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(vertical: 30),
               child: Text(
                 'Profit unavailable: authorized historical costs are missing.',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: _navy),
               ),
             )
           else
@@ -561,7 +561,7 @@ class _FinanceTabState extends State<FinanceTab> {
                 if (points.isEmpty)
                   return Text(
                     'No activity in this period.',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: _navy),
                   );
                 final selected = _selectedPoint == null
                     ? null
@@ -573,7 +573,7 @@ class _FinanceTabState extends State<FinanceTab> {
                       _metric == 'sales'
                           ? 'GROSS SALES ACTIVITY'
                           : 'RECORDED EXPENSES',
-                      style: TextStyle(color: Color(0xFFA7B5D0), fontSize: 11),
+                      style: TextStyle(color: _muted, fontSize: 11),
                     ),
                     const SizedBox(height: 14),
                     LayoutBuilder(
@@ -592,6 +592,8 @@ class _FinanceTabState extends State<FinanceTab> {
                           child: CustomPaint(
                             painter: _FinanceLinePainter(
                               points.map((e) => e.value).toList(),
+                              lineColor: _blue,
+                              gridColor: _borderColor,
                             ),
                           ),
                         ),
@@ -604,14 +606,14 @@ class _FinanceTabState extends State<FinanceTab> {
                         Text(
                           _axisDate(points.first.key),
                           style: TextStyle(
-                            color: Color(0xFFA7B5D0),
+                            color: _muted,
                             fontSize: 11,
                           ),
                         ),
                         Text(
                           _axisDate(points.last.key),
                           style: TextStyle(
-                            color: Color(0xFFA7B5D0),
+                            color: _muted,
                             fontSize: 11,
                           ),
                         ),
@@ -622,7 +624,7 @@ class _FinanceTabState extends State<FinanceTab> {
                         padding: const EdgeInsets.only(top: 10),
                         child: Text(
                           '${DateFormat('d MMM, h a').format(selected.key)}: ${_money(selected.value)}',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: _navy),
                         ),
                       ),
                     const SizedBox(height: 12),
@@ -630,7 +632,7 @@ class _FinanceTabState extends State<FinanceTab> {
                       _metric == 'sales'
                           ? 'Complete period sales, before refunds. Tap the line for details.'
                           : 'Complete recorded expenses in this period. Tap the line for details.',
-                      style: TextStyle(color: Color(0xFFA7B5D0), fontSize: 11),
+                      style: TextStyle(color: _muted, fontSize: 11),
                     ),
                   ],
                 );
@@ -845,7 +847,9 @@ class _FinanceTabState extends State<FinanceTab> {
 }
 
 class _FinanceLinePainter extends CustomPainter {
-  const _FinanceLinePainter(this.values);
+  const _FinanceLinePainter(this.values, {required this.lineColor, required this.gridColor});
+  final Color lineColor;
+  final Color gridColor;
   final List<double> values;
 
   @override
@@ -853,7 +857,7 @@ class _FinanceLinePainter extends CustomPainter {
     if (values.isEmpty) return;
     final bounds = Rect.fromLTWH(0, 0, size.width, size.height);
     final gridPaint = Paint()
-      ..color = const Color(0xFF25344D)
+      ..color = gridColor
       ..strokeWidth = 1;
     for (var i = 1; i <= 4; i++) {
       final y = size.height * i / 5;
@@ -879,16 +883,16 @@ class _FinanceLinePainter extends CustomPainter {
     canvas.drawPath(
       area,
       Paint()
-        ..shader = const LinearGradient(
+        ..shader = LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [Color(0x883B7CFF), Color(0x002864F0)],
+          colors: [lineColor.withValues(alpha: .3), lineColor.withValues(alpha: 0)],
         ).createShader(bounds),
     );
     canvas.drawPath(
       path,
       Paint()
-        ..color = const Color(0x664384FF)
+        ..color = lineColor.withValues(alpha: .4)
         ..strokeWidth = 7
         ..style = PaintingStyle.stroke
         ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 5),
@@ -896,7 +900,7 @@ class _FinanceLinePainter extends CustomPainter {
     canvas.drawPath(
       path,
       Paint()
-        ..color = const Color(0xFF4384FF)
+        ..color = lineColor
         ..strokeWidth = 3
         ..style = PaintingStyle.stroke
         ..strokeCap = StrokeCap.round
@@ -906,13 +910,14 @@ class _FinanceLinePainter extends CustomPainter {
       canvas.drawCircle(
         points.first,
         4,
-        Paint()..color = const Color(0xFF4384FF),
+        Paint()..color = lineColor,
       );
     }
   }
 
   @override
   bool shouldRepaint(covariant _FinanceLinePainter oldDelegate) {
+    if (oldDelegate.lineColor != lineColor || oldDelegate.gridColor != gridColor) return true;
     if (oldDelegate.values.length != values.length) return true;
     for (var i = 0; i < values.length; i++) {
       if (oldDelegate.values[i] != values[i]) return true;
