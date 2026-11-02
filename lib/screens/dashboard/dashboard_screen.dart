@@ -44,7 +44,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   String? _errorMessage;
   int? _expandedIndex;
 
-  NumberFormat get _currencyFormat => BusinessCurrency.formatter(
+  BusinessMoneyFormatter get _currencyFormat => BusinessCurrency.formatter(
     context.read<UserProvider>().business?.currency,
   );
 

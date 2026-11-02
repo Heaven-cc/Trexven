@@ -101,7 +101,7 @@ class _BusinessSetupScreenState extends State<BusinessSetupScreen> {
               'p_business_name': businessName,
               'p_business_type': _businessType,
               'p_country': _country,
-              'p_currency': _currency,
+              'p_currency': CustomerPresentation.currencyCode(_currency),
               'p_address': address.isEmpty ? null : address,
               'p_phone': phone.isEmpty ? null : phone,
             },

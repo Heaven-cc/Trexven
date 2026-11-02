@@ -11,7 +11,7 @@ import '../../services/database_service.dart';
 Widget financialTransactionTile(
   Map<String, dynamic> row,
   BusinessPeriod period, {
-  String currency = 'NGN',
+  String? currency,
 }) {
   final items = (row['sale_items'] as List? ?? []).cast<Map>();
   final date = DateTime.parse((row['sold_at'] ?? row['created_at']) as String);
@@ -53,12 +53,12 @@ Widget financialTransactionTile(
 class TransactionHistoryScreen extends StatefulWidget {
   final DatabaseService database;
   final BusinessPeriod period;
-  final String currency;
+  final String? currency;
   const TransactionHistoryScreen({
     super.key,
     required this.database,
     required this.period,
-    this.currency = 'NGN',
+    this.currency,
   });
   @override
   State<TransactionHistoryScreen> createState() =>

@@ -19,6 +19,7 @@ class OperationalFinanceScreen extends StatefulWidget {
 
 class _OperationalFinanceScreenState extends State<OperationalFinanceScreen> {
   late Future<String?> business;
+  String? _currency;
 
   Color get _background => Theme.of(context).scaffoldBackgroundColor;
   Color get _navy => Theme.of(context).colorScheme.onSurface;
@@ -34,7 +35,10 @@ class _OperationalFinanceScreenState extends State<OperationalFinanceScreen> {
   }
 
   void _loadBusiness() {
-    business = DatabaseService().getCurrentBusinessId();
+    business = DatabaseService().getBusinessProfile().then((profile) {
+      _currency = profile?.currency;
+      return profile?.id;
+    });
   }
 
   void _retry() {
@@ -124,7 +128,7 @@ class _OperationalFinanceScreenState extends State<OperationalFinanceScreen> {
                   title: 'Shared Cash Drawers',
                   description:
                       'Manage cash registers, employee shifts and drawer activity.',
-                  onTap: () => _open(CashShiftScreen(api: api, owner: true)),
+                  onTap: () => _open(CashShiftScreen(api: api, owner: true, currency: _currency)),
                 ),
                 const SizedBox(height: 22),
                 _buildSectionTitle('Access and security'),

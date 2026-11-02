@@ -640,7 +640,7 @@ class DatabaseService {
     todaySalesRows = await _readDashboardPages(
       (start, end) => _supabase
           .from('sales')
-          .select()
+          .select('*, sale_items(product_name,product_id,quantity)')
           .eq('business_id', businessId)
           .or(
             'and(sold_at.gte.${startOfToday.toIso8601String()},sold_at.lt.${startOfTomorrow.toIso8601String()}),and(sold_at.is.null,created_at.gte.${startOfToday.toIso8601String()},created_at.lt.${startOfTomorrow.toIso8601String()})',
@@ -680,11 +680,21 @@ class DatabaseService {
 
     final todaySales = todaySalesRows.map((e) {
       final sale = Sale.fromMap(e);
+      final items = (e['sale_items'] as List? ?? const []).whereType<Map>().toList();
+      final itemNames = items.map((item) {
+        final name = item['product_name']?.toString().trim() ?? '';
+        return name.isNotEmpty ? name : namesById[item['product_id']];
+      }).whereType<String>().where((name) => name.isNotEmpty).toList();
+      final productName = items.length > 1
+          ? '${items.length} items${itemNames.isEmpty ? '' : ' · ${itemNames.first}'}'
+          : itemNames.isNotEmpty
+              ? itemNames.first
+              : namesById[sale.productId] ?? 'Product details unavailable';
       return Sale(
         id: sale.id,
         businessId: sale.businessId,
         productId: sale.productId,
-        productName: namesById[sale.productId] ?? 'Unknown Product',
+        productName: productName,
         quantity: sale.quantity,
         unitPrice: sale.unitPrice,
         totalPrice: sale.totalPrice,
@@ -855,7 +865,7 @@ class DatabaseService {
       Map<String, dynamic>.from(summaryRes),
       rows[0],
       rows[1],
-      currency: (results[3] as Map)['currency']?.toString() ?? 'NGN',
+      currency: (results[3] as Map)['currency']?.toString(),
     );
   }
 }
