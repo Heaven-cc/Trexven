@@ -674,7 +674,7 @@ class _AngelScreenState extends State<AngelScreen> {
         IconButton(
           tooltip: 'New chat',
           onPressed: _thinking ? null : _newChat,
-          icon: const Icon(Icons.edit_square_outlined),
+          icon: const Icon(Icons.edit_square),
         ),
         const SizedBox(width: TrexvenSpacing.labelGap),
       ],
@@ -1107,7 +1107,7 @@ class _AngelScreenState extends State<AngelScreen> {
     );
   }
 
-    Widget _errorView() {
+  Widget _errorView() {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(24),
