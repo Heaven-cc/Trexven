@@ -47,6 +47,7 @@ class FinanceDatabase extends FakeDatabase {
       [
         {'amount': 25, 'created_at': '2026-10-13T01:00:00Z'},
       ],
+      currency: 'NGN',
     );
   }
 }

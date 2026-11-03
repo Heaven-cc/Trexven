@@ -119,8 +119,20 @@ abstract final class CustomerPresentation {
     if (!value.isFinite) return unavailable;
     final code = currencyCode(currency);
     if (code == null) return 'Currency unavailable';
-    // ISO code disambiguates currencies; intl supplies their decimal precision.
-    return NumberFormat.currency(name: code, symbol: '$code ').format(value);
+    // Familiar symbols for supported markets; retain ISO code precision.
+    const symbols = <String, String>{
+      'NGN': '₦',
+      'GHS': 'GH₵',
+      'XOF': 'CFA ',
+      'KES': 'KSh ',
+      'ZAR': 'R',
+      'USD': r'$',
+      'GBP': '£',
+    };
+    return NumberFormat.currency(
+      name: code,
+      symbol: symbols[code] ?? '$code ',
+    ).format(value);
   }
   static String date(Object? value, {bool includeTime = false}) {
     final date = value is DateTime

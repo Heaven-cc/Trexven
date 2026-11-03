@@ -150,6 +150,10 @@ void main() {
     expect(BusinessCurrency.formatter('NGN').format(1234.5), '₦1,234.50');
     expect(BusinessCurrency.formatter('GHS').format(1234.5), 'GH₵1,234.50');
     expect(BusinessCurrency.formatter('XOF').format(1234), 'CFA 1,234');
+    expect(BusinessCurrency.formatter('KES').format(1234.5), 'KSh 1,234.50');
+    expect(BusinessCurrency.formatter('ZAR').format(1234.5), 'R1,234.50');
+    expect(BusinessCurrency.formatter('USD').format(1234.5), '\$1,234.50');
+    expect(BusinessCurrency.formatter('GBP').format(1234.5), '£1,234.50');
     expect(BusinessCurrency.formatter('XYZ').format(1234.5), 'XYZ 1,234.50');
   });
 
