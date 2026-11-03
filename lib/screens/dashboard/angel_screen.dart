@@ -636,7 +636,7 @@ class _AngelScreenState extends State<AngelScreen> {
     final theme = Theme.of(context);
     return AppBar(
       backgroundColor: bg,
-      toolbarHeight: 68,
+      toolbarHeight: 60,
       leading: IconButton(
         tooltip: 'Chat history',
         onPressed: () => _scaffoldKey.currentState?.openDrawer(),
@@ -656,16 +656,9 @@ class _AngelScreenState extends State<AngelScreen> {
           ),
           const SizedBox(width: TrexvenSpacing.labelGap),
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text('Angel', style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800)),
-                Text('Your business assistant',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: theme.textTheme.bodySmall?.copyWith(fontSize: 11, color: muted)),
-              ],
+            child: Text(
+              'Angel',
+              style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800),
             ),
           ),
         ],
