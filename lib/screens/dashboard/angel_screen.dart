@@ -1,4 +1,5 @@
 import 'package:trexven_operations/trexven_operations.dart';
+import 'package:trexven_design_system/trexven_design_system.dart';
 import 'dart:async';
 import 'dart:convert';
 
@@ -26,6 +27,8 @@ class _AngelScreenState extends State<AngelScreen> {
   Color get border => Theme.of(context).colorScheme.outlineVariant;
   Color get blue => Theme.of(context).colorScheme.primary;
   Color get muted => Theme.of(context).colorScheme.onSurfaceVariant;
+  Color get ink => Theme.of(context).colorScheme.onSurface;
+  Color get userBubble => blue.withValues(alpha: Theme.of(context).brightness == Brightness.dark ? .25 : .12);
 
   late final _supabase = widget.client ?? Supabase.instance.client;
   late final _db = widget.database ?? DatabaseService(client: _supabase);
@@ -48,6 +51,7 @@ class _AngelScreenState extends State<AngelScreen> {
   String? _conversationId;
   String? _error;
   String? _failedMessage;
+  String? _sendError;
 
   bool _loading = true;
   bool _loadingChats = false;
@@ -220,6 +224,7 @@ class _AngelScreenState extends State<AngelScreen> {
         _oldestMessage = rows.isEmpty ? null : rows.last;
         _hasOlder = rows.length == 100;
         _failedMessage = null;
+        _sendError = null;
         _messages.clear();
         _messages.addAll(
           rows.reversed.map(
@@ -259,6 +264,7 @@ class _AngelScreenState extends State<AngelScreen> {
       _messages.clear();
       _messageController.clear();
       _failedMessage = null;
+      _sendError = null;
       _error = null;
       _loading = false;
     });
@@ -293,6 +299,7 @@ class _AngelScreenState extends State<AngelScreen> {
 
       _messageController.clear();
       _failedMessage = null;
+      _sendError = null;
       _thinking = true;
     });
 
@@ -388,20 +395,18 @@ class _AngelScreenState extends State<AngelScreen> {
       setState(() {
         _thinking = false;
         _failedMessage = invoked ? message : null;
+        _sendError = error is TimeoutException
+            ? 'Angel took too long to respond.'
+            : error is FunctionException
+                ? CustomerPresentation.angelError(error.status)
+                : 'Angel could not answer right now.';
         if (!invoked) {
           _messages.removeLast();
           _messageController.text = message;
         }
       });
 
-      _showSnack(
-        error is TimeoutException
-            ? 'Angel took too long to respond. '
-                  'Please check your connection.'
-            : error is FunctionException
-            ? CustomerPresentation.angelError(error.status)
-            : 'Angel could not answer right now.',
-      );
+      if (!invoked) _showSnack(_sendError!);
     }
   }
 
@@ -409,10 +414,9 @@ class _AngelScreenState extends State<AngelScreen> {
     final id = _conversationId;
     if (id == null || _thinking) return;
     await _openConversation(id);
-    if (mounted && _error == null)
-      _showSnack(
-        'History refreshed. No message was resent. Check the saved exchange before composing another message.',
-      );
+    if (mounted && _error == null) {
+      _showSnack('History refreshed. No message was resent.');
+    }
   }
 
   Future<void> _loadOlderMessages() async {
@@ -514,6 +518,7 @@ class _AngelScreenState extends State<AngelScreen> {
           _conversationId = null;
           _messages.clear();
           _failedMessage = null;
+        _sendError = null;
         });
       }
 
@@ -575,74 +580,112 @@ class _AngelScreenState extends State<AngelScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        key: _scaffoldKey,
-        backgroundColor: bg,
-        drawer: _buildDrawer(),
-        appBar: _buildAppBar(),
-        body: Column(
-          children: [
-            Expanded(
-              child: _loading && _messages.isEmpty
-                  ? Center(child: Text('Please wait…'))
-                  : _error != null && _messages.isEmpty
-                  ? _errorView()
-                  : _messages.isEmpty
-                  ? _welcomeScreen()
-                  : _conversationView(),
+      key: _scaffoldKey,
+      backgroundColor: bg,
+      resizeToAvoidBottomInset: true,
+      drawer: _buildDrawer(),
+      appBar: _buildAppBar(),
+      body: Column(
+        children: [
+          Expanded(
+            child: _loading && _messages.isEmpty
+                ? _chatSkeleton()
+                : _error != null && _messages.isEmpty
+                    ? _errorView()
+                    : _messages.isEmpty
+                        ? _welcomeScreen()
+                        : _conversationView(),
+          ),
+          if (_hasOlder)
+            TextButton(
+              onPressed: _loadingOlder ? null : _loadOlderMessages,
+              child: Text(_loadingOlder ? 'Loading older messages…' : 'Load older messages'),
             ),
-            if (_hasOlder)
-              TextButton(
-                onPressed: _loadingOlder ? null : _loadOlderMessages,
-                child: Text(
-                  _loadingOlder
-                      ? 'Loading older messages…'
-                      : 'Load older messages',
-                ),
-              ),
-            if (_error != null && _messages.isNotEmpty)
-              TextButton(
-                onPressed: _loading
-                    ? null
-                    : () => _openConversation(_conversationId!),
-                child: Text('Refresh conversation'),
-              ),
-            if (_failedMessage != null) _retryBar(),
-            SafeArea(top: false, child: _inputArea()),
-          ],
-        ),
+          if (_error != null && _messages.isNotEmpty)
+            TextButton(
+              onPressed: _loading || _conversationId == null ? null : () => _openConversation(_conversationId!),
+              child: const Text('Refresh conversation'),
+            ),
+          if (_failedMessage != null) _retryBar(),
+          SafeArea(top: false, child: _inputArea()),
+        ],
+      ),
     );
   }
 
-  PreferredSizeWidget _buildAppBar() {
+  Widget _chatSkeleton() {
+    return Padding(
+      padding: TrexvenSpacing.pagePadding,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const TrexvenSkeletonBlock(width: 90, height: 12),
+          const SizedBox(height: TrexvenSpacing.fieldGap),
+          const TrexvenSkeletonBlock(width: 245, height: 60),
+          const SizedBox(height: TrexvenSpacing.fieldGap),
+          Align(
+            alignment: Alignment.centerRight,
+            child: const TrexvenSkeletonBlock(width: 170, height: 50),
+          ),
+        ],
+      ),
+    );
+  }
+
+    PreferredSizeWidget _buildAppBar() {
+    final theme = Theme.of(context);
     return AppBar(
       backgroundColor: bg,
-      elevation: 0,
-      surfaceTintColor: Colors.transparent,
+      toolbarHeight: 68,
       leading: IconButton(
         tooltip: 'Chat history',
         onPressed: () => _scaffoldKey.currentState?.openDrawer(),
-        icon: Icon(Icons.menu_rounded, color: Theme.of(context).colorScheme.onSurface, size: 26),
+        icon: const Icon(Icons.view_sidebar_outlined),
       ),
-      title: Text(
-        'Angel',
-        style: TextStyle(
-          color: Theme.of(context).colorScheme.onSurface,
-          fontSize: 17,
-          fontWeight: FontWeight.w700,
-        ),
+      titleSpacing: 4,
+      title: Row(
+        children: [
+          Container(
+            width: 36,
+            height: 36,
+            decoration: BoxDecoration(
+              color: blue.withValues(alpha: .12),
+              borderRadius: BorderRadius.circular(TrexvenRadii.field),
+            ),
+            child: Icon(Icons.auto_awesome_rounded, color: blue, size: 19),
+          ),
+          const SizedBox(width: TrexvenSpacing.labelGap),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text('Angel', style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w800)),
+                Text('Your business assistant',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.bodySmall?.copyWith(fontSize: 11, color: muted)),
+              ],
+            ),
+          ),
+        ],
       ),
       actions: [
         IconButton(
           tooltip: 'New chat',
           onPressed: _thinking ? null : _newChat,
-          icon: Icon(Icons.edit_square, color: Theme.of(context).colorScheme.onSurface, size: 23),
+          icon: const Icon(Icons.edit_square_outlined),
         ),
-        const SizedBox(width: 8),
+        const SizedBox(width: TrexvenSpacing.labelGap),
       ],
+      bottom: PreferredSize(
+        preferredSize: const Size.fromHeight(1),
+        child: Divider(height: 1, color: border.withValues(alpha: .4)),
+      ),
     );
   }
 
-  Widget _buildDrawer() {
+    Widget _buildDrawer() {
     return Drawer(
       backgroundColor: bg,
       width: MediaQuery.sizeOf(context).width * 0.84,
@@ -807,7 +850,7 @@ class _AngelScreenState extends State<AngelScreen> {
             Padding(
               padding: EdgeInsets.all(18),
               child: Text(
-                'TREXVEN Business Assistant',
+                'Your business assistant',
                 style: TextStyle(color: muted, fontSize: 11),
               ),
             ),
@@ -818,224 +861,174 @@ class _AngelScreenState extends State<AngelScreen> {
   }
 
   Widget _welcomeScreen() {
-    return Center(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              width: 66,
-              height: 66,
-              decoration: BoxDecoration(
-                color: blue.withValues(alpha: 0.12),
-                borderRadius: BorderRadius.circular(22),
+    final theme = Theme.of(context);
+    final suggestions = <(IconData, String)>[
+      (Icons.bar_chart_rounded, "Summarize today's sales"),
+      (Icons.inventory_2_outlined, 'Show low-stock products'),
+      (Icons.insights_outlined, 'Review recent activity'),
+    ];
+    return LayoutBuilder(builder: (context, constraints) {
+      return SingleChildScrollView(
+        padding: TrexvenSpacing.pagePadding,
+        child: ConstrainedBox(
+          constraints: BoxConstraints(minHeight: constraints.maxHeight > 24 ? constraints.maxHeight - 24 : 0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 56,
+                height: 56,
+                decoration: BoxDecoration(
+                  color: blue.withValues(alpha: .12),
+                  borderRadius: BorderRadius.circular(TrexvenRadii.card),
+                ),
+                child: Icon(Icons.auto_awesome_rounded, color: blue, size: 27),
               ),
-              child: Icon(
-                Icons.auto_awesome_rounded,
-                color: blue,
-                size: 35,
-              ),
-            ),
-            const SizedBox(height: 25),
-            Text(
-              "Hi! What's on your mind today?",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onSurface,
-                fontSize: 23,
-                fontWeight: FontWeight.w700,
-                height: 1.3,
-              ),
-            ),
-            const SizedBox(height: 12),
-            Text(
-              'Ask Angel about your business.',
-              textAlign: TextAlign.center,
-              style: TextStyle(color: muted, fontSize: 13),
-            ),
-          ],
+              const SizedBox(height: TrexvenSpacing.fieldGap),
+              Text('What can I help with?', style: theme.textTheme.headlineSmall, textAlign: TextAlign.center),
+              const SizedBox(height: TrexvenSpacing.labelGap),
+              Text('Ask about sales, inventory, expenses or business activity.',
+                  textAlign: TextAlign.center, style: theme.textTheme.bodyMedium?.copyWith(color: muted)),
+              const SizedBox(height: TrexvenSpacing.sectionGap),
+              for (final suggestion in suggestions) ...[
+                Material(
+                  color: inputBg.withValues(alpha: .78),
+                  borderRadius: BorderRadius.circular(TrexvenRadii.field),
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(TrexvenRadii.field),
+                    onTap: _loading || _thinking ? null : () => _sendMessage(preset: suggestion.$2),
+                    child: Padding(
+                      padding: TrexvenSpacing.fieldPadding,
+                      child: Row(
+                        children: [
+                          Icon(suggestion.$1, color: blue, size: 19),
+                          const SizedBox(width: TrexvenSpacing.labelGap),
+                          Expanded(child: Text(suggestion.$2, style: theme.textTheme.bodyMedium)),
+                          Icon(Icons.north_west_rounded, color: muted, size: 16),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: TrexvenSpacing.labelGap),
+              ],
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 
-  Widget _conversationView() {
+    Widget _conversationView() {
     return ListView.builder(
       controller: _scrollController,
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-      padding: const EdgeInsets.fromLTRB(15, 18, 15, 24),
+      padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
       itemCount: _messages.length + (_thinking ? 1 : 0),
       itemBuilder: (context, index) {
-        if (index == _messages.length) {
-          return _thinkingBubble();
-        }
-
+        if (index == _messages.length) return _thinkingBubble();
         return _messageBubble(_messages[index]);
       },
     );
   }
 
-  Widget _messageBubble(_AngelMessage message) {
+    Widget _messageBubble(_AngelMessage message) {
+    final theme = Theme.of(context);
     if (message.isAngel) {
       return Padding(
-        padding: const EdgeInsets.only(bottom: 24),
+        padding: const EdgeInsets.only(bottom: TrexvenSpacing.fieldGap),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              width: 29,
-              height: 29,
+              width: 30,
+              height: 30,
               decoration: BoxDecoration(
-                color: blue.withValues(alpha: 0.12),
-                borderRadius: BorderRadius.circular(9),
+                color: blue.withValues(alpha: .12),
+                borderRadius: BorderRadius.circular(TrexvenRadii.status),
               ),
-              child: Icon(
-                Icons.auto_awesome_rounded,
-                color: blue,
-                size: 17,
-              ),
+              child: Icon(Icons.auto_awesome_rounded, color: blue, size: 16),
             ),
-            const SizedBox(width: 11),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 7),
-                    child: Text(
-                      'Angel',
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.onSurface,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                  AngelMarkdown(data: message.text),
-                ],
+            const SizedBox(width: TrexvenSpacing.labelGap),
+            Flexible(
+              child: Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: surface,
+                  borderRadius: BorderRadius.circular(TrexvenRadii.card),
+                  border: Border.all(color: border.withValues(alpha: .32)),
+                ),
+                child: AngelMarkdown(data: message.text),
               ),
             ),
           ],
         ),
       );
     }
-
     return Align(
       alignment: Alignment.centerRight,
       child: Container(
-        constraints: BoxConstraints(
-          maxWidth: MediaQuery.sizeOf(context).width * 0.85,
-        ),
-        margin: const EdgeInsets.only(bottom: 22),
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+        constraints: BoxConstraints(maxWidth: MediaQuery.sizeOf(context).width * .80),
+        margin: const EdgeInsets.only(bottom: TrexvenSpacing.fieldGap),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
         decoration: BoxDecoration(
-          color: surface,
-          borderRadius: BorderRadius.circular(18),
+          color: userBubble,
+          borderRadius: BorderRadius.circular(TrexvenRadii.card),
         ),
         child: SelectableText(
           message.text,
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.onSurface,
-            fontSize: 14,
-            height: 1.5,
-          ),
+          style: theme.textTheme.bodyMedium?.copyWith(color: ink),
         ),
       ),
     );
   }
 
-  Widget _thinkingBubble() {
+    Widget _thinkingBubble() {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 14),
+      padding: const EdgeInsets.only(bottom: TrexvenSpacing.fieldGap),
       child: Row(
         children: [
-          SizedBox(
-            width: 17,
-            height: 17,
-            child: Icon(Icons.more_horiz_rounded, size: 16),
-          ),
-          SizedBox(width: 12),
-          Text(
-            'Angel is thinking...',
-            style: TextStyle(color: muted, fontSize: 12),
-          ),
+          Icon(Icons.auto_awesome_rounded, color: blue, size: 18),
+          const SizedBox(width: TrexvenSpacing.labelGap),
+          Text('Angel is thinking…', style: Theme.of(context).textTheme.bodySmall),
         ],
       ),
     );
   }
 
-  Widget _retryBar() {
+    Widget _retryBar() {
+    final theme = Theme.of(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          TextButton.icon(
-            onPressed: _thinking ? null : _retryMessage,
-            icon: Icon(Icons.refresh_rounded, size: 17),
-            label: Text('Refresh history · send outcome unknown'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _inputArea() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(14, 8, 14, 12),
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
       child: Container(
-        padding: const EdgeInsets.fromLTRB(14, 10, 10, 10),
+        width: double.infinity,
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: inputBg,
-          border: Border.all(color: border),
-          borderRadius: BorderRadius.circular(26),
+          color: theme.colorScheme.error.withValues(alpha: .07),
+          borderRadius: BorderRadius.circular(TrexvenRadii.card),
+          border: Border.all(color: theme.colorScheme.error.withValues(alpha: .28)),
         ),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextField(
-              controller: _messageController,
-              enabled: !_loading && !_thinking && _failedMessage == null,
-              minLines: 1,
-              maxLines: 5,
-              keyboardType: TextInputType.multiline,
-              textCapitalization: TextCapitalization.sentences,
-              style: TextStyle(color: Theme.of(context).colorScheme.onSurface, fontSize: 14),
-              decoration: InputDecoration(
-                hintText: 'Message Angel...',
-                hintStyle: TextStyle(color: muted, fontSize: 14),
-                border: InputBorder.none,
-                isDense: true,
-                contentPadding: EdgeInsets.symmetric(vertical: 8),
-              ),
-            ),
-            const SizedBox(height: 8),
             Row(
               children: [
-                Expanded(
-                  child: Text(
-                    'TREXVEN Angel',
-                    style: TextStyle(color: muted, fontSize: 11),
-                  ),
-                ),
-                SizedBox(
-                  width: 39,
-                  height: 39,
-                  child: IconButton.filled(
-                    tooltip: 'Send message',
-                    onPressed: _loading || _thinking || _failedMessage != null
-                        ? null
-                        : () => _sendMessage(),
-                    style: IconButton.styleFrom(
-                      backgroundColor: blue,
-                      foregroundColor: Theme.of(context).colorScheme.onSurface,
-                      shape: const CircleBorder(),
-                    ),
-                    icon: Icon(Icons.arrow_upward_rounded, size: 21),
-                  ),
-                ),
+                Icon(Icons.error_outline_rounded, color: theme.colorScheme.error, size: 18),
+                const SizedBox(width: TrexvenSpacing.labelGap),
+                Expanded(child: Text('Response unavailable',
+                    style: theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w700))),
               ],
+            ),
+            const SizedBox(height: TrexvenSpacing.labelGap),
+            Text(
+              '${_sendError ?? 'Angel could not respond.'} Your message may have been saved. Check the conversation before sending again.',
+              style: theme.textTheme.bodySmall?.copyWith(color: muted),
+            ),
+            const SizedBox(height: TrexvenSpacing.labelGap),
+            TextButton.icon(
+              onPressed: _thinking || _loading ? null : _retryMessage,
+              icon: const Icon(Icons.refresh_rounded, size: 18),
+              label: const Text('Refresh history'),
             ),
           ],
         ),
@@ -1043,7 +1036,78 @@ class _AngelScreenState extends State<AngelScreen> {
     );
   }
 
-  Widget _errorView() {
+    Widget _inputArea() {
+    final theme = Theme.of(context);
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              color: inputBg,
+              borderRadius: BorderRadius.circular(TrexvenRadii.dialog),
+              border: Border.all(color: border.withValues(alpha: .65)),
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _messageController,
+                    enabled: !_loading && !_thinking && _failedMessage == null,
+                    minLines: 1,
+                    maxLines: 5,
+                    keyboardType: TextInputType.multiline,
+                    textCapitalization: TextCapitalization.sentences,
+                    style: theme.textTheme.bodyMedium,
+                    decoration: InputDecoration(
+                      hintText: 'Message Angel...',
+                      hintStyle: theme.textTheme.bodyMedium?.copyWith(color: muted),
+                      isDense: true,
+                      filled: false,
+                      contentPadding: const EdgeInsets.symmetric(vertical: 12),
+                      border: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      disabledBorder: InputBorder.none,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: TrexvenSpacing.labelGap),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 2),
+                  child: SizedBox(
+                    width: 40,
+                    height: 40,
+                    child: IconButton.filled(
+                      tooltip: 'Send message',
+                      onPressed: _loading || _thinking || _failedMessage != null ? null : () => _sendMessage(),
+                      style: IconButton.styleFrom(
+                        backgroundColor: blue,
+                        foregroundColor: theme.colorScheme.onPrimary,
+                        shape: const CircleBorder(),
+                        padding: EdgeInsets.zero,
+                        minimumSize: const Size(40, 40),
+                      ),
+                      icon: const Icon(Icons.arrow_upward_rounded, size: 20),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text('Review important actions before confirming.',
+              textAlign: TextAlign.center,
+              style: theme.textTheme.bodySmall?.copyWith(fontSize: 11, color: muted)),
+        ],
+      ),
+    );
+  }
+
+    Widget _errorView() {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(24),
