@@ -158,11 +158,11 @@ void main() {
         await tester.pumpAndSettle();
         expect(sends, 1);
         expect(
-          find.text('Refresh history · send outcome unknown'),
+          find.text('Refresh history'),
           findsOneWidget,
         );
         expect(tester.widget<TextField>(find.byType(TextField)).enabled, false);
-        await tester.tap(find.text('Refresh history · send outcome unknown'));
+        await tester.tap(find.text('Refresh history'));
         await tester.pumpAndSettle();
         expect(sends, 1);
         expect(find.text('Question'), findsOneWidget);
