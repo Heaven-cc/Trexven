@@ -343,8 +343,8 @@ Future<PaymentDraft?> confirmPayment(
         inputFormatters: numeric ? [FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'))] : null,
         onChanged: (_) => update(() { error = null; if ((fullCents - (paidCentsSafe() ?? 0)) <= 0) credit = false; }));
     Widget stat(String label, String value) => Column(crossAxisAlignment: CrossAxisAlignment.start,
-      children: [Text(label, style: const TextStyle(color: palette.onSurfaceVariant, fontSize: 12)),
-        const SizedBox(height: 4), Text(value, style: const TextStyle(color: palette.onSurface, fontWeight: FontWeight.w700))]);
+      children: [Text(label, style: TextStyle(color: palette.onSurfaceVariant, fontSize: 12)),
+        const SizedBox(height: 4), Text(value, style: TextStyle(color: palette.onSurface, fontWeight: FontWeight.w700))]);
     return Dialog(insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       child: ConstrainedBox(constraints: BoxConstraints(maxWidth: 480,
         maxHeight: MediaQuery.sizeOf(dialogContext).height * .9),
@@ -533,7 +533,7 @@ context: context,
                                   const SizedBox(height: 7),
                                   Text(
                                     money(fullCents),
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       color: palette.onSurface,
                                       fontSize: 27,
                                       fontWeight: FontWeight.w800,
@@ -559,7 +559,7 @@ context: context,
                                               paid == null
                                                   ? 'Invalid amount'
                                                   : money(paid),
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                 color: palette.onSurface,
                                                 fontSize: 13,
                                                 fontWeight: FontWeight.w700,
@@ -584,7 +584,7 @@ context: context,
                                             remaining == null
                                                 ? '—'
                                                 : money(remaining),
-                                            style: const TextStyle(
+                                            style: TextStyle(
                                               color: palette.onSurface,
                                               fontSize: 13,
                                               fontWeight: FontWeight.w700,
@@ -656,7 +656,7 @@ context: context,
                               const SizedBox(height: 5),
                               Container(
                                 decoration: BoxDecoration(
-                                  color: palette.onSurface,
+                                  color: palette.surface,
                                   border: Border.all(color: border),
                                   borderRadius: BorderRadius.circular(13),
                                 ),
@@ -803,7 +803,7 @@ context: context,
                     Container(
                       padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
                       decoration: BoxDecoration(
-                        color: palette.onSurface,
+                        color: palette.surface,
                         border: Border(top: BorderSide(color: border)),
                       ),
                       child: Row(
