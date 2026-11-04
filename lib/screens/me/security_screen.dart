@@ -285,7 +285,7 @@ class _SecurityScreenState extends State<SecurityScreen> {
                       height: 1,
                       color:
                           theme.trexvenColors.border?.withValues(alpha: 0.5) ??
-                          Colors.white12,
+                          theme.colorScheme.outlineVariant.withValues(alpha: .5),
                     ),
                   ),
                   _infoRow(
