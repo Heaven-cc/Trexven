@@ -331,22 +331,23 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   Widget _buildSalesCard() {
     final sales = _section('sales');
+    final scheme = Theme.of(context).colorScheme;
 
     return Container(
       key: const ValueKey('dashboard-sales-hero'),
       width: double.infinity,
       padding: const EdgeInsets.fromLTRB(18, 17, 18, 17),
       decoration: BoxDecoration(
-        color: const Color(0xFF111B35),
+        color: scheme.surface,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             'SALES TODAY',
             style: TextStyle(
-              color: Color(0xFFB5C4DB),
+              color: scheme.onSurfaceVariant,
               fontSize: 11,
               fontWeight: FontWeight.w800,
               letterSpacing: 1.1,
@@ -360,8 +361,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ? const TrexvenSkeletonBlock(width: 170, height: 31)
                 : Text(
               _currencyFormat.format(sales['totalToday'] ?? 0.0),
-              style: const TextStyle(
-                color: Colors.white,
+              style: TextStyle(
+                color: scheme.onSurface,
                 fontSize: 30,
                 fontWeight: FontWeight.w800,
                 letterSpacing: -0.7,
@@ -369,9 +370,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
           ),
           const SizedBox(height: 7),
-          const Text(
+          Text(
             "Today's recorded sales",
-            style: TextStyle(color: Color(0xFFB5C4DB), fontSize: 12),
+            style: TextStyle(color: scheme.onSurfaceVariant, fontSize: 12),
           ),
         ],
       ),
