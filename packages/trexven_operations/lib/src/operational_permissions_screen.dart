@@ -312,7 +312,7 @@ class _OperationalPermissionsScreenState
                             const SizedBox(height: 12),
                             _feedback(
                               errorMessage!,
-                              const Color(0xFFD44B52),
+                              Theme.of(context).colorScheme.error,
                             ),
                           ],
                           if (successMessage != null) ...[
@@ -328,7 +328,7 @@ class _OperationalPermissionsScreenState
                             const SizedBox(height: 9),
                             Container(
                               decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: Theme.of(context).colorScheme.onPrimary,
                                 border: Border.all(
                                   color: _border,
                                 ),
@@ -400,7 +400,7 @@ class _OperationalPermissionsScreenState
                               : () => Navigator.pop(dialogContext),
                           style: FilledButton.styleFrom(
                             backgroundColor: _blue,
-                            foregroundColor: Colors.white,
+                            foregroundColor: Theme.of(context).colorScheme.onPrimary,
                             minimumSize: const Size(
                               double.infinity,
                               43,
@@ -622,7 +622,7 @@ class _OperationalPermissionsScreenState
     final active = status.toLowerCase() == 'active';
 
     return Material(
-      color: Colors.white,
+      color: Theme.of(context).colorScheme.onPrimary,
       borderRadius: BorderRadius.circular(14),
       child: InkWell(
         onTap: () => _edit(employee),
@@ -719,7 +719,7 @@ class _OperationalPermissionsScreenState
     return Container(
       padding: const EdgeInsets.all(28),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).colorScheme.onPrimary,
         border: Border.all(color: _border),
         borderRadius: BorderRadius.circular(14),
       ),
