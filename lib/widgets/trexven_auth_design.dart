@@ -12,7 +12,9 @@ class TrexvenAuthColors {
 
   static Color navy(BuildContext context) => Theme.of(context).colorScheme.onSurface;
 
-  static Color blue(BuildContext context) => Theme.of(context).colorScheme.primary;
+  static const blue = Color(0xFF2864F0);
+
+  static Color accent(BuildContext context) => Theme.of(context).colorScheme.primary;
 
   static Color muted(BuildContext context) => Theme.of(context).colorScheme.onSurfaceVariant;
 
@@ -167,7 +169,7 @@ class TrexvenAuthBrand extends StatelessWidget {
           errorBuilder: (_, __, ___) => Icon(
             Icons.storefront_rounded,
             size: size * .7,
-            color: TrexvenAuthColors.blue(context),
+            color: TrexvenAuthColors.accent(context),
           ),
         ),
         const SizedBox(height: 11),
@@ -294,7 +296,7 @@ class TrexvenAuthField extends StatelessWidget {
         ),
         border: fieldBorder(TrexvenAuthColors.border(context), 1),
         enabledBorder: fieldBorder(TrexvenAuthColors.border(context), 1),
-        focusedBorder: fieldBorder(TrexvenAuthColors.blue(context), 1.6),
+        focusedBorder: fieldBorder(TrexvenAuthColors.accent(context), 1.6),
         errorBorder: fieldBorder(Theme.of(context).colorScheme.error, 1),
         focusedErrorBorder: fieldBorder(Theme.of(context).colorScheme.error, 1.6),
       ),
@@ -439,7 +441,7 @@ class TrexvenAuthPrimaryButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(23),
               boxShadow: [
                 BoxShadow(
-                  color: TrexvenAuthColors.blue(context).withValues(alpha: .17),
+                  color: TrexvenAuthColors.accent(context).withValues(alpha: .17),
                   blurRadius: 16,
                   offset: const Offset(0, 7),
                 ),
