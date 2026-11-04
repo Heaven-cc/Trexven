@@ -176,7 +176,7 @@ class HelpSupportScreen extends StatelessWidget {
             width: 72,
             height: 72,
             decoration: BoxDecoration(
-              color: Colors.white.withValues(alpha: 0.08),
+              color: theme.colorScheme.onSurface.withValues(alpha: .08),
               borderRadius: BorderRadius.circular(TrexvenRadii.card),
             ),
             child: Icon(
@@ -192,7 +192,7 @@ class HelpSupportScreen extends StatelessWidget {
             'Need specialized help?',
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Colors.white,
+              color: theme.brightness == Brightness.dark ? theme.colorScheme.onSurface : theme.colorScheme.surface,
               fontSize: TrexvenFontSize.section,
               fontWeight: FontWeight.w800,
             ),
@@ -204,7 +204,7 @@ class HelpSupportScreen extends StatelessWidget {
             'Our support team can help you with TREXVEN, your business setup, inventory, POS, and Vision system.',
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Colors.white.withValues(alpha: 0.6),
+              color: (theme.brightness == Brightness.dark ? theme.colorScheme.onSurface : theme.colorScheme.surface).withValues(alpha: .78),
               fontSize: TrexvenFontSize.body,
               height: 1.5,
             ),
@@ -222,8 +222,8 @@ class HelpSupportScreen extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.w700),
               ),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
-                foregroundColor: theme.trexvenColors.brandDark,
+                backgroundColor: theme.colorScheme.surface,
+                foregroundColor: theme.colorScheme.onSurface,
               ),
             ),
           ),
