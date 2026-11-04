@@ -343,7 +343,7 @@ class _IntelligenceTabState extends State<IntelligenceTab> {
                   fontWeight: FontWeight.w700, fontSize: 13)),
               Text('Vision chooses which camera to display',
                 style: theme.textTheme.bodySmall?.copyWith(
-                  color: const Color(0xFFC5D4E5))),
+                  color: c.onSurfaceVariant)),
             ])),
           const SizedBox(width: TrexvenSpacing.labelGap),
           FilledButton(onPressed: _cameras.isEmpty ? null : _openAiLive,
