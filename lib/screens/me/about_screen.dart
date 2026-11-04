@@ -272,7 +272,7 @@ class _AboutScreenState extends State<AboutScreen> {
         thickness: 1,
         color:
             theme.trexvenColors.border?.withValues(alpha: 0.5) ??
-            Colors.white12,
+            theme.colorScheme.outlineVariant.withValues(alpha: .5),
       ),
     );
   }
