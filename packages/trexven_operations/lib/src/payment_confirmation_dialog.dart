@@ -343,8 +343,8 @@ Future<PaymentDraft?> confirmPayment(
         inputFormatters: numeric ? [FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'))] : null,
         onChanged: (_) => update(() { error = null; if ((fullCents - (paidCentsSafe() ?? 0)) <= 0) credit = false; }));
     Widget stat(String label, String value) => Column(crossAxisAlignment: CrossAxisAlignment.start,
-      children: [Text(label, style: const TextStyle(color: Colors.white70, fontSize: 12)),
-        const SizedBox(height: 4), Text(value, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w700))]);
+      children: [Text(label, style: const TextStyle(color: palette.onSurfaceVariant, fontSize: 12)),
+        const SizedBox(height: 4), Text(value, style: const TextStyle(color: palette.onSurface, fontWeight: FontWeight.w700))]);
     return Dialog(insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       child: ConstrainedBox(constraints: BoxConstraints(maxWidth: 480,
         maxHeight: MediaQuery.sizeOf(dialogContext).height * .9),
@@ -360,9 +360,9 @@ Future<PaymentDraft?> confirmPayment(
                 gradient: TrexvenPresentation.premiumGradientOf(context) ?? LinearGradient(colors: [c.primary, c.surface]),
                 border: Border.all(color: c.secondary.withValues(alpha: .3))),
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  const Text('TREXVEN', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700)),
+                  const Text('TREXVEN', style: TextStyle(color: palette.onSurface, fontWeight: FontWeight.w700)),
                   const SizedBox(height: 12),
-                  const Text('Sale total', style: TextStyle(color: Colors.white70, fontSize: 12)),
+                  const Text('Sale total', style: TextStyle(color: palette.onSurfaceVariant, fontSize: 12)),
                   const SizedBox(height: 4),
                   Text(money(fullCents), style: theme.textTheme.headlineLarge?.copyWith(color: Colors.white)),
                   const SizedBox(height: 16),
@@ -515,7 +515,7 @@ context: context,
                               width: double.infinity,
                               padding: const EdgeInsets.all(16),
                               decoration: BoxDecoration(
-                                color: navy,
+                                color: palette.surface,
                                 borderRadius: BorderRadius.circular(15),
                               ),
                               child: Column(
@@ -524,7 +524,7 @@ context: context,
                                   const Text(
                                     'SALE TOTAL',
                                     style: TextStyle(
-                                      color: Colors.white70,
+                                      color: palette.onSurfaceVariant,
                                       fontSize: 10,
                                       letterSpacing: 1,
                                       fontWeight: FontWeight.w700,
@@ -534,7 +534,7 @@ context: context,
                                   Text(
                                     money(fullCents),
                                     style: const TextStyle(
-                                      color: Colors.white,
+                                      color: palette.onSurface,
                                       fontSize: 27,
                                       fontWeight: FontWeight.w800,
                                     ),
@@ -550,7 +550,7 @@ context: context,
                                             const Text(
                                               'Recorded',
                                               style: TextStyle(
-                                                color: Colors.white70,
+                                                color: palette.onSurfaceVariant,
                                                 fontSize: 10,
                                               ),
                                             ),
@@ -560,7 +560,7 @@ context: context,
                                                   ? 'Invalid amount'
                                                   : money(paid),
                                               style: const TextStyle(
-                                                color: Colors.white,
+                                                color: palette.onSurface,
                                                 fontSize: 13,
                                                 fontWeight: FontWeight.w700,
                                               ),
@@ -575,7 +575,7 @@ context: context,
                                           const Text(
                                             'Remaining',
                                             style: TextStyle(
-                                              color: Colors.white70,
+                                              color: palette.onSurfaceVariant,
                                               fontSize: 10,
                                             ),
                                           ),
@@ -585,7 +585,7 @@ context: context,
                                                 ? '—'
                                                 : money(remaining),
                                             style: const TextStyle(
-                                              color: Colors.white,
+                                              color: palette.onSurface,
                                               fontSize: 13,
                                               fontWeight: FontWeight.w700,
                                             ),
@@ -656,7 +656,7 @@ context: context,
                               const SizedBox(height: 5),
                               Container(
                                 decoration: BoxDecoration(
-                                  color: Colors.white,
+                                  color: palette.onSurface,
                                   border: Border.all(color: border),
                                   borderRadius: BorderRadius.circular(13),
                                 ),
@@ -743,7 +743,7 @@ context: context,
                             const SizedBox(height: 12),
                             Container(
                               decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: palette.onSurface,
                                 border: Border.all(color: border),
                                 borderRadius: BorderRadius.circular(13),
                               ),
@@ -790,8 +790,8 @@ context: context,
                               const SizedBox(height: 12),
                               Text(
                                 error!,
-                                style: const TextStyle(
-                                  color: Color(0xFFCB4D4D),
+                                style: TextStyle(
+                                  color: palette.error,
                                   fontSize: 11,
                                 ),
                               ),
@@ -803,7 +803,7 @@ context: context,
                     Container(
                       padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: palette.onSurface,
                         border: Border(top: BorderSide(color: border)),
                       ),
                       child: Row(
@@ -832,7 +832,7 @@ context: context,
                                 disabledBackgroundColor: blue.withValues(
                                   alpha: 0.35,
                                 ),
-                                foregroundColor: Colors.white,
+                                foregroundColor: palette.onPrimary,
                                 minimumSize: const Size(0, 46),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(11),
@@ -880,19 +880,19 @@ class _PaymentNotice extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 9),
       padding: const EdgeInsets.all(11),
       decoration: BoxDecoration(
-        color: const Color(0xFF2864F0).withValues(alpha: .10),
+        color: Theme.of(context).colorScheme.primary.withValues(alpha: .10),
         borderRadius: BorderRadius.circular(11),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(icon, color: const Color(0xFF2864F0), size: 17),
+          Icon(icon, color: Theme.of(context).colorScheme.primary, size: 17),
           const SizedBox(width: 9),
           Expanded(
             child: Text(
               text,
-              style: const TextStyle(
-                color: Color(0xFF14213D),
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSurface,
                 fontSize: 11,
                 height: 1.45,
               ),
