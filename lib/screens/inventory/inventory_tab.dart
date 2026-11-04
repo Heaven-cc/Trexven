@@ -885,7 +885,7 @@ class _InventoryTabState extends State<InventoryTab> {
                       'Catalog stock: ${product.stock} ${product.unit}',
                       style: TextStyle(
                         color: product.isLowStock
-                            ? Color(0xFFDC633F)
+                            ? (Theme.of(context).trexvenColors.warning ?? Theme.of(context).colorScheme.error)
                             : _muted,
                         fontSize: 12,
                         fontWeight: FontWeight.w400,
