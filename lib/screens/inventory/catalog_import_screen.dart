@@ -573,7 +573,7 @@ class _CatalogImportScreenState extends State<CatalogImportScreen> {
             },
           ),
           if (_showInstructions)
-            const Padding(
+            Padding(
               padding: EdgeInsets.fromLTRB(15, 0, 15, 16),
               child: Text(
                 'Required: Name, Product name, or Names.\n\n'
