@@ -430,10 +430,11 @@ class TrexvenAuthPrimaryButton extends StatelessWidget {
           child: Ink(
             height: 56,
             decoration: BoxDecoration(
-              gradient: const LinearGradient(
+              gradient: LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
-                colors: [Color(0xFF2168F4), Color(0xFF257FFF)],
+                colors: [Theme.of(context).colorScheme.primary,
+                  Theme.of(context).colorScheme.primary.withValues(alpha: .86)],
               ),
               borderRadius: BorderRadius.circular(23),
               boxShadow: [
