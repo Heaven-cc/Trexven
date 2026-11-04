@@ -21,6 +21,32 @@ class PendingFinanceDatabase extends FakeDatabase {
 }
 
 void main() {
+  for (final entry in <(String, ThemeData)>[
+    ('TREXVEN signature', TrexvenTheme.signatureTheme),
+    ('Pure Black', TrexvenTheme.darkTheme),
+    ('Light', TrexvenTheme.lightTheme),
+  ]) {
+    testWidgets('Hero metric uses unified theme colors in ${entry.$1}', (tester) async {
+      await tester.pumpWidget(MaterialApp(
+        theme: entry.$2,
+        home: const Scaffold(body: TrexvenHeroMetric(
+          label: 'Sales today', value: '₦1,250',
+        )),
+      ));
+      final container = tester.widget<Container>(
+        find.descendant(
+          of: find.byType(TrexvenHeroMetric),
+          matching: find.byType(Container),
+        ).first,
+      );
+      final decoration = container.decoration! as BoxDecoration;
+      expect(decoration.color, entry.$2.colorScheme.surface);
+      final label = tester.widget<Text>(find.text('SALES TODAY'));
+      final amount = tester.widget<Text>(find.text('₦1,250'));
+      expect(label.style?.color, entry.$2.colorScheme.onSurfaceVariant);
+      expect(amount.style?.color, entry.$2.colorScheme.onSurface);
+    });
+  }
   testWidgets('Finance rows fit narrow phones with large text and amounts', (tester) async {
     tester.view.physicalSize = const Size(320, 900);
     tester.view.devicePixelRatio = 1;
