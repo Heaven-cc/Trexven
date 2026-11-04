@@ -710,7 +710,7 @@ class _RecordSaleScreenState extends State<RecordSaleScreen> {
                                       onPressed: locked
                                           ? null
                                           : () => _removeCartProduct(entry.key),
-                                      icon: const Icon(
+                                      icon: Icon(
                                         Icons.delete_outline,
                                         color: Theme.of(context).colorScheme.error,
                                       ),
@@ -917,7 +917,7 @@ class _RecordSaleScreenState extends State<RecordSaleScreen> {
                         if (_hasUnconfirmedSale) ...[
                           const SizedBox(height: 14),
                           _surface(
-                            child: const Text(
+                            child: Text(
                               'The sale outcome is unconfirmed. Retry the original sale '
                               'to retrieve its receipt before starting another.',
                               style: TextStyle(
