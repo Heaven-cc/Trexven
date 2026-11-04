@@ -183,7 +183,7 @@ Future<PaymentDraft?> confirmPayment(
                 ),
               ),
               if (isCash && !cashAllowed)
-                Text(
+                const Text(
                   'Drawer required',
                   style: TextStyle(
                     color: Color(0xFFCB4D4D),
@@ -343,8 +343,8 @@ Future<PaymentDraft?> confirmPayment(
         inputFormatters: numeric ? [FilteringTextInputFormatter.allow(RegExp(r'[0-9.]'))] : null,
         onChanged: (_) => update(() { error = null; if ((fullCents - (paidCentsSafe() ?? 0)) <= 0) credit = false; }));
     Widget stat(String label, String value) => Column(crossAxisAlignment: CrossAxisAlignment.start,
-      children: [Text(label, style: TextStyle(color: palette.onSurfaceVariant, fontSize: 12)),
-        const SizedBox(height: 4), Text(value, style: TextStyle(color: palette.onSurface, fontWeight: FontWeight.w700))]);
+      children: [Text(label, style: const TextStyle(color: Colors.white70, fontSize: 12)),
+        const SizedBox(height: 4), Text(value, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w700))]);
     return Dialog(insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       child: ConstrainedBox(constraints: BoxConstraints(maxWidth: 480,
         maxHeight: MediaQuery.sizeOf(dialogContext).height * .9),
@@ -360,9 +360,9 @@ Future<PaymentDraft?> confirmPayment(
                 gradient: TrexvenPresentation.premiumGradientOf(context) ?? LinearGradient(colors: [c.primary, c.surface]),
                 border: Border.all(color: c.secondary.withValues(alpha: .3))),
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Text('TREXVEN', style: TextStyle(color: palette.onSurface, fontWeight: FontWeight.w700)),
+                  const Text('TREXVEN', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700)),
                   const SizedBox(height: 12),
-                  Text('Sale total', style: TextStyle(color: palette.onSurfaceVariant, fontSize: 12)),
+                  const Text('Sale total', style: TextStyle(color: Colors.white70, fontSize: 12)),
                   const SizedBox(height: 4),
                   Text(money(fullCents), style: theme.textTheme.headlineLarge?.copyWith(color: Colors.white)),
                   const SizedBox(height: 16),
@@ -373,8 +373,8 @@ Future<PaymentDraft?> confirmPayment(
                   ]),
                 ])),
               const SizedBox(height: 16),
-              if (recovery) Text('Verify the original payment. Do not collect money again.'),
-              if (offline) Text('Cash only · receipt remains pending synchronization.'),
+              if (recovery) const Text('Verify the original payment. Do not collect money again.'),
+              if (offline) const Text('Cash only · receipt remains pending synchronization.'),
               Text('Payment methods', style: theme.textTheme.titleMedium),
               const SizedBox(height: 8),
               Wrap(spacing: 8, runSpacing: 8, children: [
@@ -412,26 +412,26 @@ Future<PaymentDraft?> confirmPayment(
               ],
               if (!offline && allowCredit && !recovery)
                 CheckboxListTile(contentPadding: EdgeInsets.zero, controlAffinity: ListTileControlAffinity.leading,
-                  title: Text('Request credit for unpaid balance'), value: credit,
-                  subtitle: Text('Requires approval for this exact saved sale. Credit is not collected money.'),
+                  title: const Text('Request credit for unpaid balance'), value: credit,
+                  subtitle: const Text('Requires approval for this exact saved sale. Credit is not collected money.'),
                   onChanged: remaining == null || remaining <= 0 ? null : (v) => update(() { credit = v ?? false; error = null; })),
               if (credit) ...[
                 input(name, 'Customer name'), input(contact, 'Customer contact'),
                 input(due, 'Repayment due date (YYYY-MM-DD)'),
                 Text('Requested credit: ${remaining == null ? '—' : money(remaining.clamp(0, fullCents).toInt())}'),
                 const SizedBox(height: 8),
-                Text('Approval is requested when you continue. Existing business/branch exposure rules apply. Individual customer allowances are not configured.'),
+                const Text('Approval is requested when you continue. Existing business/branch exposure rules apply. Individual customer allowances are not configured.'),
               ],
               const SizedBox(height: 8),
               CheckboxListTile(contentPadding: EdgeInsets.zero, controlAffinity: ListTileControlAffinity.leading,
                 value: confirmed, onChanged: (v) => update(() { confirmed = v ?? false; error = null; }),
-                title: Text('I have checked the actual payment'),
-                subtitle: Text('Cash was received or the bank/terminal transaction was independently confirmed. This is cashier confirmation, not provider-verified settlement.')),
+                title: const Text('I have checked the actual payment'),
+                subtitle: const Text('Cash was received or the bank/terminal transaction was independently confirmed. This is cashier confirmation, not provider-verified settlement.')),
               if (error != null) Padding(padding: const EdgeInsets.only(bottom: 12),
                 child: Text(error!, style: TextStyle(color: c.error))),
             ]))),
           Padding(padding: const EdgeInsets.all(16), child: Row(children: [
-            Expanded(child: OutlinedButton(onPressed: () => Navigator.pop(dialogContext), child: Text('Cancel'))),
+            Expanded(child: OutlinedButton(onPressed: () => Navigator.pop(dialogContext), child: const Text('Cancel'))),
             const SizedBox(width: 12),
             Expanded(flex: 2, child: FilledButton(onPressed: !confirmed ? null : () => submit(dialogContext, update),
               child: Text(credit ? 'Request Approval' : offline ? 'Record Cash' : 'Confirm Payment'))),
