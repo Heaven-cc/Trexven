@@ -10,17 +10,11 @@ import '../core/trexven_motion.dart';
 class TrexvenAuthColors {
   const TrexvenAuthColors._();
 
-  static Color navy(BuildContext context) =>
-      Theme.of(context).brightness == Brightness.dark
-          ? const Color(0xFFF8FAFC)
-          : const Color(0xFF0F172A);
+  static Color navy(BuildContext context) => Theme.of(context).colorScheme.onSurface;
 
-  static const blue = Color(0xFF2864F0);
+  static Color blue(BuildContext context) => Theme.of(context).colorScheme.primary;
 
-  static Color muted(BuildContext context) =>
-      Theme.of(context).brightness == Brightness.dark
-          ? const Color(0xFF94A3B8)
-          : const Color(0xFF475569);
+  static Color muted(BuildContext context) => Theme.of(context).colorScheme.onSurfaceVariant;
 
   static Color border(BuildContext context) => Theme.of(context).colorScheme.outlineVariant;
 
@@ -173,7 +167,7 @@ class TrexvenAuthBrand extends StatelessWidget {
           errorBuilder: (_, __, ___) => Icon(
             Icons.storefront_rounded,
             size: size * .7,
-            color: TrexvenAuthColors.blue,
+            color: TrexvenAuthColors.blue(context),
           ),
         ),
         const SizedBox(height: 11),
@@ -210,7 +204,7 @@ class TrexvenAuthCard extends StatelessWidget {
             color: TrexvenAuthColors.cardBg(context).withValues(alpha: isDark ? .92 : .88),
             borderRadius: BorderRadius.circular(28),
             border: Border.all(
-              color: isDark ? const Color(0xFF334155) : Colors.white.withValues(alpha: .88),
+              color: Theme.of(context).colorScheme.surface.withValues(alpha: .88),
               width: 1.2,
             ),
           ),
@@ -300,9 +294,9 @@ class TrexvenAuthField extends StatelessWidget {
         ),
         border: fieldBorder(TrexvenAuthColors.border(context), 1),
         enabledBorder: fieldBorder(TrexvenAuthColors.border(context), 1),
-        focusedBorder: fieldBorder(TrexvenAuthColors.blue, 1.6),
-        errorBorder: fieldBorder(const Color(0xFFD64545), 1),
-        focusedErrorBorder: fieldBorder(const Color(0xFFD64545), 1.6),
+        focusedBorder: fieldBorder(TrexvenAuthColors.blue(context), 1.6),
+        errorBorder: fieldBorder(Theme.of(context).colorScheme.error, 1),
+        focusedErrorBorder: fieldBorder(Theme.of(context).colorScheme.error, 1.6),
       ),
     );
   }
@@ -341,8 +335,8 @@ class _TrexvenAuthPhoneFieldState extends State<TrexvenAuthPhoneField> {
       context: context,
       showPhoneCode: true,
       countryListTheme: CountryListThemeData(
-        backgroundColor: isDark ? const Color(0xFF1E293B) : Colors.white,
-        textStyle: TextStyle(color: isDark ? Colors.white : Colors.black87),
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        textStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface),
         borderRadius: BorderRadius.circular(20),
         inputDecoration: InputDecoration(
           hintText: 'Search country',
@@ -444,7 +438,7 @@ class TrexvenAuthPrimaryButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(23),
               boxShadow: [
                 BoxShadow(
-                  color: TrexvenAuthColors.blue.withValues(alpha: .17),
+                  color: TrexvenAuthColors.blue(context).withValues(alpha: .17),
                   blurRadius: 16,
                   offset: const Offset(0, 7),
                 ),
