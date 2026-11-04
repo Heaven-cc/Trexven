@@ -461,7 +461,7 @@ class _CatalogImportScreenState extends State<CatalogImportScreen> {
                 ),
               ),
               const SizedBox(width: 12),
-              const Expanded(
+              Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
