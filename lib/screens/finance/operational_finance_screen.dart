@@ -213,8 +213,7 @@ class _OperationalFinanceScreenState extends State<OperationalFinanceScreen> {
     required String description,
     required VoidCallback onTap,
   }) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final cardBg = isDark ? const Color(0xFF1E293B) : Colors.white;
+    final cardBg = Theme.of(context).colorScheme.surface;
 
     return Material(
       color: cardBg,
@@ -344,7 +343,7 @@ class _OperationalFinanceScreenState extends State<OperationalFinanceScreen> {
                 label: const Text('Try again'),
                 style: FilledButton.styleFrom(
                   backgroundColor: _blue,
-                  foregroundColor: Colors.white,
+                  foregroundColor: Theme.of(context).colorScheme.onPrimary,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(11),
                   ),
