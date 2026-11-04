@@ -19,11 +19,12 @@ class TrexvenHeroMetric extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(compact ? 14 : 20),
       decoration: BoxDecoration(
-        color: const Color(0xFF111B35),
+        color: scheme.surface,
         borderRadius: BorderRadius.circular(TrexvenRadii.card),
       ),
       child: Column(
@@ -32,21 +33,21 @@ class TrexvenHeroMetric extends StatelessWidget {
           Text(
             label.toUpperCase(),
             style: TrexvenTypography.label.copyWith(
-              color: const Color(0xFFB0BED0),
+              color: scheme.onSurfaceVariant,
             ),
           ),
           SizedBox(height: compact ? 8 : 16),
           Text(
             value,
             style: TrexvenTypography.display.copyWith(
-              color: Colors.white,
+              color: scheme.onSurface,
             ),
           ),
           if (supporting != null) ...[
             SizedBox(height: compact ? 6 : 8),
             DefaultTextStyle.merge(
               style: TrexvenTypography.caption.copyWith(
-                color: const Color(0xFFB0BED0),
+                color: scheme.onSurfaceVariant,
               ),
               child: supporting!,
             ),
