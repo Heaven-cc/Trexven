@@ -303,46 +303,47 @@ class _IntelligenceTabState extends State<IntelligenceTab> {
 
   Widget _aiLiveHero() {
     final theme = Theme.of(context);
+    final c = theme.colorScheme;
     return Container(
       padding: TrexvenSpacing.cardPadding,
       decoration: BoxDecoration(
-        color: const Color(0xFF102846),
+        color: c.surface,
         borderRadius: BorderRadius.circular(TrexvenRadii.card)),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const Row(children: [
-          Icon(Icons.auto_awesome, color: Color(0xFFA9C8F4), size: 18),
+        Row(children: [
+          Icon(Icons.auto_awesome, color: c.primary, size: 18),
           SizedBox(width: 8),
           Expanded(child: Text('AI Live',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w800))),
+            style: TextStyle(color: c.onSurface, fontWeight: FontWeight.w800))),
           Text('SERVER CONTROLLED',
-            style: TextStyle(color: Color(0xFFA9C8F4), fontSize: 10)),
+            style: TextStyle(color: c.primary, fontSize: 10)),
         ]),
         const SizedBox(height: TrexvenSpacing.labelGap),
         Container(
           height: 112, width: double.infinity,
           decoration: BoxDecoration(
-            color: const Color(0xFF071728),
+            color: c.surfaceContainerHighest,
             borderRadius: BorderRadius.circular(TrexvenRadii.field)),
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            const Icon(Icons.videocam_outlined,
-              color: Color(0xFF9DBCDD), size: 28),
+            Icon(Icons.videocam_outlined,
+              color: c.primary, size: 28),
             const SizedBox(height: 6),
             Text(_cameras.isEmpty ? 'Connect a camera to start'
                 : 'Open Live to view the AI-selected camera',
               textAlign: TextAlign.center,
-              style: const TextStyle(color: Color(0xFFC5D4E5), fontSize: 12)),
+              style: TextStyle(color: c.onSurfaceVariant, fontSize: 12)),
           ]),
         ),
         const SizedBox(height: TrexvenSpacing.labelGap),
         Row(children: [
           Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Automatic camera attention',
-                style: TextStyle(color: Colors.white,
+              Text('Automatic camera attention',
+                style: TextStyle(color: c.onSurface,
                   fontWeight: FontWeight.w700, fontSize: 13)),
               Text('Vision chooses which camera to display',
                 style: theme.textTheme.bodySmall?.copyWith(
-                  color: const Color(0xFFC5D4E5))),
+                  color: c.onSurfaceVariant)),
             ])),
           const SizedBox(width: TrexvenSpacing.labelGap),
           FilledButton(onPressed: _cameras.isEmpty ? null : _openAiLive,

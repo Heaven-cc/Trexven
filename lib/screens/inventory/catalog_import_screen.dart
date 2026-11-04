@@ -36,14 +36,14 @@ class _CatalogImportScreenState extends State<CatalogImportScreen> {
   bool _showCsvEditor = false;
   bool _showInstructions = false;
 
-  static const Color _background = Color(0xFFF5F7FC);
-  static const Color _white = Colors.white;
-  static const Color _navy = Color(0xFF14213D);
-  static const Color _blue = Color(0xFF2864F0);
-  static const Color _muted = Color(0xFF71809A);
-  static const Color _softBlue = Color(0xFFE8EFFF);
-  static const Color _border = Color(0xFFE6EAF2);
-  static const Color _green = Color(0xFF16845A);
+  Color get _background => Theme.of(context).scaffoldBackgroundColor;
+  Color get _white => Theme.of(context).colorScheme.surface;
+  Color get _navy => Theme.of(context).colorScheme.onSurface;
+  Color get _blue => Theme.of(context).colorScheme.primary;
+  Color get _muted => Theme.of(context).colorScheme.onSurfaceVariant;
+  Color get _softBlue => Theme.of(context).colorScheme.surfaceContainerHighest;
+  Color get _border => Theme.of(context).colorScheme.outlineVariant;
+  Color get _green => Theme.of(context).trexvenColors.success ?? Theme.of(context).colorScheme.primary;
 
   @override
   void dispose() {
@@ -129,7 +129,7 @@ class _CatalogImportScreenState extends State<CatalogImportScreen> {
           branch = await showDialog<String>(
             context: context,
             builder: (c) => SimpleDialog(
-              title: const Text('Select inventory branch'),
+              title: Text('Select inventory branch'),
               children: [
                 for (final b in branches)
                   SimpleDialogOption(
@@ -374,10 +374,10 @@ class _CatalogImportScreenState extends State<CatalogImportScreen> {
           elevation: 0,
           titleSpacing: 0,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_rounded, color: _navy),
+            icon: Icon(Icons.arrow_back_rounded, color: _navy),
             onPressed: _busy ? null : () => Navigator.pop(context),
           ),
-          title: const Text(
+          title: Text(
             'Import products',
             style: TextStyle(
               color: _navy,
@@ -454,14 +454,14 @@ class _CatalogImportScreenState extends State<CatalogImportScreen> {
                   color: _softBlue,
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: const Icon(
+                child: Icon(
                   Icons.upload_file_outlined,
                   color: _blue,
                   size: 23,
                 ),
               ),
               const SizedBox(width: 12),
-              const Expanded(
+              Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -481,7 +481,7 @@ class _CatalogImportScreenState extends State<CatalogImportScreen> {
                   ],
                 ),
               ),
-              const Icon(Icons.chevron_right_rounded, color: _muted),
+              Icon(Icons.chevron_right_rounded, color: _muted),
             ],
           ),
         ),
@@ -493,12 +493,12 @@ class _CatalogImportScreenState extends State<CatalogImportScreen> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: BoxDecoration(
-        color: const Color(0xFFE6F7EF),
+        color: _green.withValues(alpha: .10),
         borderRadius: BorderRadius.circular(11),
       ),
       child: Row(
         children: [
-          const Icon(
+          Icon(
             Icons.check_circle_outline_rounded,
             color: _green,
             size: 19,
@@ -509,7 +509,7 @@ class _CatalogImportScreenState extends State<CatalogImportScreen> {
               _fileName!,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
+              style: TextStyle(
                 color: _green,
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
@@ -530,7 +530,7 @@ class _CatalogImportScreenState extends State<CatalogImportScreen> {
                   _clearReview();
                 });
               },
-              icon: const Icon(Icons.close_rounded, color: _green, size: 18),
+              icon: Icon(Icons.close_rounded, color: _green, size: 18),
             ),
         ],
       ),
@@ -547,12 +547,12 @@ class _CatalogImportScreenState extends State<CatalogImportScreen> {
         children: [
           ListTile(
             contentPadding: const EdgeInsets.symmetric(horizontal: 14),
-            leading: const Icon(
+            leading: Icon(
               Icons.info_outline_rounded,
               color: _blue,
               size: 20,
             ),
-            title: const Text(
+            title: Text(
               'Spreadsheet requirements',
               style: TextStyle(
                 color: _navy,
@@ -573,7 +573,7 @@ class _CatalogImportScreenState extends State<CatalogImportScreen> {
             },
           ),
           if (_showInstructions)
-            const Padding(
+            Padding(
               padding: EdgeInsets.fromLTRB(15, 0, 15, 16),
               child: Text(
                 'Required: Name, Product name, or Names.\n\n'
@@ -609,7 +609,7 @@ class _CatalogImportScreenState extends State<CatalogImportScreen> {
         contentPadding: EdgeInsets.zero,
         controlAffinity: ListTileControlAffinity.trailing,
         activeColor: _blue,
-        title: const Text(
+        title: Text(
           'Update existing products',
           style: TextStyle(
             color: _navy,
@@ -617,7 +617,7 @@ class _CatalogImportScreenState extends State<CatalogImportScreen> {
             fontWeight: FontWeight.w700,
           ),
         ),
-        subtitle: const Text(
+        subtitle: Text(
           'Match products by barcode or SKU',
           style: TextStyle(color: _muted, fontSize: 11),
         ),
@@ -643,8 +643,8 @@ class _CatalogImportScreenState extends State<CatalogImportScreen> {
         children: [
           ListTile(
             contentPadding: const EdgeInsets.symmetric(horizontal: 14),
-            leading: const Icon(Icons.edit_note_rounded, color: _blue),
-            title: const Text(
+            leading: Icon(Icons.edit_note_rounded, color: _blue),
+            title: Text(
               'Paste CSV manually',
               style: TextStyle(
                 color: _navy,
@@ -652,7 +652,7 @@ class _CatalogImportScreenState extends State<CatalogImportScreen> {
                 fontWeight: FontWeight.w700,
               ),
             ),
-            subtitle: const Text(
+            subtitle: Text(
               'Optional alternative to uploading a file',
               style: TextStyle(color: _muted, fontSize: 11),
             ),
@@ -703,23 +703,23 @@ class _CatalogImportScreenState extends State<CatalogImportScreen> {
     return Container(
       padding: const EdgeInsets.all(13),
       decoration: BoxDecoration(
-        color: const Color(0xFFFCEDEF),
+        color: Theme.of(context).colorScheme.error.withValues(alpha: .10),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Icon(
+          Icon(
             Icons.error_outline_rounded,
-            color: Color(0xFFD44B52),
+            color: Theme.of(context).colorScheme.error,
             size: 19,
           ),
           const SizedBox(width: 9),
           Expanded(
             child: Text(
               _error!,
-              style: const TextStyle(
-                color: Color(0xFFD44B52),
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.error,
                 fontSize: 12,
                 height: 1.5,
               ),
@@ -744,7 +744,7 @@ class _CatalogImportScreenState extends State<CatalogImportScreen> {
           backgroundColor: _blue,
           disabledBackgroundColor: _softBlue,
           disabledForegroundColor: _blue,
-          foregroundColor: Colors.white,
+          foregroundColor: Theme.of(context).colorScheme.onPrimary,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(13),
           ),
@@ -758,7 +758,7 @@ class _CatalogImportScreenState extends State<CatalogImportScreen> {
             : Icon(icon, size: 19),
         label: Text(
           title,
-          style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w800),
+          style: TextStyle(fontSize: 13, fontWeight: FontWeight.w800),
         ),
       ),
     );

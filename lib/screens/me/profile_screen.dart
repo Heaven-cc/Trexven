@@ -25,7 +25,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool _saving = false;
 
   Color get _background => Theme.of(context).scaffoldBackgroundColor;
-  Color get _white => Theme.of(context).brightness == Brightness.dark ? const Color(0xFF1E293B) : Colors.white;
+  Color get _white => Theme.of(context).colorScheme.surface;
   Color get _navy => Theme.of(context).colorScheme.onSurface;
   Color get _blue => Theme.of(context).colorScheme.primary;
   Color get _muted => Theme.of(context).colorScheme.onSurfaceVariant;
@@ -410,7 +410,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         onPressed: _saving ? null : _save,
         style: FilledButton.styleFrom(
           backgroundColor: _blue,
-          foregroundColor: Colors.white,
+          foregroundColor: Theme.of(context).colorScheme.onPrimary,
           disabledBackgroundColor: _softBlue,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(13),

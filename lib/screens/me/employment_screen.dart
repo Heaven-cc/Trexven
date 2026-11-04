@@ -96,9 +96,9 @@ class _EmploymentScreenState extends State<EmploymentScreen> {
         backgroundColor: brandBlue,
         label: Text(
           'Add Employee',
-          style: TextStyle(fontWeight: FontWeight.w700, color: Colors.white),
+          style: TextStyle(fontWeight: FontWeight.w700, color: theme.colorScheme.onPrimary),
         ),
-        icon: Icon(Icons.add, color: Colors.white),
+        icon: Icon(Icons.add, color: theme.colorScheme.onPrimary),
       ),
     );
   }

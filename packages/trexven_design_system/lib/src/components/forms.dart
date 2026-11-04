@@ -34,12 +34,10 @@ class TrexvenFieldLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
     return Text(
       text,
       style: TrexvenTypography.label.copyWith(
-        color: TrexvenPresentation.isPos(context) ? theme.colorScheme.onSurface
-            : isDark ? const Color(0xFFF8FAFC) : const Color(0xFF0F172A),
+        color: theme.colorScheme.onSurface,
         fontWeight: FontWeight.w800,
         fontSize: 13,
       ),

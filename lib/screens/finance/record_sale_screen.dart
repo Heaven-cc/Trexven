@@ -529,8 +529,7 @@ class _RecordSaleScreenState extends State<RecordSaleScreen> {
   );
 
   Widget _surface({required Widget child}) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final cardBg = isDark ? const Color(0xFF1E293B) : Colors.white;
+    final cardBg = Theme.of(context).colorScheme.surface;
     final border = Theme.of(context).trexvenColors.border ?? Theme.of(context).colorScheme.outlineVariant;
     return Container(
       width: double.infinity,
@@ -695,7 +694,7 @@ class _RecordSaleScreenState extends State<RecordSaleScreen> {
                               ),
                               const SizedBox(height: 12),
                               for (final entry in _cart.entries) ...[
-                                const Divider(color: Color(0xFFE9EDF4)),
+                                Divider(color: Theme.of(context).colorScheme.outlineVariant),
                                 Row(
                                   children: [
                                     Expanded(
@@ -711,9 +710,9 @@ class _RecordSaleScreenState extends State<RecordSaleScreen> {
                                       onPressed: locked
                                           ? null
                                           : () => _removeCartProduct(entry.key),
-                                      icon: const Icon(
+                                      icon: Icon(
                                         Icons.delete_outline,
-                                        color: Color(0xFFB65A5A),
+                                        color: Theme.of(context).colorScheme.error,
                                       ),
                                     ),
                                   ],
@@ -809,7 +808,7 @@ class _RecordSaleScreenState extends State<RecordSaleScreen> {
                                 'Total quantity',
                                 '${_cart.values.fold<num>(0, (sum, line) => sum + line.quantity)}',
                               ),
-                              const Divider(color: Color(0xFFE9EDF4)),
+                              Divider(color: Theme.of(context).colorScheme.outlineVariant),
                               _detailRow(
                                 'Grand Total',
                                 _money(_total),
@@ -918,11 +917,11 @@ class _RecordSaleScreenState extends State<RecordSaleScreen> {
                         if (_hasUnconfirmedSale) ...[
                           const SizedBox(height: 14),
                           _surface(
-                            child: const Text(
+                            child: Text(
                               'The sale outcome is unconfirmed. Retry the original sale '
                               'to retrieve its receipt before starting another.',
                               style: TextStyle(
-                                color: Color(0xFFB65A1C),
+                                color: Theme.of(context).trexvenColors.warning ?? Theme.of(context).colorScheme.error,
                                 fontSize: 13,
                               ),
                             ),
@@ -950,7 +949,7 @@ class _RecordSaleScreenState extends State<RecordSaleScreen> {
                             key: const ValueKey('record-sale-submit'),
                             style: FilledButton.styleFrom(
                               backgroundColor: _blue,
-                              foregroundColor: Colors.white,
+                              foregroundColor: Theme.of(context).colorScheme.onPrimary,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(14),
                               ),

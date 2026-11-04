@@ -211,9 +211,7 @@ class _BillingScreenState extends State<BillingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Billing & Plans')),
-      backgroundColor: Theme.of(context).brightness == Brightness.dark
-          ? const Color(0xFF0D172B)
-          : const Color(0xFFF2F9FF),
+      backgroundColor: bg,
       body: Stack(
         children: [
           _billingBackdrop(),
@@ -602,7 +600,7 @@ class _BillingScreenState extends State<BillingScreen> {
                 left: -95,
                 top: -95,
                 child: orb(
-                  dark ? const Color(0xA82B5795) : const Color(0xB096CEFF),
+                  blue.withValues(alpha: dark ? .10 : .12),
                   280,
                 ),
               ),
@@ -610,7 +608,7 @@ class _BillingScreenState extends State<BillingScreen> {
                 right: -120,
                 top: 260,
                 child: orb(
-                  dark ? const Color(0x85385993) : const Color(0x99A3C3FF),
+                  blue.withValues(alpha: dark ? .08 : .09),
                   310,
                 ),
               ),
@@ -618,7 +616,7 @@ class _BillingScreenState extends State<BillingScreen> {
                 left: -90,
                 bottom: 0,
                 child: orb(
-                  dark ? const Color(0x70377091) : const Color(0x808DE1F0),
+                  blue.withValues(alpha: dark ? .05 : .07),
                   280,
                 ),
               ),
@@ -639,12 +637,12 @@ class _BillingScreenState extends State<BillingScreen> {
           width: double.infinity,
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: dark ? const Color(0xC4263854) : const Color(0xB8FFFFFF),
+            color: card.withValues(alpha: dark ? .86 : .92),
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
               color: highlight
                   ? blue.withValues(alpha: .5)
-                  : Colors.white.withValues(alpha: dark ? .12 : .84),
+                  : border.withValues(alpha: .65),
             ),
             boxShadow: [
               BoxShadow(
@@ -788,9 +786,9 @@ class BillingPlanCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
-    final card = isDark ? const Color(0xFF1E293B) : Colors.white;
-    final selected = isDark ? const Color(0xFF1E3A8A) : const Color(0xFFEBF2FF);
-    final border = isDark ? const Color(0xFF334155) : const Color(0xFFE2E8F0);
+    final card = theme.colorScheme.surface;
+    final selected = theme.colorScheme.primary.withValues(alpha: .14);
+    final border = theme.colorScheme.outlineVariant;
 
     return Container(
       padding: const EdgeInsets.all(22),
@@ -818,7 +816,7 @@ class BillingPlanCard extends StatelessWidget {
                 Text(
                   'Current plan',
                   style: TextStyle(
-                    color: Color(0xFF5A9BFA),
+                    color: theme.colorScheme.primary,
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
                   ),

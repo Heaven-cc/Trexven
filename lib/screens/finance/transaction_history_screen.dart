@@ -21,7 +21,7 @@ Widget financialTransactionTile(
       : items.map((e) => e['product_name'] ?? 'Product').join(', ');
   return ExpansionTile(
     tilePadding: const EdgeInsets.symmetric(horizontal: 4),
-    leading: const Icon(Icons.receipt_long_outlined, color: Color(0xFF2864F0)),
+    leading: Builder(builder: (context) => Icon(Icons.receipt_long_outlined, color: Theme.of(context).colorScheme.primary)),
     title: Text(
       summary,
       maxLines: 1,
